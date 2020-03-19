@@ -7,7 +7,8 @@ assignees: JoelGodOfwar
 
 ---
 
-Before submitting an issue, please use the command "/mmh td" to turn on debug mode, and attach a log with the debug info.
+# Before submitting an issue, please use the command "/mmh td" to turn on debug mode, and attach a log with the debug info.
+
 ### What behaviour is expected:
 ___What you expected to see___
 

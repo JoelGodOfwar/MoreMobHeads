@@ -1,0 +1,273 @@
+# Add the translations for your language here
+# 在此处添加您的语言的翻译
+player: Player头
+bat: 蝙蝠头
+bee:
+  angry_pollinated: 愤怒授粉的蜜蜂头
+  angry: 愤怒蜜蜂头
+  pollinated: 授粉的蜜蜂头
+  none: 蜜蜂头
+blaze: 烈焰人头
+cat:
+  all_black: 黑猫头
+  black: 黑猫头
+  british_shorthair: 英国短毛猫猫头
+  calico: 印花布猫头
+  jellie: 果冻猫头
+  persian: 波斯语猫头
+  ragdoll: 布娃娃猫头
+  red: 红色猫头
+  siamese: 连体猫头
+  tabby: 虎斑猫头
+  white: 白色猫头
+  wild_ocelot: 豹猫头
+cave_spider: 洞穴蜘蛛头
+chicken: 鸡头
+cod: 鳕鱼头
+cow: 牛头
+creeper: 苦力怕头
+dolphin: 海豚头
+donkey: 驴头
+drowned: 溺尸头
+elder_guardian: 远古守卫者头
+ender_dragon: 末影龙头
+enderman: 末影人头
+endermite: 末影螨头
+evoker: 唤魔者头
+fox:
+  red: 红色狐狸头
+  snow: 雪狐狸头
+ghast: 恶魂头
+giant: 巨人头
+guardian: 守卫者头
+hoglin: Hoglin头
+horse:
+  black: 黑色马头
+  brown: 棕色马头
+  chestnut: 板栗马头
+  creamy: 奶油状马头
+  dark_brown: 深棕色马头
+  gray: 灰色马头
+  white: 白色马头
+husk: 尸壳头
+illusioner: 幻术师头
+iron_golem: 铁傀儡头
+llama:
+  brown: 棕色羊驼头
+  creamy: 奶油状羊驼头
+  gray: 灰色羊驼头
+  white: 白色羊驼头
+magma_cube: 岩浆立方头
+mule: 马骡头 
+mushroom_cow:
+  red: 蘑菇牛头
+  brown: 棕色蘑菇牛头
+panda:
+  aggressive: 好斗熊猫头
+  brown: 棕色熊猫头
+  lazy: 懒熊猫头
+  normal: 熊猫头
+  playful: 好玩的熊猫头
+  weak: 弱熊猫头
+  worried: 担心熊猫头
+parrot:
+  blue: 蓝色鹦鹉头
+  cyan: Cyan鹦鹉头
+  gray: 灰色鹦鹉头
+  green: 绿色鹦鹉头
+  red: 红色鹦鹉头
+phantom: 幻影头
+pig: 猪头
+piglin: Piglin头
+pig_zombie: 猪僵尸头
+pillager: Pillager头
+polar_bear: 北极熊头
+pufferfish: 河豚鱼头
+rabbit:
+  black: 黑色兔子头
+  black_and_white: 黑和白子头
+  brown: 棕色兔子头
+  gold: 金兔子头
+  salt_and_pepper: 盐和胡椒兔子头
+  the_killer_bunny: 杀手兔子头
+  toast: Toast兔子头
+  white: 白色兔子头
+ravager: 劫掠兽头
+salmon: 三文鱼头
+sheep:
+  black: 黑色羊头
+  blue: 蓝色羊头
+  brown: 棕色羊头
+  cyan: Cyan羊头
+  gray: 灰色羊头
+  green: 绿色羊头
+  jeb_: Jeb_ 羊头
+  light_blue: 浅蓝羊头
+  light_gray: 光灰色羊头
+  lime: 酸橙羊头
+  magenta: 品红羊头
+  orange: 橙子羊头
+  pink: 桃红羊头
+  purple: 紫色羊头
+  red: 红色羊头
+  white: 白色羊头
+  yellow: 黄羊头
+shulker: 潜影贝头
+silverfish: 蠹虫头
+skeleton: 骨架头
+skeleton_horse: 骷髅马头
+slime: 粘液头
+snowman: 雪人头
+spider: 蜘蛛头
+squid: 乌贼头
+stray: 流浪头
+strider: Strider头
+trader_llama:
+  brown: 棕色羊驼商人头
+  creamy: 奶油状羊驼商人头
+  gray: 灰色羊驼商人头
+  white: 白色羊驼商人头
+#########################################
+tropical_fish: 热带鱼头
+turtle: 龟头
+vex: Vex 头
+villager:
+  desert:
+    armorer: 沙漠军械员村民头
+    butcher: 沙漠屠夫村民头
+    cartographer: 沙漠制图师村民头
+    cleric: 沙漠牧师村民头
+    farmer: 沙漠农民村民头
+    fisherman: 沙漠渔民村民头
+    fletcher: 沙漠弗莱彻村民头
+    leatherworker: 沙漠制皮工村民头
+    librarian: 沙漠图书管理员村民头
+    mason: 沙漠石匠村民头
+    nitwit: 沙漠尼特威特村民头
+    none: 沙漠村民头
+    shepherd: 沙漠牧羊人村民头
+    toolsmith: 沙漠工具匠村民头
+    weaponsmith: 沙漠武器史密斯村民头
+  jungle:
+    armorer: 丛林军械员村民头
+    butcher: 丛林屠夫村民头
+    cartographer: 丛林制图师村民头
+    cleric: 丛林牧师村民头
+    farmer: 丛林农民村民头
+    fisherman: 丛林渔民村民头
+    fletcher: 丛林弗莱彻村民头
+    leatherworker: 丛林制皮工村民头
+    librarian: 丛林图书管理员村民头
+    mason: 丛林石匠村民头
+    nitwit: 丛林尼特威特村民头
+    none: 丛林村民头
+    shepherd: 丛林牧羊人村民头
+    toolsmith: 丛林工具匠村民头
+    weaponsmith: 丛林武器史密斯村民头
+  plains:
+    armorer: 平原军械员村民头
+    butcher: 平原屠夫村民头
+    cartographer: 平原制图师村民头
+    cleric: 平原牧师村民头
+    farmer: 平原农民村民头
+    fisherman: 平原渔民村民头
+    fletcher: 平原弗莱彻村民头
+    leatherworker: 平原制皮工村民头
+    librarian: 平原图书管理员村民头
+    mason: 平原石匠村民头
+    nitwit: 平原尼特威特村民头
+    none: 平原村民头
+    shepherd: 平原牧羊人村民头
+    toolsmith: 平原工具匠村民头
+    weaponsmith: 平原武器史密斯村民头
+  savanna:
+    armorer: 稀树草原军械员村民头
+    butcher: 稀树草原屠夫村民头
+    cartographer: 稀树草原制图师村民头
+    cleric: 稀树草原牧师村民头
+    farmer: 稀树草原农民村民头
+    fisherman: 稀树草原渔民村民头
+    fletcher: 稀树草原弗莱彻村民头
+    leatherworker: 稀树草原制皮工村民头
+    librarian: 稀树草原图书管理员村民头
+    mason: 稀树草原石匠村民头
+    nitwit: 稀树草原尼特威特村民头
+    none: 稀树草原村民头
+    shepherd: 稀树草原牧羊人村民头
+    toolsmith: 稀树草原工具匠村民头
+    weaponsmith: 稀树草原武器史密斯村民头
+  snow:
+    armorer: 雪军械员村民头
+    butcher: 雪屠夫村民头
+    cartographer: 雪制图师村民头
+    cleric: 雪牧师村民头
+    farmer: 雪农民村民头
+    fisherman: 雪渔民村民头
+    fletcher: 雪弗莱彻村民头
+    leatherworker: 雪制皮工村民头
+    librarian: 雪图书管理员村民头
+    mason: 雪石匠村民头
+    nitwit: 雪尼特威特村民头
+    none: 雪村民头
+    shepherd: 雪牧羊人村民头
+    toolsmith: 雪工具匠村民头
+    weaponsmith: 雪武器史密斯村民头
+  swamp:
+    armorer: 沼泽军械员村民头
+    butcher: 沼泽屠夫村民头
+    cartographer: 沼泽制图师村民头
+    cleric: 沼泽牧师村民头
+    farmer: 沼泽农民村民头
+    fisherman: 沼泽渔民村民头
+    fletcher: 沼泽弗莱彻村民头
+    leatherworker: 沼泽制皮工村民头
+    librarian: 沼泽图书管理员村民头
+    mason: 沼泽石匠村民头
+    nitwit: 沼泽尼特威特村民头
+    none: 沼泽村民头
+    shepherd: 沼泽牧羊人村民头
+    toolsmith: 沼泽工具匠村民头
+    weaponsmith: 沼泽武器史密斯村民头
+  taiga:
+    armorer: 针叶林军械员村民头
+    butcher: 针叶林屠夫村民头
+    cartographer: 针叶林制图师村民头
+    cleric: 针叶林牧师村民头
+    farmer: 针叶林农民村民头
+    fisherman: 针叶林渔民村民头
+    fletcher: 针叶林弗莱彻村民头
+    leatherworker: 针叶林制皮工村民头
+    librarian: 针叶林图书管理员村民头
+    mason: 针叶林石匠村民头
+    nitwit: 针叶林尼特威特村民头
+    none: 针叶林村民头
+    shepherd: 针叶林牧羊人村民头
+    toolsmith: 针叶林工具匠村民头
+    weaponsmith: 针叶林武器史密斯村民头
+vindicator: 卫道士头
+wandering_trader: 流浪商人头
+witch: 巫婆头
+wither: 枯萎头
+wither_skeleton: 凋灵骷髅头
+wolf: 狼头
+zoglin: Zoglin头
+zombie: 僵尸头
+zombie_horse: 僵尸马头
+zombie_pigman: 僵尸猪人头
+zombified_piglin: 僵尸Piglin头
+zombie_villager:
+  armorer: 僵尸军械员村民头
+  butcher: 僵尸屠夫村民头
+  cartographer: 僵尸制图师村民头
+  cleric: 僵尸牧师村民头
+  farmer: 僵尸农民村民头
+  fisherman: 僵尸渔民村民头
+  fletcher: 僵尸弗莱彻村民头
+  leatherworker: 僵尸制皮工村民头
+  librarian: 僵尸图书管理员村民头
+  mason: 僵尸石匠村民头
+  nitwit: 僵尸尼特威特村民头
+  none: 僵尸村民头
+  shepherd: 僵尸牧羊人村民头
+  toolsmith: 僵尸工具匠村民头
+  weaponsmith: 僵尸武器史密斯村民头

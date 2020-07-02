@@ -1,0 +1,12 @@
+change log
+1. updated textures to match the new datapack v2.4.1 textures.
+2. Added 4 Wither variants; Normal, Invulnerable, Armored, Armored Invulnerable. random chance for each.
+3. Added Angry Wolf
+4. Updated en_US_mobnames.yml as follows:
+wither:
+  1: Wither Head
+  2: Invulnerable Wither Head
+  3: Armored Wither Head
+  4: Armored Invulnerable Wither Head
+wolf: Wolf Head
+wolf_angry: Angry Wolf Head

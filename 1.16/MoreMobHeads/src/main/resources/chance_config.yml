@@ -1,0 +1,274 @@
+# DO NOT CHANGE VERSION
+version: 1.0.18
+# Following are chance percent settings for each mob and variants of mobs.
+# Hieronder volgen instellingen voor het toevalspercentage voor elke mob en varianten van mobs.
+# Voici les paramÃ¨tres de pourcentage de chance pour chaque mob et les variantes de mobs.
+# Es folgen die Einstellungen fÃ¼r die Wahrscheinlichkeit in Prozent fÃ¼r jeden Mob und Varianten von Mobs.
+# 以下是每个生物及其变形的机会百分比设置。
+# NÃ¡sleduje nastavenÃ­ procenta Å¡ancÃ­ pro kaÅ¾dÃ½ mob a varianty mobs.
+# A seguir, estÃ£o as configuraÃ§Ãµes de porcentagem de chance para cada mob e variantes de mobs.
+# 0.001 = 1/10 of 1 percent, 0.01 = 1 percent, 1.00 = 100 percent
+chance_percent:
+  player: 0.50
+  named_mob: 0.10
+  axolotl: 0.10
+  bat: 0.10
+  bee:
+    angry_pollinated: 0.20
+    angry: 0.20
+    pollinated: 0.20
+    chance_percent: 0.20
+  blaze: 0.005
+  cat:
+    all_black: 0.33
+    black: 0.33
+    british_shorthair: 0.33
+    calico: 0.33
+    jellie: 0.33
+    persian: 0.33
+    ragdoll: 0.33
+    red: 0.33
+    siamese: 0.33
+    tabby: 0.33
+    white: 0.33
+  cave_spider: 0.005
+  chicken: 0.01
+  cod: 0.10
+  cow: 0.01
+  creeper: 0.50
+  creeper_charged: 1.00
+  dolphin: 0.33
+  donkey: 0.20
+  drowned: 0.05
+  elder_guardian: 1.00
+  ender_dragon: 1.00
+  enderman: 0.005
+  endermite: 0.10
+  evoker: 0.25
+  fox:
+    red: 0.10
+    snow: 0.10
+  ghast: 0.0625
+  giant: 0.025
+  glow_squid: 0.10
+  goat: 0.10
+  guardian: 0.005
+  hoglin: 0.03
+  horse:
+    black: 0.27
+    brown: 0.27
+    chestnut: 0.27
+    creamy: 0.27
+    dark_brown: 0.27
+    gray: 0.27
+    white: 0.27
+  husk: 0.06
+  illusioner: 0.25
+  iron_golem: 0.05
+  llama:
+    brown: 0.24
+    creamy: 0.24
+    gray: 0.24
+    white: 0.24
+  magma_cube: 0.005
+  mule: 0.20
+  mushroom_cow:
+    red: 0.10
+    brown: 0.10
+  ocelot: 0.20
+  panda:
+    aggressive: 0.27
+    brown: 0.27
+    lazy: 0.27
+    normal: 0.27
+    playful: 0.27
+    weak: 0.27
+    worried: 0.27
+  parrot:
+    blue: 0.25
+    cyan: 0.25
+    gray: 0.25
+    green: 0.25
+    red: 0.25
+  phantom: 0.10
+  pig: 0.01
+  piglin: 0.04
+  piglin_brute: 0.10
+  pig_zombie: 0.005
+  pillager: 0.025
+  polar_bear: 0.20
+  pufferfish: 0.15
+  rabbit:
+    black: 0.26
+    black_and_white: 0.26
+    brown: 0.26
+    gold: 0.26
+    salt_and_pepper: 0.26
+    the_killer_bunny: 1.00
+    toast: 0.26
+    white: 0.26
+  ravager: 0.25
+  salmon: 0.10
+  sheep:
+    black: 0.0175
+    blue: 0.0175
+    brown: 0.0175
+    cyan: 0.0175
+    gray: 0.0175
+    green: 0.0175
+    jeb_: 0.10
+    light_blue: 0.0175
+    light_gray: 0.0175
+    lime: 0.0175
+    magenta: 0.0175
+    orange: 0.0175
+    pink: 0.0175
+    purple: 0.0175
+    red: 0.0175
+    white: 0.0175
+    yellow: 0.0175
+  shulker: 0.05
+  silverfish: 0.05
+  skeleton: 0.025
+  skeleton_horse: 0.20
+  slime: 0.005
+  snowman: 0.05
+  spider: 0.005
+  squid: 0.05
+  stray: 0.06
+  strider: 0.10
+  trader_llama:
+    brown: 0.24
+    creamy: 0.24
+    gray: 0.24
+    white: 0.24
+  # ########################################
+  tropical_fish: 0.10
+  turtle: 0.10
+  vex: 0.10
+  villager:
+    desert:
+      armorer: 1.00
+      butcher: 1.00
+      cartographer: 1.00
+      cleric: 1.00
+      farmer: 1.00
+      fisherman: 1.00
+      fletcher: 1.00
+      leatherworker: 1.00
+      librarian: 1.00
+      mason: 1.00
+      nitwit: 1.00
+      none: 1.00
+      shepherd: 1.00
+      toolsmith: 1.00
+      weaponsmith: 1.00
+    jungle:
+      armorer: 1.00
+      butcher: 1.00
+      cartographer: 1.00
+      cleric: 1.00
+      farmer: 1.00
+      fisherman: 1.00
+      fletcher: 1.00
+      leatherworker: 1.00
+      librarian: 1.00
+      mason: 1.00
+      nitwit: 1.00
+      none: 1.00
+      shepherd: 1.00
+      toolsmith: 1.00
+      weaponsmith: 1.00
+    plains:
+      armorer: 1.00
+      butcher: 1.00
+      cartographer: 1.00
+      cleric: 1.00
+      farmer: 1.00
+      fisherman: 1.00
+      fletcher: 1.00
+      leatherworker: 1.00
+      librarian: 1.00
+      mason: 1.00
+      nitwit: 1.00
+      none: 1.00
+      shepherd: 1.00
+      toolsmith: 1.00
+      weaponsmith: 1.00
+    savanna:
+      armorer: 1.00
+      butcher: 1.00
+      cartographer: 1.00
+      cleric: 1.00
+      farmer: 1.00
+      fisherman: 1.00
+      fletcher: 1.00
+      leatherworker: 1.00
+      librarian: 1.00
+      mason: 1.00
+      nitwit: 1.00
+      none: 1.00
+      shepherd: 1.00
+      toolsmith: 1.00
+      weaponsmith: 1.00
+    snow:
+      armorer: 1.00
+      butcher: 1.00
+      cartographer: 1.00
+      cleric: 1.00
+      farmer: 1.00
+      fisherman: 1.00
+      fletcher: 1.00
+      leatherworker: 1.00
+      librarian: 1.00
+      mason: 1.00
+      nitwit: 1.00
+      none: 1.00
+      shepherd: 1.00
+      toolsmith: 1.00
+      weaponsmith: 1.00
+    swamp:
+      armorer: 1.00
+      butcher: 1.00
+      cartographer: 1.00
+      cleric: 1.00
+      farmer: 1.00
+      fisherman: 1.00
+      fletcher: 1.00
+      leatherworker: 1.00
+      librarian: 1.00
+      mason: 1.00
+      nitwit: 1.00
+      none: 1.00
+      shepherd: 1.00
+      toolsmith: 1.00
+      weaponsmith: 1.00
+    taiga:
+      armorer: 1.00
+      butcher: 1.00
+      cartographer: 1.00
+      cleric: 1.00
+      farmer: 1.00
+      fisherman: 1.00
+      fletcher: 1.00
+      leatherworker: 1.00
+      librarian: 1.00
+      mason: 1.00
+      nitwit: 1.00
+      none: 1.00
+      shepherd: 1.00
+      toolsmith: 1.00
+      weaponsmith: 1.00
+  vindicator: 0.05
+  wandering_trader: 1.00
+  warden: 1.00
+  witch: 0.005
+  wither: 1.00
+  wither_skeleton: 0.025
+  wolf: 0.02
+  zoglin: 0.20
+  zombie: 0.025
+  zombie_horse: 1.00
+  zombie_pigman: 0.005
+  zombified_piglin: 0.005
+  zombie_villager: 0.50

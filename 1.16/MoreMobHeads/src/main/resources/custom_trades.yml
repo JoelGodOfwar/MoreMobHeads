@@ -1,0 +1,74 @@
+custom_trades:
+  number: 3
+  trade_1:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2230
+      type: EMERALD_BLOCK
+      meta:
+        ==: ItemMeta
+        meta-type: UNSPECIFIC
+        display-name: Price_1
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2230
+      type: EMERALD
+      meta:
+        ==: ItemMeta
+        meta-type: UNSPECIFIC
+        display-name: Price_2
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2230
+      type: GOLDEN_APPLE
+      meta:
+        ==: ItemMeta
+        meta-type: UNSPECIFIC
+        display-name: Example
+    quantity: 1
+    chance: 0.020
+  trade_2:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2230
+      type: EMERALD_BLOCK
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2230
+      type: BOW
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2230
+      type: BOW
+      meta:
+        ==: ItemMeta
+        meta-type: UNSPECIFIC
+        display-name: Mr_Darn's Bow
+        enchants:
+          ARROW_INFINITE: 1
+          MENDING: 1
+          ARROW_DAMAGE: 5
+    quantity: 1
+    chance: 0.00
+  trade_3:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2230
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2230
+      type: AIR
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2230
+      type: PLAYER_HEAD
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: JoelYahwehOfWar's Head
+        Damage: 3
+        internal: H4sIAAAAAAAAAE2SyY6jSBBA6daMVF0aaX5iblap2A2HOdhmSyjAZocbe5KAwSxm+ab5yHH3qQ8hhWJRvCfFO4a9Y3/Z9dw016ErqiZ/w76DDPuHoBgGL+L8g6VY9oMmUuqDSynqI8ETOiFJhmS4+B17fy31+TBV+fgDe5vydZqHfHzHMOzbG/bDrsp7/LPy/T9r9Z4xvesDzXWmKtuGjVvrFOQltWk4e1jxszWmRLr7BBTyzEf6/ewRdUAYI1HCwpOQJj6CWTPlygm3te4q8lNOBdUDeGEdyeEBzLgareCV1OcoaYX11u4pVXEg6sL+hSQqB2SiWgoPlyWNOU2TjsFci7tS0FbNFnCAR3ZwLg9SIhGYfTrRzWUpWqg+56N1cSqE80VmF/y5Lim54a4TYc6ECtg8lhijI+R8ji8FMNB1QOSVjle9W/hgHGwH8jANY24/GpaZGDvOxM+0Lif9c7t8Rvl0TXbtWbf9lXCjaNPF+6cmXc2xBkotlA8xUjIexNlzGsJr0xEKKmpOG1KFFu7HaXkhjWJkmdLjKHJM2fUmyUnFo7XERJ780pn5DtxFKlX5tRblTjB4OfamFHRke+ZIe1oo8d44yO6O7OYXtjwM3I1pRMAAk6c091zKhLMfFNvwT4MlFK60LheXglWh7KLf3fo7ia6V6pqecfBGL/26H9r4mSmiKNPZWJ4tvumXzkjdquh1ae3F7JDEpk+rYp2Icz0L/RFx14Ph9pIS0l/wwhTlsmtlw6CA5C0YJMedVcqCf9g3Y9GKvYcH3ahPtnmwH7fcZptKBI0d3C77FH+elrsAmyzn3co/82ELLc//pHXvvPT6obNK5ArlGmnc7noByIiBVQoPLc9NV9UgRbZ4RtEJQpbp/n3D/vTiZs6/Zfmm4rFPNCllwSQ4VSYSCVNIGcO5kbrgbvqejuB+3hIy6hPZU6MLYAESd8Nxl6iVGgPppIFua7jr9Cv2EJ0rQwabjtzNcCAE1VKlivqM2maMXAYmvluZlaolpDf6vtRlpNc5ZBSEAai+LioeBRDPArVJt9fnbapj440JUH8Ed29Lft5uX33lxH5t/G+zzBT7TBNSKozutzlpPfyLsppcsYi0dZ/GHlIhgsh4ceuyS5gOwCOnZCJ0W0zfqkKnfrl4jSnAKvKt5mVBvtxqfReZSLYa0wkpUxYpg7xtphDukSOS+gWMoCWaTJbqMLDgL8aWeEayNwLUVSm59omt8kVA8Bj2hv1hxG2O/a12eRPGcMmhWfjxgGH/A/E1giaeBAAA
+        skull-owner: JoelYahwehOfWar
+    quantity: 1
+    chance: 0.20

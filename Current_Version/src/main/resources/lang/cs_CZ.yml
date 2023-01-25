@@ -1,0 +1,43 @@
+langversion: 1.0.20
+newvers:
+  message: K dispozici je nová verze <MyPlugin>!
+  old_vers:       Vaše verze
+  new_vers: Nejnovější verze
+  please_update: Aktualizujte prosím na nejnovější verzi.
+  download: Stažení
+  donate: Darujte
+  changelog: Protokol změn
+not_on_whitelist: není na seznamu povolených.
+on_blacklist: je na černé listině.
+server_not_version: Server NENÍ verze 1.14+
+reload: Znovu načte tento plugin.
+srdebuguse: Dočasně přepíná ladění.
+debugtrue: Ladění nastaveno na boolean.
+reloaded: MoreMobHeads byl znovu načten.
+noperm: Nemáte oprávnění (<perm>).
+noconsole: Konzola nemůže tento příkaz použít
+ctargument: argument vyžadován!
+ctsuccessadd: Úspěšně přidáno!
+ctsuccessrem: Úspěšně odstraněn!
+ctsuccessrep: Úspěšně nahrazen!
+cthelp: zobrazí tuto zprávu nápovědy.
+ctadd: přidá položku z druhé ruky do custom_trades.yml
+ctremove: odebere položku custom_trades.
+ctreplace: nahradí custom_trade <num> položkou v ruce.
+ctline1: Umístěte položku, kterou chcete přidat, do custom_trades.yml
+ctline2:  do své off-hand, pak umístěte price1 položku do slotu 1,
+ctline3: a cena2, pokud existuje, v slotu 2,
+ctline4: opakujte příkaz "/ mmh ct add"
+ctline5: a položka bude přidána jako nový vlastní obchod.
+cterror: Chyba při ukládání custom_trades.yml!
+ctnumreq: požadované číslo!
+customtrader: Ukazuje, jak používat příkazy customtrader
+playerheads: Ukazuje, jak používat příkazy playerheads
+blockheads: Ukazuje, jak používat příkazy blockheads
+nopermordisabled: Nemáte oprávnění (<perm>) nebo je zakázán customtrader.
+headfix: Vytváří stohovatelné hlavy odstraněním dalších dat NBT.
+give:
+  mobhead: dává hráči vybranou mobhead.
+  blockhead: dává hráči vybranou hlavu bloku.
+  playerhead: dává hráči vybranou hlavu hráče.
+lore_killed_by: Zabito <player>

@@ -1,0 +1,43 @@
+langversion: 1.0.20
+newvers:
+  message: <MyPlugin> 有一个新版本可用！
+  old_vers: 你的版本
+  new_vers: 最新版本
+  please_update: 请更新到最新版本。
+  download: 下载
+  donate: 捐
+  changelog: 更改日志
+not_on_whitelist: 不在白名单中。
+on_blacklist: 在黑名单上。
+server_not_version: 服务器不是版本 1.14+
+reload: 重新加载此插件。
+srdebuguse: 临时切换调试。
+debugtrue: 调试设置为boolean。
+reloaded: MoreMobHeads已重新加载。
+noperm: 您没有权限（<perm>）。
+noconsole: 控制台无法使用此命令
+ctargument: 需要参数！
+ctsuccessadd: 成功添加！
+ctsuccessrem: 成功删除！
+ctsuccessrep: 成功更换！
+cthelp: 显示此帮助消息。
+ctadd: 将放置在二手中的商品添加到custom_trades.yml
+ctremove: 删除custom_trades条目。
+ctreplace: 用您的二手商品替换<num>的自定义交易。
+ctline1: 将您要添加的项目放置到custom_trades.yml
+ctline2: 放入您的第二只手，然后将price1物品放入插槽1，
+ctline3: 然后在插槽2中添加price2项目，
+ctline4: 重做命令/mmh ct add
+ctline5: 并且该商品将作为新的自定义交易添加。
+cterror: 保存custom_trades.yml错误！
+ctnumreq: 身份证号码为必填项！
+customtrader: 显示如何使用customtrader命令
+playerheads: 显示如何使用playerheads命令
+blockheads: 显示如何使用blockheads命令
+nopermordisabled: 您没有权限（<perm>），或者customtrader被禁用。
+headfix: 创建可堆叠的磁头，不包括其他NBT数据。
+give:
+  mobhead: 给玩家选择的怪物头。
+  blockhead: 给玩家选择块的头。
+  playerhead: 给玩家选择的玩家的头。
+lore_killed_by: 被<player>杀死

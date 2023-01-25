@@ -1,0 +1,43 @@
+langversion: 1.0.20
+newvers: 
+  message: There is a new version of <MyPlugin> available!
+  old_vers:   Your version
+  new_vers: Latest version
+  please_update: Please update to the newest version.
+  download: Download
+  donate: Donate
+  changelog: ChangeLog
+not_on_whitelist: is not on the whitelist.
+on_blacklist: is on the blacklist.
+server_not_version: Server is NOT version 1.14+
+reload: Reloads this plugin.
+srdebuguse: Temporarily toggles debug.
+debugtrue: Debug set to boolean.
+reloaded: MoreMobHeads has been reloaded.
+noperm: You do not have the permission (<perm>).
+noconsole: Console can not use this command
+ctargument: argument required!
+ctsuccessadd: Successfully added!
+ctsuccessrem: Successfully removed!
+ctsuccessrep: Successfully replaced!
+cthelp: shows this help message.
+ctadd: adds item in your off hand to 
+ctremove: removes custom_trades entry.
+ctreplace: replaces the <num>'s custom trade with item in your off hand.
+ctline1: Place the item you wish to add to 
+ctline2: into your off hand, then place price1 item in slot 1, 
+ctline3: and price2 item if any in slot 2 then, 
+ctline4: redo command 
+ctline5: and the item will be added as a new 
+cterror: error saving 
+ctnumreq: number required!
+customtrader: Shows how to use the customtrader commands
+playerheads: Shows how to use the playerheads commands
+blockheads: Shows how to use the blockheads commands
+nopermordisabled: You do not have the permission (<perm>), or customtrader is disabled.
+headfix: Makes heads with extra NBT data stackable.
+give:
+  mobhead: gives player the chosen mobhead.
+  blockhead: gives player chosen block's head
+  playerhead: gives player chosen player's head
+lore_killed_by: Killed by <player>

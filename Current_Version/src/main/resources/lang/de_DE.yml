@@ -1,0 +1,43 @@
+langversion: 1.0.20
+newvers:
+  message: Es ist eine neue Version von <MyPlugin> verfügbar!
+  old_vers:   Deine Version
+  new_vers: Neueste Version
+  please_update: Bitte aktualisieren Sie auf die neueste Version.
+  download: herunterladen
+  donate: Spenden
+  changelog: Änderungsprotokoll
+not_on_whitelist: ist nicht auf der Whitelist.
+on_blacklist: ist auf der schwarzen Liste.
+server_not_version: Server ist NICHT Version 1.14+
+reload: Lädt dieses Plugin neu.
+srdebuguse: Schaltet das Debugging vorübergehend um.
+debugtrue: Debug auf boolean gesetzt.
+reloaded: MoreMobHeads wurde neu geladen.
+noperm: Sie haben keine Berechtigung (<perm>).
+noconsole: Die Konsole kann diesen Befehl nicht verwenden
+ctargument: Argument erforderlich!
+ctsuccessadd: Erfolgreich hinzugefügt!
+ctsuccessrem: Erfolgreich entfernt!
+ctsuccessrep: Erfolgreich ersetzt!
+cthelp: zeigt diese Hilfemeldung an.
+ctadd: Fügt ein Element in Ihrer Hand zu custom_trades.yml hinzu
+ctremove: Entfernt einen custom_trades-Eintrag.
+ctreplace: Ersetzt den benutzerdefinierten Handel von <num> durch einen Gegenstand in Ihrer Hand.
+ctline1: Platzieren Sie das Element, das Sie hinzufügen möchten, zu custom_trades.yml
+ctline2: in deine freie Hand, dann lege den Gegenstand price1 in Steckplatz 1,
+ctline3: und Preis2 Artikel, falls vorhanden in Steckplatz 2,
+ctline4: Wiederholungsbefehl "/mmh ct add"
+ctline5: und der Artikel wird als neuer benutzerdefinierter Handel hinzugefügt.
+cterror: Fehler beim Speichern von custom_trades.yml!
+ctnumreq: Anzahl erforderlich!
+customtrader: Zeigt, wie die Customtrader-Befehle verwendet werden
+playerheads: Zeigt, wie die Playerheads-Befehle verwendet werden
+blockheads: Zeigt, wie die Blockheads-Befehle verwendet werden
+nopermordisabled: Sie haben keine Berechtigung (<perm>) oder Customtrader ist deaktiviert.
+headfix: Erstellt stapelbare Köpfe durch Löschen zusätzlicher NBT-Daten.
+give:
+  mobhead: gibt dem Spieler den gewählten Mobhead.
+  blockhead: gibt dem Spieler den Kopf des gewählten Blocks.
+  playerhead: gibt den Kopf des gewählten Spielers.
+lore_killed_by: Getötet von <player>

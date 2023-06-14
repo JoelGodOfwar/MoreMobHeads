@@ -16,7 +16,7 @@ D5	Fixed some issues with beheading announcements, weapon and entity name should
 D6	Fixed issue where non players would cause an exception shooting arrows or throwing potions, and weaponName not displaying on unnamed weapons.
 D7	Added Piglin vanilla head getter, Added Camel and Sniffer, Added sounds to all Mob/Player heads.
 D8	Added Block heads Bamboo Block, Bamboo Plank, Cherry Log, Cherry Plank, Charry Leaves, Chiseled Bookshelf, Sniffer Egg. All Mob/Player's heads should have audio when place onto a note block.
-	Color codes &0-&R and <color> are now supported in beheading messages.
+	Color codes \&0-\&R and <color> are now supported in beheading messages.
 D9	Fixed colors in beahding messages not using bare hands.
 D10	Fixed block heads for 1.20 not being able to given using command.</notes>
     <link>https://discord.com/channels/654087250665144321/662940711167066123</link>

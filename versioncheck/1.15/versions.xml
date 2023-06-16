@@ -1,9 +1,17 @@
 <versions>
   <release>
-    <version>1.15_1.0.30</version>
-    <notes>D1 added config option to disable piston extend event check.
-D2 Changed java version to 1.8 for backwards compatibility.
-D3 Added 1_19_R2 to MoreMobHeadsLib for 1.19.3 compatibility.</notes>
+    <version>1.15_1.0.31</version>
+    <notes>D1   Added a String variable for configVersion. This fixes an issue with the chance_config.yml resetting on /mmh reload command.
+D2      Updated langauge files to I18n, Updated Version Checker, Added 22 named Tropical Fish.
+D3      Fixed i18n language files.
+D4      New features will be added to 1.19+ only from now on. Added configs for announcing beheadings, messages are stored in messages.yml and must be numbered "message_#"
+D5      Fixed some issues with beheading announcements, weapon and entity name should appear now.
+D6      Fixed issue where non players would cause an exception shooting arrows or throwing potions, and weaponName not displaying on unnamed weapons.
+D7      Added Piglin vanilla head getter, Added Camel and Sniffer, Added sounds to all Mob/Player heads.
+D8      Added Block heads Bamboo Block, Bamboo Plank, Cherry Log, Cherry Plank, Charry Leaves, Chiseled Bookshelf, Sniffer Egg. All Mob/Player's heads should have audio when place onto a note block.
+        Color codes &amp;0-&amp;R and &lt;color&gt; are now supported in beheading messages.
+D9      Fixed colors in beahding messages not using bare hands.
+D10     Fixed block heads for 1.20 not being able to given using command.</notes>
     <link>https://www.spigotmc.org/resources/moremobheads.73997/history</link>
   </release>
   <developer>

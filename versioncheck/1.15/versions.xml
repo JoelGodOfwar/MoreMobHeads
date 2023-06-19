@@ -15,18 +15,8 @@ D10     Fixed block heads for 1.20 not being able to given using command.</notes
     <link>https://www.spigotmc.org/resources/moremobheads.73997/history</link>
   </release>
   <developer>
-    <version>1.15_1.0.31.D10</version>
-    <notes>D1	Added a String variable for configVersion. This fixes an issue with the chance_config.yml resetting on /mmh reload command.
-D2	Updated langauge files to I18n, Updated Version Checker, Added 22 named Tropical Fish.
-D3	Fixed i18n language files.
-D4	New features will be added to 1.19+ only from now on. Added configs for announcing beheadings, messages are stored in messages.yml and must be numbered "message_#"
-D5	Fixed some issues with beheading announcements, weapon and entity name should appear now.
-D6	Fixed issue where non players would cause an exception shooting arrows or throwing potions, and weaponName not displaying on unnamed weapons.
-D7	Added Piglin vanilla head getter, Added Camel and Sniffer, Added sounds to all Mob/Player heads.
-D8	Added Block heads Bamboo Block, Bamboo Plank, Cherry Log, Cherry Plank, Charry Leaves, Chiseled Bookshelf, Sniffer Egg. All Mob/Player's heads should have audio when place onto a note block.
-	Color codes &amp;0-&amp;R and &lt;color&gt; are now supported in beheading messages.
-D9	Fixed colors in beahding messages not using bare hands.
-D10	Fixed block heads for 1.20 not being able to given using command.</notes>
+    <version>1.15_1.0.32.D1</version>
+    <notes>D1	Added TNT and End Crystal(Hands, Arrow, Snowball, Trident) as possible weapons in the beheading messages.</notes>
     <link>https://discord.com/channels/654087250665144321/662940711167066123</link>
   </developer>
 </versions>

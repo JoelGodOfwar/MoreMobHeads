@@ -3,6 +3,7 @@ main: com.github.joelgodofwar.mmh.MoreMobHeads
 version: 1.15_1.0.32.D1
 author: JoelYahwehOfWar
 api-version: 1.13
+folia-supported: true
 softdepend: [SilenceMobs, PlaceholderAPI]
 
 commands:

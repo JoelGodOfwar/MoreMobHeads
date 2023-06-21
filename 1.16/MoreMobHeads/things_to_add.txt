@@ -1,4 +1,0 @@
-Things to add
-
-announcement when a player gets a head by killing a monster
-config to turn on announcement

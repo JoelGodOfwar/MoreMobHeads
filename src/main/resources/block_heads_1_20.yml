@@ -1,0 +1,1187 @@
+# Blocks
+blocks:
+  number: 51
+  block_1:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: AMETHYST_BLOCK
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eAmethyst Block
+        internal: H4sIAAAAAAAA/03PQU7CQBiG4V+jCY4ewUOMLdSwcCFWYRpmRtppabswATrQ2imS0hKmtzIxXoN4AuIh3LmwS5df3mfzIQAEV15eK/Vcvi0zJS/hlCQAcPZ5+FrZ+eD3/Si+f+TLNQLUko0sq0xuL6BTyX1Vl3KLWnzSgfNgpmoJH1I7OA5TnISOWmhitVt4WHHyurkl60DPH4hFiraP7q2x7v+zvWo27anIdNJ4PannRYDHpqvkyL1ZFP6OiyCjzUBx4TdRMelSQXBs+10uWE6HbsqaqKHGo6Y22TM7yblYYWqwjE1Zxm1i8uFTygTFTBBNRaSp4Zux5/SXIb5rH8AfvUcE4QoBAAA=
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTViMzBlOTUzYmQ4MTI0ZDU4OTNkMGRhNzYzM2EyMDIxNDdkOTg0M2NiNWNiODI3OGFhNTM0NTIyMTYyM2U3ZSJ9fX0=
+    quantity: 8
+  block_2:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: BUDDING_AMETHYST
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eBudding Amethyst
+        internal: H4sIAAAAAAAA/03PPU7DMBwF8D8IpBI4AIdgMI0SlIEBKKSO6gQaO4m9tY1Lm9qlShPyMSNxHCQEZ+AIXAePjE/v94ZnAVhwFm9qpR7Ll+VayVM4xDkAHP18++deRd4+L+i7+BUfFliG7GRZreX+BAaVbKu6lHvL4IMBHCczVUv4kl2ARLZCeRaoRYddk2mMVISL3RXeJt38DrtYm35840467591qlnqKG4HK7F9quc6QRN7quR4ernQ7DXUvCEUN8QniGiGeMr7iN4qUSQbURCbFGwo6H3L+2fEh8yJfGyTlKOIPmiieS9GzBE+a822IaOwCGmuRRx4ywxdmwfwB8IIKZQKAQAA
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmYwMTIwMGM0MmU0YWYzOTBlZjVkZjM3MjU2ZTExYzg0Y2U5OGI3MWY0OTFmMmYzZDU5ZGUxMmUwMDNjNTdmZSJ9fX0=
+    quantity: 8
+  block_3:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: COPPER_BLOCK
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eCopper Block
+        internal: H4sIAAAAAAAA/03PP0+DQBzG8fNfUtHEF6BvwLgcbcF0cDBW4S5wKAXk2Fp6FY4fbUPBePcaTFydnNxcfYEyOj75fpbHQMhAp7OqA3hsNqsSxAnaJ0uE0OHZlfX5/eEevP9cnGvv8stARk+2omlLsTtGg1a8tV0jdkaP9wboKJlDJ9CvUBRnaYGXKYVcEbvf0QxDQOT2mqwTtbgjNqn77t7anpr8s1Y7f7aAj2iRrZ+6RZ1gbxSCcEMzr+PXTCaSOaziMja5BOCaK1/62B+GkEUvmOsHGURMculrNs3HXOY6m+Zm4LCC6XjMnPshq6nkmpZBRKssAskUnaxSfNM/QH+UVWtOCgEAAA==
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjVjNGNkYjU1YjllYzYyMjM0M2RlZTg0YzFjOTNjYjMzNDc4YjczZDc1OGNhNzU4NGE2NmJjYzJiOTJkZTljNyJ9fX0=
+    quantity: 8
+  block_4:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: CUT_COPPER
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eCut Copper
+        internal: H4sIAAAAAAAA/03PvVLCQBiF4U9HZzB6MYH8KIUzijCyGbJrYPOz6SBZSMIGMSSETecFUHInVs7Y2lp7N6a0PPM+zVEAFLiZrSshXorXZSr4NZyjGAAuSvdd978fPr9Ov4Pj3c+bAkpLtrwoU767gk7JD2VV8J3S4rMOXHpzUXH44NJSwyBR48ASkURmu+lMFQRl21u08eTiCZkob/v40ZzI/j9rlHPfEEyzknDjVIvcUyfaVPDxtBvl7p41qx6hURNSZmAa1axxupiuDyyLRZiP6jBDuk0HgvVwijNk4GGSEN+uydCVxB8Z+NlLWLaqie8J3Lg6bhzNllZ/Gaj37QP4A6B9xLYKAQAA
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzg2OTczZTY5NTcwYzQ1NTkxYjdlZmEwZjI4MTBlY2NiNjI5NDhhOWMwODUyOWE5NGVhYjgwOWVlNzU4NzQ3MyJ9fX0=
+    quantity: 8
+  block_5:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EXPOSED_CUT_COPPER
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eExposed Cut Copper
+        internal: H4sIAAAAAAAA/03PwU7CMADG8Wo0gWnizXj2CTqWzXDwsCiBLrQTKNvak7AVttIijM1QnoAHMjHxHXwne/T45f+7fA4ADridbVql3uqPVaXEDbhEBQDginTr3/Nj2P3Z3z28f9+fHeBYshN1U4lDF3QacWzaWhwciy864DpZqFaAL2EiyLMSFlmkcoMCu+kMqhjJ3RPaJmb5ggKkbR+Fwdj0/1m/WaS+Yl5U8u2kXeoEjr2pEqOpm+v5Z5wmkvV4hV8LTYZRhVPssnTukZRIItcnogcepwziEzoyGm2InLh4iA23HtMQxnTd4zI3nKqSUyKZHvjYRP1VBp/tA/AHgAAA3woBAAA=
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWVjY2ZiMDdmNGJiMWM1YWU3NWNjNjgzNmE3ZTY0MzIxYTJkNjQ1MGMyZDdmMTA0OTg2ZjcyZTlhZTNjYmE5MyJ9fX0=
+    quantity: 8
+  block_6:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: WEATHERED_CUT_COPPER
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eWeathered Cut Copper
+        internal: H4sIAAAAAAAA/03PP1KDQByG4Z8ZnUnQwxAQnBQWMURYJrtEAssfq4RsAmSJmQQcd6/gCRwLK29g6T08hJdwS8tv3qf5NAANrha7jvP58WlTcXYJPbQGgHPv9/PtpzeZfz++vg/uxh8aaIoc2LGt2GkA/Za9tN2RnTSFz/pwQZe8Y/DFhK/naamvU58XAtlqRwudB6g+3KA9FasJslGjuje2Z2L0z1rtMrF4Zvplvn/oVg3VZ2bImRcOiyZ+zuqpQRxSBhGSxEESy+I6k6TBSWzkDq2JGzZBonri73AdVpncDrHcCuzGJjGmJk6osrTC7n0dKJ9F2MLCH21S/VY9gD94bDydCgEAAA==
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjE2NDNhOTIzNDIzMzc4YzNmMWU2ZDVjNGRmOWNhOWJkMjRiYzg1MzgyMGU3N2E3MWVmMWViMGFjODVjYTM5MyJ9fX0=
+    quantity: 8
+  block_7:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: OXIDIZED_CUT_COPPER
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eOxidized Cut Copper
+        internal: H4sIAAAAAAAA/03PPU7DMACGYYNAKoELcAWm/KMODC2g1lbtkCbOj7e2cZu4dqnapGpyFsQpmFi4AiMzl4ARj4yfnnf5DAAMcBWtGymfds/LSvJLcAoLAMDZ8PXz4eVmdP3+8/H17f7GBjB0suW7uuL7C9Cr+bFudnxv6PikB86TmWw4eOMtMllWmkWG5KKFvt5xZMoAiu0t3CTt/B76UGkfD/xJ2//XevUs9WTuoJJtwmauEnPiTCUfT62FogcsBh4TZUnilctSIrAdtiyWa6LCDguqrSixyJ28W7lEUIukqApSfMQjamursKI26YaCqUeX2NTCAokgQv1lZt7pB+APMXOlFQoBAAA=
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjA5ZjhhNTg4ZWNjM2QyZTlkNmQzMjU5ZjdhMjY3Yzg4NjU1NWJiOWMxMGU2ZjdiMmU2NzBjZmE4N2U1MjJjOSJ9fX0=
+    quantity: 8
+  block_8:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: ROOTED_DIRT
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eRooted Dirt
+        internal: H4sIAAAAAAAA/03PTVKDMACG4ejoSNG9t3BSKHS6cGEB2zBNEMpf2PUntYSkdlroNMw4rryRS0/gMTyJLF1+8z6bTwdAB3fzqhHi5fC2KQW7BZdoDQC40iLz43TvsM/vh5/34e+NDvSO7NmhLtmxB7SanevmwI56hy80cJ0uRMPAF1M+LPItXOe+WClkdzueQxEgvh+iXaqWDrKR7Pr0yZ6p0T9r1YvMEtT0t8UubJYyhTMzEmwa9VcyOdG4glgiWGTeIJg8c8JDhV1RYT4uSZtYNB5XgRsOioln0DZRxEhL7OKWSiIJfz3TLOK0JYJmnqJG2MdZUQWOP9rk8LF7AP4AlDcrigoBAAA=
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTk0MmI0ZWE4OGFjNjQyMDlkMjBiNzU5YTBkODQ4ZGE2YzUyN2ViMDMzYmNmNjgxYWRjYzNlYWEyY2Q1MWZkOCJ9fX0=
+    quantity: 8
+  block_9:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: DEEPSLATE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eDeepslate
+        internal: H4sIAAAAAAAA/03PTVKDMAAF4OjoTEX3XgNowenCRUf6E6YJLbRAsmtpOhBC7bQgJIdx5w1cegWXzngBPYdZunzvfZtnAGCAu6hshFicnveFYLfgEu4AAFeL6PXzo4P3b/nE+/35/jKAocmRneqCnW9Ar2Zd3ZzY2dD4ogeu441oGHhn0jdpmpu71BeZhK7Oq8gUAeTHB3iI5fYJurDS+2zkzuXwn3XqTeII0vdzelg22yo25/1QsFloZdX6hahS0amfkxUcoCrmNCEWVmFFVNZie2xRPpbIWyvMl13glXbgIRtNcR4kxNFdGyS0wHw0wIpIbE8E4qilhT/cp+ajfgD+AJ9zYk0KAQAA
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzkzZGJhYTI4MmVjZWY1NzRmYzcwN2E1ZjEyMDUzNjQxODk2ODM2MGNhOWY5NjQwOWZiNjA4NzYyN2FlMjMwZiJ9fX0=
+    quantity: 8
+  block_10:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: COBBLED_DEEPSLATE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eCobbled Deepslate
+        internal: H4sIAAAAAAAA/03PTU6DQBwF8L9Gk4pexN1IKaYLY4hoO4QZFCgfs2vLVBiG2lBogMQTaVx5Az2HJ/AQztLly/vlJU8D0OAiKFspH+uXTSH5ORzjDABO3i5vX98TN/qwv36N8udbA02RHa+bgu/PYNTwrmlrvtcUPhrBabSULYdP3juIJTnKEkeue2yqHAZIeljsrvE26ld32MSV6ueW6fbTf3bSLOOJTMdOzrZP7aqKkDv2JZ/7V+tqcWBiYaSCChLjgYYP0rNp6cV+TsLnjgxZQSvSpYIVbMZyNiM6FZZOY9KxOMqZTQWr7g2iq43QQlSnZTqUiAbOdJOgG/UA/gDA0+V5CgEAAA==
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjU4YjNjMWIzNTFlODNkOWRhMTgxMzdiNmMxYjZiZGZhZGM2NjA2NWMxZWVhZDNjZmE4M2U4YTA0N2NkYzk0NSJ9fX0=
+    quantity: 8
+  block_11:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: POLISHED_DEEPSLATE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §ePolished Deepslate
+        internal: H4sIAAAAAAAA/03PT06DQByG4Z9Gk4pewTsMQTBddFGltoOFOjD8GXYtTEuZoTYUpLAy8R6ewnu49QBeo4ksXX55n82nAChw44laypfydb2V/BrOcQoAF2bzc/olz6NP/fbj+/QuFFB6sudlteWHKxhU/FjVJT8oPT4bwGWwlDWHL95aKI4ylEaWTFps9Jt6SC5wvr/Hu6BdPWIDF32fjY15O/xn9WoZ6pJpVhbvSL0qAjTXXMlnrpoU/ptNBXKo39ld0tgmUVkx0RamK+KcHFm+0WOaSqdLBcvHHSueMrsjiHWbO0YnmjP1Gyckul04OQuxyuiDiKe2HnvWcB2hUf8A/gBCBvMQCgEAAA==
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTk0NTUzMzcwMDQ1YmE3ODRkZjQxYjg5ZTdlNzdkYjAzYmFhMzQ0Yzg4YTE3NGUwNWQ5MmNjYWI1YTBkZGM5ZSJ9fX0=
+    quantity: 8
+  block_12:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: AZALEA_LEAVES
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eAzalea Leaves
+        internal: H4sIAAAAAAAA/03PPVKDQBwF8L+OzkT0MAiCk8IiioRlwsaQ5WO3S8JGWJaYIaBA6TUs9A6m8xg2Fs54CnspLd+83yueAqDA2TyvpbwrH9aZ5KdwiBIAOPrev718vNq/z1+f6N15+lFA6cmWl1XGdycwqHhT1SXfKT0+GMBxuJA1hz1vXZXFqZrErly1yOwzmatyisT2Em3CdnmDTFT0vTMyJ+3wnzWqRWRIqrsp28zqZRGqE92X3PHPV0XwSLtbzYsCHQs7xxaWU3LfYHEtmBVKJtwUR35GSSgYYRJHQUfJ6IKNZw0lSMMRMtjYzj2t31mJ9DpW4A6nNHOH61i96h/AH7i2aj8KAQAA
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzE2MWU3NjFkNDNlOTgxNjBjZDVlZjJhNWRiYTVjZTZlNWUzYTA4ZGQxYTI2NWI5ZGFkM2NlODdlMzZmNzNhYiJ9fX0=
+    quantity: 8
+  block_13:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: FLOWERING_AZALEA_LEAVES
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eFlowering Azalea Leaves
+        internal: H4sIAAAAAAAA/02PMU7DMBhGfxBIJbByAG7gpiSoA0NFoXVUOzRN4thb2rgkxilVmpSmF+AKDFyADSROgMQ9OAoemT49vbd8FoAFZ7PHRuv76mlZaHkKhzgDgKPzn+I9/abO58dv9PL6dmGBZZK1rOpCbk6gU8td3VRyY5n4oAPHcaobCV+y9ZBIcpQlnl602DUczpD2sVpf4VXczm+wi0vjxwN30vb/tU6dMkfznpeL1bSZlzGa9AItx0F3UUZbMdQ5YXhHWbQnw8gm6uGZM0+JEdlzdov8UaB9RhUt7zQPs5zaU+OFIozbVA1aosyGtOBlhATDl6QkXVp4/WWCrs0D+ANh0gIGCgEAAA==
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDlhMWIxNWUzMDU2MjgwYWJjZGMzYWE0OGRlOWNjNmFlYTdhN2QwYWZjMWY2NjAyMjY2NTNiYmU0ZWI4MmM1NiJ9fX0=
+    quantity: 8
+  block_14:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: MOSS_BLOCK
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eMoss Block
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 1b5f3c8a-58ca-4b8c-940c-5457fd260ef3
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWU3Y2ZmMmIxZmUyZWRiYjFiNjllMzBiOWQ2OGNjNDBhOTEwZTMyNjBhZjlhYzhmYTI3YWU4OTE0OWY3NWE1MyJ9fX0=
+    quantity: 8
+  block_15:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: TUFF
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eTuff
+        internal: H4sIAAAAAAAA/+NiYOBi4AnOLs3JCSjKT8vMSeVmYPJMYWBgYNnl2hMl2uMct7JP4JXQheuzuRi4gEoKUotKMlOLORk4SlIrSkqLUou5gIoZORhYwxJzSlMZtqRWehlERWQYpER45SRXepoB+SHBBjn+nlkF5p55YZVJzp5mnrlAeQ9HM59KSyS1piWJ4aY5kcZeGVF5gaVJuWEGPsZBOakeQYbJuaFlviFhWX5V6RW+VaHGvu6upn7hbhl+4b7G/iGhJpFVkUZRLm7ZUe6RJv7hfjn+IVGZQDrLN9yz3LcqIzsyK9LYryq7ytfdK9PfxSs3MtfT1D/Et8o308syLcLAFugDBgAgc1x7CgEAAA==
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTVjNzgxMzU3MGE5NWFhNWM3OTU4YzY2ZDFkZGY4OWNlOTZiOWNjMWIwMzhkYjY3NzkzMGJiODJmYmI5OTMzMiJ9fX0=
+    quantity: 8
+  block_16:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: DRIPSTONE_BLOCK
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eDripstone Block
+        internal: H4sIAAAAAAAA/03PsVKDMADG8ejpXUV338EplAOvgwO2PRqOBEsDJWwtpNKQ1B4FK30Dn8LNJ9CH8M63cHbznM3o+N3/t3wGAAa4mFWtlHf1w2ot+Tk4RgUA4OTq9ef74ze4fPl6/wzR894AhiZbXjdrvjsDvYY/NW3Nd4bGRz1wmixky8Eb73yYpSUsUl/mHXL0pjMoQyS212iTdMshcpDSfeI6QTf4Z+1mMbcls/wy20zbpUpgYEWSTyIzV/EjoVmJ6X2XidsKi9xmNDbxCB8YHVu4z8xw5EIsIsnU1CR9DImXCOJpQwuFxdgMvXifUddilFR4zg5YEIWH/mCVwhv9APwBXBTyOAoBAAA=
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTZhMTgyZjBkMjc5YTU1MDMzYTE3M2Y1ODA0MjRlYmQ1N2M0NGVjNGU1MTdmMjE1OGUwZTA3YTNkMWYzMjNmMCJ9fX0=
+    quantity: 8
+  block_17:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: CALCITE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eCalcite
+        internal: H4sIAAAAAAAA/03PT06DQByG4Z9Gk4p6FxgE04WLplg6pDMI5d+wo+00LZ2plUIpegBv4EncuzXxAJ7AQ7hzli6/vM/m0wA0uJpuGiEeqsflWvBLOMULADh7+f55M79G5cfna3H9S5400BTZ8ape8/0F9Gp+rJuK7zWFT3pwnhSi4fDOO0/Ps5W+yDwx77CtdjTVhY/L3S3eJt1siG0sVR8P7EnX/2etukgtwUxvlW+DZiYTfWKGgo9DYy7jQ+5sEJHxMY/uEYuEYGnQ0pIZJI0tKkfSd4jOEJUsGpgsDYXvsBtaYqQcUqZlz3Hru1QQFBjU9da+G5hk6PWXmX6nHsAfHVFFeAoBAAA=
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDk2MmUxZTE2YTllYWQwNjY1MWU5NmFmODM0Y2NmYTA3YWRlODY4NjI2YWQ2MWUwYzUwOGNlM2Q1NGJiOGQ3MCJ9fX0=
+    quantity: 8
+  block_18:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: RAW_COPPER_BLOCK
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eRaw Copper Block
+        internal: H4sIAAAAAAAA/02PT06DQBxGfxpNKvUgLgcrmC5MbMXaIR2w/BuGXUunoTBTCQUFLmDcmngTj+IRXHgMJ65cfIuX9zafBqDBuV80QjxWT9ud4EM4xhsAOLn4uf0qP+zh23fx/lrWlQaaSkpe1Tt+OINBzdu6qfhBU/HRAE6jlWg4fPLORkmcoU1si7TDpuLAR8LFeXmN91G3vsMmlsrPJ+aiG/9rjXpFDcFGdpbsl81aRmgx8gSfe3oqw+eEOtK1ppL1Yev0Xk4ouSLWtHCCWZ484MvESjtCl7pLWcuoJ5VHpE9HxJpljIYvLLj/G6GhTqQjSTAxXN8eb2N0ox7AL7UOB+4KAQAA
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWNmODBmYzUxNzRjMWM4MDBkNTFjZGI2ZDcyMWQ1OWYxYWRmMWM0Mzc3MDFhYWUwYTEwYTEwMWU1MmNmMTA5OSJ9fX0=
+    quantity: 8
+  block_19:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: RAW_GOLD_BLOCK
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eRaw Gold Block
+        internal: H4sIAAAAAAAA/03PsU6DQBzH8b9Gk4omJk6+gIPbFQTTwQElpUd6nAUK3G0tXKXtXW0omFLfpG9h4mycnX0Q30AZHX/5fpafBqDBWbispXwsn2dzKU7hEOcAcHSx//45v7Z/95cfV59vr18aaC1Zi7Kai80JdCqxrepSbLQWH3TgOJ7IWsC7aDzE0wLlqSezBlvtjkIkKV6sb/EqbqYP2MKq7QPbGja9f9asJokpmeEVfDWqpypGQyOQYhB0MzV+YXpc+IsMEZ003CE3RO8rvmAGdeMl2+WKRk86cfuSRZlJXWySBG+JM+6yZGTSBOu+4pI69wV1g4I7vuSRvaOh15ul6K59AH872Js/CgEAAA==
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2VhNjc0M2MyZDM4M2FmZjY3OGVkYzdmOTg2MGFlYTc5OGI5MWIxMDU1YWQ5OWI2NmZlODBhOGRhZDNlZTAzOSJ9fX0=
+    quantity: 8
+  block_20:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: RAW_IRON_BLOCK
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eRaw Iron Block
+        internal: H4sIAAAAAAAA/+NiYOBi4AnOLs3JCSjKT8vMSeVmYPJMYWBgYAnasH2PhLrXwkWu9x60+Ase42LgAiopSC0qyUwt5mTgKEmtKCktSi3mAipm5GBgDUvMKU1l2JJa6WUQFZFhkBLhlZNc6WkG5IcEG+T4e2YVmHvmhVUmOXuaeeYC5T0czXwqLZHUmpYkhpvmRBp7ZUTlBZYm5YYZ+BgH5aR6BBkm54aW+WU5mvqGBJZHZqWXR1Z55foZuZZHZSUbRbkHGkS5+xpHhjhW+YaEVgJpA78qID/cLTcyxC/bLzfUOLIqJ9sXSEeFuxr7g8W8svxc3LL8nb0s0yIMbIE+YAAA2ObvEAoBAAA=
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjA5MTQwYjgwYzJmN2EwZjc2ZGQ0ZGM3YTAzMTUyYTA0NzM3YWFmYTNkNmU3YzlkMmU3ZWE3OTNkNmJjNDFjOCJ9fX0=
+    quantity: 8
+  block_21:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: DEEPSLATE_COAL_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eDeepslate Coal Ore
+        internal: H4sIAAAAAAAA/03PO07DQBgE4B8EUjC0XIEOaW3HhhQUiEeyVrwGv9cVeWxw7H+TyLFJDIegoM8l4BwUnIGDsCXVaDRfMxqABidB2SA+VMvZHMUx7NMpABz8nD997E7p7/vZ7vvt+fNSA02RlajquVgfQacW27qpxFpTeK8Dh/EIGwFfonVIluZkmjo4aamtehgQ9GixuqCLuB3fUJtKtQ+u7WHb+2etepRYyE0nzxaPzVjGZGj6KAa+PpHRC0/8khvcZAXd8iJDL4xU8q4bYslfo67Xj0sW3ueuvNswyS3lNm7oIDNcPUv8wutTkxkR8ZI4Z7elmUlXZ4HTm6XkSj2APyrkUwcKAQAA
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWRkY2Y3NjIxYjZlOTUxYjY4MTlkYzU4OGVkNTFhMmEwNmY5NjIwMTJlN2M1ZWRjOGI3N2U0OWVhNDk3ZmM1NSJ9fX0=
+    quantity: 8
+  block_22:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: DEEPSLATE_COPPER_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eDeepslate Copper Ore
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 2e567560-fe5a-4ef9-a84f-a691c83bd6b4
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDUxNmY0N2ZmZGQyMGViN2M1NjNkYjc4NGQ1NmM5NDA1OWI0NzMxNGM4MTE5ODA4NGIzNTJkMGE0MDU0ZTJlOCJ9fX0=
+    quantity: 8
+  block_23:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: DEEPSLATE_IRON_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eDeepslate Iron Ore
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: bf24c148-8ef0-4b9f-9ae2-f6bddbc9300e
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWQ2MTY0YTc1ODM3MzQzZTIxYTI0YmIxZmQ3Y2M1MGRhZDg2ODU1ZjBiOWQ4MTExMmIzOGVmMWExMjk5ZGM3MyJ9fX0=
+    quantity: 8
+  block_24:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: DEEPSLATE_GOLD_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eDeepslate Gold Ore
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: e075391c-1870-4144-a2b1-20d3dcbf63b5
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjBmYzAxOTk0OTQ3YzE1MTQ2NTg4ZWY0ZDJjMDEwN2Y0NjRlMWJkNzIzZjdlMGIyODRjODNkMmE0YTU3YWQzMiJ9fX0=
+    quantity: 8
+  block_25:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: DEEPSLATE_LAPIS_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eDeepslate Lapis Lazuli Ore
+        internal: H4sIAAAAAAAA/02PO07DQBiEfxBIwSBRUXKHdSwbpUhBEI7Xytpx/N4uj4382A2RY6N478ERIiFqTsBNqDgCLVtSzjefRhoNQIObsO44nzcv25KzazjHGwC4cOyP8enXvn27+75//5l8aaApZc+atmSHKxi07Nh2DTtoSj4bwGWy5B2DT9a7iGYF2mQuX/fYUjkKEfdxtX/Au6RfPWELC9U7j9asH/1zzXaZmjw33ILugm4lEjQzFpw5C30t4lci4yGtYpPIQCdD3PtpgGiV1H70LD2ZI09iI5exQQUtaWpXRE5qMrULEhGdSMWi4JhLr/BErHtTKtSOmYfuaJuhsXoAf87oLK8KAQAA
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzU2ZjU5MzQ1M2IyOWQ0ZjVkOTEzNzY0NzI3YzU3ZmZiZWFjMzBkMGFhMTM1MzZiZTQxYzNhNmU1NGZmMzQ5YSJ9fX0=
+    quantity: 8
+  block_26:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: DEEPSLATE_REDSTONE_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eDeepslate Redstone Ore
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: e44f522d-8ecb-440a-acbb-3f2dec3ee013
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGZkYmRjNTAwM2M0ZDUzNTM2ZDVhYjFiOTUwYzM3NmQ1NjJhMThlY2I1ZjBkNGRkZjJkMjJlZGM3YzkwZTAzOCJ9fX0=
+    quantity: 8
+  block_27:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: DEEPSLATE_EMERALD_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eDeepslate Emerald Ore
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 28644b88-8ae7-4947-8fa8-791119167a6e
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjA0YjZlNTUyYjdlYmU5MjYzYTAxMjUwMDAyZjkzOGUzOTJlNzk0YzUzNmE3ZWVmNmQ2MjE0M2E3MWQyN2ZkZCJ9fX0=
+    quantity: 8
+  block_28:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: DEEPSLATE_DIAMOND_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eDeepslate Diamond Ore
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 705eef52-67a3-4787-8aab-640d9365ec4c
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGQyMDYzNGVhM2ExNTdjOWE4ZDBhOTJiZWRkNDBlOGUzOTk5NmI3OWNkMjQ4MDg5NThjYjI3ZGQzNTYxZTEwZiJ9fX0=
+    quantity: 8
+  block_29:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: COAL_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eCoal Ore
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 11737396-0daa-4c86-a5ed-a7d3bbda46f9
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjI1ODg3NGE1YmFhNDQ2NDc0M2Y4NGFjMjM1NmYyZmJiYTAwOTU2Y2ZmZTIzNTA4OGIyODlhNDY2NjU5YWRjZCJ9fX0=
+    quantity: 8
+  block_30:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: COPPER_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eCopper Ore
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 3d73d797-1358-4e06-aad4-aeb833fd1174
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDUwYjE1MzI2YmZjOTMyMGJmOWRmNGYyYjc4M2JkNTI4YmNlOGI1NzBiMGQwNWZlYzUzNWRmYmQxMWI4NDVhNCJ9fX0=
+    quantity: 8
+  block_31:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: IRON_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eIron Ore
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: fea6d561-ed52-4902-80c9-e4c4421ec1e2
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWI3MDcwNjEzYjhhNTJjYzZmN2ZmNzNlMzIwNmRkYWQ0YzI2NDA1MjZhNjYwZDdhNDAxMmIzYWQ0ZDVlOWMxNSJ9fX0=
+    quantity: 8
+  block_32:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: GOLD_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eGold Ore
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 33948f2a-281f-4844-ac29-d3937519cb09
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjBhODZmYWZmNTVlZTc1MWU5MDY3M2Y5OGE2NDRjNzhmNGRiMmNhMjViOGY4NWQxODY0MGUxNjFmNjE2ZGM5OSJ9fX0=
+    quantity: 8
+  block_33:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: LAPIS_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eLapis Lazuli Ore
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 67cea6ad-32d0-4210-a577-bb45e38e1dc5
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmYyZDQyOWNlZGZmM2Q5YTNiOWM4OGFlYzMyOWUxN2Q5ZjgzZWU3MmRhMDk0NDA2ODY2YWFjNDdkZTkyZDNiMCJ9fX0=
+    quantity: 8
+  block_34:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: REDSTONE_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eRedstone Ore
+        internal: H4sIAAAAAAAA/03Py06DQBiG4V+jSUWXXoIXAEUwXXRhnCZM0wGHcujMyrZMw2GgDQfDsPNm3Bv15kxMZOnyy/tsPg1Ag5t10Un5XB8PmRTXcI4TALh4oy+3R+R8vH//NubP3acG2khOom4z0VzBpBV929Wi0UZ8NoHLaCs7AV9CLXW+SfVks5R7he1xB2tdejg/PeAqUrsnbONy7M6jvVKzf9Zqt7ElmblMeUW7XRnpK9OXwvGNfRm+ukFo8SBNycAlQUnmTmnvxqQnyC/Z1M04YiaPQ4uVVCdBaJDALzy0GNiAlTuEphfQe1ZinedYcVQMPF+YuDJmBzqfjw/gD8/tRXMKAQAA
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTU5ZThhMzZlMDdiN2QxNWMxMDRmY2NiZDY3ZWU5YmQ0MTU1MTRkODEzYzIyNzU3OTQ4YmI0ZjIyZDkzZjE3In19fQ==
+    quantity: 8
+  block_35:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: EMERALD_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 2724
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eEmerald Ore
+        internal: H4sIAAAAAAAA/03Pu07DMACFYXOTSuBVkHJpgjowQItaW7UNaRrH2ZrGVeLYJUqTQthYeQwWxM7TMLEgXgOPjEf/txwLAAucL6pOqbvmYVMqcQYOYQ4AOP79OHr7eZl8v7/W2deNf2EBy5BaNG0pdqdg0IqntmvEzjL4YABO4pXqBPgUPbLTpLDzBKl1DwOzo4WtKJT1JdzGfTaGAdSmz66DeT/6Z/12xXzFPVSk2/su07E990IlZqGz1ss9YajAEXwkEZKULV3KwpI/Yx+7YUEZH5IpdrhONZ1yj7PbnrimSqRoRDSWlU8kdIgMKzzJi1RClzA4JGM02iT2lXkA/gABFiolCgEAAA==
+        skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWJhMTIwNTJjOWU2OWRiYzM5M2RhOWY4NGM1YmZmOGY3YWEyN2YzMjJlOTNmMjk5NjI1NjRkMDdhZjI2NWI4NCJ9fX0=
+    quantity: 8
+  block_36:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: DIAMOND_ORE
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eDiamond Ore
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 5ef0b503-a5c4-4db3-96b3-ad2d8a72d6d0
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTM1MDcwMTgxZmFiOWY1ZWNmZTQ4N2I5NDVmOWUyNmM2NDI1MWIzMzRkNDBhZmI4ODY4ZGY2Mjk5ZGI1Y2VkNiJ9fX0=
+    quantity: 8
+  block_37:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PACKED_MUD
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §ePacked Mud
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: fed7cdf1-48a0-444e-a7f1-b1b6f8707616
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTAxZWRiYWJlOWQyNWI1Y2Q2N2NlNDgzZThmMjJhOTMyMTlhZDZkZDczNTMxYjAwMDk0NDQwZjYwMzUyNjJhYiJ9fX0=
+    quantity: 8
+  block_38:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: MUD_BRICKS
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eMud Bricks
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: c0620c06-a8f5-4808-95f6-be38fb39a6e4
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWRlNDY4Mjg0YWZhZjAxZDUyNTBkYzU5M2NlNGZjNGNjYjM4NjQwMGYzZGFjOWRhZGRmZDExZGRkNTU4MGYzZiJ9fX0=
+    quantity: 8
+  block_39:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: MUD
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eMud
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 5df7ffd0-c3ea-424c-a012-d803fe6fdfc4
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWQyOTRjYzYxN2JiOGYyNTYzZGE4ZmY0OGM5ZmZlMWU4ZWY3ZGRmMDE0ZTNlOTA0YmI0NTY2ZTliMTY1NDU2In19fQ==
+    quantity: 8
+  block_40:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: MANGROVE_LOG
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eMangrove Log
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 2705abc6-cf64-445d-9567-d118535a53b3
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODhlYzMwZGJlZmQ3M2Q3YzA5N2EyOWY5ZGJiZmRlOGUyZjc5NzJhNDYyOWQwYjM4ZWY5YjNiNjJmYmQ5ZjE4In19fQ==
+    quantity: 8
+  block_41:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: MANGROVE_PLANKS
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eMangrove Planks
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: e0367a11-910c-423b-9f20-6ec94b9b5b46
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2RlZTZlZjk1NWRjZjQ3ZGUxNGYyZTM0NjAwMWNjZjYyNzhiMDk2NTJlODE4NzlmMGYyMmU3ODFmMmJhZWYzIn19fQ==
+    quantity: 8
+  block_42:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PEARLESCENT_FROGLIGHT
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §ePearlescent Froglight
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 93f5b2ee-4dbd-492a-aef2-9384b7e2f97a
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2E1NTYwMDlhOGFkM2I0OWJhN2ZmNDkwY2M1Mjg0YzE3YzU1NGVkZjk4YjcyZWRmMTA4OWNjZjJjYjM2ZjQwMCJ9fX0=
+    quantity: 8
+  block_43:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: VERDANT_FROGLIGHT
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eVerdant Froglight
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: f04ed9c4-3b8f-4837-8347-db0bb4235927
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjMyOWRkNjM2ZDRjMGQ3NjQzMThlNjdiNWVlYmI2MTI2NWQyYzc2OTY0YTVmMGI1NDA3MTlmMGNkNWJjMjcxYyJ9fX0=
+    quantity: 8
+  block_44:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: OCHRE_FROGLIGHT
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3105
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eOchre Froglight
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: bd9ccfd2-c867-4f24-b90c-234ab3429ec5
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTFkYjc3NWQxNTdmNGY3YzQ3ZWQ1NmQxOTU3ODAxYTQyOWZhNGJhMTQ0NGQ1NzBjYzM4Njc5MThlOTUwNThhZCJ9fX0=
+    quantity: 8
+  block_45:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: BAMBOO_BLOCK
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eBamboo Block
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 252618c2-a083-40f2-ba0e-ea4f7a9803f0
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjZkMzg5ZmE4ZDZmMDQzNWRmZTlhNTFkNGY2ZjhjMGEyNWYwNTIyYzkwMmJjNTg1NWY2ZTNmNjIwMTM0NTNkOSJ9fX0=
+    quantity: 8
+  block_46:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: BAMBOO_PLANKS
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eBamboo Planks
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 413b8b7b-9f2b-4b1f-9327-09e76e4e0c08
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2JmNDQyN2Q5YTllZTdjNmE1MmIxOTZjNGE2MGJkODUwZDUxMmZjMWJlMmE5MjAyODc3YTMyZmJmMWFkYTgzNyJ9fX0=
+    quantity: 8
+  block_47:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: CHERRY_PLANKS
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eCherry Planks
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 72ab8923-c936-4913-b5ec-3325410753c8
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjY2YWFmNWU1NjY1Nzk3NjY0YzY2NTIwNWUwZWJkMWJjOGU0MzBhNzdkNmJjNWQ2MDRiYWMwMzRkZGExZDEyNCJ9fX0=
+    quantity: 8
+  block_48:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: CHERRY_LOG
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eCherry Log
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 902a4cb2-9f8f-49e1-adfc-7b2ac2eae0e8
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWEwYzI4Yzg3MmZlOTViMmU3MDA0MjAzNTVlNzJkN2ViNGM4ZDQ0ZmNjZjM5OTg1MzRkNjE1MzQwMWY1MmNkMiJ9fX0=
+    quantity: 8
+  block_49:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: CHISELED_BOOKSHELF
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eChiseled Bookshelf
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: c407b7e4-1549-459c-92e3-3d944dc1ec3f
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTZlYjgwMzUwZTM1NTEzYTEzNjRmNzViNTI5ODRiNzk5ODkyNDgxZWRhYWZmMDBhMjRmYjQ0MGJmNDdkNmE5NSJ9fX0=
+    quantity: 8
+  block_50:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: SNIFFER_EGG
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eSniffer Egg
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 029d1bf0-849a-4808-bb33-8cd4da9d7835
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjk2OTE3ZDZmZDBhMjQ3M2ZhNjE4YTU5ZTcxNjQ5NzVjNmMzMTI5MDI1NDlmYzNjYzE5ZmI4ZmM3YjdhY2FkNCJ9fX0=
+    quantity: 8
+  block_51:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: CHERRY_LEAVES
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3463
+      type: PLAYER_HEAD
+      amount: 8
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §eCherry Leaves
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 6609c653-adc0-4db7-92be-51edfb59d3c4
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjU1MDUyMGFiMDU4ZmQwMTQ0NDAwYjA3NzU3MjY3YmE5OGZiMDIzN2UwM2UyYTI4YmQyZDA4NDFmYjE0ODgzMiJ9fX0=
+    quantity: 8
+    

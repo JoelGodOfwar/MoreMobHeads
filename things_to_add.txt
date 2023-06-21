@@ -1,0 +1,8 @@
+Things to add
+
+add config for lore to display killed by <player> using <weapon/hands>
+
+change custom trades to check all trades each time.
+
+Fix this
+player.sendMessage(THIS_NAME + " v" + THIS_VERSION + " Sorry could not find \"" + blockName + "\""); // TODO: Add translation for this line.

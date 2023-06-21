@@ -1,0 +1,124 @@
+# DO NOT CHANGE VERSION
+version: 1.0.21
+# change to false to stop auto-update-check
+auto_update_check: true
+# set to true before sending a log about an issue.
+# logs trace data required to pinpoint where errors are.
+debug: false
+# cs_CZ, de_DE, en_US, es_MX, fr_FR, nl_NL, pt_BR, zh_CN
+lang: en_US
+#  #
+# Announce Settings.
+announce:
+  players:
+# Should MMH announce player beheadings?
+    enabled: true
+# Should MMH use Display Names?
+    displayname: true
+  mobs:
+# Should MMH announce mob beheadings?
+    enabled: true
+# Should MMH use Display Names?
+    displayname: true
+#  #
+# Console settings.
+console:
+#  #
+# Enables fancy ANSI colors in console. (Disable if you're getting weird characters in the console)
+  colorful_console: true
+#  #
+# Enables silent start mode.
+  silent_console: false
+# Should MoreMobHeads use it's full name or MMH in console messages?
+  longpluginname: true
+#  #
+# set whether plugin gives vanilla heads or MoreMobHeads.
+vanilla_heads:
+  creeper: false
+  ender_dragon: false
+  piglin: false
+  skeleton: false
+  wither_skeleton: false
+  zombie: false
+#  #
+# World settings
+world:
+# list of worlds MMH will work in. Blanks means all except for blacklisted worlds
+# Example (world, world_nether, world_the_end) will drop heads
+  whitelist:
+# list of worlds MMH will NOT work in.
+# Example (world_Dungeon) will NOT drop heads
+  blacklist:
+#  #
+# Mob settings
+mob:
+# list of Mobs that MMH will make heads for.
+# Example (Cat, Fox, Enderman, Piglin) will drop heads.
+  whitelist:
+# list of Mobs that MMH will NOT make heads for.
+# Example (Wither_Skeleton, Creeper, Ender_Dragon) will NOT drop heads.
+  blacklist:
+# Should players with permission moremobheads.nametag be able to give certain mobs player heads using nametags?
+  nametag: false
+#  #
+lore:
+  # set whether Killed by is added to lore.
+  show_killer: true
+  # set whether MoreMobHeads is added to lore.
+  show_plugin_name: true
+#  #
+wandering_trades:
+# set whether wandering traders trade heads.
+  custom_wandering_trader: true
+# should wandering traders keep their default trades?
+  keep_default_trades: true
+# Player heads settings
+  player_heads:
+# set if player heads from wandering traders should be enabled
+    enabled: true
+# set the minimum and maximum number of player heads the wandering trader will have. default=0,3
+    min: 0
+    max: 3
+# Block heads settings
+  block_heads:
+# set if block heads from wandering traders should be enabled
+    enabled: true
+# set the minimum and maximum number of block heads the wandering trader will have. default=0,5
+# For 1.14-1.15 blocks
+    pre_116:
+      min: 0
+      max: 5
+# For 1.16 blocks
+    is_116:
+      min: 0
+      max: 5
+# For 1.17 blocks
+    is_117:
+      min: 0
+      max: 5
+# Custom trades settings
+  custom_trades:
+# set if custom trades from wandering traders should be enabled
+    enabled: false
+# set the minimum and maximum number of custom trades the wandering trader will have. default=0,5
+    min: 0
+    max: 5
+# #
+# set if looting is applied or not.
+apply_looting: true
+# 
+# Player name whitelist and blacklist settings.
+whitelist:
+# false will not use whitelist, true will use whitelist
+  enforce: false
+# seperate player names with commas "Xisumavoid, falsesymmetry, etc."
+  player_head_whitelist: names_go_here
+blacklist:
+# false will not use blacklist, true will use blacklist
+  enforce: false
+# seperate player names with commas "JoeHillsSays, TinFoilChef, etc."
+  player_head_blacklist: names_go_here
+# Event settings. You should not set this to false.
+event:
+  piston_extend: true
+  

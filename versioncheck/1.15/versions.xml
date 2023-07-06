@@ -15,8 +15,10 @@ D10     Fixed block heads for 1.20 not being able to given using command.</notes
     <link>https://www.spigotmc.org/resources/moremobheads.73997/history</link>
   </release>
   <developer>
-    <version>1.15_1.0.32.D1</version>
-    <notes>D1	Added TNT and End Crystal(Hands, Arrow, Snowball, Trident) as possible weapons in the beheading messages.</notes>
+    <version>1.15_1.0.32.D3</version>
+    <notes>D1	Added TNT and End Crystal(Hands, Arrow, Snowball, Trident) as possible weapons in the beheading messages.
+D2	Changed to a per player random system, this should make the odds more accurate.
+D3	Changed Wither and Vex to be able to drop more than 1 head. Wither up to 3, Vex up to 2.</notes>
     <link>https://discord.com/channels/654087250665144321/662940711167066123</link>
   </developer>
 </versions>

@@ -292,10 +292,9 @@ wandering_trader: Wandering Trader Head
 warden: Warden Head
 witch: Witch Head
 wither: 
-  1: Wither Head
-  2: Invulnerable Wither Head
-  3: Armored Wither Head
-  4: Armored Invulnerable Wither Head
+  normal: Wither Head
+  projectile: Wither Projectile
+  blue_projectile: Blue Wither Projectile
 wither_skeleton: Wither Skeleton Head
 wolf: Wolf Head
 zoglin: Zoglin Head

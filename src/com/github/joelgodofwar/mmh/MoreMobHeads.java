@@ -46,6 +46,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
 import org.bukkit.block.TileState;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -112,6 +113,7 @@ import com.github.joelgodofwar.mmh.handlers.EventHandler_1_19_R1;
 import com.github.joelgodofwar.mmh.handlers.EventHandler_1_20_R1;
 import com.github.joelgodofwar.mmh.i18n.Translator;
 import com.github.joelgodofwar.mmh.util.Ansi;
+import com.github.joelgodofwar.mmh.util.ChatColorUtils;
 import com.github.joelgodofwar.mmh.util.Metrics;
 import com.github.joelgodofwar.mmh.util.StrUtils;
 import com.github.joelgodofwar.mmh.util.Utils;
@@ -144,6 +146,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	public static boolean UpdateCheck;
 	public String DownloadLink = "https://www.spigotmc.org/resources/moremobheads.73997";
 	/** end update checker variables */
+	public boolean isDev = false;
 	public static boolean debug = false;
 	public static String daLang;
 	//String updateURL = "https://github.com/JoelGodOfwar/MoreMobHeads/raw/master/versioncheck/1.14/version.txt";
@@ -169,7 +172,8 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	File chanceFile;
 	public YmlConfiguration chanceConfig;
 	public YmlConfiguration oldchanceConfig;
-	public YmlConfiguration beheadingMessages;
+	public YmlConfiguration beheadingMessages = new YmlConfiguration();
+	public YamlConfiguration oldMessages;
 	File mobnameFile;
 	FileConfiguration mobname;
 	double defpercent = 0.013;
@@ -191,13 +195,14 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	File debugFile;
 	Random random = new Random();
 	public String configVersion = "1.0.21";
-	//public String langVersion = "1.0.20";
-	public String chanceVersion = "1.0.22";
+	public String messagesVersion = "1.0.2";
+	public String chanceVersion = "1.0.25";
 	String pluginName = THIS_NAME;
 	Translator lang2;
 	private Set<String> triggeredPlayers = new HashSet<>();
 	HashMap<String, String> namedTropicalFish = new HashMap<>();
-	
+	private Map<Player, Random> chanceRandoms = new HashMap<>();
+
 	@Override // TODO: onEnable
 	public void onEnable(){
 		long startTime = System.currentTimeMillis();
@@ -207,6 +212,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		debug = getConfig().getBoolean("debug", false);
 		daLang = getConfig().getString("lang", "en_US");
 		oldconfig = new YamlConfiguration();
+		oldMessages = new YamlConfiguration();
 		lang2 = new Translator(daLang, getDataFolder().toString());
 		THIS_NAME = this.getDescription().getName();
 		THIS_VERSION = this.getDescription().getVersion();
@@ -215,19 +221,19 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		}else {
 			pluginName = THIS_NAME;
 		}
-		
+
 		datafolder = this.getDataFolder().toString();
 		colorful_console = getConfig().getBoolean("console.colorful_console", true);
 		silent_console = getConfig().getBoolean("console.silent_console", false);
-		
+
 		loading(Ansi.GREEN + "**************************************" + Ansi.RESET);
 		loading(Ansi.YELLOW + THIS_NAME + " v" + THIS_VERSION + Ansi.RESET + " Loading...");
-		
+
 		debugFile = new File(this.getDataFolder() + File.separator + "logs" + File.separator  + "mmh_debug.log");
 		if(!debugFile.exists()){
-            saveResource("logs" + File.separatorChar + "mmh_debug.log", true);
-        }
-		
+			saveResource("logs" + File.separatorChar + "mmh_debug.log", true);
+		}
+
 		/** DEV check **/
 		File jarfile = this.getFile().getAbsoluteFile();
 		if(jarfile.toString().contains("-DEV")){
@@ -235,7 +241,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			logDebug("Jar file contains -DEV, debug set to true");
 			//log("jarfile contains dev, debug set to true.");
 		}
-		
+
 		/** Version Check */
 		if( !(Double.parseDouble( getMCVersion().substring(0, 4) ) >= 1.14) ){
 			// !getMCVersion().startsWith("1.14")&&!getMCVersion().startsWith("1.15")&&!getMCVersion().startsWith("1.16")&&!getMCVersion().startsWith("1.17")
@@ -246,7 +252,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			Bukkit.getPluginManager().disablePlugin(this);
 			return;
 		}
-		
+
 		/**	Check for config */
 		try{
 			if(!getDataFolder().exists()){
@@ -266,7 +272,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			stacktraceInfo();
 			e.printStackTrace();
 		}
-	consoleLog("Loading config file...");
+		consoleLog("Loading config file...");
 		try {
 			oldconfig.load(new File(getDataFolder() + "" + File.separatorChar + "config.yml"));
 		} catch (Exception e2) {
@@ -278,20 +284,15 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		if(checkconfigversion != null){
 			log("config.yml, Expected version:[" + configVersion + "], Read version:[" + checkconfigversion + "]\nThese should be the same.");
 			if(!checkconfigversion.equalsIgnoreCase(configVersion)){
-				boolean isOldFormat;
 				try {
 					copyFile_Java7(getDataFolder() + "" + File.separatorChar + "config.yml",getDataFolder() + "" + File.separatorChar + "old_config.yml");
 				} catch (IOException e) {
 					stacktraceInfo();
 					e.printStackTrace();
 				}
-				if(config.get("colorful_console", null) != null){
-					isOldFormat = true;
-				}else{
-					isOldFormat = false;
-				}
+
 				saveResource("config.yml", true);
-				
+
 				try {
 					config.load(new File(getDataFolder(), "config.yml"));
 				} catch (IOException | InvalidConfigurationException e1) {
@@ -305,97 +306,50 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 					stacktraceInfo();
 					e1.printStackTrace();
 				}
-				if(isOldFormat){
-					config.set("auto_update_check", oldconfig.get("auto_update_check", true));
-					config.set("debug", oldconfig.get("debug", false));
-					config.set("lang", oldconfig.get("lang", "en_US"));
-					config.set("announce.players.enabled", oldconfig.get("announce.players.enabled", true));
-					config.set("announce.players.displayname", oldconfig.get("announce.players.displayname", true));
-					config.set("announce.mobs.enabled", oldconfig.get("announce.mobs.enabled", true));
-					config.set("announce.mobs.displayname", oldconfig.get("announce.mobs.displayname", true));
-					config.set("console.colorful_console", oldconfig.get("colorful_console", true));//
-					config.set("console.silent_console", oldconfig.get("silent_console", false));
-					config.set("console.longpluginname", oldconfig.get("longpluginname", true));
-					config.set("vanilla_heads.creepers", oldconfig.get("creeper_vanilla_heads", false));
-					config.set("vanilla_heads.ender_dragon", oldconfig.get("ender_dragon_vanilla_heads", false));
-					config.set("vanilla_heads.skeleton", oldconfig.get("skeleton_vanilla_heads", false));
-					config.set("vanilla_heads.wither_skeleton", oldconfig.get("wither_skeleton_vanilla_heads", false));
-					config.set("vanilla_heads.zombie", oldconfig.get("zombie_vanilla_heads", false));
-					config.set("world.whitelist", oldconfig.get("world.whitelist", ""));
-					config.set("world.blacklist", oldconfig.get("world.blacklist", ""));
-					config.set("mob.whitelist", oldconfig.get("mob.whitelist", ""));
-					config.set("mob.blacklist", oldconfig.get("mob.blacklist", ""));
-					config.set("mob.nametag", oldconfig.get("mob.nametag", false));
-					config.set("lore.show_killer", oldconfig.get("show_killer", true));
-					config.set("lore.show_plugin_name", oldconfig.get("show_plugin_name", true));
-					config.set("wandering_trades.custom_wandering_trader", oldconfig.get("custom_wandering_trader", true));
-					config.set("wandering_trades.player_heads.enabled", oldconfig.get("wandering_trades.player_heads.enabled", true));
-					config.set("wandering_trades.player_heads.min", oldconfig.get("wandering_trader_min_player_heads", 0));
-					config.set("wandering_trades.player_heads.max", oldconfig.get("wandering_trader_max_player_heads", 5));
-					config.set("wandering_trades.block_heads.enabled", oldconfig.get("wandering_trades.block_heads.enabled", true));
-					config.set("wandering_trades.block_heads.pre_116.min", oldconfig.get("wandering_trader_min_block_heads", 0));
-					config.set("wandering_trades.block_heads.pre_116.max", oldconfig.get("wandering_trader_max_block_heads", 5));
-					config.set("wandering_trades.block_heads.is_116.min", oldconfig.get("wandering_trader_min_block_heads", 0));
-					config.set("wandering_trades.block_heads.is_116.max", oldconfig.get("wandering_trader_max_block_heads", 5));
-					config.set("wandering_trades.block_heads.is_117.min", oldconfig.get("wandering_trader_min_block_heads", 0));
-					config.set("wandering_trades.block_heads.is_117.max", oldconfig.get("wandering_trader_max_block_heads", 5));
-					
-					config.set("wandering_trades.custom_trades.enabled", oldconfig.get("wandering_trader_custom_trades_enabled", false));
-					config.set("wandering_trades.custom_trades.min", oldconfig.get("wandering_trader_min_custom_trades", 0));
-					config.set("wandering_trades.custom_trades.max", oldconfig.get("wandering_trader_max_custom_trades", 5));
-					config.set("apply_looting", oldconfig.get("apply_looting", true));
-					config.set("whitelist.enforce", oldconfig.get("enforce_whitelist", true));
-					config.set("whitelist.player_head_whitelist", oldconfig.get("player_head_whitelist", "names_go_here"));
-					config.set("blacklist.enforce", oldconfig.get("enforce_blacklist", true));
-					config.set("blacklist.player_head_blacklist", oldconfig.get("player_head_blacklist", "names_go_here"));
-					config.set("event.piston_extend", oldconfig.get("piston_extend", true));
-				}else{
-					config.set("auto_update_check", oldconfig.get("auto_update_check", true));
-					config.set("debug", oldconfig.get("debug", false));
-					config.set("lang", oldconfig.get("lang", "en_US"));
-					config.set("announce.players.enabled", oldconfig.get("announce.players.enabled", true));
-					config.set("announce.players.displayname", oldconfig.get("announce.players.displayname", true));
-					config.set("announce.mobs.enabled", oldconfig.get("announce.mobs.enabled", true));
-					config.set("announce.mobs.displayname", oldconfig.get("announce.mobs.displayname", true));
-					config.set("console.colorful_console", oldconfig.get("console.colorful_console", true));
-					config.set("console.silent_console", oldconfig.get("console.silent_console", false));
-					config.set("console.longpluginname", oldconfig.get("longpluginname", true));
-					config.set("vanilla_heads.creepers", oldconfig.get("vanilla_heads.creepers", false));
-					config.set("vanilla_heads.ender_dragon", oldconfig.get("vanilla_heads.ender_dragon", false));
-					config.set("vanilla_heads.skeleton", oldconfig.get("vanilla_heads.skeleton", false));
-					config.set("vanilla_heads.wither_skeleton", oldconfig.get("vanilla_heads.wither_skeleton", false));
-					config.set("vanilla_heads.zombie", oldconfig.get("vanilla_heads.zombie", false));
-					config.set("world.whitelist", oldconfig.get("world.whitelist", ""));
-					config.set("world.blacklist", oldconfig.get("world.blacklist", ""));
-					config.set("mob.whitelist", oldconfig.get("mob.whitelist", ""));
-					config.set("mob.blacklist", oldconfig.get("mob.blacklist", ""));
-					config.set("mob.nametag", oldconfig.get("mob.nametag", false));
-					config.set("lore.show_killer", oldconfig.get("lore.show_killer", true));
-					config.set("lore.show_plugin_name", oldconfig.get("lore.show_plugin_name", true));
-					config.set("wandering_trades.custom_wandering_trader", oldconfig.get("wandering_trades.custom_wandering_trader", true));
-					config.set("wandering_trades.player_heads.enabled", oldconfig.get("wandering_trades.player_heads.enabled", true));
-					config.set("wandering_trades.player_heads.min", oldconfig.get("wandering_trades.player_heads.min", 0));
-					config.set("wandering_trades.player_heads.max", oldconfig.get("wandering_trades.player_heads.max", 5));
-					config.set("wandering_trades.block_heads.enabled", oldconfig.get("wandering_trades.block_heads.enabled", true));
-					config.set("wandering_trades.block_heads.pre_116.min", oldconfig.get("wandering_trader_min_block_heads", 0));
-					config.set("wandering_trades.block_heads.pre_116.max", oldconfig.get("wandering_trader_max_block_heads", 5));
-					config.set("wandering_trades.block_heads.is_116.min", oldconfig.get("wandering_trader_min_block_heads", 0));
-					config.set("wandering_trades.block_heads.is_116.max", oldconfig.get("wandering_trader_max_block_heads", 5));
-					config.set("wandering_trades.block_heads.is_117.min", oldconfig.get("wandering_trader_min_block_heads", 0));
-					config.set("wandering_trades.block_heads.is_117.max", oldconfig.get("wandering_trader_max_block_heads", 5));
-					
-					config.set("wandering_trades.custom_trades.enabled", oldconfig.get("wandering_trades.custom_trades.enabled", false));
-					config.set("wandering_trades.custom_trades.min", oldconfig.get("wandering_trades.custom_trades.min", 0));
-					config.set("wandering_trades.custom_trades.max", oldconfig.get("wandering_trades.custom_trades.max", 5));
-					config.set("apply_looting", oldconfig.get("apply_looting", true));
-					config.set("whitelist.enforce", oldconfig.get("whitelist.enforce", true));
-					config.set("whitelist.player_head_whitelist", oldconfig.get("whitelist.player_head_whitelist", "names_go_here"));
-					config.set("blacklist.enforce", oldconfig.get("enforce_blacklist", true));
-					config.set("blacklist.player_head_blacklist", oldconfig.get("blacklist.player_head_blacklist", "names_go_here"));
-					config.set("event.piston_extend", oldconfig.get("piston_extend", true));
-				}
-				//config.set("", oldconfig.get("", true));
-				
+				config.set("auto_update_check", oldconfig.get("auto_update_check", true));
+				config.set("debug", oldconfig.get("debug", false));
+				config.set("lang", oldconfig.get("lang", "en_US"));
+				config.set("announce.players.enabled", oldconfig.get("announce.players.enabled", true));
+				config.set("announce.players.displayname", oldconfig.get("announce.players.displayname", true));
+				config.set("announce.mobs.enabled", oldconfig.get("announce.mobs.enabled", true));
+				config.set("announce.mobs.displayname", oldconfig.get("announce.mobs.displayname", true));
+				config.set("console.colorful_console", oldconfig.get("console.colorful_console", true));
+				config.set("console.silent_console", oldconfig.get("console.silent_console", false));
+				config.set("console.longpluginname", oldconfig.get("longpluginname", true));
+				config.set("vanilla_heads.creepers", oldconfig.get("vanilla_heads.creepers", false));
+				config.set("vanilla_heads.ender_dragon", oldconfig.get("vanilla_heads.ender_dragon", false));
+				config.set("vanilla_heads.skeleton", oldconfig.get("vanilla_heads.skeleton", false));
+				config.set("vanilla_heads.wither_skeleton", oldconfig.get("vanilla_heads.wither_skeleton", false));
+				config.set("vanilla_heads.zombie", oldconfig.get("vanilla_heads.zombie", false));
+				config.set("world.whitelist", oldconfig.get("world.whitelist", ""));
+				config.set("world.blacklist", oldconfig.get("world.blacklist", ""));
+				config.set("mob.whitelist", oldconfig.get("mob.whitelist", ""));
+				config.set("mob.blacklist", oldconfig.get("mob.blacklist", ""));
+				config.set("mob.nametag", oldconfig.get("mob.nametag", false));
+				config.set("lore.show_killer", oldconfig.get("lore.show_killer", true));
+				config.set("lore.show_plugin_name", oldconfig.get("lore.show_plugin_name", true));
+				config.set("wandering_trades.custom_wandering_trader", oldconfig.get("wandering_trades.custom_wandering_trader", true));
+				config.set("wandering_trades.player_heads.enabled", oldconfig.get("wandering_trades.player_heads.enabled", true));
+				config.set("wandering_trades.player_heads.min", oldconfig.get("wandering_trades.player_heads.min", 0));
+				config.set("wandering_trades.player_heads.max", oldconfig.get("wandering_trades.player_heads.max", 5));
+				config.set("wandering_trades.block_heads.enabled", oldconfig.get("wandering_trades.block_heads.enabled", true));
+				config.set("wandering_trades.block_heads.pre_116.min", oldconfig.get("wandering_trader_min_block_heads", 0));
+				config.set("wandering_trades.block_heads.pre_116.max", oldconfig.get("wandering_trader_max_block_heads", 5));
+				config.set("wandering_trades.block_heads.is_116.min", oldconfig.get("wandering_trader_min_block_heads", 0));
+				config.set("wandering_trades.block_heads.is_116.max", oldconfig.get("wandering_trader_max_block_heads", 5));
+				config.set("wandering_trades.block_heads.is_117.min", oldconfig.get("wandering_trader_min_block_heads", 0));
+				config.set("wandering_trades.block_heads.is_117.max", oldconfig.get("wandering_trader_max_block_heads", 5));
+
+				config.set("wandering_trades.custom_trades.enabled", oldconfig.get("wandering_trades.custom_trades.enabled", false));
+				config.set("wandering_trades.custom_trades.min", oldconfig.get("wandering_trades.custom_trades.min", 0));
+				config.set("wandering_trades.custom_trades.max", oldconfig.get("wandering_trades.custom_trades.max", 5));
+				config.set("apply_looting", oldconfig.get("apply_looting", true));
+				config.set("whitelist.enforce", oldconfig.get("whitelist.enforce", true));
+				config.set("whitelist.player_head_whitelist", oldconfig.get("whitelist.player_head_whitelist", "names_go_here"));
+				config.set("blacklist.enforce", oldconfig.get("enforce_blacklist", true));
+				config.set("blacklist.player_head_blacklist", oldconfig.get("blacklist.player_head_blacklist", "names_go_here"));
+				config.set("event.piston_extend", oldconfig.get("piston_extend", true));
+
 				try {
 					config.save(new File(getDataFolder(), "config.yml"));
 				} catch (IOException e) {
@@ -418,23 +372,73 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			oldconfig = null;
 		}
 		/** end config check */
-		
-		consoleLog("Loading messages.yml...");
-		
-		File	file = new File(getDataFolder(), "messages.yml");
-		if(debug){logDebug("" + file);}
-		if(!file.exists()){
-			log(Level.INFO, "messages.yml not found, creating!");
-			saveResource("messages.yml", true);
-		}
-		beheadingMessages = new YmlConfiguration();
+
+		consoleLog("Loading messages file...");
 		try {
-			beheadingMessages.load(new File(getDataFolder(), "messages.yml"));
-		} catch (IOException | InvalidConfigurationException e1) {
+			oldMessages.load(new File(getDataFolder() + "" + File.separatorChar + "messages.yml"));
+		} catch (Exception e) {
+			logWarn("Could not load messages.yml");
 			stacktraceInfo();
-			e1.printStackTrace();
+			e.printStackTrace();
 		}
-		
+
+		String checkmessagesversion = oldMessages.getString("version", "1.0.0");
+		if (checkmessagesversion != null) {
+			log("messages.yml, Expected version:[" + messagesVersion + "], Read version:[" + checkmessagesversion + "]\nThese should be the same.");
+			if (!checkmessagesversion.equalsIgnoreCase(messagesVersion)) {
+				try {
+					copyFile_Java7(getDataFolder() + "" + File.separatorChar + "messages.yml", getDataFolder() + "" + File.separatorChar + "old_messages.yml");
+				} catch (IOException e) {
+					stacktraceInfo();
+					e.printStackTrace();
+				}
+				saveResource("messages.yml", true);
+
+				try {
+					beheadingMessages.load(new File(getDataFolder(), "messages.yml"));
+				} catch (IOException | InvalidConfigurationException e1) {
+					logWarn("Could not load messages.yml");
+					stacktraceInfo();
+					e1.printStackTrace();
+				}
+				try {
+					oldMessages.load(new File(getDataFolder(), "old_messages.yml"));
+				} catch (IOException | InvalidConfigurationException e1) {
+					stacktraceInfo();
+					e1.printStackTrace();
+				}
+
+				// Update messages
+				ConfigurationSection oldMessagesSection = oldMessages.getConfigurationSection("messages");
+				//ConfigurationSection messagesSection = beheadingMessages.createSection("messages");
+
+				for (String messageKey : oldMessagesSection.getKeys(false)) {
+					String messageValue = oldMessagesSection.getString(messageKey);
+					beheadingMessages.set("messages." + messageKey, messageValue.replace("<killerName>", "%killerName%")
+							.replace("<entityName>", "%entityName%")
+							.replace("<weaponName>", "%weaponName%"));
+				}
+
+				try {
+					beheadingMessages.save(new File(getDataFolder(), "messages.yml"));
+				} catch (IOException e) {
+					logWarn("Could not save old messages to messages.yml");
+					stacktraceInfo();
+					e.printStackTrace();
+				}
+				log(Level.INFO, "messages.yml Updated! Old messages saved as old_messages.yml");
+			} else {
+				try {
+					beheadingMessages.load(new File(getDataFolder(), "messages.yml"));
+				} catch (IOException | InvalidConfigurationException e1) {
+					logWarn("Could not load messages.yml");
+					stacktraceInfo();
+					e1.printStackTrace();
+				}
+			}
+			oldMessages = null;
+		}
+
 		if(getConfig().getBoolean("wandering_trades.custom_wandering_trader", true)){
 			/** Trader heads load */
 			playerFile = new File(getDataFolder() + "" + File.separatorChar + "player_heads.yml");//\
@@ -444,7 +448,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				log(Level.INFO, "player_heads.yml not found! copied player_heads.yml to " + getDataFolder() + "");
 				//ConfigAPI.copy(getResource("lang.yml"), langFile); // copies the yaml from your jar to the folder /plugin/<pluginName>
 			}
-		consoleLog("Loading player_heads file...");
+			consoleLog("Loading player_heads file...");
 			playerHeads = new YamlConfiguration();
 			try {
 				playerHeads.load(playerFile);
@@ -452,8 +456,8 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				stacktraceInfo();
 				e.printStackTrace();
 			}
-			
-			
+
+
 			/** Custom Trades load */
 			customFile = new File(getDataFolder() + "" + File.separatorChar + "custom_trades.yml");//\
 			if(debug){logDebug("customFile=" + customFile.getPath());}
@@ -462,7 +466,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				log(Level.INFO, "custom_trades.yml not found! copied custom_trades.yml to " + getDataFolder() + "");
 				//ConfigAPI.copy(getResource("lang.yml"), langFile); // copies the yaml from your jar to the folder /plugin/<pluginName>
 			}
-		consoleLog("Loading custom_trades file...");
+			consoleLog("Loading custom_trades file...");
 			traderCustom = new YamlConfiguration();
 			try {
 				traderCustom.load(customFile);
@@ -471,7 +475,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				e.printStackTrace();
 			}
 		}
-		
+
 		/** chanceConfig load */
 		chanceFile = new File(getDataFolder() + "" + File.separatorChar + "chance_config.yml");//\
 		if(debug){logDebug("chanceFile=" + chanceFile.getPath());}
@@ -480,7 +484,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			log(Level.INFO, "chance_config.yml not found! copied chance_config.yml to " + getDataFolder() + "");
 			//ConfigAPI.copy(getResource("lang.yml"), langFile); // copies the yaml from your jar to the folder /plugin/<pluginName>
 		}
-	consoleLog("Loading chance_config file...");
+		consoleLog("Loading chance_config file...");
 		chanceConfig = new YmlConfiguration();
 		oldchanceConfig = new YmlConfiguration();
 		try {
@@ -493,20 +497,21 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		String checkchanceConfigversion = chanceConfig.getString("version", "1.0.0");
 		if(checkchanceConfigversion != null){
 			if(!checkchanceConfigversion.equalsIgnoreCase(chanceVersion)){
+				logDebug("Expected v: " + chanceVersion + "got v: " + checkchanceConfigversion );
 				try {
 					copyFile_Java7(getDataFolder() + "" + File.separatorChar + "chance_config.yml",getDataFolder() + "" + File.separatorChar + "old_chance_config.yml");
 				} catch (IOException e) {
 					stacktraceInfo();
 					e.printStackTrace();
 				}
-				
+
 				saveResource("chance_config.yml", true);
 				copyChance(getDataFolder() + "" + File.separatorChar + "old_chance_config.yml", chanceFile.getPath());
 				log(Level.INFO, "chance_config.yml updated.");
 			}
 		}
-		
-		
+
+
 		/** Mob names translation */
 		langNameFile = new File(getDataFolder() + "" + File.separatorChar + "lang" + File.separatorChar, daLang + "_mobnames.yml");//\
 		if(debug){logDebug("langFilePath=" + langNameFile.getPath());}
@@ -534,7 +539,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			log(Level.INFO, "lang_mobnames file not found! copied cs_CZ_mobnames.yml, de_DE_mobnames.yml, en_US_mobnames.yml, es_ES_mobnames.yml, es_MX_mobnames.yml, fr_FR_mobnames.yml, hu_HU_mobnames.yml, it_IT_mobnames.yml, ja_JP_mobnames.yml, ko_KR_mobnames.yml, lol_US_mobnames.yml, my_MY_mobnames.yml, nl_NL_mobnames.yml, pl_PL_mobnames.yml, pt_BR_mobnames.yml, ru_RU_mobnames.yml, sv_SV_mobnames.yml, tr_TR_mobnames.yml, zh_CN_mobnames.yml, zh_TW_mobnames.yml to " + getDataFolder() + "" + File.separatorChar + "lang");
 			//ConfigAPI.copy(getResource("lang.yml"), langFile); // copies the yaml from your jar to the folder /plugin/<pluginName>
 		}
-	consoleLog("Loading language based mobname file...");
+		consoleLog("Loading language based mobname file...");
 		langName = new YamlConfiguration();
 		try {
 			langName.load(langNameFile);
@@ -543,7 +548,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			e.printStackTrace();
 		}
 		/** Mob Names update check */
-		String checklangnameConfigversion = langName.getString("allay", "outdated");
+		String checklangnameConfigversion = langName.getString("vex.angry", "outdated");
 		if(checklangnameConfigversion != null){
 			if(checklangnameConfigversion.equalsIgnoreCase("outdated")){
 				log(Level.INFO, "lang_mobnames file outdated! Updating.");
@@ -577,23 +582,23 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			}
 		}
 		/** end Mob names translation */
-		
+
 		world_whitelist = config.getString("world.whitelist", "");
 		world_blacklist = config.getString("world.blacklist", "");
 		mob_whitelist = config.getString("mob.whitelist", "");
 		mob_blacklist = config.getString("mob.blacklist", "");
-		
+
 		getServer().getPluginManager().registerEvents(this, this);
-		
+
 		String jarfilename = this.getFile().getAbsoluteFile().toString();
 		loading(Ansi.GREEN + " (  " + Ansi.YELLOW + "-<[ PLEASE INCLUDE THIS WITH ANY ISSUE REPORTS ]>-" + Ansi.RESET);
 		loading(Ansi.GREEN + "  ) " + Ansi.WHITE + "This server is running " + Bukkit.getName() + " version " + Bukkit.getVersion() + " (Implementing API version " + Bukkit.getBukkitVersion() + ")" + Ansi.RESET);
 		loading(Ansi.GREEN + " (  " + Ansi.WHITE + "vardebug=" + debug + " debug=" + getConfig().get("debug","error") + " in " + this.getDataFolder() + File.separatorChar + "config.yml" + Ansi.RESET);
 		loading(Ansi.GREEN + "  ) " + Ansi.WHITE + "jarfilename=" + StrUtils.Right(jarfilename, jarfilename.length() - jarfilename.lastIndexOf(File.separatorChar)) + Ansi.RESET);
 		loading(Ansi.GREEN + " (  " + Ansi.YELLOW + "-<[ PLEASE INCLUDE THIS WITH ANY ISSUE REPORTS ]>-" + Ansi.RESET);
-		
+
 		//Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "version");
-		if(getConfig().getBoolean("debug")==true&&!(jarfile.toString().contains("-DEV"))){
+		if((getConfig().getBoolean("debug")==true)&&!(jarfile.toString().contains("-DEV"))){
 			logDebug("Config.yml DUMP - INCLUDE THIS WITH ANY ISSUE REPORT VVV");
 			dumpConfig(getConfig());
 			/**logDebug("auto_update_check=" + getConfig().getBoolean("auto_update_check"));
@@ -629,32 +634,34 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			logDebug("event.piston_extend=" + getConfig().getString("event.piston_extend"));//*/
 			logDebug("Config.yml DUMP - INCLUDE THIS WITH ANY ISSUE REPORT ^^^");
 		}
-		
-		/** Register EventHandler */ 
+
+		/** Register EventHandler */
 		String packageName = this.getServer().getClass().getPackage().getName();
-    	String version = packageName.substring(packageName.lastIndexOf('.') + 2);
-    	if(debug)logDebug("version=" + version);
-    	if( version.contains("1_16_R") || version.contains("1_15_R1") || version.contains("1_14_R1") ){
-    		getServer().getPluginManager().registerEvents( new EventHandler_1_16_R2(this), this);
-    		getCommand("mmh").setExecutor(new EventHandler_1_16_R2(this));
+		String version = packageName.substring(packageName.lastIndexOf('.') + 2);
+		if(debug) {
+			logDebug("version=" + version);
+		}
+		if( version.contains("1_16_R") || version.contains("1_15_R1") || version.contains("1_14_R1") ){
+			getServer().getPluginManager().registerEvents( new EventHandler_1_16_R2(this), this);
+			getCommand("mmh").setExecutor(new EventHandler_1_16_R2(this));
 		}else if( version.contains("1_17_R1") || version.contains("1_18_R1")  || version.contains("1_18_R2")){
 			getServer().getPluginManager().registerEvents( new EventHandler_1_17_R1(this), this);
 			//getCommand("mmh").setExecutor(new EventHandler_1_17_R1(this));
-			
+
 		}else if( version.contains("1_19_R") ){
 			getServer().getPluginManager().registerEvents( new EventHandler_1_19_R1(this), this);
 			//getCommand("mmh").setExecutor(new EventHandler_1_17_R1(this));
-			
+
 		}else if( version.contains("1_20_R") ){
 			getServer().getPluginManager().registerEvents( new EventHandler_1_20_R1(this), this);
 			//getCommand("mmh").setExecutor(new EventHandler_1_17_R1(this));
-			
+
 		}else{
 			logWarn("Not compatible with this version of Minecraft:" + version);
 			getServer().getPluginManager().disablePlugin(this);
 		}
-		
-    	namedTropicalFish.put("STRIPEY-ORANGE-GRAY", "ANEMONE");
+
+		namedTropicalFish.put("STRIPEY-ORANGE-GRAY", "ANEMONE");
 		namedTropicalFish.put("FLOPPER-GRAY-GRAY", "BLACK_TANG");
 		namedTropicalFish.put("FLOPPER-GRAY-BLUE", "BLUE_TANG");
 		namedTropicalFish.put("CLAYFISH-WHITE-GRAY", "BUTTERFLYFISH");
@@ -676,8 +683,8 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		namedTropicalFish.put("SUNSTREAK-GRAY-WHITE", "TRIGGERFISH");
 		namedTropicalFish.put("DASHER-CYAN-YELLOW", "YELLOWTAIL_PARROTFISH");
 		namedTropicalFish.put("FLOPPER-YELLOW-YELLOW", "YELLOW_TANG");
-    	
-    	/** Update Checker */
+
+		/** Update Checker */
 		if(UpdateCheck){
 			loading("Checking for updates...");
 			try {
@@ -687,7 +694,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 					UpdateAvailable = true; // TODO: Update Checker
 					UColdVers = updater.oldVersion();
 					UCnewVers = updater.newVersion();
-					
+
 					loading("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*");
 					loading("* " + get("mmh.version.message").toString().replace("<MyPlugin>", THIS_NAME) );
 					loading("* " + get("mmh.version.old_vers") + ChatColor.RED + UColdVers );
@@ -718,204 +725,204 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			loading("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*");
 		}
 		/** end update checker */
-		
-		
-		
+
+
+
 		consoleInfo("Enabled - Loading took " + LoadTime(startTime));
-		
+
 		Metrics metrics	= new Metrics(this, 6128);
 		// New chart here
 		// myPlugins()
 		metrics.addCustomChart(new Metrics.AdvancedPie("my_other_plugins", new Callable<Map<String, Integer>>() {
-					@Override
-					public Map<String, Integer> call() throws Exception {
-							Map<String, Integer> valueMap = new HashMap<>();
-							
-							if(getServer().getPluginManager().getPlugin("DragonDropElytra") != null){valueMap.put("DragonDropElytra", 1);}
-				    		if(getServer().getPluginManager().getPlugin("NoEndermanGrief") != null){valueMap.put("NoEndermanGrief", 1);}
-				    		if(getServer().getPluginManager().getPlugin("PortalHelper") != null){valueMap.put("PortalHelper", 1);}
-				    		if(getServer().getPluginManager().getPlugin("ShulkerRespawner") != null){valueMap.put("ShulkerRespawner", 1);}
-				    		//if(getServer().getPluginManager().getPlugin("MoreMobHeads") != null){valueMap.put("MoreMobHeads", 1);}
-				    		if(getServer().getPluginManager().getPlugin("SilenceMobs") != null){valueMap.put("SilenceMobs", 1);}
-				    		if(getServer().getPluginManager().getPlugin("SinglePlayerSleep") != null){valueMap.put("SinglePlayerSleep", 1);}
-							if(getServer().getPluginManager().getPlugin("VillagerWorkstationHighlights") != null){valueMap.put("VillagerWorkstationHighlights", 1);}
-							if(getServer().getPluginManager().getPlugin("RotationalWrench") != null){valueMap.put("RotationalWrench", 1);}
-							return valueMap;
-					}
-			}));
+			@Override
+			public Map<String, Integer> call() throws Exception {
+				Map<String, Integer> valueMap = new HashMap<>();
+
+				if(getServer().getPluginManager().getPlugin("DragonDropElytra") != null){valueMap.put("DragonDropElytra", 1);}
+				if(getServer().getPluginManager().getPlugin("NoEndermanGrief") != null){valueMap.put("NoEndermanGrief", 1);}
+				if(getServer().getPluginManager().getPlugin("PortalHelper") != null){valueMap.put("PortalHelper", 1);}
+				if(getServer().getPluginManager().getPlugin("ShulkerRespawner") != null){valueMap.put("ShulkerRespawner", 1);}
+				//if(getServer().getPluginManager().getPlugin("MoreMobHeads") != null){valueMap.put("MoreMobHeads", 1);}
+				if(getServer().getPluginManager().getPlugin("SilenceMobs") != null){valueMap.put("SilenceMobs", 1);}
+				if(getServer().getPluginManager().getPlugin("SinglePlayerSleep") != null){valueMap.put("SinglePlayerSleep", 1);}
+				if(getServer().getPluginManager().getPlugin("VillagerWorkstationHighlights") != null){valueMap.put("VillagerWorkstationHighlights", 1);}
+				if(getServer().getPluginManager().getPlugin("RotationalWrench") != null){valueMap.put("RotationalWrench", 1);}
+				return valueMap;
+			}
+		}));
 		metrics.addCustomChart(new Metrics.AdvancedPie("vanilla_heads", new Callable<Map<String, Integer>>() {
 			@Override
 			public Map<String, Integer> call() throws Exception {
-					Map<String, Integer> valueMap = new HashMap<>();
-					//int varTotal = myPlugins();
-					valueMap.put("CREEPER " + getConfig().getString("vanilla_heads.creeper").toUpperCase(), 1);
-					valueMap.put("ENDER_DRAGON " + getConfig().getString("vanilla_heads.ender_dragon").toUpperCase(), 1);
-					valueMap.put("SKELETON " + getConfig().getString("vanilla_heads.skeleton").toUpperCase(), 1);
-					valueMap.put("WITHER_SKELETON " + getConfig().getString("vanilla_heads.wither_skeleton").toUpperCase(), 1);
-					valueMap.put("ZOMBIE " + getConfig().getString("vanilla_heads.zombie").toUpperCase(), 1);
-					return valueMap;
-					}
-			}));
+				Map<String, Integer> valueMap = new HashMap<>();
+				//int varTotal = myPlugins();
+				valueMap.put("CREEPER " + getConfig().getString("vanilla_heads.creeper").toUpperCase(), 1);
+				valueMap.put("ENDER_DRAGON " + getConfig().getString("vanilla_heads.ender_dragon").toUpperCase(), 1);
+				valueMap.put("SKELETON " + getConfig().getString("vanilla_heads.skeleton").toUpperCase(), 1);
+				valueMap.put("WITHER_SKELETON " + getConfig().getString("vanilla_heads.wither_skeleton").toUpperCase(), 1);
+				valueMap.put("ZOMBIE " + getConfig().getString("vanilla_heads.zombie").toUpperCase(), 1);
+				return valueMap;
+			}
+		}));
 		metrics.addCustomChart(new Metrics.SimplePie("auto_update_check", new Callable<String>() {
-					@Override
-					public String call() throws Exception {
-							return "" + getConfig().getString("auto_update_check").toUpperCase();
-					}
-			}));
+			@Override
+			public String call() throws Exception {
+				return "" + getConfig().getString("auto_update_check").toUpperCase();
+			}
+		}));
 		// add to site
 		metrics.addCustomChart(new Metrics.SimplePie("var_debug", new Callable<String>() {
-					@Override
-					public String call() throws Exception {
-							return "" + getConfig().getString("debug").toUpperCase();
-					}
-			}));
+			@Override
+			public String call() throws Exception {
+				return "" + getConfig().getString("debug").toUpperCase();
+			}
+		}));
 		metrics.addCustomChart(new Metrics.SimplePie("var_lang", new Callable<String>() {
-					@Override
-					public String call() throws Exception {
-							return "" + getConfig().getString("lang").toUpperCase();
-					}
-			}));
+			@Override
+			public String call() throws Exception {
+				return "" + getConfig().getString("lang").toUpperCase();
+			}
+		}));
 		metrics.addCustomChart(new Metrics.SimplePie("whitelist.enforce", new Callable<String>() {
-					@Override
-					public String call() throws Exception {
-							return "" + getConfig().getString("whitelist.enforce").toUpperCase();
-					}
-			}));
+			@Override
+			public String call() throws Exception {
+				return "" + getConfig().getString("whitelist.enforce").toUpperCase();
+			}
+		}));
 		metrics.addCustomChart(new Metrics.SimplePie("blacklist.enforce", new Callable<String>() {
-					@Override
-					public String call() throws Exception {
-							return "" + getConfig().getString("blacklist.enforce").toUpperCase();
-					}
-			}));
+			@Override
+			public String call() throws Exception {
+				return "" + getConfig().getString("blacklist.enforce").toUpperCase();
+			}
+		}));
 		metrics.addCustomChart(new Metrics.SimplePie("custom_wandering_trader", new Callable<String>() {
-					@Override
-					public String call() throws Exception {
-							return "" + getConfig().getString("wandering_trades.custom_wandering_trader").toUpperCase();
-					}
-			}));
+			@Override
+			public String call() throws Exception {
+				return "" + getConfig().getString("wandering_trades.custom_wandering_trader").toUpperCase();
+			}
+		}));
 		metrics.addCustomChart(new Metrics.SimplePie("player_heads", new Callable<String>() {
-					@Override
-					public String call() throws Exception {
-							return "" + getConfig().getString("wandering_trades.player_heads.enabled").toUpperCase();
-					}
-			}));
+			@Override
+			public String call() throws Exception {
+				return "" + getConfig().getString("wandering_trades.player_heads.enabled").toUpperCase();
+			}
+		}));
 		metrics.addCustomChart(new Metrics.SimplePie("block_heads", new Callable<String>() {
-					@Override
-					public String call() throws Exception {
-							return "" + getConfig().getString("wandering_trades.block_heads.enabled").toUpperCase();
-					}
-			}));
+			@Override
+			public String call() throws Exception {
+				return "" + getConfig().getString("wandering_trades.block_heads.enabled").toUpperCase();
+			}
+		}));
 		metrics.addCustomChart(new Metrics.SimplePie("custom_trades", new Callable<String>() {
-					@Override
-					public String call() throws Exception {
-							return "" + getConfig().getString("wandering_trades.custom_trades.enabled").toUpperCase();
-					}
-			}));
+			@Override
+			public String call() throws Exception {
+				return "" + getConfig().getString("wandering_trades.custom_trades.enabled").toUpperCase();
+			}
+		}));
 		metrics.addCustomChart(new Metrics.SimplePie("apply_looting", new Callable<String>() {
-					@Override
-					public String call() throws Exception {
-							return "" + getConfig().getString("apply_looting").toUpperCase();
-					}
-			}));
+			@Override
+			public String call() throws Exception {
+				return "" + getConfig().getString("apply_looting").toUpperCase();
+			}
+		}));
 		metrics.addCustomChart(new Metrics.SimplePie("show_killer", new Callable<String>() {
-					@Override
-					public String call() throws Exception {
-							return "" + getConfig().getString("lore.show_killer").toUpperCase();
-					}
-			}));
+			@Override
+			public String call() throws Exception {
+				return "" + getConfig().getString("lore.show_killer").toUpperCase();
+			}
+		}));
 		metrics.addCustomChart(new Metrics.SimplePie("show_plugin_name", new Callable<String>() {
-					@Override
-					public String call() throws Exception {
-							return "" + getConfig().getString("lore.show_plugin_name").toUpperCase();
-					}
-			}));
+			@Override
+			public String call() throws Exception {
+				return "" + getConfig().getString("lore.show_plugin_name").toUpperCase();
+			}
+		}));
 	}
 
 	@Override // TODO: onDisable
 	public void onDisable(){
 		consoleInfo("Disabled");
 	}
-	
+
 	public void consoleInfo(String state) {
 		loading(Ansi.GREEN + "**************************************" + Ansi.RESET);
 		loading(Ansi.YELLOW + THIS_NAME + " v" + THIS_VERSION + Ansi.RESET + " is " + state);
 		loading(Ansi.GREEN + "**************************************" + Ansi.RESET);
 	}
-	
+
 	public void loading(String string) {
 		if(!colorful_console) {
 			string = Ansi.stripAnsi(string);
 		}
 		logger.info(string);
 	}
-	
+
 	public void log(String string) {
 		if(!colorful_console) {
 			string = Ansi.stripAnsi(string);
 		}
 		log(Level.INFO, string);
 	}
-	
+
 	public	void log(Level level, String string){// TODO: log
 		if(!colorful_console) {
 			string = Ansi.stripAnsi(string);
 		}
 		logger.log(level, ChatColor.YELLOW + THIS_NAME + " v" + THIS_VERSION + ChatColor.RESET + " " + string );
 	}
-	
+
 	public	void log(Level level, String string, Throwable thrown){// TODO: log
 		if(!colorful_console) {
 			string = Ansi.stripAnsi(string);
 		}
 		logger.log(level, ChatColor.YELLOW + THIS_NAME + " v" + THIS_VERSION + ChatColor.RESET + " " + string );
 	}
-	
+
 	public	void logDebug(String dalog){
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss"); //"dd/MM HH:mm:ss"
-        String date = dateFormat.format(new Date());
-        String message = "[" + date + "] [v" + THIS_VERSION + "] [DEBUG]: " + ChatColor.stripColor(dalog);
-        try {
-        	FileWriter writer = new FileWriter(debugFile.toString(), true);
-            BufferedWriter bw = new BufferedWriter(writer);
-            bw.append(message + "\n");
-            bw.close(); 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        log(Level.INFO, Ansi.RESET  + "[" + Ansi.LIGHT_BLUE + "DEBUG" + Ansi.RESET + "]" + dalog + Ansi.RESET );
+		String date = dateFormat.format(new Date());
+		String message = "[" + date + "] [v" + THIS_VERSION + "] [DEBUG]: " + ChatColor.stripColor(dalog);
+		try {
+			FileWriter writer = new FileWriter(debugFile.toString(), true);
+			BufferedWriter bw = new BufferedWriter(writer);
+			bw.append(message + "\n");
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		log(Level.INFO, Ansi.RESET  + "[" + Ansi.LIGHT_BLUE + "DEBUG" + Ansi.RESET + "]" + dalog + Ansi.RESET );
 		//log(Ansi.RED + "[DEBUG] " + Ansi.RESET + dalog);
 	}
 	public void logWarn(String dalog){
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM HH:mm:ss");
-        String date = dateFormat.format(new Date());
-        String message = "[" + date + "] [WARN]: " + dalog;
-        logger.warning(message + "\n");
-        try {
-        	FileWriter writer = new FileWriter(debugFile, true);
-            BufferedWriter bw = new BufferedWriter(writer);
-            bw.append(message);
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
+		String date = dateFormat.format(new Date());
+		String message = "[" + date + "] [WARN]: " + dalog;
+		logger.warning(message + "\n");
+		try {
+			FileWriter writer = new FileWriter(debugFile, true);
+			BufferedWriter bw = new BufferedWriter(writer);
+			bw.append(message);
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		log(Level.WARNING, Ansi.RESET  + "[" + Ansi.LIGHT_YELLOW + "WARNING" + Ansi.RESET  + "] " + dalog + Ansi.RESET);
 	}
-	
+
 	public static String getMCVersion() {
 		String strVersion = Bukkit.getVersion();
 		strVersion = strVersion.substring(strVersion.indexOf("MC: "), strVersion.length());
 		strVersion = strVersion.replace("MC: ", "").replace(")", "");
 		return strVersion;
 	}
-	
-	
+
+
 	public void giveMobHead(LivingEntity mob, String name){
 		ItemStack helmet = new ItemStack(Material.PLAYER_HEAD, 1);
 		SkullMeta meta = (SkullMeta)helmet.getItemMeta();
-			meta.setDisplayName(name + "'s Head");
+		meta.setDisplayName(name + "'s Head");
 		meta.setOwner(name); //.setOwner(name);
-			helmet.setItemMeta(meta);//																	 e2d4c388-42d5-4a96-b4c9-623df7f5e026
+		helmet.setItemMeta(meta);//																	 e2d4c388-42d5-4a96-b4c9-623df7f5e026
 		mob.getEquipment().setHelmet(helmet);
 		helmet.setItemMeta(meta);
 		mob.getEquipment().setHelmet(helmet);
@@ -925,25 +932,25 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			pdc.set(NAMETAG_KEY, PersistentDataType.STRING, "nametag");
 		}
 	}
-	
+
 	public void givePlayerHead(Player player, String playerName){
 		ItemStack playerHead = new ItemStack(Material.PLAYER_HEAD, 1);
 		SkullMeta meta = (SkullMeta)playerHead.getItemMeta();
-			meta.setDisplayName(playerName + "'s Head");
+		meta.setDisplayName(playerName + "'s Head");
 		meta.setOwner(playerName); //.setOwner(name);
 		ArrayList<String> lore = new ArrayList();
 		if(getConfig().getBoolean("lore.show_plugin_name", true)){
 			lore.add(ChatColor.AQUA + "" + THIS_NAME);
 		}
 		meta.setLore(lore);
-			playerHead.setItemMeta(meta);//																	 e2d4c388-42d5-4a96-b4c9-623df7f5e026
+		playerHead.setItemMeta(meta);//																	 e2d4c388-42d5-4a96-b4c9-623df7f5e026
 		//player.getEquipment().setHelmet(playerHead);
-			
+
 		playerHead.setItemMeta(meta);
-		
+
 		player.getWorld().dropItemNaturally(player.getLocation(), MoreMobHeadsLib.addSound( playerHead, EntityType.PLAYER));
 	}
-	
+
 	public void giveBlockHead(Player player, String blockName) {
 		if(debug) {logDebug("giveBlockHead START");}
 		ItemStack blockStack = null;
@@ -971,21 +978,22 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			/**            Add translation for this line.    *****************************************************************************************************  */
 			player.sendMessage(THIS_NAME + " v" + THIS_VERSION + " Sorry could not find \"" + blockName + "\""); // TODO: Add translation for this line.
 		}
-		if( blockStack != null && blockStack.getType() != Material.AIR ) {
+		if( (blockStack != null) && (blockStack.getType() != Material.AIR) ) {
 			player.getWorld().dropItemNaturally(player.getLocation(), blockStack);
 			if(debug) {logDebug("GBH BlockHead given to " + player.getName());}
 		}
 		if(debug) {logDebug("giveBlockHead END");}
 	}
-	
+
 	public boolean isInventoryFull(Player p)	{
-	    return !(p.getInventory().firstEmpty() == -1);
+		return !(p.getInventory().firstEmpty() == -1);
 	}
-	
+
 	@EventHandler
 	public void onPlayerInteractEvent(PlayerInteractEntityEvent event){// TODO: PlayerInteractEntityEvent
-		if(!(event.getPlayer() instanceof Player))
+		if(!(event.getPlayer() instanceof Player)) {
 			return;
+		}
 		try{
 			Player player = event.getPlayer();
 			if(player.hasPermission("moremobheads.nametag")){
@@ -1003,23 +1011,23 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 						name = player.getInventory().getItemInOffHand().getItemMeta().getDisplayName();
 						if(debug){logDebug("PIEE " + player.getDisplayName() + " Off hand name=" + name);};
 					}
-					
-		/** experimental code */
+
+					/** experimental code */
 					/*ItemStack itemstack = player.getInventory().getItemInOffHand();
 					getConfig().set("itemstack", itemstack);
 					saveConfig();*/
-			//		log("itemstack set");
-	
+					//		log("itemstack set");
+
 					//player.getInventory().addItem(getConfig().getItemStack("itemstack"));
-					
+
 					/*Villager villager = (Villager) mob;
 					List<MerchantRecipe> recipes = new ArrayList<MerchantRecipe>();
 					MerchantRecipe recipe = new MerchantRecipe(getConfig().getItemStack("itemstack"), 1);
 					recipe.addIngredient(new ItemStack(Material.EMERALD));
 									recipes.add(recipe);
 									villager.setRecipes(recipes);*/
-			/** experimental code */
-									
+					/** experimental code */
+
 					//player.sendMessage("Testing");
 					if(material.equals(Material.NAME_TAG)||material2.equals(Material.NAME_TAG)){
 						if(getServer().getPluginManager().getPlugin("SilenceMobs") != null){
@@ -1033,7 +1041,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 						if(debug) {log("canwearhead=" + NameTag.canWearHead(mob));}
 						if(NameTag.canWearHead(mob)){
 							// Piglin, drowned, husk, pillager, stray
-							
+
 							//log("mob=" + mob.getType().toString());
 							/**if(getConfig().getBoolean("enforce_whitelist", false)){ //
 								if(getConfig().getString("whitelist.player_head_whitelist", "").toLowerCase().contains(name.toLowerCase())){
@@ -1082,16 +1090,12 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 							}
 						}
 					}
-				}else {
-					if(debug) {log("mob.nametag=false");}
-				}
-			}else{
-				//ZombieVillager mob = (ZombieVillager) event.getRightClicked();
-				if(debug) {log("moremobheads.nametag=false");}
-				//player.sendMessage(mob.getName() + " profession= " + mob.getVillagerProfession());
+				} else if(debug) {log("mob.nametag=false");}
 			}
-			//ZombieVillager mob = (ZombieVillager) event.getRightClicked();
-			
+			else //ZombieVillager mob = (ZombieVillager) event.getRightClicked();
+				if(debug) {log("moremobheads.nametag=false");}
+			//player.sendMessage(mob.getName() + " profession= " + mob.getVillagerProfession());
+
 			//player.sendMessage(mob.getName() + " profession= " + mob.getVillagerProfession());
 		}catch (Exception e){
 			stacktraceInfo();
@@ -1099,7 +1103,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		}
 
 	}
-	 
+
 	public ItemStack dropMobHead(Entity entity, String name, Player killer){// TODO: dropMobHead
 		ItemStack helmet = new ItemStack(Material.PLAYER_HEAD, 1);
 		SkullMeta meta = (SkullMeta)helmet.getItemMeta();
@@ -1107,8 +1111,8 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		meta.setDisplayName(name + "'s Head");
 		ArrayList<String> lore = new ArrayList();
 		if(getConfig().getBoolean("lore.show_killer", true)){
-			String killed_by = (String) get("mmh.message.lore_killed_by", "Killed by <player>");
-			lore.add(ChatColor.RESET + killed_by.replace("<player>", "" + ChatColor.RESET + ChatColor.YELLOW + killer.getDisplayName()) );
+			String killed_by = ChatColorUtils.setColors( langName.getString("killedby", "<RED>Killed <RESET>By <YELLOW><player>") );
+			lore.add(ChatColor.RESET + killed_by.replace("<player>", "" + killer.getDisplayName()) );
 			//lore.add(ChatColor.RESET + "Killed by " + ChatColor.RESET + ChatColor.YELLOW + killer.getDisplayName());
 		}
 		if(getConfig().getBoolean("lore.show_plugin_name", true)){
@@ -1121,11 +1125,20 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		entity.getWorld().dropItemNaturally(entity.getLocation(), helmet);
 		return helmet;
 	}
-	 
+
 	public boolean DropIt(EntityDeathEvent event, double chancepercent){// TODO: DropIt
+		if(event.getEntity().getKiller() instanceof Creeper) {
+			Creeper creeper = (Creeper) event.getEntity().getKiller();
+			if(creeper.isPowered()) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+		Player player = event.getEntity().getKiller();
 		ItemStack itemstack = event.getEntity().getKiller().getInventory().getItemInMainHand();
 		if(itemstack != null){
-				if(debug){logDebug("DI itemstack=" + itemstack.getType().toString() + " line:1023");}
+			if(debug){logDebug("DI itemstack=" + itemstack.getType().toString());}
 			int enchantmentlevel = 0;
 			if(getConfig().getBoolean("apply_looting", true)){
 				enchantmentlevel = itemstack.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);
@@ -1133,119 +1146,103 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			if(chancepercent == 0){
 				enchantmentlevel = 0;
 			}
-				if(debug){logDebug("DI enchantmentlevel=" + enchantmentlevel + " line:1031");}
-			double enchantmentlevelpercent = ((double)enchantmentlevel / 100);
-				if(debug){logDebug("DI enchantmentlevelpercent=" + enchantmentlevelpercent + " line:1033");}
-			double chance = Math.random();
-				if(debug){logDebug("DI chance=" + chance + " line:1035");}
-			
-				if(debug){logDebug("DI chancepercent=" + chancepercent + " line:1037");}
+			if(debug){logDebug("DI enchantmentlevel=" + enchantmentlevel);}
+			double enchantmentlevelpercent = enchantmentlevel;
+			if(debug){logDebug("DI enchantmentlevelpercent=" + enchantmentlevelpercent);}
+			Random chanceRandom = chanceRandoms.computeIfAbsent(player, p -> new Random(p.getUniqueId().hashCode()));
+			double chance = chanceRandom.nextDouble() * 100;
+			if(debug){logDebug("DI chance=" + chance);}
+			if(debug){logDebug("DI chancepercent=" + chancepercent);}
 			chancepercent = chancepercent + enchantmentlevelpercent;
-				if(debug){logDebug("DI chancepercent2=" + chancepercent + " line:1039");}
-			if (chancepercent > chance){
+			if(debug){logDebug("DI chancepercent2=" + chancepercent);}
+			if ((chancepercent >= chance) || isDev){
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	public boolean DropIt2( double chancepercent){// TODO: DropIt
-			int enchantmentlevel = 0;
-			if(chancepercent == 0){
-				enchantmentlevel = 0;
-			}
-				if(debug){logDebug("DI enchantmentlevel=" + enchantmentlevel + " line:1031");}
-			double enchantmentlevelpercent = ((double)enchantmentlevel / 100);
-				if(debug){logDebug("DI enchantmentlevelpercent=" + enchantmentlevelpercent + " line:1033");}
-			double chance = Math.random();
-				if(debug){logDebug("DI chance=" + chance + " line:1035");}
-			
-				if(debug){logDebug("DI chancepercent=" + chancepercent + " line:1037");}
-			chancepercent = chancepercent + enchantmentlevelpercent;
-				if(debug){logDebug("DI chancepercent2=" + chancepercent + " line:1039");}
-			if (chancepercent > chance){
-				return true;
-			}
-		return false;
+		double chance = Math.random() * 100;
+		if(debug){logDebug("DI2 chance=" + chance);
+		logDebug("DI2 chancepercent=" + chancepercent);}
+		return chancepercent >= chance;
 	}
-	
-	
-	
-	public int randomBetween(int min, int max){
+
+	public int randomBetween(int min, int max) {
 		Random r = new Random();
-		int random = r.nextInt(max + 1);
-		if((min + random) > max){
-			return max;
-		}
-		return min + random;
+		int random = r.nextInt((max - min) + 1) + min;
+		return random;
 	}
-	
+
 	@EventHandler
 	public void onPlayerJoinEvent(PlayerJoinEvent event) // TODO: OnPlayerJoin
-		{
-			Player player = event.getPlayer();
-			//if(p.isOp() && UpdateCheck||p.hasPermission("moremobheads.showUpdateAvailable")){	
-			/** Notify Ops */
-			if(UpdateAvailable&&(player.isOp()||player.hasPermission("moremobheads.showUpdateAvailable"))){
-				String links = "[\"\",{\"text\":\"<Download>\",\"bold\":true,\"color\":\"gold\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"<DownloadLink>/history\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<please_update>\"}},{\"text\":\" \",\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<please_update>\"}},{\"text\":\"| \"},{\"text\":\"<Donate>\",\"bold\":true,\"color\":\"gold\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://ko-fi.com/joelgodofwar\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<Donate_msg>\"}},{\"text\":\" | \"},{\"text\":\"<Notes>\",\"bold\":true,\"color\":\"gold\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"<DownloadLink>/updates\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<Notes_msg>\"}}]";
-				links = links.replace("<DownloadLink>", DownloadLink).replace("<Download>", get("mmh.version.download"))
-						.replace("<Donate>", get("mmh.version.donate")).replace("<please_update>", get("mmh.version.please_update"))
-						.replace("<Donate_msg>", get("mmh.version.donate.message")).replace("<Notes>", get("mmh.version.notes"))
-						.replace("<Notes_msg>", get("mmh.version.notes.message"));
-				String versions = "" + ChatColor.GRAY + get("mmh.version.new_vers") + ": " + ChatColor.GREEN + "{nVers} | " + get("mmh.version.old_vers") + ": " + ChatColor.RED + "{oVers}";
-				player.sendMessage("" + ChatColor.GRAY + get("mmh.version.message").toString().replace("<MyPlugin>", ChatColor.GOLD + THIS_NAME + ChatColor.GRAY) );
-				Utils.sendJson(player, links);
-				player.sendMessage(versions.replace("{nVers}", UCnewVers).replace("{oVers}", UColdVers));
-			}
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd");
-			LocalDate localDate = LocalDate.now();
-			String daDay = dtf.format(localDate);
+	{
+		Player player = event.getPlayer();
+		//if(p.isOp() && UpdateCheck||p.hasPermission("moremobheads.showUpdateAvailable")){
+		/** Notify Ops */
+		if(UpdateAvailable&&(player.isOp()||player.hasPermission("moremobheads.showUpdateAvailable"))){
+			String links = "[\"\",{\"text\":\"<Download>\",\"bold\":true,\"color\":\"gold\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"<DownloadLink>/history\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<please_update>\"}},{\"text\":\" \",\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<please_update>\"}},{\"text\":\"| \"},{\"text\":\"<Donate>\",\"bold\":true,\"color\":\"gold\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://ko-fi.com/joelgodofwar\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<Donate_msg>\"}},{\"text\":\" | \"},{\"text\":\"<Notes>\",\"bold\":true,\"color\":\"gold\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"<DownloadLink>/updates\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<Notes_msg>\"}}]";
+			links = links.replace("<DownloadLink>", DownloadLink).replace("<Download>", get("mmh.version.download"))
+					.replace("<Donate>", get("mmh.version.donate")).replace("<please_update>", get("mmh.version.please_update"))
+					.replace("<Donate_msg>", get("mmh.version.donate.message")).replace("<Notes>", get("mmh.version.notes"))
+					.replace("<Notes_msg>", get("mmh.version.notes.message"));
+			String versions = "" + ChatColor.GRAY + get("mmh.version.new_vers") + ": " + ChatColor.GREEN + "{nVers} | " + get("mmh.version.old_vers") + ": " + ChatColor.RED + "{oVers}";
+			player.sendMessage("" + ChatColor.GRAY + get("mmh.version.message").toString().replace("<MyPlugin>", ChatColor.GOLD + THIS_NAME + ChatColor.GRAY) );
+			Utils.sendJson(player, links);
+			player.sendMessage(versions.replace("{nVers}", UCnewVers).replace("{oVers}", UColdVers));
+		}
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd");
+		LocalDate localDate = LocalDate.now();
+		String daDay = dtf.format(localDate);
 
-			if (daDay.equals("04/16")) {
-			    String playerId = player.getUniqueId().toString();
-			    if (!triggeredPlayers.contains(playerId)) {
-			        if (isPluginRequired(THIS_NAME)) {
-			            player.sendTitle("Happy Birthday Mom", "I miss you - 4/16/1954-12/23/2022", 10, 70, 20);
-			        }
-			        triggeredPlayers.add(playerId);
-			    }
+		if (daDay.equals("04/16")) {
+			String playerId = player.getUniqueId().toString();
+			if (!triggeredPlayers.contains(playerId)) {
+				if (isPluginRequired(THIS_NAME)) {
+					player.sendTitle("Happy Birthday Mom", "I miss you - 4/16/1954-12/23/2022", 10, 70, 20);
+				}
+				triggeredPlayers.add(playerId);
 			}
-			if(player.getDisplayName().equals("JoelYahwehOfWar")||player.getDisplayName().equals("JoelGodOfWar")){
-				player.sendMessage(THIS_NAME + " " + THIS_VERSION + " Hello father!");
-				//p.sendMessage("seed=" + p.getWorld().getSeed());
-			}
+		}
+		if(player.getDisplayName().equals("JoelYahwehOfWar")||player.getDisplayName().equals("JoelGodOfWar")){
+			player.sendMessage(THIS_NAME + " " + THIS_VERSION + " Hello father!");
+			//p.sendMessage("seed=" + p.getWorld().getSeed());
+		}
 	}
 
 	public void sendJson(Player player, String string) {
-		Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw \"" + player.getName() + 
-		        "\" " + string);
+		Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw \"" + player.getName() +
+				"\" " + string);
 	}
-	
+
 	public void makeHead(EntityDeathEvent event, Material material){// TODO: makeHead
-		 ItemStack itemstack = event.getEntity().getKiller().getInventory().getItemInMainHand();
-			if(itemstack != null){
-					if(debug){logDebug("itemstack=" + itemstack.getType().toString() + " line:954");}
-				int enchantmentlevel = itemstack.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);//.containsEnchantment(Enchantment.LOOT_BONUS_MOBS);
-					if(debug){logDebug("enchantmentlevel=" + enchantmentlevel + " line:956");}
-				double enchantmentlevelpercent = ((double)enchantmentlevel / 100);
-					if(debug){logDebug("enchantmentlevelpercent=" + enchantmentlevelpercent + " line:958");}
-				double chance = Math.random();
-					if(debug){logDebug("chance=" + chance + " line:960");}
-				double chancepercent = 0.25; /** Set to check config.yml later*/
-					if(debug){logDebug("chancepercent=" + chancepercent + " line:962");}
-				chancepercent = chancepercent + enchantmentlevelpercent;
-					if(debug){logDebug("chancepercent2=" + chancepercent + " line:964");}
-				if(chancepercent > 0.00 && chancepercent < 0.99){
-						if (chancepercent > chance){
-							event.getDrops().add(new ItemStack(material, 1));
-						}
+		ItemStack itemstack = event.getEntity().getKiller().getInventory().getItemInMainHand();
+		if(itemstack != null){
+			if(debug){logDebug("itemstack=" + itemstack.getType().toString() + " line:954");}
+			int enchantmentlevel = itemstack.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);//.containsEnchantment(Enchantment.LOOT_BONUS_MOBS);
+			if(debug){logDebug("enchantmentlevel=" + enchantmentlevel + " line:956");}
+			double enchantmentlevelpercent = ((double)enchantmentlevel / 100);
+			if(debug){logDebug("enchantmentlevelpercent=" + enchantmentlevelpercent + " line:958");}
+			double chance = Math.random();
+			if(debug){logDebug("chance=" + chance + " line:960");}
+			double chancepercent = 0.25; /** Set to check config.yml later*/
+			if(debug){logDebug("chancepercent=" + chancepercent + " line:962");}
+			chancepercent = chancepercent + enchantmentlevelpercent;
+			if(debug){logDebug("chancepercent2=" + chancepercent + " line:964");}
+			if((chancepercent > 0.00) && (chancepercent < 0.99)){
+				if (chancepercent > chance){
+					event.getDrops().add(new ItemStack(material, 1));
 				}
 			}
+		}
 	}
-	
+
 	public ItemStack makeTraderSkull(String textureCode, String headName, String uuid, int amount){// TODO: maketraderSkull
 		ItemStack item = new ItemStack(Material.PLAYER_HEAD, amount);
-		if(textureCode == null) return item;
+		if(textureCode == null) {
+			return item;
+		}
 		SkullMeta meta = (SkullMeta) item.getItemMeta();
 
 		GameProfile profile = new GameProfile(UUID.nameUUIDFromBytes(textureCode.getBytes()), textureCode);
@@ -1259,98 +1256,104 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		}
 		meta.setLore(lore);
 		meta.setLore(lore);
-		
+
 		//meta.setOwningPlayer(Bukkit.getOfflinePlayer(ownerUUID));
 		meta.setDisplayName(headName);
 		item.setItemMeta(meta);
 		return item;
 	}
-	
+
 	public ItemStack makeSkull(String textureCode, String headName, Player killer){// TODO: makeSkull
-			ItemStack item = new ItemStack(Material.PLAYER_HEAD);
-			if(textureCode == null) return item;
-			SkullMeta meta = (SkullMeta) item.getItemMeta();
-			
-			GameProfile profile = new GameProfile(UUID.nameUUIDFromBytes(textureCode.getBytes()), textureCode);
-			profile.getProperties().put("textures", new Property("textures", textureCode));
-			profile.getProperties().put("display", new Property("Name", headName));
-			//profile.getProperties().put("BlockEntityTag", new Property("note_block_sound", "minecraft:entity.camel.ambient"));
-			
-			setGameProfile(meta, profile);
-			ArrayList<String> lore = new ArrayList();
-			
-			if(getConfig().getBoolean("lore.show_killer", true)){
-				lore.add(ChatColor.RESET + get("mmh.message.lore_killed_by").replace("<player>", ChatColor.YELLOW + killer.getName()) );
-			}
-			if(getConfig().getBoolean("lore.show_plugin_name", true)){
-				lore.add(ChatColor.AQUA + "MoreMobHeads");
-			}
-				meta.setLore(lore);
-			meta.setLore(lore);
-			
-			//meta.setOwningPlayer(Bukkit.getOfflinePlayer(ownerUUID));
-			meta.setDisplayName(headName);
-			item.setItemMeta(meta);
+		ItemStack item = new ItemStack(Material.PLAYER_HEAD);
+		if(textureCode == null) {
 			return item;
+		}
+		SkullMeta meta = (SkullMeta) item.getItemMeta();
+
+		GameProfile profile = new GameProfile(UUID.nameUUIDFromBytes(textureCode.getBytes()), textureCode);
+		profile.getProperties().put("textures", new Property("textures", textureCode));
+		profile.getProperties().put("display", new Property("Name", headName));
+		//profile.getProperties().put("BlockEntityTag", new Property("note_block_sound", "minecraft:entity.camel.ambient"));
+
+		setGameProfile(meta, profile);
+		ArrayList<String> lore = new ArrayList();
+
+		if(getConfig().getBoolean("lore.show_killer", true)){
+			lore.add(ChatColor.RESET + ChatColorUtils.setColors( langName.getString("killedby", "<RED>Killed <RESET>By <YELLOW><player>").replace("<player>", killer.getName()) ) );
+		}
+		if(getConfig().getBoolean("lore.show_plugin_name", true)){
+			lore.add(ChatColor.AQUA + "MoreMobHeads");
+		}
+		meta.setLore(lore);
+		meta.setLore(lore);
+
+		//meta.setOwningPlayer(Bukkit.getOfflinePlayer(ownerUUID));
+		meta.setDisplayName(headName);
+		item.setItemMeta(meta);
+		return item;
 	}
-	
+
 	public ItemStack makeSkulls(String textureCode, String headName, int amount){
-			ItemStack item = new ItemStack(Material.PLAYER_HEAD, amount);
-			if(textureCode == null) return item;
-			SkullMeta meta = (SkullMeta) item.getItemMeta();
-
-			GameProfile profile = new GameProfile(UUID.nameUUIDFromBytes(textureCode.getBytes()), textureCode);
-			profile.getProperties().put("textures", new Property("textures", textureCode));
-			profile.getProperties().put("display", new Property("Name", headName));
-			setGameProfile(meta, profile);
-			ArrayList<String> lore = new ArrayList();
-
-			if(getConfig().getBoolean("lore.show_plugin_name", true)){
-				lore.add(ChatColor.AQUA + "MoreMobHeads");
-			}
-				meta.setLore(lore);
-			meta.setLore(lore);
-			
-			//meta.setOwningPlayer(Bukkit.getOfflinePlayer(ownerUUID));
-			meta.setDisplayName(headName);
-			item.setItemMeta(meta);
+		ItemStack item = new ItemStack(Material.PLAYER_HEAD, amount);
+		if(textureCode == null) {
 			return item;
+		}
+		SkullMeta meta = (SkullMeta) item.getItemMeta();
+
+		GameProfile profile = new GameProfile(UUID.nameUUIDFromBytes(textureCode.getBytes()), textureCode);
+		profile.getProperties().put("textures", new Property("textures", textureCode));
+		profile.getProperties().put("display", new Property("Name", headName));
+		setGameProfile(meta, profile);
+		ArrayList<String> lore = new ArrayList();
+
+		if(getConfig().getBoolean("lore.show_plugin_name", true)){
+			lore.add(ChatColor.AQUA + "MoreMobHeads");
+		}
+		meta.setLore(lore);
+		meta.setLore(lore);
+
+		//meta.setOwningPlayer(Bukkit.getOfflinePlayer(ownerUUID));
+		meta.setDisplayName(headName);
+		item.setItemMeta(meta);
+		return item;
 	}
 	private static Field fieldProfileItem;
 	public static void setGameProfile(SkullMeta meta, GameProfile profile){
-			try{
-				if(fieldProfileItem == null) fieldProfileItem = meta.getClass().getDeclaredField("profile");
-				fieldProfileItem.setAccessible(true);
-				fieldProfileItem.set(meta, profile);
+		try{
+			if(fieldProfileItem == null) {
+				fieldProfileItem = meta.getClass().getDeclaredField("profile");
 			}
-			catch(NoSuchFieldException e){
-				stacktraceInfoStatic();
-				e.printStackTrace();}
-			catch(SecurityException e){
-				stacktraceInfoStatic();
-				e.printStackTrace();}
-			catch(IllegalArgumentException e){
-				stacktraceInfoStatic();
-				e.printStackTrace();}
-			catch(IllegalAccessException e){
-				stacktraceInfoStatic();
-				e.printStackTrace();}
+			fieldProfileItem.setAccessible(true);
+			fieldProfileItem.set(meta, profile);
+		}
+		catch(NoSuchFieldException e){
+			stacktraceInfoStatic();
+			e.printStackTrace();}
+		catch(SecurityException e){
+			stacktraceInfoStatic();
+			e.printStackTrace();}
+		catch(IllegalArgumentException e){
+			stacktraceInfoStatic();
+			e.printStackTrace();}
+		catch(IllegalAccessException e){
+			stacktraceInfoStatic();
+			e.printStackTrace();}
 	}
 
-	
+
 	public boolean isInteger(String s){
-	    try{
-	        Integer.parseInt(s);
-	        return true;
-	    }catch (NumberFormatException ex){
-	        return false;
-	    }
+		try{
+			Integer.parseInt(s);
+			return true;
+		}catch (NumberFormatException ex){
+			return false;
+		}
 	}
-	
+
 	//@SuppressWarnings("unused")
 	@EventHandler
 	public void OnTake(EntityPickupItemEvent e){
-	/** //ItemStack item = new ItemStack(7);
+		/** //ItemStack item = new ItemStack(7);
 	LivingEntity entity = e.getEntity();
 	Item item = e.getItem();
 		if(entity instanceof Player){
@@ -1440,7 +1443,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		}
 			//log("test4");*/
 	}
-	
+
 	public String isPlayerHead(String string){
 		try{
 			playerFile = new File(getDataFolder() + "" + File.separatorChar + "player_heads.yml");//\
@@ -1471,7 +1474,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		//playerHeads
 		return null;
 	}
-	
+
 	public String isBlockHead(String string){ // TODO: isBlockHead
 		try{
 			if(!(Double.parseDouble(StrUtils.Left(getMCVersion(), 4)) >= 1.16)){
@@ -1511,18 +1514,18 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		//blockHeads
 		return null;
 	}
-	
+
 	public String isBlockHead2(String string){
 		try{
 			if(!(Double.parseDouble(StrUtils.Left(getMCVersion(), 4)) >= 1.16)){																// checks if the yaml does not exist
-					return null;
+				return null;
 			}
 			blockFile1162 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_16_2.yml");
 			if(getMCVersion().startsWith("1.16")||getMCVersion().startsWith("1.17")){
 				if(!blockFile1162.exists()){
 					return null;
 				}
-			
+
 			}
 			int numOfCustomTrades = blockHeads2.getInt("blocks.number", 0) + 1;
 			if(debug){logDebug("iBH2 string=" + string);}
@@ -1548,18 +1551,18 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		//blockHeads
 		return null;
 	}
-	
+
 	public String isBlockHead3(String string){
 		try{
 			if(!(Double.parseDouble(StrUtils.Left(getMCVersion(), 4)) >= 1.16)){																// checks if the yaml does not exist
-					return null;
+				return null;
 			}
 			blockFile117 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_17.yml");
 			if(getMCVersion().startsWith("1.16")||getMCVersion().startsWith("1.17")){
 				if(!blockFile117.exists()){
 					return null;
 				}
-			
+
 			}
 			int numOfCustomTrades = blockHeads3.getInt("blocks.number", 0) + 1;
 			if(debug){logDebug("iBH3 string=" + string);}
@@ -1585,8 +1588,8 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		//blockHeads
 		return null;
 	}
-	
-	
+
+
 	public int isBlockHeadName(String string){ // TODO: isBlockHeadName
 		if(debug){logDebug("iBHN START");}
 		try{
@@ -1644,18 +1647,18 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		try{
 			double mcVer = Double.parseDouble(StrUtils.Left(getMCVersion(), 4));
 			if(!(mcVer >= 1.16)){																// checks if the yaml does not exist
-					return -1;
+				return -1;
 			}else if(mcVer == 1.16) {
 				blockFile1162 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_16_2.yml");
 			}else if(mcVer >= 1.17) {
 				blockFile1162 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_17_2.yml");
 			}
-			
+
 			if(getMCVersion().startsWith("1.16")||getMCVersion().startsWith("1.17")){
 				if(!blockFile1162.exists()){
 					return -1;
 				}
-			
+
 			}
 			if(debug){logDebug("iBH blockFile1162=" + blockFile1162.toString());}
 			if(blockHeads2.getInt("blocks.number", 0) == 0) {
@@ -1694,24 +1697,24 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		if(debug){logDebug("iBHN2 END Failure!");}
 		return -1;
 	}
-	
+
 	public int isBlockHeadName3(String string){
 		if(debug){logDebug("iBHN3 START");}
 		try{
 			double mcVer = Double.parseDouble(StrUtils.Left(getMCVersion(), 4));
 			if(!(mcVer >= 1.16)){																// checks if the yaml does not exist
-					return -1;
+				return -1;
 			}else if(mcVer == 1.16) {
 				return -1;
 			}else if(mcVer >= 1.17) {
 				blockFile117 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_17_3.yml");
 			}
-			
+
 			if(getMCVersion().startsWith("1.16")||getMCVersion().startsWith("1.17")){
 				if(!blockFile117.exists()){
 					return -1;
 				}
-			
+
 			}
 			if(debug){logDebug("iBHN3 blockFile117=" + blockFile117.toString());}
 			if(blockHeads3.getInt("blocks.number", 0) == 0) {
@@ -1752,24 +1755,24 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		if(debug){logDebug("iBHN3 END Failure!");}
 		return -1;
 	}
-	
+
 	public int isBlockHeadName4(String string){
 		if(debug){logDebug("iBHN4 START");}
 		try{
 			double mcVer = Double.parseDouble(StrUtils.Left(getMCVersion(), 4));
 			if(!(mcVer >= 1.16)){																// checks if the yaml does not exist
-					return -1;
+				return -1;
 			}else if(mcVer == 1.16) {
 				return -1;
 			}else if(mcVer == 1.19) {
 				blockFile119 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_19.yml");
 			}
-			
+
 			if(getMCVersion().startsWith("1.19")){
 				if(!blockFile119.exists()){
 					return -1;
 				}
-			
+
 			}
 			if(debug){logDebug("iBHN4 blockFile119=" + blockFile119.toString());}
 			if(blockHeads4.getInt("blocks.number", 0) == 0) {
@@ -1810,13 +1813,13 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		if(debug){logDebug("iBHN4 END Failure!");}
 		return -1;
 	}
-	
+
 	public int isBlockHeadName5(String string){
 		if(debug){logDebug("iBHN5 START");}
 		try{
 			double mcVer = Double.parseDouble(StrUtils.Left(getMCVersion(), 4));
 			if(!(mcVer >= 1.16)){																// checks if the yaml does not exist
-					return -1;
+				return -1;
 			}else if(mcVer == 1.16) {
 				return -1;
 			}else if(mcVer == 1.19) {
@@ -1824,12 +1827,12 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			}else if(mcVer == 1.20) {
 				blockFile120 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_20.yml");
 			}
-			
+
 			if(getMCVersion().startsWith("1.20")){
 				if(!blockFile120.exists()){
 					return -1;
 				}
-			
+
 			}
 			if(debug){logDebug("iBHN5 blockFile120=" + blockFile120.toString());}
 			if(blockHeads5.getInt("blocks.number", 0) == 0) {
@@ -1874,12 +1877,12 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		//overwrite the destination file if it exists, and copy
 		// the file attributes, including the rwx permissions
 		CopyOption[] options = new CopyOption[]{
-			StandardCopyOption.REPLACE_EXISTING,
-			StandardCopyOption.COPY_ATTRIBUTES
-		}; 
+				StandardCopyOption.REPLACE_EXISTING,
+				StandardCopyOption.COPY_ATTRIBUTES
+		};
 		Files.copy(FROM, TO, options);
 	}
-	
+
 	public void copyChance(String file, String file2){
 		chanceConfig = new YmlConfiguration();
 		oldchanceConfig = new YmlConfiguration();
@@ -1891,284 +1894,284 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			e.printStackTrace();
 		}
 		log(Level.INFO, "Copying values frome old_chance_config.yml to chance_config.yml");
-		chanceConfig.set("chance_percent.player"							, oldchanceConfig.get("chance_percent.player", "0.50"));
-		chanceConfig.set("chance_percent.named_mob"							, oldchanceConfig.get("chance_percent.named_mob", "0.10"));
-		chanceConfig.set("chance_percent.allay"								, oldchanceConfig.get("chance_percent.allay", "0.20"));
-		chanceConfig.set("chance_percent.axolotl.blue"						, oldchanceConfig.get("chance_percent.axolotl.blue", "1.00"));
-		chanceConfig.set("chance_percent.axolotl.cyan"						, oldchanceConfig.get("chance_percent.axolotl.cyan", "0.20"));
-		chanceConfig.set("chance_percent.axolotl.gold"						, oldchanceConfig.get("chance_percent.axolotl.gold", "0.20"));
-		chanceConfig.set("chance_percent.axolotl.lucy"						, oldchanceConfig.get("chance_percent.axolotl.lucy", "0.20"));
-		chanceConfig.set("chance_percent.axolotl.wild"						, oldchanceConfig.get("chance_percent.axolotl.wild", "0.20"));
-		chanceConfig.set("chance_percent.bat"								, oldchanceConfig.get("chance_percent.bat", "0.10"));
-		chanceConfig.set("chance_percent.bee.angry_pollinated"				, oldchanceConfig.get("chance_percent.bee.angry_pollinated", "0.20"));
-		chanceConfig.set("chance_percent.bee.angry"							, oldchanceConfig.get("chance_percent.bee.angry", "0.20"));
-		chanceConfig.set("chance_percent.bee.pollinated"					, oldchanceConfig.get("chance_percent.bee.pollinated", "0.20"));
-		chanceConfig.set("chance_percent.bee.chance_percent"				, oldchanceConfig.get("chance_percent.bee.chance_percent", "0.20"));
-		chanceConfig.set("chance_percent.blaze"								, oldchanceConfig.get("chance_percent.blaze", "0.005"));
-		chanceConfig.set("chance_percent.camel"								, oldchanceConfig.get("chance_percent.camel", "0.27"));
-		chanceConfig.set("chance_percent.cat.all_black"						, oldchanceConfig.get("chance_percent.cat.all_black", "0.33"));
-		chanceConfig.set("chance_percent.cat.black"							, oldchanceConfig.get("chance_percent.cat.black", "0.33"));
-		chanceConfig.set("chance_percent.cat.british_shorthair"				, oldchanceConfig.get("chance_percent.cat.british_shorthair", "0.33"));
-		chanceConfig.set("chance_percent.cat.calico"						, oldchanceConfig.get("chance_percent.cat.calico", "0.33"));
-		chanceConfig.set("chance_percent.cat.jellie"						, oldchanceConfig.get("chance_percent.cat.jellie", "0.33"));
-		chanceConfig.set("chance_percent.cat.persian"						, oldchanceConfig.get("chance_percent.cat.persian", "0.33"));
-		chanceConfig.set("chance_percent.cat.ragdoll"						, oldchanceConfig.get("chance_percent.cat.ragdoll", "0.33"));
-		chanceConfig.set("chance_percent.cat.red"							, oldchanceConfig.get("chance_percent.cat.red", "0.33"));
-		chanceConfig.set("chance_percent.cat.siamese"						, oldchanceConfig.get("chance_percent.cat.siamese", "0.33"));
-		chanceConfig.set("chance_percent.cat.tabby"							, oldchanceConfig.get("chance_percent.cat.tabby", "0.33"));
-		chanceConfig.set("chance_percent.cat.white"							, oldchanceConfig.get("chance_percent.cat.white", "0.33"));
-		
-		chanceConfig.set("chance_percent.cave_spider"						, oldchanceConfig.get("chance_percent.cave_spider", "0.005"));
-		chanceConfig.set("chance_percent.chicken"							, oldchanceConfig.get("chance_percent.chicken", "0.01"));
-		chanceConfig.set("chance_percent.cod"								, oldchanceConfig.get("chance_percent.cod", "0.10"));
-		chanceConfig.set("chance_percent.cow"								, oldchanceConfig.get("chance_percent.cow", "0.01"));
-		chanceConfig.set("chance_percent.creeper"							, oldchanceConfig.get("chance_percent.creeper", "0.50"));
-		chanceConfig.set("chance_percent.creeper_charged"					, oldchanceConfig.get("chance_percent.creeper_charged", "1.00"));
-		chanceConfig.set("chance_percent.dolphin"							, oldchanceConfig.get("chance_percent.dolphin", "0.33"));
-		chanceConfig.set("chance_percent.donkey"							, oldchanceConfig.get("chance_percent.donkey", "0.20"));
-		chanceConfig.set("chance_percent.drowned"							, oldchanceConfig.get("chance_percent.drowned", "0.05"));
-		chanceConfig.set("chance_percent.elder_guardian"					, oldchanceConfig.get("chance_percent.elder_guardian", "1.00"));
-		chanceConfig.set("chance_percent.ender_dragon"						, oldchanceConfig.get("chance_percent.ender_dragon", "1.00"));
-		chanceConfig.set("chance_percent.enderman"							, oldchanceConfig.get("chance_percent.enderman", "0.005"));
-		chanceConfig.set("chance_percent.endermite"							, oldchanceConfig.get("chance_percent.endermite", "0.10"));
-		chanceConfig.set("chance_percent.evoker"							, oldchanceConfig.get("chance_percent.evoker", "0.25"));
-		chanceConfig.set("chance_percent.fox.red"							, oldchanceConfig.get("chance_percent.fox.red", "0.10"));
-		chanceConfig.set("chance_percent.fox.snow"							, oldchanceConfig.get("chance_percent.fox.snow", "0.10"));
-		chanceConfig.set("chance_percent.frog.cold"							, oldchanceConfig.get("chance_percent.frog.cold", "0.20"));
-		chanceConfig.set("chance_percent.frog.temperate"					, oldchanceConfig.get("chance_percent.frog.temperate", "0.20"));
-		chanceConfig.set("chance_percent.frog.warm"							, oldchanceConfig.get("chance_percent.frog.warm", "0.20"));
-		chanceConfig.set("chance_percent.ghast"								, oldchanceConfig.get("chance_percent.ghast", "0.0625"));
-		chanceConfig.set("chance_percent.giant"								, oldchanceConfig.get("chance_percent.giant", "0.025"));
-		chanceConfig.set("chance_percent.glow_squid"						, oldchanceConfig.get("chance_percent.glow_squid", "0.10"));
-		chanceConfig.set("chance_percent.goat.mormal"						, oldchanceConfig.get("chance_percent.goat.normal", "0.01"));
-		chanceConfig.set("chance_percent.goat.screaming"					, oldchanceConfig.get("chance_percent.goat.screaming", "1.00"));
-		chanceConfig.set("chance_percent.guardian"							, oldchanceConfig.get("chance_percent.guardian", "0.005"));
-		chanceConfig.set("chance_percent.hoglin"							, oldchanceConfig.get("chance_percent.hoglin", "0.03"));
-		chanceConfig.set("chance_percent.horse.black"						, oldchanceConfig.get("chance_percent.horse.black", "0.27"));
-		chanceConfig.set("chance_percent.horse.brown"						, oldchanceConfig.get("chance_percent.horse.brown", "0.27"));
-		chanceConfig.set("chance_percent.horse.chestnut"					, oldchanceConfig.get("chance_percent.horse.chestnut", "0.27"));
-		chanceConfig.set("chance_percent.horse.creamy"						, oldchanceConfig.get("chance_percent.horse.creamy", "0.27"));
-		chanceConfig.set("chance_percent.horse.dark_brown"					, oldchanceConfig.get("chance_percent.horse.dark_brown", "0.27"));
-		chanceConfig.set("chance_percent.horse.gray"						, oldchanceConfig.get("chance_percent.horse.gray", "0.27"));
-		chanceConfig.set("chance_percent.horse.white"						, oldchanceConfig.get("chance_percent.horse.white", "0.27"));
-		chanceConfig.set("chance_percent.husk"								, oldchanceConfig.get("chance_percent.husk", "0.06"));
-		chanceConfig.set("chance_percent.illusioner"						, oldchanceConfig.get("chance_percent.illusioner", "0.25"));
-		chanceConfig.set("chance_percent.iron_golem"						, oldchanceConfig.get("chance_percent.iron_golem", "0.05"));
-		chanceConfig.set("chance_percent.llama.brown"						, oldchanceConfig.get("chance_percent.llama.brown", "0.24"));
-		chanceConfig.set("chance_percent.llama.creamy"						, oldchanceConfig.get("chance_percent.llama.creamy", "0.24"));
-		chanceConfig.set("chance_percent.llama.gray"						, oldchanceConfig.get("chance_percent.llama.gray", "0.24"));
-		chanceConfig.set("chance_percent.llama.white"						, oldchanceConfig.get("chance_percent.llama.white", "0.24"));
-		chanceConfig.set("chance_percent.magma_cube"						, oldchanceConfig.get("chance_percent.magma_cube", "0.005"));
-		chanceConfig.set("chance_percent.mule"								, oldchanceConfig.get("chance_percent.mule", "0.20"));
-		chanceConfig.set("chance_percent.mushroom_cow.red"					, oldchanceConfig.get("chance_percent.mushroom_cow.red", "0.10"));
-		chanceConfig.set("chance_percent.mushroom_cow.brown"				, oldchanceConfig.get("chance_percent.mushroom_cow.brown", "0.10"));
-		chanceConfig.set("chance_percent.ocelot"							, oldchanceConfig.get("chance_percent.cat.wild_ocelot", "0.20"));
-		chanceConfig.set("chance_percent.panda.aggressive"					, oldchanceConfig.get("chance_percent.panda.aggressive", "0.27"));
-		chanceConfig.set("chance_percent.panda.brown"						, oldchanceConfig.get("chance_percent.panda.brown", "0.27"));
-		chanceConfig.set("chance_percent.panda.lazy"						, oldchanceConfig.get("chance_percent.panda.lazy", "0.27"));
-		chanceConfig.set("chance_percent.panda.normal"						, oldchanceConfig.get("chance_percent.panda.normal", "0.27"));
-		chanceConfig.set("chance_percent.panda.playful"						, oldchanceConfig.get("chance_percent.panda.playful", "0.27"));
-		chanceConfig.set("chance_percent.panda.weak"						, oldchanceConfig.get("chance_percent.panda.weak", "0.27"));
-		chanceConfig.set("chance_percent.panda.worried"						, oldchanceConfig.get("chance_percent.panda.worried", "0.27"));
-		chanceConfig.set("chance_percent.parrot.blue"						, oldchanceConfig.get("chance_percent.parrot.blue", "0.25"));
-		chanceConfig.set("chance_percent.parrot.cyan"						, oldchanceConfig.get("chance_percent.parrot.cyan", "0.25"));
-		chanceConfig.set("chance_percent.parrot.gray"						, oldchanceConfig.get("chance_percent.parrot.gray", "0.25"));
-		chanceConfig.set("chance_percent.parrot.green"						, oldchanceConfig.get("chance_percent.parrot.green", "0.25"));
-		chanceConfig.set("chance_percent.parrot.red"						, oldchanceConfig.get("chance_percent.parrot.red", "0.25"));
-		chanceConfig.set("chance_percent.phantom"							, oldchanceConfig.get("chance_percent.phantom", "0.10"));
-		chanceConfig.set("chance_percent.pig"								, oldchanceConfig.get("chance_percent.pig", "0.01"));
-		chanceConfig.set("chance_percent.piglin"							, oldchanceConfig.get("chance_percent.piglin", "0.04"));
-		chanceConfig.set("chance_percent.pig_zombie"						, oldchanceConfig.get("chance_percent.pig_zombie", "0.005"));
-		chanceConfig.set("chance_percent.pillager"							, oldchanceConfig.get("chance_percent.pillager", "0.025"));
-		chanceConfig.set("chance_percent.polar_bear"						, oldchanceConfig.get("chance_percent.polar_bear", "0.20"));
-		chanceConfig.set("chance_percent.pufferfish"						, oldchanceConfig.get("chance_percent.pufferfish", "0.15"));
-		chanceConfig.set("chance_percent.rabbit.black"						, oldchanceConfig.get("chance_percent.rabbit.black", "0.26"));
-		chanceConfig.set("chance_percent.rabbit.black_and_white"			, oldchanceConfig.get("chance_percent.rabbit.black_and_white", "0.26"));
-		chanceConfig.set("chance_percent.rabbit.brown"						, oldchanceConfig.get("chance_percent.rabbit.brown", "0.26"));
-		chanceConfig.set("chance_percent.rabbit.gold"						, oldchanceConfig.get("chance_percent.rabbit.gold", "0.26"));
-		chanceConfig.set("chance_percent.rabbit.salt_and_pepper"			, oldchanceConfig.get("chance_percent.rabbit.salt_and_pepper", "0.26"));
-		chanceConfig.set("chance_percent.rabbit.the_killer_bunny"			, oldchanceConfig.get("chance_percent.rabbit.the_killer_bunny", "1.00"));
-		chanceConfig.set("chance_percent.rabbit.toast"						, oldchanceConfig.get("chance_percent.rabbit.toast", "0.26"));
-		chanceConfig.set("chance_percent.rabbit.white"						, oldchanceConfig.get("chance_percent.rabbit.white", "0.26"));
-		chanceConfig.set("chance_percent.ravager"							, oldchanceConfig.get("chance_percent.ravager", "0.25"));
-		chanceConfig.set("chance_percent.salmon"							, oldchanceConfig.get("chance_percent.salmon", "0.10"));
-		chanceConfig.set("chance_percent.sheep.black"						, oldchanceConfig.get("chance_percent.sheep.black", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.blue"						, oldchanceConfig.get("chance_percent.sheep.blue", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.brown"						, oldchanceConfig.get("chance_percent.sheep.brown", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.cyan"						, oldchanceConfig.get("chance_percent.sheep.cyan", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.gray"						, oldchanceConfig.get("chance_percent.sheep.gray", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.green"						, oldchanceConfig.get("chance_percent.sheep.green", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.jeb_"						, oldchanceConfig.get("chance_percent.sheep.jeb_", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.light_blue"					, oldchanceConfig.get("chance_percent.sheep.light_blue", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.light_gray"					, oldchanceConfig.get("chance_percent.sheep.light_gray", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.lime"						, oldchanceConfig.get("chance_percent.sheep.lime", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.magenta"						, oldchanceConfig.get("chance_percent.sheep.magenta", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.orange"						, oldchanceConfig.get("chance_percent.sheep.orange", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.pink"						, oldchanceConfig.get("chance_percent.sheep.pink", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.purple"						, oldchanceConfig.get("chance_percent.sheep.purple", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.red"							, oldchanceConfig.get("chance_percent.sheep.red", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.white"						, oldchanceConfig.get("chance_percent.sheep.white", "0.0175"));
-		chanceConfig.set("chance_percent.sheep.yellow"						, oldchanceConfig.get("chance_percent.sheep.yellow", "0.0175"));
-		chanceConfig.set("chance_percent.shulker"							, oldchanceConfig.get("chance_percent.shulker", "0.05"));
-		chanceConfig.set("chance_percent.silverfish"						, oldchanceConfig.get("chance_percent.silverfish", "0.05"));
-		chanceConfig.set("chance_percent.skeleton"							, oldchanceConfig.get("chance_percent.skeleton", "0.025"));
-		chanceConfig.set("chance_percent.skeleton_horse"					, oldchanceConfig.get("chance_percent.skeleton_horse", "0.20"));
-		chanceConfig.set("chance_percent.slime"								, oldchanceConfig.get("chance_percent.slime", "0.005"));
-		chanceConfig.set("chance_percent.sniffer"							, oldchanceConfig.get("chance_percent.sniffer", "0.50"));
-		chanceConfig.set("chance_percent.snowman"							, oldchanceConfig.get("chance_percent.snowman", "0.05"));
-		chanceConfig.set("chance_percent.spider"							, oldchanceConfig.get("chance_percent.spider", "0.005"));
-		chanceConfig.set("chance_percent.squid"								, oldchanceConfig.get("chance_percent.squid", "0.05"));
-		chanceConfig.set("chance_percent.stray"								, oldchanceConfig.get("chance_percent.stray", "0.06"));
-		chanceConfig.set("chance_percent.strider"							, oldchanceConfig.get("chance_percent.strider", "0.10"));
-		chanceConfig.set("chance_percent.tadpole"							, oldchanceConfig.get("chance_percent.tadpole", "0.10"));
-		chanceConfig.set("chance_percent.trader_llama.brown"				, oldchanceConfig.get("chance_percent.trader_llama.brown", "0.24"));
-		chanceConfig.set("chance_percent.trader_llama.creamy"				, oldchanceConfig.get("chance_percent.trader_llama.creamy", "0.24"));
-		chanceConfig.set("chance_percent.trader_llama.gray"					, oldchanceConfig.get("chance_percent.trader_llama.gray", "0.24"));
-		chanceConfig.set("chance_percent.trader_llama.white"				, oldchanceConfig.get("chance_percent.trader_llama.white", "0.24"));
-		chanceConfig.set("chance_percent.tropical_fish.tropical_fish"		, oldchanceConfig.get("chance_percent.tropical_fish.tropical_fish", "0.10"));
-		chanceConfig.set("chance_percent.tropical_fish.anemone"				, oldchanceConfig.get("chance_percent.tropical_fish.anemone", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.black_tang"			, oldchanceConfig.get("chance_percent.tropical_fish.black_tang", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.blue_tang"			, oldchanceConfig.get("chance_percent.tropical_fish.blue_tang", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.butterflyfish"		, oldchanceConfig.get("chance_percent.tropical_fish.butterflyfish", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.cichlid"				, oldchanceConfig.get("chance_percent.tropical_fish.cichlid", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.clownfish"			, oldchanceConfig.get("chance_percent.tropical_fish.clownfish", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.cotton_candy_betta"	, oldchanceConfig.get("chance_percent.tropical_fish.cotton_candy_betta", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.dottyback"			, oldchanceConfig.get("chance_percent.tropical_fish.dottyback", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.emperor_red_snapper"	, oldchanceConfig.get("chance_percent.tropical_fish.emperor_red_snapper", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.goatfish"			, oldchanceConfig.get("chance_percent.tropical_fish.goatfish", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.moorish_idol"		, oldchanceConfig.get("chance_percent.tropical_fish.moorish_idol", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.ornate_butterflyfish", oldchanceConfig.get("chance_percent.tropical_fish.ornate_butterflyfish", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.parrotfish"			, oldchanceConfig.get("chance_percent.tropical_fish.parrotfish", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.queen_angelfish"		, oldchanceConfig.get("chance_percent.tropical_fish.queen_angelfish", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.red_cichlid"			, oldchanceConfig.get("chance_percent.tropical_fish.red_cichlid", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.red_lipped_blenny"	, oldchanceConfig.get("chance_percent.tropical_fish.red_lipped_blenny", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.red_snapper"			, oldchanceConfig.get("chance_percent.tropical_fish.red_snapper", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.threadfin"			, oldchanceConfig.get("chance_percent.tropical_fish.threadfin", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.tomato_clownfish"	, oldchanceConfig.get("chance_percent.tropical_fish.tomato_clownfish", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.triggerfish"			, oldchanceConfig.get("chance_percent.tropical_fish.triggerfish", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.yellow_parrotfish"	, oldchanceConfig.get("chance_percent.tropical_fish.yellow_parrotfish", "0.50"));
-		chanceConfig.set("chance_percent.tropical_fish.yellow_tang"			, oldchanceConfig.get("chance_percent.tropical_fish.yellow_tang", "0.50"));
-		
-		chanceConfig.set("chance_percent.turtle"							, oldchanceConfig.get("chance_percent.turtle", "0.10"));
-		chanceConfig.set("chance_percent.vex"								, oldchanceConfig.get("chance_percent.vex", "0.10"));
-		chanceConfig.set("chance_percent.villager.desert.armorer"			, oldchanceConfig.get("chance_percent.villager.desert.armorer", "1.00"));
-		chanceConfig.set("chance_percent.villager.desert.butcher"			, oldchanceConfig.get("chance_percent.villager.desert.butcher", "1.00"));
-		chanceConfig.set("chance_percent.villager.desert.cartographer"		, oldchanceConfig.get("chance_percent.villager.desert.cartographer", "1.00"));
-		chanceConfig.set("chance_percent.villager.desert.cleric"			, oldchanceConfig.get("chance_percent.villager.desert.cleric", "1.00"));
-		chanceConfig.set("chance_percent.villager.desert.farmer"			, oldchanceConfig.get("chance_percent.villager.desert.farmer", "1.00"));
-		chanceConfig.set("chance_percent.villager.desert.fisherman"			, oldchanceConfig.get("chance_percent.villager.desert.fisherman", "1.00"));
-		chanceConfig.set("chance_percent.villager.desert.fletcher"			, oldchanceConfig.get("chance_percent.villager.desert.fletcher", "1.00"));
-		chanceConfig.set("chance_percent.villager.desert.leatherworker"		, oldchanceConfig.get("chance_percent.villager.desert.leatherworker", "1.00"));
-		chanceConfig.set("chance_percent.villager.desert.librarian"			, oldchanceConfig.get("chance_percent.villager.desert.librarian", "1.00"));
-		chanceConfig.set("chance_percent.villager.desert.mason"				, oldchanceConfig.get("chance_percent.villager.desert.mason", "1.00"));
-		chanceConfig.set("chance_percent.villager.desert.nitwit"			, oldchanceConfig.get("chance_percent.villager.desert.nitwit", "1.00"));
-		chanceConfig.set("chance_percent.villager.desert.none"				, oldchanceConfig.get("chance_percent.villager.desert.none", "1.00"));
-		chanceConfig.set("chance_percent.villager.desert.shepherd"			, oldchanceConfig.get("chance_percent.villager.desert.shepherd", "1.00"));
-		chanceConfig.set("chance_percent.villager.desert.toolsmith"			, oldchanceConfig.get("chance_percent.villager.desert.toolsmith", "1.00"));
-		chanceConfig.set("chance_percent.villager.desert.weaponsmith"		, oldchanceConfig.get("chance_percent.villager.desert.weaponsmith", "1.00"));
-		chanceConfig.set("chance_percent.villager.jungle.armorer"			, oldchanceConfig.get("chance_percent.villager.jungle.armorer", "1.00"));
-		chanceConfig.set("chance_percent.villager.jungle.butcher"			, oldchanceConfig.get("chance_percent.villager.jungle.butcher", "1.00"));
-		chanceConfig.set("chance_percent.villager.jungle.cartographer"		, oldchanceConfig.get("chance_percent.villager.jungle.cartographer", "1.00"));
-		chanceConfig.set("chance_percent.villager.jungle.cleric"			, oldchanceConfig.get("chance_percent.villager.jungle.cleric", "1.00"));
-		chanceConfig.set("chance_percent.villager.jungle.farmer"			, oldchanceConfig.get("chance_percent.villager.jungle.farmer", "1.00"));
-		chanceConfig.set("chance_percent.villager.jungle.fisherman"			, oldchanceConfig.get("chance_percent.villager.jungle.fisherman", "1.00"));
-		chanceConfig.set("chance_percent.villager.jungle.fletcher"			, oldchanceConfig.get("chance_percent.villager.jungle.fletcher", "1.00"));
-		chanceConfig.set("chance_percent.villager.jungle.leatherworker"		, oldchanceConfig.get("chance_percent.villager.jungle.leatherworker", "1.00"));
-		chanceConfig.set("chance_percent.villager.jungle.librarian"			, oldchanceConfig.get("chance_percent.villager.jungle.librarian", "1.00"));
-		chanceConfig.set("chance_percent.villager.jungle.mason"				, oldchanceConfig.get("chance_percent.villager.jungle.mason", "1.00"));
-		chanceConfig.set("chance_percent.villager.jungle.nitwit"			, oldchanceConfig.get("chance_percent.villager.jungle.nitwit", "1.00"));
-		chanceConfig.set("chance_percent.villager.jungle.none"				, oldchanceConfig.get("chance_percent.villager.jungle.none", "1.00"));
-		chanceConfig.set("chance_percent.villager.jungle.shepherd"			, oldchanceConfig.get("chance_percent.villager.jungle.shepherd", "1.00"));
-		chanceConfig.set("chance_percent.villager.jungle.toolsmith"			, oldchanceConfig.get("chance_percent.villager.jungle.toolsmith", "1.00"));
-		chanceConfig.set("chance_percent.villager.jungle.weaponsmith"		, oldchanceConfig.get("chance_percent.villager.jungle.weaponsmith", "1.00"));
-		chanceConfig.set("chance_percent.villager.plains.armorer"			, oldchanceConfig.get("chance_percent.villager.plains.armorer", "1.00"));
-		chanceConfig.set("chance_percent.villager.plains.butcher"			, oldchanceConfig.get("chance_percent.villager.plains.butcher", "1.00"));
-		chanceConfig.set("chance_percent.villager.plains.cartographer"		, oldchanceConfig.get("chance_percent.villager.plains.cartographer", "1.00"));
-		chanceConfig.set("chance_percent.villager.plains.cleric"			, oldchanceConfig.get("chance_percent.villager.plains.cleric", "1.00"));
-		chanceConfig.set("chance_percent.villager.plains.farmer"			, oldchanceConfig.get("chance_percent.villager.plains.farmer", "1.00"));
-		chanceConfig.set("chance_percent.villager.plains.fisherman"			, oldchanceConfig.get("chance_percent.villager.plains.fisherman", "1.00"));
-		chanceConfig.set("chance_percent.villager.plains.fletcher"			, oldchanceConfig.get("chance_percent.villager.plains.fletcher", "1.00"));
-		chanceConfig.set("chance_percent.villager.plains.leatherworker"		, oldchanceConfig.get("chance_percent.villager.plains.leatherworker", "1.00"));
-		chanceConfig.set("chance_percent.villager.plains.librarian"			, oldchanceConfig.get("chance_percent.villager.plains.librarian", "1.00"));
-		chanceConfig.set("chance_percent.villager.plains.mason"				, oldchanceConfig.get("chance_percent.villager.plains.mason", "1.00"));
-		chanceConfig.set("chance_percent.villager.plains.nitwit"			, oldchanceConfig.get("chance_percent.villager.plains.nitwit", "1.00"));
-		chanceConfig.set("chance_percent.villager.plains.none"				, oldchanceConfig.get("chance_percent.villager.plains.none", "1.00"));
-		chanceConfig.set("chance_percent.villager.plains.shepherd"			, oldchanceConfig.get("chance_percent.villager.plains.shepherd", "1.00"));
-		chanceConfig.set("chance_percent.villager.plains.toolsmith"			, oldchanceConfig.get("chance_percent.villager.plains.toolsmith", "1.00"));
-		chanceConfig.set("chance_percent.villager.plains.weaponsmith"		, oldchanceConfig.get("chance_percent.villager.plains.weaponsmith", "1.00"));
-		chanceConfig.set("chance_percent.villager.savanna.armorer"			, oldchanceConfig.get("chance_percent.villager.savanna.armorer", "1.00"));
-		chanceConfig.set("chance_percent.villager.savanna.butcher"			, oldchanceConfig.get("chance_percent.villager.savanna.butcher", "1.00"));
-		chanceConfig.set("chance_percent.villager.savanna.cartographer"		, oldchanceConfig.get("chance_percent.villager.savanna.cartographer", "1.00"));
-		chanceConfig.set("chance_percent.villager.savanna.cleric"			, oldchanceConfig.get("chance_percent.villager.savanna.cleric", "1.00"));
-		chanceConfig.set("chance_percent.villager.savanna.farmer"			, oldchanceConfig.get("chance_percent.villager.savanna.farmer", "1.00"));
-		chanceConfig.set("chance_percent.villager.savanna.fisherman"		, oldchanceConfig.get("chance_percent.villager.savanna.fisherman", "1.00"));
-		chanceConfig.set("chance_percent.villager.savanna.fletcher"			, oldchanceConfig.get("chance_percent.villager.savanna.fletcher", "1.00"));
-		chanceConfig.set("chance_percent.villager.savanna.leatherworker"	, oldchanceConfig.get("chance_percent.villager.savanna.leatherworker", "1.00"));
-		chanceConfig.set("chance_percent.villager.savanna.librarian"		, oldchanceConfig.get("chance_percent.villager.savanna.librarian", "1.00"));
-		chanceConfig.set("chance_percent.villager.savanna.mason"			, oldchanceConfig.get("chance_percent.villager.savanna.mason", "1.00"));
-		chanceConfig.set("chance_percent.villager.savanna.nitwit"			, oldchanceConfig.get("chance_percent.villager.savanna.nitwit", "1.00"));
-		chanceConfig.set("chance_percent.villager.savanna.none"				, oldchanceConfig.get("chance_percent.villager.savanna.none", "1.00"));
-		chanceConfig.set("chance_percent.villager.savanna.shepherd"			, oldchanceConfig.get("chance_percent.villager.savanna.shepherd", "1.00"));
-		chanceConfig.set("chance_percent.villager.savanna.toolsmith"		, oldchanceConfig.get("chance_percent.villager.savanna.toolsmith", "1.00"));
-		chanceConfig.set("chance_percent.villager.savanna.weaponsmith"		, oldchanceConfig.get("chance_percent.villager.savanna.weaponsmith", "1.00"));
-		chanceConfig.set("chance_percent.villager.snow.armorer"				, oldchanceConfig.get("chance_percent.villager.snow.armorer", "1.00"));
-		chanceConfig.set("chance_percent.villager.snow.butcher"				, oldchanceConfig.get("chance_percent.villager.snow.butcher", "1.00"));
-		chanceConfig.set("chance_percent.villager.snow.cartographer"		, oldchanceConfig.get("chance_percent.villager.snow.cartographer", "1.00"));
-		chanceConfig.set("chance_percent.villager.snow.cleric"				, oldchanceConfig.get("chance_percent.villager.snow.cleric", "1.00"));
-		chanceConfig.set("chance_percent.villager.snow.farmer"				, oldchanceConfig.get("chance_percent.villager.snow.farmer", "1.00"));
-		chanceConfig.set("chance_percent.villager.snow.fisherman"			, oldchanceConfig.get("chance_percent.villager.snow.fisherman", "1.00"));
-		chanceConfig.set("chance_percent.villager.snow.fletcher"			, oldchanceConfig.get("chance_percent.villager.snow.fletcher", "1.00"));
-		chanceConfig.set("chance_percent.villager.snow.leatherworker"		, oldchanceConfig.get("chance_percent.villager.snow.leatherworker", "1.00"));
-		chanceConfig.set("chance_percent.villager.snow.librarian"			, oldchanceConfig.get("chance_percent.villager.snow.librarian", "1.00"));
-		chanceConfig.set("chance_percent.villager.snow.mason"				, oldchanceConfig.get("chance_percent.villager.snow.mason", "1.00"));
-		chanceConfig.set("chance_percent.villager.snow.nitwit"				, oldchanceConfig.get("chance_percent.villager.snow.nitwit", "1.00"));
-		chanceConfig.set("chance_percent.villager.snow.none"				, oldchanceConfig.get("chance_percent.villager.snow.none", "1.00"));
-		chanceConfig.set("chance_percent.villager.snow.shepherd"			, oldchanceConfig.get("chance_percent.villager.snow.shepherd", "1.00"));
-		chanceConfig.set("chance_percent.villager.snow.toolsmith"			, oldchanceConfig.get("chance_percent.villager.snow.toolsmith", "1.00"));
-		chanceConfig.set("chance_percent.villager.snow.weaponsmith"			, oldchanceConfig.get("chance_percent.villager.snow.weaponsmith", "1.00"));
-		chanceConfig.set("chance_percent.villager.swamp.armorer"			, oldchanceConfig.get("chance_percent.villager.swamp.armorer", "1.00"));
-		chanceConfig.set("chance_percent.villager.swamp.butcher"			, oldchanceConfig.get("chance_percent.villager.swamp.butcher", "1.00"));
-		chanceConfig.set("chance_percent.villager.swamp.cartographer"		, oldchanceConfig.get("chance_percent.villager.swamp.cartographer", "1.00"));
-		chanceConfig.set("chance_percent.villager.swamp.cleric"				, oldchanceConfig.get("chance_percent.villager.swamp.cleric", "1.00"));
-		chanceConfig.set("chance_percent.villager.swamp.farmer"				, oldchanceConfig.get("chance_percent.villager.swamp.farmer", "1.00"));
-		chanceConfig.set("chance_percent.villager.swamp.fisherman"			, oldchanceConfig.get("chance_percent.villager.swamp.fisherman", "1.00"));
-		chanceConfig.set("chance_percent.villager.swamp.fletcher"			, oldchanceConfig.get("chance_percent.villager.swamp.fletcher", "1.00"));
-		chanceConfig.set("chance_percent.villager.swamp.leatherworker"		, oldchanceConfig.get("chance_percent.villager.swamp.leatherworker", "1.00"));
-		chanceConfig.set("chance_percent.villager.swamp.librarian"			, oldchanceConfig.get("chance_percent.villager.swamp.librarian", "1.00"));
-		chanceConfig.set("chance_percent.villager.swamp.mason"				, oldchanceConfig.get("chance_percent.villager.swamp.mason", "1.00"));
-		chanceConfig.set("chance_percent.villager.swamp.nitwit"				, oldchanceConfig.get("chance_percent.villager.swamp.nitwit", "1.00"));
-		chanceConfig.set("chance_percent.villager.swamp.none"				, oldchanceConfig.get("chance_percent.villager.swamp.none", "1.00"));
-		chanceConfig.set("chance_percent.villager.swamp.shepherd"			, oldchanceConfig.get("chance_percent.villager.swamp.shepherd", "1.00"));
-		chanceConfig.set("chance_percent.villager.swamp.toolsmith"			, oldchanceConfig.get("chance_percent.villager.swamp.toolsmith", "1.00"));
-		chanceConfig.set("chance_percent.villager.swamp.weaponsmith"		, oldchanceConfig.get("chance_percent.villager.swamp.weaponsmith", "1.00"));
-		chanceConfig.set("chance_percent.villager.taiga.armorer"			, oldchanceConfig.get("chance_percent.villager.taiga.armorer", "1.00"));
-		chanceConfig.set("chance_percent.villager.taiga.butcher"			, oldchanceConfig.get("chance_percent.villager.taiga.butcher", "1.00"));
-		chanceConfig.set("chance_percent.villager.taiga.cartographer"		, oldchanceConfig.get("chance_percent.villager.taiga.cartographer", "1.00"));
-		chanceConfig.set("chance_percent.villager.taiga.cleric"				, oldchanceConfig.get("chance_percent.villager.taiga.cleric", "1.00"));
-		chanceConfig.set("chance_percent.villager.taiga.farmer"				, oldchanceConfig.get("chance_percent.villager.taiga.farmer", "1.00"));
-		chanceConfig.set("chance_percent.villager.taiga.fisherman"			, oldchanceConfig.get("chance_percent.villager.taiga.fisherman", "1.00"));
-		chanceConfig.set("chance_percent.villager.taiga.fletcher"			, oldchanceConfig.get("chance_percent.villager.taiga.fletcher", "1.00"));
-		chanceConfig.set("chance_percent.villager.taiga.leatherworker"		, oldchanceConfig.get("chance_percent.villager.taiga.leatherworker", "1.00"));
-		chanceConfig.set("chance_percent.villager.taiga.librarian"			, oldchanceConfig.get("chance_percent.villager.taiga.librarian", "1.00"));
-		chanceConfig.set("chance_percent.villager.taiga.mason"				, oldchanceConfig.get("chance_percent.villager.taiga.mason", "1.00"));
-		chanceConfig.set("chance_percent.villager.taiga.nitwit"				, oldchanceConfig.get("chance_percent.villager.taiga.nitwit", "1.00"));
-		chanceConfig.set("chance_percent.villager.taiga.none"				, oldchanceConfig.get("chance_percent.villager.taiga.none", "1.00"));
-		chanceConfig.set("chance_percent.villager.taiga.shepherd"			, oldchanceConfig.get("chance_percent.villager.taiga.shepherd", "1.00"));
-		chanceConfig.set("chance_percent.villager.taiga.toolsmith"			, oldchanceConfig.get("chance_percent.villager.taiga.toolsmith", "1.00"));
-		chanceConfig.set("chance_percent.villager.taiga.weaponsmith"		, oldchanceConfig.get("chance_percent.villager.taiga.weaponsmith", "1.00"));
-		chanceConfig.set("chance_percent.vindicator"						, oldchanceConfig.get("chance_percent.vindicator", "0.05"));
-		chanceConfig.set("chance_percent.wandering_trader"					, oldchanceConfig.get("chance_percent.wandering_trader", "1.00"));
-		chanceConfig.set("chance_percent.warden"							, oldchanceConfig.get("chance_percent.warden", "1.00"));
-		chanceConfig.set("chance_percent.witch"								, oldchanceConfig.get("chance_percent.witch", "0.005"));
-		chanceConfig.set("chance_percent.wither"							, oldchanceConfig.get("chance_percent.wither", "1.00"));
-		chanceConfig.set("chance_percent.wither_skeleton"					, oldchanceConfig.get("chance_percent.wither_skeleton", "0.025"));
-		chanceConfig.set("chance_percent.wolf"								, oldchanceConfig.get("chance_percent.wolf", "0.02"));
-		chanceConfig.set("chance_percent.zoglin"							, oldchanceConfig.get("chance_percent.zoglin", "0.20"));
-		chanceConfig.set("chance_percent.zombie"							, oldchanceConfig.get("chance_percent.zombie", "0.025"));
-		chanceConfig.set("chance_percent.zombie_horse"						, oldchanceConfig.get("chance_percent.zombie_horse", "1.00"));
-		chanceConfig.set("chance_percent.zombie_pigman"						, oldchanceConfig.get("chance_percent.zombie_pigman", "0.005"));
-		chanceConfig.set("chance_percent.zombified_piglin"					, oldchanceConfig.get("chance_percent.zombified_piglin", "0.005"));
-		chanceConfig.set("chance_percent.zombie_villager"					, oldchanceConfig.get("chance_percent.zombie_villager", "0.50"));
+		chanceConfig.set("chance_percent.player"								, oldchanceConfig.getDouble("chance_percent.player", 50.0) );
+		chanceConfig.set("chance_percent.named_mob"								, oldchanceConfig.getDouble("chance_percent.named_mob", 10.0) );
+		chanceConfig.set("chance_percent.allay"									, oldchanceConfig.getDouble("chance_percent.allay", 20.0) );
+		chanceConfig.set("chance_percent.axolotl.blue"							, oldchanceConfig.getDouble("chance_percent.axolotl.blue", 100.0) );
+		chanceConfig.set("chance_percent.axolotl.cyan"							, oldchanceConfig.getDouble("chance_percent.axolotl.cyan", 20.0) );
+		chanceConfig.set("chance_percent.axolotl.gold"							, oldchanceConfig.getDouble("chance_percent.axolotl.gold", 20.0) );
+		chanceConfig.set("chance_percent.axolotl.lucy"							, oldchanceConfig.getDouble("chance_percent.axolotl.lucy", 20.0) );
+		chanceConfig.set("chance_percent.axolotl.wild"							, oldchanceConfig.getDouble("chance_percent.axolotl.wild", 20.0) );
+		chanceConfig.set("chance_percent.bat"									, oldchanceConfig.getDouble("chance_percent.bat", 10.0) );
+		chanceConfig.set("chance_percent.bee.angry_pollinated"					, oldchanceConfig.getDouble("chance_percent.bee.angry_pollinated", 20.0) );
+		chanceConfig.set("chance_percent.bee.angry"								, oldchanceConfig.getDouble("chance_percent.bee.angry", 20.0) );
+		chanceConfig.set("chance_percent.bee.pollinated"						, oldchanceConfig.getDouble("chance_percent.bee.pollinated", 20.0) );
+		chanceConfig.set("chance_percent.bee.chance_percent"					, oldchanceConfig.getDouble("chance_percent.bee.normal", 20.0) );
+		chanceConfig.set("chance_percent.blaze"									, oldchanceConfig.getDouble("chance_percent.blaze", 0.5) );
+		chanceConfig.set("chance_percent.camel"									, oldchanceConfig.getDouble("chance_percent.camel", 27.0) );
+		chanceConfig.set("chance_percent.cat.all_black"							, oldchanceConfig.getDouble("chance_percent.cat.all_black", 33.0) );
+		chanceConfig.set("chance_percent.cat.black"								, oldchanceConfig.getDouble("chance_percent.cat.black", 33.0) );
+		chanceConfig.set("chance_percent.cat.british_shorthair"					, oldchanceConfig.getDouble("chance_percent.cat.british_shorthair", 33.0) );
+		chanceConfig.set("chance_percent.cat.calico"							, oldchanceConfig.getDouble("chance_percent.cat.calico", 33.0) );
+		chanceConfig.set("chance_percent.cat.jellie"							, oldchanceConfig.getDouble("chance_percent.cat.jellie", 33.0) );
+		chanceConfig.set("chance_percent.cat.persian"							, oldchanceConfig.getDouble("chance_percent.cat.persian", 33.0) );
+		chanceConfig.set("chance_percent.cat.ragdoll"							, oldchanceConfig.getDouble("chance_percent.cat.ragdoll", 33.0) );
+		chanceConfig.set("chance_percent.cat.red"								, oldchanceConfig.getDouble("chance_percent.cat.red", 33.0) );
+		chanceConfig.set("chance_percent.cat.siamese"							, oldchanceConfig.getDouble("chance_percent.cat.siamese", 33.0) );
+		chanceConfig.set("chance_percent.cat.tabby"								, oldchanceConfig.getDouble("chance_percent.cat.tabby", 33.0) );
+		chanceConfig.set("chance_percent.cat.white"								, oldchanceConfig.getDouble("chance_percent.cat.white", 33.0) );
+
+		chanceConfig.set("chance_percent.cave_spider"							, oldchanceConfig.getDouble("chance_percent.cave_spider", 0.5) );
+		chanceConfig.set("chance_percent.chicken"								, oldchanceConfig.getDouble("chance_percent.chicken", 1.0) );
+		chanceConfig.set("chance_percent.cod"									, oldchanceConfig.getDouble("chance_percent.cod", 10.0) );
+		chanceConfig.set("chance_percent.cow"									, oldchanceConfig.getDouble("chance_percent.cow", 1.0) );
+		chanceConfig.set("chance_percent.creeper"								, oldchanceConfig.getDouble("chance_percent.creeper", 50.0) );
+		chanceConfig.set("chance_percent.creeper_charged"						, oldchanceConfig.getDouble("chance_percent.creeper_charged", 100.0) );
+		chanceConfig.set("chance_percent.dolphin"								, oldchanceConfig.getDouble("chance_percent.dolphin", 33.0) );
+		chanceConfig.set("chance_percent.donkey"								, oldchanceConfig.getDouble("chance_percent.donkey", 20.0) );
+		chanceConfig.set("chance_percent.drowned"								, oldchanceConfig.getDouble("chance_percent.drowned", 5.0) );
+		chanceConfig.set("chance_percent.elder_guardian"						, oldchanceConfig.getDouble("chance_percent.elder_guardian", 100.0) );
+		chanceConfig.set("chance_percent.ender_dragon"							, oldchanceConfig.getDouble("chance_percent.ender_dragon", 100.0) );
+		chanceConfig.set("chance_percent.enderman"								, oldchanceConfig.getDouble("chance_percent.enderman", 0.5) );
+		chanceConfig.set("chance_percent.endermite"								, oldchanceConfig.getDouble("chance_percent.endermite", 10.0) );
+		chanceConfig.set("chance_percent.evoker"								, oldchanceConfig.getDouble("chance_percent.evoker", 25.0) );
+		chanceConfig.set("chance_percent.fox.red"								, oldchanceConfig.getDouble("chance_percent.fox.red", 10.0) );
+		chanceConfig.set("chance_percent.fox.snow"								, oldchanceConfig.getDouble("chance_percent.fox.snow", 20.0) );
+		chanceConfig.set("chance_percent.frog.cold"								, oldchanceConfig.getDouble("chance_percent.frog.cold", 20.0) );
+		chanceConfig.set("chance_percent.frog.temperate"						, oldchanceConfig.getDouble("chance_percent.frog.temperate", 20.0) );
+		chanceConfig.set("chance_percent.frog.warm"								, oldchanceConfig.getDouble("chance_percent.frog.warm", 20.0) );
+		chanceConfig.set("chance_percent.ghast"									, oldchanceConfig.getDouble("chance_percent.ghast", 6.25) );
+		chanceConfig.set("chance_percent.giant"									, oldchanceConfig.getDouble("chance_percent.giant", 2.5) );
+		chanceConfig.set("chance_percent.glow_squid"							, oldchanceConfig.getDouble("chance_percent.glow_squid", 5.0) );
+		chanceConfig.set("chance_percent.goat.mormal"							, oldchanceConfig.getDouble("chance_percent.goat.normal", 1.0) );
+		chanceConfig.set("chance_percent.goat.screaming"						, oldchanceConfig.getDouble("chance_percent.goat.screaming", 100.0) );
+		chanceConfig.set("chance_percent.guardian"								, oldchanceConfig.getDouble("chance_percent.guardian", 0.5) );
+		chanceConfig.set("chance_percent.hoglin"								, oldchanceConfig.getDouble("chance_percent.hoglin", 3.0) );
+		chanceConfig.set("chance_percent.horse.black"							, oldchanceConfig.getDouble("chance_percent.horse.black", 27.0) );
+		chanceConfig.set("chance_percent.horse.brown"							, oldchanceConfig.getDouble("chance_percent.horse.brown", 27.0) );
+		chanceConfig.set("chance_percent.horse.chestnut"						, oldchanceConfig.getDouble("chance_percent.horse.chestnut", 27.0) );
+		chanceConfig.set("chance_percent.horse.creamy"							, oldchanceConfig.getDouble("chance_percent.horse.creamy", 27.0) );
+		chanceConfig.set("chance_percent.horse.dark_brown"						, oldchanceConfig.getDouble("chance_percent.horse.dark_brown", 27.0) );
+		chanceConfig.set("chance_percent.horse.gray"							, oldchanceConfig.getDouble("chance_percent.horse.gray", 27.0) );
+		chanceConfig.set("chance_percent.horse.white"							, oldchanceConfig.getDouble("chance_percent.horse.white", 27.0) );
+		chanceConfig.set("chance_percent.husk"									, oldchanceConfig.getDouble("chance_percent.husk", 6.0) );
+		chanceConfig.set("chance_percent.illusioner"							, oldchanceConfig.getDouble("chance_percent.illusioner", 25.0) );
+		chanceConfig.set("chance_percent.iron_golem"							, oldchanceConfig.getDouble("chance_percent.iron_golem", 5.0) );
+		chanceConfig.set("chance_percent.llama.brown"							, oldchanceConfig.getDouble("chance_percent.llama.brown", 24.0) );
+		chanceConfig.set("chance_percent.llama.creamy"							, oldchanceConfig.getDouble("chance_percent.llama.creamy", 24.0) );
+		chanceConfig.set("chance_percent.llama.gray"							, oldchanceConfig.getDouble("chance_percent.llama.gray", 24.0) );
+		chanceConfig.set("chance_percent.llama.white"							, oldchanceConfig.getDouble("chance_percent.llama.white", 24.0) );
+		chanceConfig.set("chance_percent.magma_cube"							, oldchanceConfig.getDouble("chance_percent.magma_cube", 0.5) );
+		chanceConfig.set("chance_percent.mule"									, oldchanceConfig.getDouble("chance_percent.mule", 20.0) );
+		chanceConfig.set("chance_percent.mushroom_cow.red"						, oldchanceConfig.getDouble("chance_percent.mushroom_cow.red", 1.0) );
+		chanceConfig.set("chance_percent.mushroom_cow.brown"					, oldchanceConfig.getDouble("chance_percent.mushroom_cow.brown", 10.0) );
+		chanceConfig.set("chance_percent.ocelot"								, oldchanceConfig.getDouble("chance_percent.ocelot", 20.0) );
+		chanceConfig.set("chance_percent.panda.aggressive"						, oldchanceConfig.getDouble("chance_percent.panda.aggressive", 27.0) );
+		chanceConfig.set("chance_percent.panda.brown"							, oldchanceConfig.getDouble("chance_percent.panda.brown", 27.0) );
+		chanceConfig.set("chance_percent.panda.lazy"							, oldchanceConfig.getDouble("chance_percent.panda.lazy", 27.0) );
+		chanceConfig.set("chance_percent.panda.normal"							, oldchanceConfig.getDouble("chance_percent.panda.normal", 27.0) );
+		chanceConfig.set("chance_percent.panda.playful"							, oldchanceConfig.getDouble("chance_percent.panda.playful", 27.0) );
+		chanceConfig.set("chance_percent.panda.weak"							, oldchanceConfig.getDouble("chance_percent.panda.weak", 27.0) );
+		chanceConfig.set("chance_percent.panda.worried"							, oldchanceConfig.getDouble("chance_percent.panda.worried", 27.0) );
+		chanceConfig.set("chance_percent.parrot.blue"							, oldchanceConfig.getDouble("chance_percent.parrot.blue", 25.0) );
+		chanceConfig.set("chance_percent.parrot.cyan"							, oldchanceConfig.getDouble("chance_percent.parrot.cyan", 25.0) );
+		chanceConfig.set("chance_percent.parrot.gray"							, oldchanceConfig.getDouble("chance_percent.parrot.gray", 25.0) );
+		chanceConfig.set("chance_percent.parrot.green"							, oldchanceConfig.getDouble("chance_percent.parrot.green", 25.0) );
+		chanceConfig.set("chance_percent.parrot.red"							, oldchanceConfig.getDouble("chance_percent.parrot.red", 25.0) );
+		chanceConfig.set("chance_percent.phantom"								, oldchanceConfig.getDouble("chance_percent.phantom", 10.0) );
+		chanceConfig.set("chance_percent.pig"									, oldchanceConfig.getDouble("chance_percent.pig", 1.0) );
+		chanceConfig.set("chance_percent.piglin"								, oldchanceConfig.getDouble("chance_percent.piglin", 4.0) );
+		chanceConfig.set("chance_percent.pig_zombie"							, oldchanceConfig.getDouble("chance_percent.pig_zombie", 0.5) );
+		chanceConfig.set("chance_percent.pillager"								, oldchanceConfig.getDouble("chance_percent.pillager", 2.5) );
+		chanceConfig.set("chance_percent.polar_bear"							, oldchanceConfig.getDouble("chance_percent.polar_bear", 20.0) );
+		chanceConfig.set("chance_percent.pufferfish"							, oldchanceConfig.getDouble("chance_percent.pufferfish", 15.0) );
+		chanceConfig.set("chance_percent.rabbit.black"							, oldchanceConfig.getDouble("chance_percent.rabbit.black", 26.0) );
+		chanceConfig.set("chance_percent.rabbit.black_and_white"				, oldchanceConfig.getDouble("chance_percent.rabbit.black_and_white", 26.0) );
+		chanceConfig.set("chance_percent.rabbit.brown"							, oldchanceConfig.getDouble("chance_percent.rabbit.brown", 26.0) );
+		chanceConfig.set("chance_percent.rabbit.gold"							, oldchanceConfig.getDouble("chance_percent.rabbit.gold", 26.0) );
+		chanceConfig.set("chance_percent.rabbit.salt_and_pepper"				, oldchanceConfig.getDouble("chance_percent.rabbit.salt_and_pepper", 26.0) );
+		chanceConfig.set("chance_percent.rabbit.the_killer_bunny"				, oldchanceConfig.getDouble("chance_percent.rabbit.the_killer_bunny", 100.0) );
+		chanceConfig.set("chance_percent.rabbit.toast"							, oldchanceConfig.getDouble("chance_percent.rabbit.toast", 26.0) );
+		chanceConfig.set("chance_percent.rabbit.white"							, oldchanceConfig.getDouble("chance_percent.rabbit.white", 26.0) );
+		chanceConfig.set("chance_percent.ravager"								, oldchanceConfig.getDouble("chance_percent.ravager", 25.0) );
+		chanceConfig.set("chance_percent.salmon"								, oldchanceConfig.getDouble("chance_percent.salmon", 10.0) );
+		chanceConfig.set("chance_percent.sheep.black"							, oldchanceConfig.getDouble("chance_percent.sheep.black", 1.75) );
+		chanceConfig.set("chance_percent.sheep.blue"							, oldchanceConfig.getDouble("chance_percent.sheep.blue", 1.75) );
+		chanceConfig.set("chance_percent.sheep.brown"							, oldchanceConfig.getDouble("chance_percent.sheep.brown", 1.75) );
+		chanceConfig.set("chance_percent.sheep.cyan"							, oldchanceConfig.getDouble("chance_percent.sheep.cyan", 1.75) );
+		chanceConfig.set("chance_percent.sheep.gray"							, oldchanceConfig.getDouble("chance_percent.sheep.gray", 1.75) );
+		chanceConfig.set("chance_percent.sheep.green"							, oldchanceConfig.getDouble("chance_percent.sheep.green", 1.75) );
+		chanceConfig.set("chance_percent.sheep.jeb_"							, oldchanceConfig.getDouble("chance_percent.sheep.jeb_", 10.0) );
+		chanceConfig.set("chance_percent.sheep.light_blue"						, oldchanceConfig.getDouble("chance_percent.sheep.light_blue", 1.75) );
+		chanceConfig.set("chance_percent.sheep.light_gray"						, oldchanceConfig.getDouble("chance_percent.sheep.light_gray", 1.75) );
+		chanceConfig.set("chance_percent.sheep.lime"							, oldchanceConfig.getDouble("chance_percent.sheep.lime", 1.75) );
+		chanceConfig.set("chance_percent.sheep.magenta"							, oldchanceConfig.getDouble("chance_percent.sheep.magenta", 1.75) );
+		chanceConfig.set("chance_percent.sheep.orange"							, oldchanceConfig.getDouble("chance_percent.sheep.orange", 1.75) );
+		chanceConfig.set("chance_percent.sheep.pink"							, oldchanceConfig.getDouble("chance_percent.sheep.pink", 1.75) );
+		chanceConfig.set("chance_percent.sheep.purple"							, oldchanceConfig.getDouble("chance_percent.sheep.purple", 1.75) );
+		chanceConfig.set("chance_percent.sheep.red"								, oldchanceConfig.getDouble("chance_percent.sheep.red", 1.75) );
+		chanceConfig.set("chance_percent.sheep.white"							, oldchanceConfig.getDouble("chance_percent.sheep.white", 1.75) );
+		chanceConfig.set("chance_percent.sheep.yellow"							, oldchanceConfig.getDouble("chance_percent.sheep.yellow", 1.75) );
+		chanceConfig.set("chance_percent.shulker"								, oldchanceConfig.getDouble("chance_percent.shulker", 5.0) );
+		chanceConfig.set("chance_percent.silverfish"							, oldchanceConfig.getDouble("chance_percent.silverfish", 5.0) );
+		chanceConfig.set("chance_percent.skeleton"								, oldchanceConfig.getDouble("chance_percent.skeleton", 2.5) );
+		chanceConfig.set("chance_percent.skeleton_horse"						, oldchanceConfig.getDouble("chance_percent.skeleton_horse", 20.0) );
+		chanceConfig.set("chance_percent.slime"									, oldchanceConfig.getDouble("chance_percent.slime", 0.5) );
+		chanceConfig.set("chance_percent.sniffer"								, oldchanceConfig.getDouble("chance_percent.sniffer", 50.0) );
+		chanceConfig.set("chance_percent.snowman"								, oldchanceConfig.getDouble("chance_percent.snowman", 5.0) );
+		chanceConfig.set("chance_percent.spider"								, oldchanceConfig.getDouble("chance_percent.spider", 0.5) );
+		chanceConfig.set("chance_percent.squid"									, oldchanceConfig.getDouble("chance_percent.squid", 5.0) );
+		chanceConfig.set("chance_percent.stray"									, oldchanceConfig.getDouble("chance_percent.stray", 6.0) );
+		chanceConfig.set("chance_percent.strider"								, oldchanceConfig.getDouble("chance_percent.strider", 10.0) );
+		chanceConfig.set("chance_percent.tadpole"								, oldchanceConfig.getDouble("chance_percent.tadpole", 10.0) );
+		chanceConfig.set("chance_percent.trader_llama.brown"					, oldchanceConfig.getDouble("chance_percent.trader_llama.brown", 24.0) );
+		chanceConfig.set("chance_percent.trader_llama.creamy"					, oldchanceConfig.getDouble("chance_percent.trader_llama.creamy", 24.0) );
+		chanceConfig.set("chance_percent.trader_llama.gray"						, oldchanceConfig.getDouble("chance_percent.trader_llama.gray", 24.0) );
+		chanceConfig.set("chance_percent.trader_llama.white"					, oldchanceConfig.getDouble("chance_percent.trader_llama.white", 24.0) );
+		chanceConfig.set("chance_percent.tropical_fish.tropical_fish"			, oldchanceConfig.getDouble("chance_percent.tropical_fish.tropical_fish", 10.0) );
+		chanceConfig.set("chance_percent.tropical_fish.anemone"					, oldchanceConfig.getDouble("chance_percent.tropical_fish.anemone", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.black_tang"				, oldchanceConfig.getDouble("chance_percent.tropical_fish.black_tang", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.blue_tang"				, oldchanceConfig.getDouble("chance_percent.tropical_fish.blue_tang", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.butterflyfish"			, oldchanceConfig.getDouble("chance_percent.tropical_fish.butterflyfish", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.cichlid"					, oldchanceConfig.getDouble("chance_percent.tropical_fish.cichlid", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.clownfish"				, oldchanceConfig.getDouble("chance_percent.tropical_fish.clownfish", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.cotton_candy_betta"		, oldchanceConfig.getDouble("chance_percent.tropical_fish.cotton_candy_betta", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.dottyback"				, oldchanceConfig.getDouble("chance_percent.tropical_fish.dottyback", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.emperor_red_snapper"		, oldchanceConfig.getDouble("chance_percent.tropical_fish.emperor_red_snapper", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.goatfish"				, oldchanceConfig.getDouble("chance_percent.tropical_fish.goatfish", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.moorish_idol"			, oldchanceConfig.getDouble("chance_percent.tropical_fish.moorish_idol", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.ornate_butterflyfish"	, oldchanceConfig.getDouble("chance_percent.tropical_fish.ornate_butterflyfish", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.parrotfish"				, oldchanceConfig.getDouble("chance_percent.tropical_fish.parrotfish", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.queen_angelfish"			, oldchanceConfig.getDouble("chance_percent.tropical_fish.queen_angelfish", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.red_cichlid"				, oldchanceConfig.getDouble("chance_percent.tropical_fish.red_cichlid", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.red_lipped_blenny"		, oldchanceConfig.getDouble("chance_percent.tropical_fish.red_lipped_blenny", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.red_snapper"				, oldchanceConfig.getDouble("chance_percent.tropical_fish.red_snapper", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.threadfin"				, oldchanceConfig.getDouble("chance_percent.tropical_fish.threadfin", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.tomato_clownfish"		, oldchanceConfig.getDouble("chance_percent.tropical_fish.tomato_clownfish", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.triggerfish"				, oldchanceConfig.getDouble("chance_percent.tropical_fish.triggerfish", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.yellowtail_parrotfish"	, oldchanceConfig.getDouble("chance_percent.tropical_fish.yellow_parrotfish", 50.0) );
+		chanceConfig.set("chance_percent.tropical_fish.yellow_tang"				, oldchanceConfig.getDouble("chance_percent.tropical_fish.yellow_tang", 50.0) );
+
+		chanceConfig.set("chance_percent.turtle"							, oldchanceConfig.getDouble("chance_percent.turtle", 10.0) );
+		chanceConfig.set("chance_percent.vex"								, oldchanceConfig.getDouble("chance_percent.vex", 10.0) );
+		chanceConfig.set("chance_percent.villager.desert.armorer"			, oldchanceConfig.getDouble("chance_percent.villager.desert.armorer", 100.0) );
+		chanceConfig.set("chance_percent.villager.desert.butcher"			, oldchanceConfig.getDouble("chance_percent.villager.desert.butcher", 100.0) );
+		chanceConfig.set("chance_percent.villager.desert.cartographer"		, oldchanceConfig.getDouble("chance_percent.villager.desert.cartographer", 100.0) );
+		chanceConfig.set("chance_percent.villager.desert.cleric"			, oldchanceConfig.getDouble("chance_percent.villager.desert.cleric", 100.0) );
+		chanceConfig.set("chance_percent.villager.desert.farmer"			, oldchanceConfig.getDouble("chance_percent.villager.desert.farmer", 100.0) );
+		chanceConfig.set("chance_percent.villager.desert.fisherman"			, oldchanceConfig.getDouble("chance_percent.villager.desert.fisherman", 100.0) );
+		chanceConfig.set("chance_percent.villager.desert.fletcher"			, oldchanceConfig.getDouble("chance_percent.villager.desert.fletcher", 100.0) );
+		chanceConfig.set("chance_percent.villager.desert.leatherworker"		, oldchanceConfig.getDouble("chance_percent.villager.desert.leatherworker", 100.0) );
+		chanceConfig.set("chance_percent.villager.desert.librarian"			, oldchanceConfig.getDouble("chance_percent.villager.desert.librarian", 100.0) );
+		chanceConfig.set("chance_percent.villager.desert.mason"				, oldchanceConfig.getDouble("chance_percent.villager.desert.mason", 100.0) );
+		chanceConfig.set("chance_percent.villager.desert.nitwit"			, oldchanceConfig.getDouble("chance_percent.villager.desert.nitwit", 100.0) );
+		chanceConfig.set("chance_percent.villager.desert.none"				, oldchanceConfig.getDouble("chance_percent.villager.desert.none", 100.0) );
+		chanceConfig.set("chance_percent.villager.desert.shepherd"			, oldchanceConfig.getDouble("chance_percent.villager.desert.shepherd", 100.0) );
+		chanceConfig.set("chance_percent.villager.desert.toolsmith"			, oldchanceConfig.getDouble("chance_percent.villager.desert.toolsmith", 100.0) );
+		chanceConfig.set("chance_percent.villager.desert.weaponsmith"		, oldchanceConfig.getDouble("chance_percent.villager.desert.weaponsmith", 100.0) );
+		chanceConfig.set("chance_percent.villager.jungle.armorer"			, oldchanceConfig.getDouble("chance_percent.villager.jungle.armorer", 100.0) );
+		chanceConfig.set("chance_percent.villager.jungle.butcher"			, oldchanceConfig.getDouble("chance_percent.villager.jungle.butcher", 100.0) );
+		chanceConfig.set("chance_percent.villager.jungle.cartographer"		, oldchanceConfig.getDouble("chance_percent.villager.jungle.cartographer", 100.0) );
+		chanceConfig.set("chance_percent.villager.jungle.cleric"			, oldchanceConfig.getDouble("chance_percent.villager.jungle.cleric", 100.0) );
+		chanceConfig.set("chance_percent.villager.jungle.farmer"			, oldchanceConfig.getDouble("chance_percent.villager.jungle.farmer", 100.0) );
+		chanceConfig.set("chance_percent.villager.jungle.fisherman"			, oldchanceConfig.getDouble("chance_percent.villager.jungle.fisherman", 100.0) );
+		chanceConfig.set("chance_percent.villager.jungle.fletcher"			, oldchanceConfig.getDouble("chance_percent.villager.jungle.fletcher", 100.0) );
+		chanceConfig.set("chance_percent.villager.jungle.leatherworker"		, oldchanceConfig.getDouble("chance_percent.villager.jungle.leatherworker", 100.0) );
+		chanceConfig.set("chance_percent.villager.jungle.librarian"			, oldchanceConfig.getDouble("chance_percent.villager.jungle.librarian", 100.0) );
+		chanceConfig.set("chance_percent.villager.jungle.mason"				, oldchanceConfig.getDouble("chance_percent.villager.jungle.mason", 100.0) );
+		chanceConfig.set("chance_percent.villager.jungle.nitwit"			, oldchanceConfig.getDouble("chance_percent.villager.jungle.nitwit", 100.0) );
+		chanceConfig.set("chance_percent.villager.jungle.none"				, oldchanceConfig.getDouble("chance_percent.villager.jungle.none", 100.0) );
+		chanceConfig.set("chance_percent.villager.jungle.shepherd"			, oldchanceConfig.getDouble("chance_percent.villager.jungle.shepherd", 100.0) );
+		chanceConfig.set("chance_percent.villager.jungle.toolsmith"			, oldchanceConfig.getDouble("chance_percent.villager.jungle.toolsmith", 100.0) );
+		chanceConfig.set("chance_percent.villager.jungle.weaponsmith"		, oldchanceConfig.getDouble("chance_percent.villager.jungle.weaponsmith", 100.0) );
+		chanceConfig.set("chance_percent.villager.plains.armorer"			, oldchanceConfig.getDouble("chance_percent.villager.plains.armorer", 100.0) );
+		chanceConfig.set("chance_percent.villager.plains.butcher"			, oldchanceConfig.getDouble("chance_percent.villager.plains.butcher", 100.0) );
+		chanceConfig.set("chance_percent.villager.plains.cartographer"		, oldchanceConfig.getDouble("chance_percent.villager.plains.cartographer", 100.0) );
+		chanceConfig.set("chance_percent.villager.plains.cleric"			, oldchanceConfig.getDouble("chance_percent.villager.plains.cleric", 100.0) );
+		chanceConfig.set("chance_percent.villager.plains.farmer"			, oldchanceConfig.getDouble("chance_percent.villager.plains.farmer", 100.0) );
+		chanceConfig.set("chance_percent.villager.plains.fisherman"			, oldchanceConfig.getDouble("chance_percent.villager.plains.fisherman", 100.0) );
+		chanceConfig.set("chance_percent.villager.plains.fletcher"			, oldchanceConfig.getDouble("chance_percent.villager.plains.fletcher", 100.0) );
+		chanceConfig.set("chance_percent.villager.plains.leatherworker"		, oldchanceConfig.getDouble("chance_percent.villager.plains.leatherworker", 100.0) );
+		chanceConfig.set("chance_percent.villager.plains.librarian"			, oldchanceConfig.getDouble("chance_percent.villager.plains.librarian", 100.0) );
+		chanceConfig.set("chance_percent.villager.plains.mason"				, oldchanceConfig.getDouble("chance_percent.villager.plains.mason", 100.0) );
+		chanceConfig.set("chance_percent.villager.plains.nitwit"			, oldchanceConfig.getDouble("chance_percent.villager.plains.nitwit", 100.0) );
+		chanceConfig.set("chance_percent.villager.plains.none"				, oldchanceConfig.getDouble("chance_percent.villager.plains.none", 100.0) );
+		chanceConfig.set("chance_percent.villager.plains.shepherd"			, oldchanceConfig.getDouble("chance_percent.villager.plains.shepherd", 100.0) );
+		chanceConfig.set("chance_percent.villager.plains.toolsmith"			, oldchanceConfig.getDouble("chance_percent.villager.plains.toolsmith", 100.0) );
+		chanceConfig.set("chance_percent.villager.plains.weaponsmith"		, oldchanceConfig.getDouble("chance_percent.villager.plains.weaponsmith", 100.0) );
+		chanceConfig.set("chance_percent.villager.savanna.armorer"			, oldchanceConfig.getDouble("chance_percent.villager.savanna.armorer", 100.0) );
+		chanceConfig.set("chance_percent.villager.savanna.butcher"			, oldchanceConfig.getDouble("chance_percent.villager.savanna.butcher", 100.0) );
+		chanceConfig.set("chance_percent.villager.savanna.cartographer"		, oldchanceConfig.getDouble("chance_percent.villager.savanna.cartographer", 100.0) );
+		chanceConfig.set("chance_percent.villager.savanna.cleric"			, oldchanceConfig.getDouble("chance_percent.villager.savanna.cleric", 100.0) );
+		chanceConfig.set("chance_percent.villager.savanna.farmer"			, oldchanceConfig.getDouble("chance_percent.villager.savanna.farmer", 100.0) );
+		chanceConfig.set("chance_percent.villager.savanna.fisherman"		, oldchanceConfig.getDouble("chance_percent.villager.savanna.fisherman", 100.0) );
+		chanceConfig.set("chance_percent.villager.savanna.fletcher"			, oldchanceConfig.getDouble("chance_percent.villager.savanna.fletcher", 100.0) );
+		chanceConfig.set("chance_percent.villager.savanna.leatherworker"	, oldchanceConfig.getDouble("chance_percent.villager.savanna.leatherworker", 100.0) );
+		chanceConfig.set("chance_percent.villager.savanna.librarian"		, oldchanceConfig.getDouble("chance_percent.villager.savanna.librarian", 100.0) );
+		chanceConfig.set("chance_percent.villager.savanna.mason"			, oldchanceConfig.getDouble("chance_percent.villager.savanna.mason", 100.0) );
+		chanceConfig.set("chance_percent.villager.savanna.nitwit"			, oldchanceConfig.getDouble("chance_percent.villager.savanna.nitwit", 100.0) );
+		chanceConfig.set("chance_percent.villager.savanna.none"				, oldchanceConfig.getDouble("chance_percent.villager.savanna.none", 100.0) );
+		chanceConfig.set("chance_percent.villager.savanna.shepherd"			, oldchanceConfig.getDouble("chance_percent.villager.savanna.shepherd", 100.0) );
+		chanceConfig.set("chance_percent.villager.savanna.toolsmith"		, oldchanceConfig.getDouble("chance_percent.villager.savanna.toolsmith", 100.0) );
+		chanceConfig.set("chance_percent.villager.savanna.weaponsmith"		, oldchanceConfig.getDouble("chance_percent.villager.savanna.weaponsmith", 100.0) );
+		chanceConfig.set("chance_percent.villager.snow.armorer"				, oldchanceConfig.getDouble("chance_percent.villager.snow.armorer", 100.0) );
+		chanceConfig.set("chance_percent.villager.snow.butcher"				, oldchanceConfig.getDouble("chance_percent.villager.snow.butcher", 100.0) );
+		chanceConfig.set("chance_percent.villager.snow.cartographer"		, oldchanceConfig.getDouble("chance_percent.villager.snow.cartographer", 100.0) );
+		chanceConfig.set("chance_percent.villager.snow.cleric"				, oldchanceConfig.getDouble("chance_percent.villager.snow.cleric", 100.0) );
+		chanceConfig.set("chance_percent.villager.snow.farmer"				, oldchanceConfig.getDouble("chance_percent.villager.snow.farmer", 100.0) );
+		chanceConfig.set("chance_percent.villager.snow.fisherman"			, oldchanceConfig.getDouble("chance_percent.villager.snow.fisherman", 100.0) );
+		chanceConfig.set("chance_percent.villager.snow.fletcher"			, oldchanceConfig.getDouble("chance_percent.villager.snow.fletcher", 100.0) );
+		chanceConfig.set("chance_percent.villager.snow.leatherworker"		, oldchanceConfig.getDouble("chance_percent.villager.snow.leatherworker", 100.0) );
+		chanceConfig.set("chance_percent.villager.snow.librarian"			, oldchanceConfig.getDouble("chance_percent.villager.snow.librarian", 100.0) );
+		chanceConfig.set("chance_percent.villager.snow.mason"				, oldchanceConfig.getDouble("chance_percent.villager.snow.mason", 100.0) );
+		chanceConfig.set("chance_percent.villager.snow.nitwit"				, oldchanceConfig.getDouble("chance_percent.villager.snow.nitwit", 100.0) );
+		chanceConfig.set("chance_percent.villager.snow.none"				, oldchanceConfig.getDouble("chance_percent.villager.snow.none", 100.0) );
+		chanceConfig.set("chance_percent.villager.snow.shepherd"			, oldchanceConfig.getDouble("chance_percent.villager.snow.shepherd", 100.0) );
+		chanceConfig.set("chance_percent.villager.snow.toolsmith"			, oldchanceConfig.getDouble("chance_percent.villager.snow.toolsmith", 100.0) );
+		chanceConfig.set("chance_percent.villager.snow.weaponsmith"			, oldchanceConfig.getDouble("chance_percent.villager.snow.weaponsmith", 100.0) );
+		chanceConfig.set("chance_percent.villager.swamp.armorer"			, oldchanceConfig.getDouble("chance_percent.villager.swamp.armorer", 100.0) );
+		chanceConfig.set("chance_percent.villager.swamp.butcher"			, oldchanceConfig.getDouble("chance_percent.villager.swamp.butcher", 100.0) );
+		chanceConfig.set("chance_percent.villager.swamp.cartographer"		, oldchanceConfig.getDouble("chance_percent.villager.swamp.cartographer", 100.0) );
+		chanceConfig.set("chance_percent.villager.swamp.cleric"				, oldchanceConfig.getDouble("chance_percent.villager.swamp.cleric", 100.0) );
+		chanceConfig.set("chance_percent.villager.swamp.farmer"				, oldchanceConfig.getDouble("chance_percent.villager.swamp.farmer", 100.0) );
+		chanceConfig.set("chance_percent.villager.swamp.fisherman"			, oldchanceConfig.getDouble("chance_percent.villager.swamp.fisherman", 100.0) );
+		chanceConfig.set("chance_percent.villager.swamp.fletcher"			, oldchanceConfig.getDouble("chance_percent.villager.swamp.fletcher", 100.0) );
+		chanceConfig.set("chance_percent.villager.swamp.leatherworker"		, oldchanceConfig.getDouble("chance_percent.villager.swamp.leatherworker", 100.0) );
+		chanceConfig.set("chance_percent.villager.swamp.librarian"			, oldchanceConfig.getDouble("chance_percent.villager.swamp.librarian", 100.0) );
+		chanceConfig.set("chance_percent.villager.swamp.mason"				, oldchanceConfig.getDouble("chance_percent.villager.swamp.mason", 100.0) );
+		chanceConfig.set("chance_percent.villager.swamp.nitwit"				, oldchanceConfig.getDouble("chance_percent.villager.swamp.nitwit", 100.0) );
+		chanceConfig.set("chance_percent.villager.swamp.none"				, oldchanceConfig.getDouble("chance_percent.villager.swamp.none", 100.0) );
+		chanceConfig.set("chance_percent.villager.swamp.shepherd"			, oldchanceConfig.getDouble("chance_percent.villager.swamp.shepherd", 100.0) );
+		chanceConfig.set("chance_percent.villager.swamp.toolsmith"			, oldchanceConfig.getDouble("chance_percent.villager.swamp.toolsmith", 100.0) );
+		chanceConfig.set("chance_percent.villager.swamp.weaponsmith"		, oldchanceConfig.getDouble("chance_percent.villager.swamp.weaponsmith", 100.0) );
+		chanceConfig.set("chance_percent.villager.taiga.armorer"			, oldchanceConfig.getDouble("chance_percent.villager.taiga.armorer", 100.0) );
+		chanceConfig.set("chance_percent.villager.taiga.butcher"			, oldchanceConfig.getDouble("chance_percent.villager.taiga.butcher", 100.0) );
+		chanceConfig.set("chance_percent.villager.taiga.cartographer"		, oldchanceConfig.getDouble("chance_percent.villager.taiga.cartographer", 100.0) );
+		chanceConfig.set("chance_percent.villager.taiga.cleric"				, oldchanceConfig.getDouble("chance_percent.villager.taiga.cleric", 100.0) );
+		chanceConfig.set("chance_percent.villager.taiga.farmer"				, oldchanceConfig.getDouble("chance_percent.villager.taiga.farmer", 100.0) );
+		chanceConfig.set("chance_percent.villager.taiga.fisherman"			, oldchanceConfig.getDouble("chance_percent.villager.taiga.fisherman", 100.0) );
+		chanceConfig.set("chance_percent.villager.taiga.fletcher"			, oldchanceConfig.getDouble("chance_percent.villager.taiga.fletcher", 100.0) );
+		chanceConfig.set("chance_percent.villager.taiga.leatherworker"		, oldchanceConfig.getDouble("chance_percent.villager.taiga.leatherworker", 100.0) );
+		chanceConfig.set("chance_percent.villager.taiga.librarian"			, oldchanceConfig.getDouble("chance_percent.villager.taiga.librarian", 100.0) );
+		chanceConfig.set("chance_percent.villager.taiga.mason"				, oldchanceConfig.getDouble("chance_percent.villager.taiga.mason", 100.0) );
+		chanceConfig.set("chance_percent.villager.taiga.nitwit"				, oldchanceConfig.getDouble("chance_percent.villager.taiga.nitwit", 100.0) );
+		chanceConfig.set("chance_percent.villager.taiga.none"				, oldchanceConfig.getDouble("chance_percent.villager.taiga.none", 100.0) );
+		chanceConfig.set("chance_percent.villager.taiga.shepherd"			, oldchanceConfig.getDouble("chance_percent.villager.taiga.shepherd", 100.0) );
+		chanceConfig.set("chance_percent.villager.taiga.toolsmith"			, oldchanceConfig.getDouble("chance_percent.villager.taiga.toolsmith", 100.0) );
+		chanceConfig.set("chance_percent.villager.taiga.weaponsmith"		, oldchanceConfig.getDouble("chance_percent.villager.taiga.weaponsmith", 100.0) );
+		chanceConfig.set("chance_percent.vindicator"						, oldchanceConfig.getDouble("chance_percent.vindicator", 5.0) );
+		chanceConfig.set("chance_percent.wandering_trader"					, oldchanceConfig.getDouble("chance_percent.wandering_trader", 100.0) );
+		chanceConfig.set("chance_percent.warden"							, oldchanceConfig.getDouble("chance_percent.warden", 100.0) );
+		chanceConfig.set("chance_percent.witch"								, oldchanceConfig.getDouble("chance_percent.witch", 0.5) );
+		chanceConfig.set("chance_percent.wither"							, oldchanceConfig.getDouble("chance_percent.wither", 100.0) );
+		chanceConfig.set("chance_percent.wither_skeleton"					, oldchanceConfig.getDouble("chance_percent.wither_skeleton", 2.5) );
+		chanceConfig.set("chance_percent.wolf"								, oldchanceConfig.getDouble("chance_percent.wolf", 20.0) );
+		chanceConfig.set("chance_percent.zoglin"							, oldchanceConfig.getDouble("chance_percent.zoglin", 20.0) );
+		chanceConfig.set("chance_percent.zombie"							, oldchanceConfig.getDouble("chance_percent.zombie", 2.5) );
+		chanceConfig.set("chance_percent.zombie_horse"						, oldchanceConfig.getDouble("chance_percent.zombie_horse", 100.0) );
+		chanceConfig.set("chance_percent.zombie_pigman"						, oldchanceConfig.getDouble("chance_percent.zombie_pigman", 0.5) );
+		chanceConfig.set("chance_percent.zombified_piglin"					, oldchanceConfig.getDouble("chance_percent.zombified_piglin", 0.5) );
+		chanceConfig.set("chance_percent.zombie_villager"					, oldchanceConfig.getDouble("chance_percent.zombie_villager", 50.0) );
 		try {
 			chanceConfig.save(file2);
 		} catch (IOException e) {
@@ -2178,7 +2181,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		log(Level.INFO, "chance_config.yml has been updated!");
 		oldchanceConfig = null;
 	}
-	
+
 	public void stacktraceInfo(){
 		logger.info(THIS_NAME + " v" + THIS_VERSION + " Include this with the stacktrace when reporting issues.");
 		logger.info(THIS_NAME + " v" + THIS_VERSION + " This server is running " + Bukkit.getName() + " version " + Bukkit.getVersion() + " (Implementing API version " + Bukkit.getBukkitVersion() + ")");
@@ -2194,153 +2197,179 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		debug = true;
 		logger.info(THIS_NAME + " v" + THIS_VERSION + " DEBUG has been set as true until plugin reload or /mmh td, or /mmh reload.");
 	}
-	
+
 	// Persistent Heads
 	private final NamespacedKey NAME_KEY = new NamespacedKey(this, "head_name");
-    private final NamespacedKey LORE_KEY = new NamespacedKey(this, "head_lore");
-    private final PersistentDataType<String,String[]> LORE_PDT = new JsonDataType<>(String[].class);
-    //@SuppressWarnings("unused")
+	private final NamespacedKey LORE_KEY = new NamespacedKey(this, "head_lore");
+	private final PersistentDataType<String,String[]> LORE_PDT = new JsonDataType<>(String[].class);
+	//@SuppressWarnings("unused")
 	//private final PersistentDataType LORE_PDT2 = new JsonDataType<>(String.class);
-    //private final NamespacedKey DISPLAY_KEY = new NamespacedKey(this, "head_display");
-    //private final NamespacedKey SKULLOWNER_KEY = new NamespacedKey(this, "head_skullowner");
-    
-    // TODO: Persistent Heads    
-    @EventHandler(priority = EventPriority.LOWEST)
-    public void onBlockPlaceEvent(BlockPlaceEvent event) {
-        @Nonnull ItemStack headItem = event.getItemInHand();
-        if (headItem.getType() != Material.PLAYER_HEAD) return;
-        ItemMeta meta = headItem.getItemMeta();
-        if (meta == null) return;
-        @Nonnull String name = meta.getDisplayName();
-        @Nullable List<String> lore = meta.getLore();
-        @Nonnull Block block = event.getBlockPlaced();
-        // NOTE: Not using snapshots is broken: https://github.com/PaperMC/Paper/issues/3913
-        BlockStateSnapshotResult blockStateSnapshotResult = PaperLib.getBlockState(block, true);
-        TileState skullState = (TileState) blockStateSnapshotResult.getState();
-        @Nonnull PersistentDataContainer skullPDC = skullState.getPersistentDataContainer();
-        skullPDC.set(NAME_KEY, PersistentDataType.STRING, name);
-        if (lore != null) skullPDC.set(LORE_KEY, LORE_PDT, lore.toArray(new String[0]));
-        if (blockStateSnapshotResult.isSnapshot()) skullState.update();
-        String strLore = "no lore";
-        if(lore != null){ strLore = lore.toString(); }
-        if(debug) {log(Level.INFO, "Player " + event.getPlayer().getName() + " placed a head named \"" + name + "\" with lore=\'" + strLore + "\' at " + event.getBlockPlaced().getLocation());};
-    }
+	//private final NamespacedKey DISPLAY_KEY = new NamespacedKey(this, "head_display");
+	//private final NamespacedKey SKULLOWNER_KEY = new NamespacedKey(this, "head_skullowner");
 
-    @EventHandler(priority = EventPriority.LOWEST)
-    public void onBlockDropItemEvent(BlockDropItemEvent event) {
-        @Nonnull BlockState blockState = event.getBlockState();
-        Material blockType = blockState.getType();
-        if (blockType != Material.PLAYER_HEAD && blockType != Material.PLAYER_WALL_HEAD) return;
-        TileState skullState = (TileState) blockState;
-        @Nonnull PersistentDataContainer skullPDC = skullState.getPersistentDataContainer();
-        @Nullable String name = skullPDC.get(NAME_KEY, PersistentDataType.STRING);
-        @Nullable String[] lore = skullPDC.get(LORE_KEY, LORE_PDT);
-        if (name == null) return;
-        for (Item item: event.getItems()) { // Ideally should only be one...
-            @Nonnull ItemStack itemstack = item.getItemStack();
-            if (itemstack.getType() == Material.PLAYER_HEAD) {
-                @Nullable ItemMeta meta = itemstack.getItemMeta();
-                if (meta == null) continue; // This shouldn't happen
-                meta.setDisplayName(name);
-                if (lore != null) meta.setLore(Arrays.asList(lore));
-                itemstack.setItemMeta(meta);
-            }
-        }
-        if(debug) {log(Level.INFO, "BDIE - Persistent head completed.");};
-    }
-    
-    /**
-     * Prevents player from removing player-head NBT by water logging them
-     */
-    @EventHandler(priority = EventPriority.LOWEST)
-    public void onPlayerBucketEmpty(PlayerBucketEmptyEvent event) {
-    	handleBlock(event.getBlock(), event, false);
-    }
-    
-    /**
-     * Prevents player from removing player-head NBT using running water
-     */
-    @EventHandler(priority = EventPriority.LOWEST)
-    public void onLiquidFlow(BlockFromToEvent event) {
-    	handleBlock(event.getToBlock(), event, true);
-    }
-    
-    /*
-     * Prevents explosion from removing player-head NBT using an explosion
-     */
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onBlockExplosion(BlockExplodeEvent event) {
-        handleExplosionEvent(event.blockList(), event.getYield());
-    }
-    
-    /*
-     * Prevents entity from removing player-head NBT using an explosion
-     */
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onEntityExplosion(EntityExplodeEvent event) {
-        handleExplosionEvent(event.blockList(), event.getYield());
-    }
-    
-    /*
-     * Prevents piston extending from removing NBT data.
-     */
-    @EventHandler(priority = EventPriority.LOWEST)
-    public void onPistonExtendEvent(BlockPistonExtendEvent event) {
-    	if(!config.getBoolean("event.piston_extend", true)) {
-    		return;
-    	}
-    	List<Block> blocks = event.getBlocks();
-    	Iterator<Block> iter = blocks.iterator();
-    	try {
-	    	while (iter.hasNext()) {
-	            Block block = iter.next();
-	            if (block.getState() instanceof Skull) { //if (block.getState() instanceof Skull && random.nextFloat() <= explosionYield)
-	                handleBlock(block, null, false);
-	                iter.remove();
-	            }
-	        }
-    	}catch(Exception e) {
-         	
-        }
-    }
-    
-    @SuppressWarnings("unused")
+	// TODO: Persistent Heads
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onBlockPlaceEvent(BlockPlaceEvent event) {
+		@Nonnull ItemStack headItem = event.getItemInHand();
+		if (headItem.getType() != Material.PLAYER_HEAD) {
+			return;
+		}
+		ItemMeta meta = headItem.getItemMeta();
+		if (meta == null) {
+			return;
+		}
+		@Nonnull String name = meta.getDisplayName();
+		@Nullable List<String> lore = meta.getLore();
+		@Nonnull Block block = event.getBlockPlaced();
+		// NOTE: Not using snapshots is broken: https://github.com/PaperMC/Paper/issues/3913
+		BlockStateSnapshotResult blockStateSnapshotResult = PaperLib.getBlockState(block, true);
+		TileState skullState = (TileState) blockStateSnapshotResult.getState();
+		@Nonnull PersistentDataContainer skullPDC = skullState.getPersistentDataContainer();
+		skullPDC.set(NAME_KEY, PersistentDataType.STRING, name);
+		if (lore != null) {
+			skullPDC.set(LORE_KEY, LORE_PDT, lore.toArray(new String[0]));
+		}
+		if (blockStateSnapshotResult.isSnapshot()) {
+			skullState.update();
+		}
+		String strLore = "no lore";
+		if(lore != null){ strLore = lore.toString(); }
+		if(debug) {log(Level.INFO, "Player " + event.getPlayer().getName() + " placed a head named \"" + name + "\" with lore=\'" + strLore + "\' at " + event.getBlockPlaced().getLocation());};
+	}
+
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onBlockDropItemEvent(BlockDropItemEvent event) {
+		@Nonnull BlockState blockState = event.getBlockState();
+		Material blockType = blockState.getType();
+		if ((blockType != Material.PLAYER_HEAD) && (blockType != Material.PLAYER_WALL_HEAD)) {
+			return;
+		}
+		TileState skullState = (TileState) blockState;
+		@Nonnull PersistentDataContainer skullPDC = skullState.getPersistentDataContainer();
+		@Nullable String name = skullPDC.get(NAME_KEY, PersistentDataType.STRING);
+		@Nullable String[] lore = skullPDC.get(LORE_KEY, LORE_PDT);
+		if (name == null) {
+			return;
+		}
+		for (Item item: event.getItems()) { // Ideally should only be one...
+			@Nonnull ItemStack itemstack = item.getItemStack();
+			if (itemstack.getType() == Material.PLAYER_HEAD) {
+				@Nullable ItemMeta meta = itemstack.getItemMeta();
+				if (meta == null)
+				{
+					continue; // This shouldn't happen
+				}
+				meta.setDisplayName(name);
+				if (lore != null) {
+					meta.setLore(Arrays.asList(lore));
+				}
+				itemstack.setItemMeta(meta);
+			}
+		}
+		if(debug) {log(Level.INFO, "BDIE - Persistent head completed.");};
+	}
+
+	/**
+	 * Prevents player from removing player-head NBT by water logging them
+	 */
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onPlayerBucketEmpty(PlayerBucketEmptyEvent event) {
+		handleBlock(event.getBlock(), event, false);
+	}
+
+	/**
+	 * Prevents player from removing player-head NBT using running water
+	 */
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onLiquidFlow(BlockFromToEvent event) {
+		handleBlock(event.getToBlock(), event, true);
+	}
+
+	/*
+	 * Prevents explosion from removing player-head NBT using an explosion
+	 */
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	public void onBlockExplosion(BlockExplodeEvent event) {
+		handleExplosionEvent(event.blockList(), event.getYield());
+	}
+
+	/*
+	 * Prevents entity from removing player-head NBT using an explosion
+	 */
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	public void onEntityExplosion(EntityExplodeEvent event) {
+		handleExplosionEvent(event.blockList(), event.getYield());
+	}
+
+	/*
+	 * Prevents piston extending from removing NBT data.
+	 */
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onPistonExtendEvent(BlockPistonExtendEvent event) {
+		if(!config.getBoolean("event.piston_extend", true)) {
+			return;
+		}
+		List<Block> blocks = event.getBlocks();
+		Iterator<Block> iter = blocks.iterator();
+		try {
+			while (iter.hasNext()) {
+				Block block = iter.next();
+				if (block.getState() instanceof Skull) { //if (block.getState() instanceof Skull && random.nextFloat() <= explosionYield)
+					handleBlock(block, null, false);
+					iter.remove();
+				}
+			}
+		}catch(Exception e) {
+
+		}
+	}
+
+	@SuppressWarnings("unused")
 	private void handleExplosionEvent(@Nonnull final List<Block> blocksExploded, final float explosionYield) {
-    	final Random random = ThreadLocalRandom.current();
-        Iterator<Block> iter = blocksExploded.iterator();
-        try {
-	        while (iter.hasNext()) {
-	            Block block = iter.next();
-	            if (block.getState() instanceof Skull) { //if (block.getState() instanceof Skull && random.nextFloat() <= explosionYield)
-	                handleBlock(block, null, false);
-	                iter.remove();
-	            }
-	        }
-        }catch(Exception e) {
-        	
-        }
-    }
-    
-    private void handleBlock(Block block, Cancellable event, boolean cancelEvent) {
-    	@Nonnull BlockState blockState = block.getState();
-        if (blockState.getType() != Material.PLAYER_HEAD && blockState.getType() != Material.PLAYER_WALL_HEAD) return;
-        Skull skullState = (Skull) blockState;
-        @Nonnull PersistentDataContainer skullPDC = skullState.getPersistentDataContainer();
-        @Nullable String name = skullPDC.get(NAME_KEY, PersistentDataType.STRING);
-        @Nullable String[] lore = skullPDC.get(LORE_KEY, LORE_PDT);
-        if (name == null) return;
-        @Nonnull Optional<ItemStack> skullStack = block.getDrops().stream().filter(is -> is.getType() == Material.PLAYER_HEAD).findAny();
-        if (skullStack.isPresent()) {
-            if (updateDrop(block, name, lore, skullStack.get())) return; // This shouldn't happen
-            if (cancelEvent) event.setCancelled(true);
-        }
+		final Random random = ThreadLocalRandom.current();
+		Iterator<Block> iter = blocksExploded.iterator();
+		try {
+			while (iter.hasNext()) {
+				Block block = iter.next();
+				if (block.getState() instanceof Skull) { //if (block.getState() instanceof Skull && random.nextFloat() <= explosionYield)
+					handleBlock(block, null, false);
+					iter.remove();
+				}
+			}
+		}catch(Exception e) {
 
-        BlockState blockState1 = block.getWorld().getBlockAt(block.getLocation()).getState();
-        blockState1.update(true, true);
-        if(debug) {log(Level.INFO, "HB - Persistent head completed.");};
-    }
-    
-    /**@EventHandler(priority = EventPriority.LOWEST)
+		}
+	}
+
+	private void handleBlock(Block block, Cancellable event, boolean cancelEvent) {
+		@Nonnull BlockState blockState = block.getState();
+		if ((blockState.getType() != Material.PLAYER_HEAD) && (blockState.getType() != Material.PLAYER_WALL_HEAD)) {
+			return;
+		}
+		Skull skullState = (Skull) blockState;
+		@Nonnull PersistentDataContainer skullPDC = skullState.getPersistentDataContainer();
+		@Nullable String name = skullPDC.get(NAME_KEY, PersistentDataType.STRING);
+		@Nullable String[] lore = skullPDC.get(LORE_KEY, LORE_PDT);
+		if (name == null) {
+			return;
+		}
+		@Nonnull Optional<ItemStack> skullStack = block.getDrops().stream().filter(is -> is.getType() == Material.PLAYER_HEAD).findAny();
+		if (skullStack.isPresent()) {
+			if (updateDrop(block, name, lore, skullStack.get()))
+			{
+				return; // This shouldn't happen
+			}
+			if (cancelEvent) {
+				event.setCancelled(true);
+			}
+		}
+
+		BlockState blockState1 = block.getWorld().getBlockAt(block.getLocation()).getState();
+		blockState1.update(true, true);
+		if(debug) {log(Level.INFO, "HB - Persistent head completed.");};
+	}
+
+	/**@EventHandler(priority = EventPriority.LOWEST)
     public void onBlockExplodeEvent(BlockExplodeEvent event) {
 		List<Block> a = event.blockList();
 		for (Block block: event.blockList()) { // Ideally should only be one...
@@ -2354,45 +2383,58 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	        if (name == null) return;
 	        block.breakNaturally();
 		}
-    	
+
     }//*/
-    
-    @SuppressWarnings("unused")
+
+	@SuppressWarnings("unused")
 	private void handleEvent(Supplier<Block> blockSupplier, Cancellable event, boolean cancelEvent) {
-        Block block = blockSupplier.get();
-        @Nonnull BlockState blockState = block.getState();
-        if (blockState.getType() != Material.PLAYER_HEAD && blockState.getType() != Material.PLAYER_WALL_HEAD) return;
-        Skull skullState = (Skull) blockState;
-        @Nonnull PersistentDataContainer skullPDC = skullState.getPersistentDataContainer();
-        @Nullable String name = skullPDC.get(NAME_KEY, PersistentDataType.STRING);
-        @Nullable String[] lore = skullPDC.get(LORE_KEY, LORE_PDT);
-        if (name == null) return;
-        @Nonnull Optional<ItemStack> skullStack = block.getDrops().stream().filter(is -> is.getType() == Material.PLAYER_HEAD).findAny();
-        if (skullStack.isPresent()) {
-            if (updateDrop(block, name, lore, skullStack.get())) return; // This shouldn't happen
-            if (cancelEvent) event.setCancelled(true);
-        }
+		Block block = blockSupplier.get();
+		@Nonnull BlockState blockState = block.getState();
+		if ((blockState.getType() != Material.PLAYER_HEAD) && (blockState.getType() != Material.PLAYER_WALL_HEAD)) {
+			return;
+		}
+		Skull skullState = (Skull) blockState;
+		@Nonnull PersistentDataContainer skullPDC = skullState.getPersistentDataContainer();
+		@Nullable String name = skullPDC.get(NAME_KEY, PersistentDataType.STRING);
+		@Nullable String[] lore = skullPDC.get(LORE_KEY, LORE_PDT);
+		if (name == null) {
+			return;
+		}
+		@Nonnull Optional<ItemStack> skullStack = block.getDrops().stream().filter(is -> is.getType() == Material.PLAYER_HEAD).findAny();
+		if (skullStack.isPresent()) {
+			if (updateDrop(block, name, lore, skullStack.get()))
+			{
+				return; // This shouldn't happen
+			}
+			if (cancelEvent) {
+				event.setCancelled(true);
+			}
+		}
 
-        BlockState blockState1 = block.getWorld().getBlockAt(block.getLocation()).getState();
-        blockState1.update(true, true);
-        if(debug) {log(Level.INFO, "HE - Persistent head completed.");};
-    }
+		BlockState blockState1 = block.getWorld().getBlockAt(block.getLocation()).getState();
+		blockState1.update(true, true);
+		if(debug) {log(Level.INFO, "HE - Persistent head completed.");};
+	}
 
-    private boolean updateDrop(Block block, @Nullable String name, @Nullable String[] lore, @Nonnull ItemStack itemstack) {
-        @Nullable ItemMeta meta = itemstack.getItemMeta();
-        if (meta == null) return true;
-        meta.setDisplayName(name);
-        if (lore != null) meta.setLore(Arrays.asList(lore));
-        itemstack.setItemMeta(meta);
+	private boolean updateDrop(Block block, @Nullable String name, @Nullable String[] lore, @Nonnull ItemStack itemstack) {
+		@Nullable ItemMeta meta = itemstack.getItemMeta();
+		if (meta == null) {
+			return true;
+		}
+		meta.setDisplayName(name);
+		if (lore != null) {
+			meta.setLore(Arrays.asList(lore));
+		}
+		itemstack.setItemMeta(meta);
 
-        block.getWorld().dropItemNaturally(block.getLocation(), itemstack);
-        block.getDrops().clear();
-        block.setType(Material.AIR);
-        if(debug) {log(Level.INFO, "UD - Persistent head completed.");};
-        return false;
-    }
-    // Persistent Heads
-    
+		block.getWorld().dropItemNaturally(block.getLocation(), itemstack);
+		block.getDrops().clear();
+		block.setType(Material.AIR);
+		if(debug) {log(Level.INFO, "UD - Persistent head completed.");};
+		return false;
+	}
+	// Persistent Heads
+
 	/**@EventHandler()
     public void onPlayerBucketEmpty(PlayerBucketEmptyEvent event) {
     	Block block = event.getBlock();
@@ -2417,7 +2459,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
             meta.setDisplayName(name);
             if (lore != null) meta.setLore(Arrays.asList(lore));
             itemstack.setItemMeta(meta);
-            
+
         	block.getWorld().dropItemNaturally(block.getLocation(), itemstack);
         	block.getDrops().clear();
         	block.setType(Material.AIR);
@@ -2426,12 +2468,12 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
         BlockState blockS = block.getWorld().getBlockAt(loc).getState();
         blockS.update(true, true);
     }
-	
+
     @EventHandler
     public void onLiquidFlow(BlockFromToEvent event) {
         Block block = event.getToBlock();
         Location loc = block.getLocation();
-        
+
         @Nonnull BlockState blockState = block.getState();
         Material blockType = blockState.getType();
         if (blockType != Material.PLAYER_HEAD && blockType != Material.PLAYER_WALL_HEAD) return;
@@ -2449,7 +2491,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
         	meta.setDisplayName(name);
         	if (lore != null) meta.setLore(Arrays.asList(lore));
         	itemstack.setItemMeta(meta);
-        	
+
         	block.getWorld().dropItemNaturally(block.getLocation(), itemstack);
         	block.getDrops().clear();
         	block.setType(Material.AIR);
@@ -2459,104 +2501,104 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
         BlockState blockS = block.getWorld().getBlockAt(loc).getState();
         blockS.update(true, true);
     }// */
-    
-    @SuppressWarnings("unused")
+
+	@SuppressWarnings("unused")
 	public ItemStack fixHeadStack(ItemStack offHand, ItemStack mainHand){
-    	NBTItem nbti = new NBTItem(offHand);
-    	Set<String> SkullKeys = nbti.getKeys();
-    	int damage = nbti.getInteger("Damage");
-    	NBTCompound display = nbti.getCompound("display");
-    	NBTCompound SkullOwner = nbti.getCompound("SkullOwner");
-    	if(debug){logDebug("FHS Offhand damage=" + damage);}
-    	if(debug){logDebug("FHS Offhand display=" + display.toString());}
-    	if(debug){logDebug("FHS Offhand SkullOwner=" + SkullOwner.toString());}
-    	
-    	NBTItem nbti2 = new NBTItem(mainHand);
-    	Set<String> SkullKeys2 = nbti2.getKeys();
-    	int damage2 = nbti2.getInteger("Damage");
-    	NBTCompound display2 = nbti2.getCompound("display");
-    	NBTCompound SkullOwner2 = nbti2.getCompound("SkullOwner");
-    	if(debug){logDebug("FHS Mainhand damage=" + damage2);}
-    	if(debug){logDebug("FHS Mainhand display=" + display2.toString());}
-    	if(debug){logDebug("FHS Mainhand SkullOwner=" + SkullOwner2.toString());}
-    	
-        if( display.equals(display2) && SkullOwner.equals(SkullOwner2) && damage != damage2){
-        	ItemStack is = new ItemStack(offHand);
-        	is.setAmount(mainHand.getAmount());
-        	if(debug){logDebug("FHS d=d2, so=so2, d!=D2 - return offhand");}
-        	return is;
-        }else if( !display.equals(display2) && SkullOwner.equals(SkullOwner2) && ((damage == damage2)||(damage != damage2))){
-        	ItemStack is = new ItemStack(offHand);
-        	is.setAmount(mainHand.getAmount());
-        	if(debug){logDebug("FHS d!=d2, so=so2, d ignored - return offhand");}
-        	return is;
-        }else if( display.equals(display2) && SkullOwner.equals(SkullOwner2) && damage == damage2){
-        	if(debug){logDebug("FHS d=d2, so=so2, d=d2 - return mainhand");}
-        	return mainHand;
-        }
-        return null;
+		NBTItem nbti = new NBTItem(offHand);
+		Set<String> SkullKeys = nbti.getKeys();
+		int damage = nbti.getInteger("Damage");
+		NBTCompound display = nbti.getCompound("display");
+		NBTCompound SkullOwner = nbti.getCompound("SkullOwner");
+		if(debug){logDebug("FHS Offhand damage=" + damage);}
+		if(debug){logDebug("FHS Offhand display=" + display.toString());}
+		if(debug){logDebug("FHS Offhand SkullOwner=" + SkullOwner.toString());}
+
+		NBTItem nbti2 = new NBTItem(mainHand);
+		Set<String> SkullKeys2 = nbti2.getKeys();
+		int damage2 = nbti2.getInteger("Damage");
+		NBTCompound display2 = nbti2.getCompound("display");
+		NBTCompound SkullOwner2 = nbti2.getCompound("SkullOwner");
+		if(debug){logDebug("FHS Mainhand damage=" + damage2);}
+		if(debug){logDebug("FHS Mainhand display=" + display2.toString());}
+		if(debug){logDebug("FHS Mainhand SkullOwner=" + SkullOwner2.toString());}
+
+		if( display.equals(display2) && SkullOwner.equals(SkullOwner2) && (damage != damage2)){
+			ItemStack is = new ItemStack(offHand);
+			is.setAmount(mainHand.getAmount());
+			if(debug){logDebug("FHS d=d2, so=so2, d!=D2 - return offhand");}
+			return is;
+		}else if( !display.equals(display2) && SkullOwner.equals(SkullOwner2) && ((damage == damage2)||(damage != damage2))){
+			ItemStack is = new ItemStack(offHand);
+			is.setAmount(mainHand.getAmount());
+			if(debug){logDebug("FHS d!=d2, so=so2, d ignored - return offhand");}
+			return is;
+		}else if( display.equals(display2) && SkullOwner.equals(SkullOwner2) && (damage == damage2)){
+			if(debug){logDebug("FHS d=d2, so=so2, d=d2 - return mainhand");}
+			return mainHand;
+		}
+		return null;
 	}
-    public ItemStack fixHeadNBT(String textureValue, String displayName, ArrayList<String> lore) {
-    	//String textureValue = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWY1MjQxNjZmN2NlODhhNTM3MTU4NzY2YTFjNTExZTMyMmE5M2E1ZTExZGJmMzBmYTZlODVlNzhkYTg2MWQ4In19fQ=="; // Pulled from the head link, scroll to the bottom and the "Other Value" field has this texture id.
+	public ItemStack fixHeadNBT(String textureValue, String displayName, ArrayList<String> lore) {
+		//String textureValue = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWY1MjQxNjZmN2NlODhhNTM3MTU4NzY2YTFjNTExZTMyMmE5M2E1ZTExZGJmMzBmYTZlODVlNzhkYTg2MWQ4In19fQ=="; // Pulled from the head link, scroll to the bottom and the "Other Value" field has this texture id.
 
-    	ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1); // Creating the ItemStack, your input may vary.
-    	NBTItem nbti = new NBTItem(head); // Creating the wrapper.
+		ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1); // Creating the ItemStack, your input may vary.
+		NBTItem nbti = new NBTItem(head); // Creating the wrapper.
 
-    	NBTCompound disp = nbti.addCompound("display");
-    	disp.setString("Name", displayName); // Setting the name of the Item
-    	if(lore.isEmpty()) {
-    		if(getConfig().getBoolean("lore.show_plugin_name", true)){
+		NBTCompound disp = nbti.addCompound("display");
+		disp.setString("Name", displayName); // Setting the name of the Item
+		if(lore.isEmpty()) {
+			if(getConfig().getBoolean("lore.show_plugin_name", true)){
 				lore.add(ChatColor.AQUA + "MoreMobHeads");
 			}
-    	}
-    	if(!lore.isEmpty()) {
-	    	NBTList l = disp.getStringList("Lore");
-	    	l.add(lore); // Adding a bit of lore.
-    	}
-    	
-    	NBTCompound skull = nbti.addCompound("SkullOwner"); // Getting the compound, that way we can set the skin information
-    	skull.setString("Name", displayName); // Owner's name
-    	//skull.setString("Id", uuid);
-    	// The UUID, note that skulls with the same UUID but different textures will misbehave and only one texture will load
-    	// (They'll share it), if skulls have different UUIDs and same textures they won't stack. See UUID.randomUUID();
+		}
+		if(!lore.isEmpty()) {
+			NBTList l = disp.getStringList("Lore");
+			l.add(lore); // Adding a bit of lore.
+		}
 
-    	NBTListCompound texture = skull.addCompound("Properties").getCompoundList("textures").addCompound();
-    	texture.setString("Value",  textureValue);
+		NBTCompound skull = nbti.addCompound("SkullOwner"); // Getting the compound, that way we can set the skin information
+		skull.setString("Name", displayName); // Owner's name
+		//skull.setString("Id", uuid);
+		// The UUID, note that skulls with the same UUID but different textures will misbehave and only one texture will load
+		// (They'll share it), if skulls have different UUIDs and same textures they won't stack. See UUID.randomUUID();
 
-    	head = nbti.getItem(); // Refresh the ItemStack
-    	return head;
-    }
-    
-    public ItemStack makeHead(String textureValue, String displayName, String uuid, @Nullable ArrayList<String> lore) {
-    	ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1); // Creating the ItemStack, your input may vary.
-    	NBTItem nbti = new NBTItem(head); // Creating the wrapper.
+		NBTListCompound texture = skull.addCompound("Properties").getCompoundList("textures").addCompound();
+		texture.setString("Value",  textureValue);
 
-    	NBTCompound disp = nbti.addCompound("display");
-    	disp.setString("Name", displayName); // Setting the name of the Item
+		head = nbti.getItem(); // Refresh the ItemStack
+		return head;
+	}
 
-    	if(lore.isEmpty()) {
-    		if(getConfig().getBoolean("lore.show_plugin_name", true)){
+	public ItemStack makeHead(String textureValue, String displayName, String uuid, @Nullable ArrayList<String> lore) {
+		ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1); // Creating the ItemStack, your input may vary.
+		NBTItem nbti = new NBTItem(head); // Creating the wrapper.
+
+		NBTCompound disp = nbti.addCompound("display");
+		disp.setString("Name", displayName); // Setting the name of the Item
+
+		if(lore.isEmpty()) {
+			if(getConfig().getBoolean("lore.show_plugin_name", true)){
 				lore.add(ChatColor.AQUA + "MoreMobHeads");
 			}
-    	}
-    	if(!lore.isEmpty()) {
-	    	NBTList l = disp.getStringList("Lore");
-	    	l.add(lore); // Adding a bit of lore.
-    	}
+		}
+		if(!lore.isEmpty()) {
+			NBTList l = disp.getStringList("Lore");
+			l.add(lore); // Adding a bit of lore.
+		}
 
-    	NBTCompound skull = nbti.addCompound("SkullOwner"); // Getting the compound, that way we can set the skin information
-    	skull.setString("Name", displayName); // Owner's name
-    	skull.setString("Id", uuid);
+		NBTCompound skull = nbti.addCompound("SkullOwner"); // Getting the compound, that way we can set the skin information
+		skull.setString("Name", displayName); // Owner's name
+		skull.setString("Id", uuid);
 
-    	NBTListCompound texture = skull.addCompound("Properties").getCompoundList("textures").addCompound();
-    	texture.setString("Value",  textureValue);
+		NBTListCompound texture = skull.addCompound("Properties").getCompoundList("textures").addCompound();
+		texture.setString("Value",  textureValue);
 
-    	head = nbti.getItem(); // Refresh the ItemStack
-    	return head;
-    }
-    
-    public void configReload() { //TODO: configReload
-    	oldconfig = new YamlConfiguration();
+		head = nbti.getItem(); // Refresh the ItemStack
+		return head;
+	}
+
+	public void configReload() { //TODO: configReload
+		oldconfig = new YamlConfiguration();
 		log(Level.INFO, "Checking config file version...");
 		try {
 			oldconfig.load(new File(getDataFolder() + "" + File.separatorChar + "config.yml"));
@@ -2575,7 +2617,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 					e.printStackTrace();
 				}
 				saveResource("config.yml", true);
-				
+
 				try {
 					config.load(new File(getDataFolder(), "config.yml"));
 				} catch (IOException | InvalidConfigurationException e1) {
@@ -2617,7 +2659,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				config.set("wandering_trades.block_heads.is_116.max", oldconfig.get("wandering_trader_max_block_heads", 5));
 				config.set("wandering_trades.block_heads.is_117.min", oldconfig.get("wandering_trader_min_block_heads", 0));
 				config.set("wandering_trades.block_heads.is_117.max", oldconfig.get("wandering_trader_max_block_heads", 5));
-				
+
 				config.set("wandering_trades.custom_trades.enabled", oldconfig.get("wandering_trades.custom_trades.enabled", false));
 				config.set("wandering_trades.custom_trades.min", oldconfig.get("wandering_trades.custom_trades.min", 0));
 				config.set("wandering_trades.custom_trades.max", oldconfig.get("wandering_trades.custom_trades.max", 5));
@@ -2627,7 +2669,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				config.set("blacklist.enforce", oldconfig.get("enforce_blacklist", true));
 				config.set("blacklist.player_head_blacklist", oldconfig.get("blacklist.player_head_blacklist", "names_go_here"));
 				//config.set("", oldconfig.get("", true));
-				
+
 				try {
 					config.save(new File(getDataFolder(), "config.yml"));
 				} catch (IOException e) {
@@ -2663,136 +2705,136 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			stacktraceInfo();
 			e1.printStackTrace();
 		}
-		
+
 		world_whitelist = config.getString("world.whitelist", "");
 		world_blacklist = config.getString("world.blacklist", "");
 		mob_whitelist = config.getString("mob.whitelist", "");
 		mob_blacklist = config.getString("mob.blacklist", "");
 		colorful_console = getConfig().getBoolean("console.colorful_console", true);
-		
+
 		//if(getConfig().getBoolean("wandering_trades.custom_wandering_trader", true)){
-			/** Trader heads load */
-			playerFile = new File(getDataFolder() + "" + File.separatorChar + "player_heads.yml");//\
-			if(debug){logDebug("player_heads=" + playerFile.getPath());}
-			if(!playerFile.exists()){																	// checks if the yaml does not exist
-				saveResource("player_heads.yml", true);
-				log(Level.INFO, "player_heads.yml not found! copied player_heads.yml to " + getDataFolder() + "");
-				//ConfigAPI.copy(getResource("lang.yml"), langFile); // copies the yaml from your jar to the folder /plugin/<pluginName>
-			}
+		/** Trader heads load */
+		playerFile = new File(getDataFolder() + "" + File.separatorChar + "player_heads.yml");//\
+		if(debug){logDebug("player_heads=" + playerFile.getPath());}
+		if(!playerFile.exists()){																	// checks if the yaml does not exist
+			saveResource("player_heads.yml", true);
+			log(Level.INFO, "player_heads.yml not found! copied player_heads.yml to " + getDataFolder() + "");
+			//ConfigAPI.copy(getResource("lang.yml"), langFile); // copies the yaml from your jar to the folder /plugin/<pluginName>
+		}
 
 		log(Level.INFO, "Loading player_heads file...");
-				playerHeads = new YamlConfiguration();
-				try {
-					playerHeads.load(playerFile);
-				} catch (IOException | InvalidConfigurationException e) {
-					stacktraceInfo();
-					e.printStackTrace();
-				}
+		playerHeads = new YamlConfiguration();
+		try {
+			playerHeads.load(playerFile);
+		} catch (IOException | InvalidConfigurationException e) {
+			stacktraceInfo();
+			e.printStackTrace();
+		}
 		log(Level.INFO, "" + playerHeads.getInt("players.number") + " player_heads Loaded...");
 		log("MC Version=" + getMCVersion());
-				if(!getMCVersion().startsWith("1.16")&&!getMCVersion().startsWith("1.17")&&!getMCVersion().startsWith("1.18")){
-					blockFile = new File(getDataFolder() + "" + File.separatorChar + "block_heads.yml");//\
-					if(debug){logDebug("block_heads=" + blockFile.getPath());}
-					if(!blockFile.exists()){																	// checks if the yaml does not exist
-						saveResource("block_heads.yml", true);
-						log(Level.INFO, "block_heads.yml not found! copied block_heads.yml to " + getDataFolder() + "");
-						//ConfigAPI.copy(getResource("lang.yml"), langFile); // copies the yaml from your jar to the folder /plugin/<pluginName>
-					}
-				}
-				blockFile116 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_16.yml");
-				blockFile1162 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_16_2.yml");
-				blockFile117 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_17_3.yml");
-				blockFile119 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_19.yml");
-
-				
-				if(getMCVersion().startsWith("1.16")){
-					if(debug){logDebug("block_heads_1_16=" + blockFile116.getPath());}
-					if(debug){logDebug("block_heads_1_16_2=" + blockFile1162.getPath());}
-					if(!blockFile116.exists()){
-						saveResource("block_heads_1_16.yml", true);
-						log(Level.INFO, "block_heads_1_16.yml not found! copied block_heads_1_16.yml to " + getDataFolder() + "");
-					}
-					if(!blockFile1162.exists()){
-						saveResource("block_heads_1_16_2.yml", true);
-						log(Level.INFO, "block_heads_1_16_2.yml not found! copied block_heads_1_16_2.yml to " + getDataFolder() + "");
-					}
-					blockFile = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_16.yml");
-				log(Level.INFO, "Loading block_heads_1_16 files...");
-				}else if( getMCVersion().startsWith("1.17") || getMCVersion().startsWith("1.18") || getMCVersion().startsWith("1.19") ){
-					if(debug){logDebug("block_heads_1_17=" + blockFile116.getPath());}
-					if(debug){logDebug("block_heads_1_17_2=" + blockFile1162.getPath());}
-					if(!blockFile116.exists()){
-						saveResource("block_heads_1_17.yml", true);
-						log(Level.INFO, "block_heads_1_17.yml not found! copied block_heads_1_17.yml to " + getDataFolder() + "");
-					}
-					if(!blockFile1162.exists()){
-						saveResource("block_heads_1_17_2.yml", true);
-						log(Level.INFO, "block_heads_1_17_2.yml not found! copied block_heads_1_17_2.yml to " + getDataFolder() + "");
-					}
-					if(!blockFile117.exists()){
-						saveResource("block_heads_1_17_3.yml", true);
-						log(Level.INFO, "block_heads_1_17_3.yml not found! copied block_heads_1_17_3.yml to " + getDataFolder() + "");
-					}
-					if(!blockFile119.exists()){
-						saveResource("block_heads_1_19.yml", true);
-						log(Level.INFO, "block_heads_1_19.yml not found! copied block_heads_1_19.yml to " + getDataFolder() + "");
-					}
-					blockFile = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_17.yml");
-					blockFile1162 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_17_2.yml");
-				log(Level.INFO, "Loading block_heads_1_17 files...");
-				}else{
-				}
-				log(Level.INFO, "Loading block_heads file...");
-			
-				blockHeads = new YamlConfiguration();
-				try {
-					blockHeads.load(blockFile);
-				} catch (IOException | InvalidConfigurationException e1) {
-					stacktraceInfo();
-					e1.printStackTrace();
-				}
-				
-				blockHeads2 = new YamlConfiguration();
-				try {
-					blockHeads2.load(blockFile1162);
-				} catch (IOException | InvalidConfigurationException e1) {
-					stacktraceInfo();
-					e1.printStackTrace();
-				}
-				if(Double.parseDouble(getMCVersion().substring(0, 4)) >= 1.17) {
-					blockHeads3 = new YamlConfiguration();
-					try {
-						blockHeads3.load(blockFile117);
-					} catch (IOException | InvalidConfigurationException e1) {
-						stacktraceInfo();
-						e1.printStackTrace();
-					}
-					
-					blockHeads4 = new YamlConfiguration();
-					try {
-						blockHeads4.load(blockFile119);
-					} catch (IOException | InvalidConfigurationException e1) {
-						stacktraceInfo();
-						e1.printStackTrace();
-					}
-				}
-
-			/** Custom Trades load */
-			customFile = new File(getDataFolder() + "" + File.separatorChar + "custom_trades.yml");//\
-			if(debug){logDebug("customFile=" + customFile.getPath());}
-			if(!customFile.exists()){																	// checks if the yaml does not exist
-				saveResource("custom_trades.yml", true);
-				log(Level.INFO, "custom_trades.yml not found! copied custom_trades.yml to " + getDataFolder() + "");
+		if(!getMCVersion().startsWith("1.16")&&!getMCVersion().startsWith("1.17")&&!getMCVersion().startsWith("1.18")){
+			blockFile = new File(getDataFolder() + "" + File.separatorChar + "block_heads.yml");//\
+			if(debug){logDebug("block_heads=" + blockFile.getPath());}
+			if(!blockFile.exists()){																	// checks if the yaml does not exist
+				saveResource("block_heads.yml", true);
+				log(Level.INFO, "block_heads.yml not found! copied block_heads.yml to " + getDataFolder() + "");
 				//ConfigAPI.copy(getResource("lang.yml"), langFile); // copies the yaml from your jar to the folder /plugin/<pluginName>
 			}
-		log(Level.INFO, "Loading custom_trades file...");
-			traderCustom = new YamlConfiguration();
-			try {
-				traderCustom.load(customFile);
-			} catch (IOException | InvalidConfigurationException e) {
-				stacktraceInfo();
-				e.printStackTrace();
+		}
+		blockFile116 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_16.yml");
+		blockFile1162 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_16_2.yml");
+		blockFile117 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_17_3.yml");
+		blockFile119 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_19.yml");
+
+
+		if(getMCVersion().startsWith("1.16")){
+			if(debug){logDebug("block_heads_1_16=" + blockFile116.getPath());}
+			if(debug){logDebug("block_heads_1_16_2=" + blockFile1162.getPath());}
+			if(!blockFile116.exists()){
+				saveResource("block_heads_1_16.yml", true);
+				log(Level.INFO, "block_heads_1_16.yml not found! copied block_heads_1_16.yml to " + getDataFolder() + "");
 			}
+			if(!blockFile1162.exists()){
+				saveResource("block_heads_1_16_2.yml", true);
+				log(Level.INFO, "block_heads_1_16_2.yml not found! copied block_heads_1_16_2.yml to " + getDataFolder() + "");
+			}
+			blockFile = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_16.yml");
+			log(Level.INFO, "Loading block_heads_1_16 files...");
+		}else if( getMCVersion().startsWith("1.17") || getMCVersion().startsWith("1.18") || getMCVersion().startsWith("1.19") ){
+			if(debug){logDebug("block_heads_1_17=" + blockFile116.getPath());}
+			if(debug){logDebug("block_heads_1_17_2=" + blockFile1162.getPath());}
+			if(!blockFile116.exists()){
+				saveResource("block_heads_1_17.yml", true);
+				log(Level.INFO, "block_heads_1_17.yml not found! copied block_heads_1_17.yml to " + getDataFolder() + "");
+			}
+			if(!blockFile1162.exists()){
+				saveResource("block_heads_1_17_2.yml", true);
+				log(Level.INFO, "block_heads_1_17_2.yml not found! copied block_heads_1_17_2.yml to " + getDataFolder() + "");
+			}
+			if(!blockFile117.exists()){
+				saveResource("block_heads_1_17_3.yml", true);
+				log(Level.INFO, "block_heads_1_17_3.yml not found! copied block_heads_1_17_3.yml to " + getDataFolder() + "");
+			}
+			if(!blockFile119.exists()){
+				saveResource("block_heads_1_19.yml", true);
+				log(Level.INFO, "block_heads_1_19.yml not found! copied block_heads_1_19.yml to " + getDataFolder() + "");
+			}
+			blockFile = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_17.yml");
+			blockFile1162 = new File(getDataFolder() + "" + File.separatorChar + "block_heads_1_17_2.yml");
+			log(Level.INFO, "Loading block_heads_1_17 files...");
+		}else{
+		}
+		log(Level.INFO, "Loading block_heads file...");
+
+		blockHeads = new YamlConfiguration();
+		try {
+			blockHeads.load(blockFile);
+		} catch (IOException | InvalidConfigurationException e1) {
+			stacktraceInfo();
+			e1.printStackTrace();
+		}
+
+		blockHeads2 = new YamlConfiguration();
+		try {
+			blockHeads2.load(blockFile1162);
+		} catch (IOException | InvalidConfigurationException e1) {
+			stacktraceInfo();
+			e1.printStackTrace();
+		}
+		if(Double.parseDouble(getMCVersion().substring(0, 4)) >= 1.17) {
+			blockHeads3 = new YamlConfiguration();
+			try {
+				blockHeads3.load(blockFile117);
+			} catch (IOException | InvalidConfigurationException e1) {
+				stacktraceInfo();
+				e1.printStackTrace();
+			}
+
+			blockHeads4 = new YamlConfiguration();
+			try {
+				blockHeads4.load(blockFile119);
+			} catch (IOException | InvalidConfigurationException e1) {
+				stacktraceInfo();
+				e1.printStackTrace();
+			}
+		}
+
+		/** Custom Trades load */
+		customFile = new File(getDataFolder() + "" + File.separatorChar + "custom_trades.yml");//\
+		if(debug){logDebug("customFile=" + customFile.getPath());}
+		if(!customFile.exists()){																	// checks if the yaml does not exist
+			saveResource("custom_trades.yml", true);
+			log(Level.INFO, "custom_trades.yml not found! copied custom_trades.yml to " + getDataFolder() + "");
+			//ConfigAPI.copy(getResource("lang.yml"), langFile); // copies the yaml from your jar to the folder /plugin/<pluginName>
+		}
+		log(Level.INFO, "Loading custom_trades file...");
+		traderCustom = new YamlConfiguration();
+		try {
+			traderCustom.load(customFile);
+		} catch (IOException | InvalidConfigurationException e) {
+			stacktraceInfo();
+			e.printStackTrace();
+		}
 
 		log(Level.INFO, "Loading chance_config file...");
 		chanceFile = new File(getDataFolder() + "" + File.separatorChar + "chance_config.yml");
@@ -2807,256 +2849,256 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		debug = getConfig().getBoolean("debug", false);
 		daLang = getConfig().getString("lang", "en_US");
 		lang2 = new Translator(daLang, getDataFolder().toString());
-    }
-    
-    public String getTextureFromEntity(LivingEntity entity) {
-    	String name = entity.getName().toUpperCase();
-    	switch (name) {
-			case "CREEPER":
-				Creeper creeper = (Creeper) entity;
-				double cchance = chanceConfig.getDouble("chance_percent.creeper", defpercent);
-				if(creeper.isPowered()) {
-					name = "CREEPER_CHARGED";
-					cchance = 1.00;
-				}
-				if(DropIt2(cchance)){
-	 				return MobHeads.valueOf(name).getTexture().toString();
-				}
-				break;
-			case "ZOMBIE":
-				if(DropIt2(chanceConfig.getDouble("chance_percent.zombie", defpercent))){
- 					return MobHeads.valueOf(name).getTexture().toString();
-				}
-				break;
-			case "SKELETON":
-				if(DropIt2(chanceConfig.getDouble("chance_percent.skeleton", defpercent))){
+	}
+
+	public String getTextureFromEntity(LivingEntity entity) {
+		String name = entity.getName().toUpperCase();
+		switch (name) {
+		case "CREEPER":
+			Creeper creeper = (Creeper) entity;
+			double cchance = chanceConfig.getDouble("chance_percent.creeper", defpercent);
+			if(creeper.isPowered()) {
+				name = "CREEPER_CHARGED";
+				cchance = 1.00;
+			}
+			if(DropIt2(cchance)){
+				return MobHeads.valueOf(name).getTexture().toString();
+			}
+			break;
+		case "ZOMBIE":
+			if(DropIt2(chanceConfig.getDouble("chance_percent.zombie", defpercent))){
+				return MobHeads.valueOf(name).getTexture().toString();
+			}
+			break;
+		case "SKELETON":
+			if(DropIt2(chanceConfig.getDouble("chance_percent.skeleton", defpercent))){
+				return MobHeads.valueOf(name).getTexture().toString();
+			}
+			break;
+		case "WITHER_SKELETON":
+			if(DropIt2(chanceConfig.getDouble("chance_percent.wither_skeleton", defpercent))){
+				return MobHeads.valueOf(name).getTexture().toString();
+			}
+			break;
+		case "ENDER_DRAGON":
+			if(DropIt2(chanceConfig.getDouble("chance_percent.ender_dragon", defpercent))){
+				return MobHeads.valueOf(name).getTexture().toString();
+			}
+			break;
+		case "TROPICAL_FISH":
+			TropicalFish daFish = (TropicalFish) entity;
+			DyeColor daFishBody = daFish.getBodyColor();
+			DyeColor daFishPatternColor = daFish.getPatternColor();
+			Pattern	daFishPattern = daFish.getPattern();
+			String daFishType = getNamedTropicalFishName(daFishPattern, daFishBody, daFishPatternColor );
+			if(DropIt2(chanceConfig.getDouble("TROPICAL_FISH." + daFishType, defpercent))){
+				return TropicalFishHeads.valueOf(daFishType).getTexture().toString();
+			}
+			if(debug){logDebug("Skeleton Head Dropped");}
+			break;//*/
+		case "WITHER":
+			//Wither wither = (Wither) event.getEntity();
+			int random = randomBetween(1, 4);
+			if(DropIt2(chanceConfig.getDouble("chance_percent.wither", defpercent))){
+				return MobHeads.valueOf(name + "_" + random).getTexture().toString();
+			}
+			break;
+		case "WOLF":
+			Wolf wolf = (Wolf) entity;
+			if(DropIt2(chanceConfig.getDouble("chance_percent." + name.toLowerCase(), defpercent))){
+				if(wolf.isAngry()){
+					return MobHeads.valueOf(name + "_ANGRY").getTexture().toString();
+				}else{
 					return MobHeads.valueOf(name).getTexture().toString();
 				}
-				break;
-			case "WITHER_SKELETON":
-				if(DropIt2(chanceConfig.getDouble("chance_percent.wither_skeleton", defpercent))){
-					return MobHeads.valueOf(name).getTexture().toString();
+			}
+			break;
+		case "FOX":
+			Fox dafox = (Fox) entity;
+			String dafoxtype = dafox.getFoxType().toString();
+			if(DropIt2(chanceConfig.getDouble("chance_percent.fox." + dafoxtype.toString().toLowerCase(), defpercent))){
+				return MobHeads.valueOf(name + "_" + dafoxtype).getTexture().toString();
+			}
+
+			break;
+		case "CAT":
+			Cat dacat = (Cat) entity;
+			String dacattype = dacat.getCatType().toString();
+			if(DropIt2(chanceConfig.getDouble("chance_percent.cat." + dacattype.toLowerCase(), defpercent))){
+				return CatHeads.valueOf(dacattype).getTexture().toString();
+			}
+			break;
+		case "OCELOT":
+			if(DropIt2(chanceConfig.getDouble("chance_percent." + name.toLowerCase(), defpercent))){
+				return MobHeads.valueOf(name).getTexture().toString();
+			}
+
+			break;
+		case "BEE":
+			Bee daBee = (Bee) entity;
+			int daAnger = daBee.getAnger();
+			boolean daNectar = daBee.hasNectar();
+			if((daAnger >= 1)&&(daNectar == true)){
+				if(DropIt2(chanceConfig.getDouble("chance_percent.bee.angry_pollinated", defpercent))){
+					return MobHeads.valueOf("BEE_ANGRY_POLLINATED").getTexture().toString();
 				}
-				break;
-			case "ENDER_DRAGON":
-				if(DropIt2(chanceConfig.getDouble("chance_percent.ender_dragon", defpercent))){
-					return MobHeads.valueOf(name).getTexture().toString();
+			}else if((daAnger >= 1)&&(daNectar == false)){
+				if(DropIt2(chanceConfig.getDouble("chance_percent.bee.angry", defpercent))){
+					return MobHeads.valueOf("BEE_ANGRY").getTexture().toString();
 				}
-				break;
-			case "TROPICAL_FISH":
-				TropicalFish daFish = (TropicalFish) entity;
-				DyeColor daFishBody = daFish.getBodyColor();
-				DyeColor daFishPatternColor = daFish.getPatternColor();
-				Pattern	daFishPattern = daFish.getPattern();
-				String daFishType = getNamedTropicalFishName(daFishPattern, daFishBody, daFishPatternColor );
-				if(DropIt2(chanceConfig.getDouble("TROPICAL_FISH." + daFishType, defpercent))){
-					return TropicalFishHeads.valueOf(daFishType).getTexture().toString();
+			}else if((daAnger == 0)&&(daNectar == true)){
+				if(DropIt2(chanceConfig.getDouble("chance_percent.bee.pollinated", defpercent))){
+					return MobHeads.valueOf("BEE_POLLINATED").getTexture().toString();
 				}
-				if(debug){logDebug("Skeleton Head Dropped");}
-				break;//*/
-			case "WITHER":
-				//Wither wither = (Wither) event.getEntity();
-				int random = randomBetween(1, 4);
-				if(DropIt2(chanceConfig.getDouble("chance_percent.wither", defpercent))){
-					return MobHeads.valueOf(name + "_" + random).getTexture().toString();
+			}else if((daAnger == 0)&&(daNectar == false)){
+				if(DropIt2(chanceConfig.getDouble("chance_percent.bee.chance_percent", defpercent))){
+					return MobHeads.valueOf("BEE").getTexture().toString();
 				}
-				break;
-			case "WOLF":
-				Wolf wolf = (Wolf) entity;
-				if(DropIt2(chanceConfig.getDouble("chance_percent." + name.toLowerCase(), defpercent))){
- 				if(wolf.isAngry()){
- 					return MobHeads.valueOf(name + "_ANGRY").getTexture().toString();
- 				}else{
- 					return MobHeads.valueOf(name).getTexture().toString();
- 				}
+			}
+			break;
+		case "LLAMA":
+			Llama daLlama = (Llama) entity;
+			String daLlamaColor = daLlama.getColor().toString();
+			//log(name + "_" + daLlamaColor);
+			if(DropIt2(chanceConfig.getDouble("chance_percent.llama." + daLlamaColor.toLowerCase(), defpercent))){
+				return LlamaHeads.valueOf(name + "_" + daLlamaColor).getTexture().toString();
+			}
+			break;
+		case "HORSE":
+			Horse daHorse = (Horse) entity;
+			String daHorseColor = daHorse.getColor().toString();
+			//.replace("g", "G").replace("wh", "Wh").replace("_", " ") + " Horse Head";
+			if(DropIt2(chanceConfig.getDouble("chance_percent.horse." + daHorseColor.toLowerCase(), defpercent))){
+				return HorseHeads.valueOf(name + "_" + daHorseColor).getTexture().toString();
+			}
+			break;
+		case "MOOSHROOM":
+			name = "MUSHROOM_COW";
+		case "MUSHROOM_COW":
+			MushroomCow daMushroom = (MushroomCow) entity;
+			String daCowVariant = daMushroom.getVariant().toString();
+			if(DropIt2(chanceConfig.getDouble("chance_percent.mushroom_cow." + daCowVariant.toLowerCase(), defpercent))){
+				return MobHeads.valueOf(name + "_" + daCowVariant).getTexture().toString();
+			}
+			break;
+		case "PANDA":
+			Panda daPanda = (Panda) entity;
+			String daPandaGene = daPanda.getMainGene().toString();
+			String daPandaName = daPandaGene.toLowerCase().replace("br", "Br").replace("ag", "Ag").replace("la", "La")
+					.replace("no", "No").replace("p", "P").replace("we", "We").replace("wo", "Wo") + " Panda Head";
+			if(daPandaGene.equalsIgnoreCase("normal")){daPandaName.replace("normal ", "");}
+			if(DropIt2(chanceConfig.getDouble("chance_percent.panda." + daPandaGene.toLowerCase(), defpercent))){
+				return MobHeads.valueOf(name + "_" + daPandaGene).getTexture().toString();
+			}
+			break;
+		case "PARROT":
+			Parrot daParrot = (Parrot) entity;
+			String daParrotVariant = daParrot.getVariant().toString();
+			if(DropIt2(chanceConfig.getDouble("chance_percent.parrot." + daParrotVariant.toLowerCase(), defpercent))){
+				return MobHeads.valueOf(name + "_" + daParrotVariant).getTexture().toString();
+			}
+			break;
+		case "RABBIT":
+			String daRabbitType;
+			Rabbit daRabbit = (Rabbit) entity;
+			daRabbitType = daRabbit.getRabbitType().toString();
+			if(daRabbit.getCustomName() != null){
+				if(daRabbit.getCustomName().contains("Toast")){
+					daRabbitType = "Toast";
 				}
-				break;
-			case "FOX":
-				Fox dafox = (Fox) entity;
-				String dafoxtype = dafox.getFoxType().toString();
-				if(DropIt2(chanceConfig.getDouble("chance_percent.fox." + dafoxtype.toString().toLowerCase(), defpercent))){
-					return MobHeads.valueOf(name + "_" + dafoxtype).getTexture().toString();
+			}
+			if(DropIt2(chanceConfig.getDouble("chance_percent.rabbit." + daRabbitType.toLowerCase(), defpercent))){
+				return RabbitHeads.valueOf(name + "_" + daRabbitType).getTexture().toString();
+			}
+			break;
+		case "VILLAGER":
+			Villager daVillager = (Villager) entity; // Location jobsite = daVillager.getMemory(MemoryKey.JOB_SITE);
+			String daVillagerType = daVillager.getVillagerType().toString();
+			String daVillagerProfession = daVillager.getProfession().toString();
+			if(DropIt2(chanceConfig.getDouble("chance_percent.villager." + daVillagerType.toLowerCase() + "." + daVillagerProfession.toLowerCase(), defpercent))){
+				return VillagerHeads.valueOf(name + "_" + daVillagerProfession + "_" + daVillagerType).getTexture().toString();
+			}
+			break;
+		case "ZOMBIE_VILLAGER":
+			ZombieVillager daZombieVillager = (ZombieVillager) entity;
+			String daZombieVillagerProfession = daZombieVillager.getVillagerProfession().toString();
+			if(DropIt2(chanceConfig.getDouble("chance_percent.zombie_villager", defpercent))){
+				return ZombieVillagerHeads.valueOf(name + "_" + daZombieVillagerProfession).getTexture().toString();
+			}
+			break;
+		case "SHEEP":
+			Sheep daSheep = (Sheep) entity;
+			String daSheepColor = daSheep.getColor().toString();
+
+			if(daSheep.getCustomName() != null){
+				if(daSheep.getCustomName().contains("jeb_")){
+					daSheepColor = "jeb_";
+				}else{
+					daSheepColor = daSheep.getColor().toString();
 				}
-				
-				break;
-			case "CAT":
-				Cat dacat = (Cat) entity;
-				String dacattype = dacat.getCatType().toString();
-				if(DropIt2(chanceConfig.getDouble("chance_percent.cat." + dacattype.toLowerCase(), defpercent))){
-					return CatHeads.valueOf(dacattype).getTexture().toString();
-				}
-				break;
-			case "OCELOT":
-				if(DropIt2(chanceConfig.getDouble("chance_percent." + name.toLowerCase(), defpercent))){
-					return MobHeads.valueOf(name).getTexture().toString();
-				}
-				
-				break;
-			case "BEE":
-				Bee daBee = (Bee) entity;
-				int daAnger = daBee.getAnger();
-				boolean daNectar = daBee.hasNectar();
- 				if(daAnger >= 1&&daNectar == true){
- 					if(DropIt2(chanceConfig.getDouble("chance_percent.bee.angry_pollinated", defpercent))){
- 						return MobHeads.valueOf("BEE_ANGRY_POLLINATED").getTexture().toString();
- 					}
- 				}else if(daAnger >= 1&&daNectar == false){
- 					if(DropIt2(chanceConfig.getDouble("chance_percent.bee.angry", defpercent))){
- 						return MobHeads.valueOf("BEE_ANGRY").getTexture().toString();
- 					}
- 				}else if(daAnger == 0&&daNectar == true){
- 					if(DropIt2(chanceConfig.getDouble("chance_percent.bee.pollinated", defpercent))){
- 						return MobHeads.valueOf("BEE_POLLINATED").getTexture().toString();
- 					}
- 				}else if(daAnger == 0&&daNectar == false){
- 					if(DropIt2(chanceConfig.getDouble("chance_percent.bee.chance_percent", defpercent))){
- 						return MobHeads.valueOf("BEE").getTexture().toString();
- 					}
- 				}
-				break;
-			case "LLAMA":
-				Llama daLlama = (Llama) entity;
-				String daLlamaColor = daLlama.getColor().toString();
-				//log(name + "_" + daLlamaColor);
-				if(DropIt2(chanceConfig.getDouble("chance_percent.llama." + daLlamaColor.toLowerCase(), defpercent))){		
-					return LlamaHeads.valueOf(name + "_" + daLlamaColor).getTexture().toString();
-				}
-				break;
-			case "HORSE":
-				Horse daHorse = (Horse) entity;
-				String daHorseColor = daHorse.getColor().toString();
-						//.replace("g", "G").replace("wh", "Wh").replace("_", " ") + " Horse Head";
-				if(DropIt2(chanceConfig.getDouble("chance_percent.horse." + daHorseColor.toLowerCase(), defpercent))){
-					return HorseHeads.valueOf(name + "_" + daHorseColor).getTexture().toString();
-				}
-				break;
-			case "MOOSHROOM":
-				name = "MUSHROOM_COW";
-			case "MUSHROOM_COW":
-				MushroomCow daMushroom = (MushroomCow) entity;
-				String daCowVariant = daMushroom.getVariant().toString();
-				if(DropIt2(chanceConfig.getDouble("chance_percent.mushroom_cow." + daCowVariant.toLowerCase(), defpercent))){
-					return MobHeads.valueOf(name + "_" + daCowVariant).getTexture().toString();
-				}
-				break;
-			case "PANDA":
-				Panda daPanda = (Panda) entity;
-				String daPandaGene = daPanda.getMainGene().toString();
-				String daPandaName = daPandaGene.toLowerCase().replace("br", "Br").replace("ag", "Ag").replace("la", "La")
-						.replace("no", "No").replace("p", "P").replace("we", "We").replace("wo", "Wo") + " Panda Head";
-				if(daPandaGene.equalsIgnoreCase("normal")){daPandaName.replace("normal ", "");}
-				if(DropIt2(chanceConfig.getDouble("chance_percent.panda." + daPandaGene.toLowerCase(), defpercent))){
-					return MobHeads.valueOf(name + "_" + daPandaGene).getTexture().toString();
-				}
-				break;
-			case "PARROT":
-				Parrot daParrot = (Parrot) entity;
-				String daParrotVariant = daParrot.getVariant().toString();
-				if(DropIt2(chanceConfig.getDouble("chance_percent.parrot." + daParrotVariant.toLowerCase(), defpercent))){
-					return MobHeads.valueOf(name + "_" + daParrotVariant).getTexture().toString();
-				}
-				break;
-			case "RABBIT":
-				String daRabbitType;
-				Rabbit daRabbit = (Rabbit) entity;
-				daRabbitType = daRabbit.getRabbitType().toString();
-				if(daRabbit.getCustomName() != null){
-					if(daRabbit.getCustomName().contains("Toast")){
- 					daRabbitType = "Toast";
- 				}
-				}
-				if(DropIt2(chanceConfig.getDouble("chance_percent.rabbit." + daRabbitType.toLowerCase(), defpercent))){
-					return RabbitHeads.valueOf(name + "_" + daRabbitType).getTexture().toString();
-				}
-				break;
-			case "VILLAGER":
-				Villager daVillager = (Villager) entity; // Location jobsite = daVillager.getMemory(MemoryKey.JOB_SITE);
-				String daVillagerType = daVillager.getVillagerType().toString();
-				String daVillagerProfession = daVillager.getProfession().toString();
-				if(DropIt2(chanceConfig.getDouble("chance_percent.villager." + daVillagerType.toLowerCase() + "." + daVillagerProfession.toLowerCase(), defpercent))){
-					return VillagerHeads.valueOf(name + "_" + daVillagerProfession + "_" + daVillagerType).getTexture().toString();
-				}
-				break;
-			case "ZOMBIE_VILLAGER":
-				ZombieVillager daZombieVillager = (ZombieVillager) entity;
-				String daZombieVillagerProfession = daZombieVillager.getVillagerProfession().toString();
-				if(DropIt2(chanceConfig.getDouble("chance_percent.zombie_villager", defpercent))){
-					return ZombieVillagerHeads.valueOf(name + "_" + daZombieVillagerProfession).getTexture().toString();
-				}
-				break;
-			case "SHEEP":
-				Sheep daSheep = (Sheep) entity;
-				String daSheepColor = daSheep.getColor().toString();
-				
-				if(daSheep.getCustomName() != null){
- 				if(daSheep.getCustomName().contains("jeb_")){
- 					daSheepColor = "jeb_";
- 				}else{
- 					daSheepColor = daSheep.getColor().toString();
- 				}
-				}
-				if(DropIt2(chanceConfig.getDouble("chance_percent.sheep." + daSheepColor.toLowerCase(), defpercent))){
-					return SheepHeads.valueOf(name + "_" + daSheepColor).getTexture().toString();
-				}
-				break;
+			}
+			if(DropIt2(chanceConfig.getDouble("chance_percent.sheep." + daSheepColor.toLowerCase(), defpercent))){
+				return SheepHeads.valueOf(name + "_" + daSheepColor).getTexture().toString();
+			}
+			break;
 			/**case "STRIDER":
 				Strider strider = (Strider) entity;
-				
+
 				break;*/
-			case "TRADER_LLAMA":
-				TraderLlama daTraderLlama = (TraderLlama) entity;
-				String daTraderLlamaColor = daTraderLlama.getColor().toString();
-				if(DropIt2(chanceConfig.getDouble("chance_percent.trader_llama." + daTraderLlamaColor.toLowerCase(), defpercent))){
-					return LlamaHeads.valueOf(name + "_" + daTraderLlamaColor).getTexture().toString();
-				}
-				break;
-			case "AXOLOTL":
-				Axolotl daAxolotl = (Axolotl) entity;
-				String daAxolotlVariant = daAxolotl.getVariant().toString();
-				if(DropIt2(chanceConfig.getDouble("chance_percent.axolotl." + daAxolotlVariant.toLowerCase(), defpercent))){
-					return MobHeads117.valueOf(name + "_" + daAxolotlVariant).getTexture().toString();
-				}
-				break;
-			case "GOAT":
-				Goat daGoat = (Goat) entity;
-				String daGoatVariant;
-				if(daGoat.isScreaming()) {
-					// Giving screaming goat head
-					daGoatVariant = "SCREAMING";
-				}else {
-					// give goat head
-					daGoatVariant = "NORMAL";
-				}
-				if(DropIt2(chanceConfig.getDouble("chance_percent.goat." + daGoatVariant.toLowerCase(), defpercent))){
-					return MobHeads117.valueOf(name + "_" + daGoatVariant).getTexture().toString();
-				}
-				break;
-			default:
-				//makeSkull(MobHeads.valueOf(name).getTexture(), name);
-				if(DropIt2(chanceConfig.getDouble("chance_percent." + name.toLowerCase(), defpercent))){
-					return MobHeads.valueOf(name).getTexture().toString();
-				}
-				break;
+		case "TRADER_LLAMA":
+			TraderLlama daTraderLlama = (TraderLlama) entity;
+			String daTraderLlamaColor = daTraderLlama.getColor().toString();
+			if(DropIt2(chanceConfig.getDouble("chance_percent.trader_llama." + daTraderLlamaColor.toLowerCase(), defpercent))){
+				return LlamaHeads.valueOf(name + "_" + daTraderLlamaColor).getTexture().toString();
 			}
+			break;
+		case "AXOLOTL":
+			Axolotl daAxolotl = (Axolotl) entity;
+			String daAxolotlVariant = daAxolotl.getVariant().toString();
+			if(DropIt2(chanceConfig.getDouble("chance_percent.axolotl." + daAxolotlVariant.toLowerCase(), defpercent))){
+				return MobHeads117.valueOf(name + "_" + daAxolotlVariant).getTexture().toString();
+			}
+			break;
+		case "GOAT":
+			Goat daGoat = (Goat) entity;
+			String daGoatVariant;
+			if(daGoat.isScreaming()) {
+				// Giving screaming goat head
+				daGoatVariant = "SCREAMING";
+			}else {
+				// give goat head
+				daGoatVariant = "NORMAL";
+			}
+			if(DropIt2(chanceConfig.getDouble("chance_percent.goat." + daGoatVariant.toLowerCase(), defpercent))){
+				return MobHeads117.valueOf(name + "_" + daGoatVariant).getTexture().toString();
+			}
+			break;
+		default:
+			//makeSkull(MobHeads.valueOf(name).getTexture(), name);
+			if(DropIt2(chanceConfig.getDouble("chance_percent." + name.toLowerCase(), defpercent))){
+				return MobHeads.valueOf(name).getTexture().toString();
+			}
+			break;
+		}
 		return "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI3YWY5ZTQ0MTEyMTdjN2RlOWM2MGFjYmQzYzNmZDY1MTk3ODMzMzJhMWIzYmM1NmZiZmNlOTA3MjFlZjM1In19fQ==";
-    }
-    
-    public String getTexturefromEntityType(EntityType entityType, boolean randef) {
-    	String name = entityType.toString();
-    	switch (name) {
-    	case "CREEPER":
+	}
+
+	public String getTexturefromEntityType(EntityType entityType, boolean randef) {
+		String name = entityType.toString();
+		switch (name) {
+		case "CREEPER":
 			double cchance = chanceConfig.getDouble("chance_percent.creeper", defpercent);
 			if(randef) {
 				name = "CREEPER_CHARGED";
 				cchance = 1.00;
 			}
 			if(DropIt2(cchance)){
- 				return MobHeads.valueOf(name).getTexture().toString();
+				return MobHeads.valueOf(name).getTexture().toString();
 			}
 			break;
 		case "ZOMBIE":
 			if(DropIt2(chanceConfig.getDouble("chance_percent.zombie", defpercent))){
-					return MobHeads.valueOf(name).getTexture().toString();
+				return MobHeads.valueOf(name).getTexture().toString();
 			}
 			break;
 		case "SKELETON":
@@ -3121,7 +3163,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			if(DropIt2(chanceConfig.getDouble("chance_percent.fox." + dafoxtype[randomfox].toString().toLowerCase(), defpercent))){
 				return MobHeads.valueOf(name + "_" + dafoxtype[randomfox]).getTexture().toString();
 			}
-			
+
 			break;
 		case "CAT":
 			int randomcat;
@@ -3140,7 +3182,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			if(DropIt2(chanceConfig.getDouble("chance_percent." + name.toLowerCase(), defpercent))){
 				return MobHeads.valueOf(name).getTexture().toString();
 			}
-			
+
 			break;
 		case "BEE":
 			int randombee;
@@ -3149,23 +3191,23 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			}else {
 				randombee = 1;
 			}
-				if(randombee == 4){
-					if(DropIt2(chanceConfig.getDouble("chance_percent.bee.angry_pollinated", defpercent))){
-						return MobHeads.valueOf("BEE_ANGRY_POLLINATED").getTexture().toString();
-					}
-				}else if(randombee == 3){
-					if(DropIt2(chanceConfig.getDouble("chance_percent.bee.angry", defpercent))){
-						return MobHeads.valueOf("BEE_ANGRY").getTexture().toString();
-					}
-				}else if(randombee == 2){
-					if(DropIt2(chanceConfig.getDouble("chance_percent.bee.pollinated", defpercent))){
-						return MobHeads.valueOf("BEE_POLLINATED").getTexture().toString();
-					}
-				}else if(randombee == 1){
-					if(DropIt2(chanceConfig.getDouble("chance_percent.bee.chance_percent", defpercent))){
-						return MobHeads.valueOf("BEE").getTexture().toString();
-					}
+			if(randombee == 4){
+				if(DropIt2(chanceConfig.getDouble("chance_percent.bee.angry_pollinated", defpercent))){
+					return MobHeads.valueOf("BEE_ANGRY_POLLINATED").getTexture().toString();
 				}
+			}else if(randombee == 3){
+				if(DropIt2(chanceConfig.getDouble("chance_percent.bee.angry", defpercent))){
+					return MobHeads.valueOf("BEE_ANGRY").getTexture().toString();
+				}
+			}else if(randombee == 2){
+				if(DropIt2(chanceConfig.getDouble("chance_percent.bee.pollinated", defpercent))){
+					return MobHeads.valueOf("BEE_POLLINATED").getTexture().toString();
+				}
+			}else if(randombee == 1){
+				if(DropIt2(chanceConfig.getDouble("chance_percent.bee.chance_percent", defpercent))){
+					return MobHeads.valueOf("BEE").getTexture().toString();
+				}
+			}
 			break;
 		case "LLAMA":
 			String[] daLlamaColor = {"BROWN","CREAMY","GRAY","WHITE"};
@@ -3176,7 +3218,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				randomllama = 4;
 			}
 			//log(name + "_" + daLlamaColor);
-			if(DropIt2(chanceConfig.getDouble("chance_percent.llama." + daLlamaColor[randomllama].toLowerCase(), defpercent))){		
+			if(DropIt2(chanceConfig.getDouble("chance_percent.llama." + daLlamaColor[randomllama].toLowerCase(), defpercent))){
 				return LlamaHeads.valueOf(name + "_" + daLlamaColor[randomllama]).getTexture().toString();
 			}
 			break;
@@ -3200,13 +3242,13 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			}else {
 				randomhorse = 1;
 			}
-					//.replace("g", "G").replace("wh", "Wh").replace("_", " ") + " Horse Head";
+			//.replace("g", "G").replace("wh", "Wh").replace("_", " ") + " Horse Head";
 			if(DropIt2(chanceConfig.getDouble("chance_percent.horse." + daHorseColor[randomhorse].toLowerCase(), defpercent))){
 				return HorseHeads.valueOf(name + "_" + daHorseColor).getTexture().toString();
 			}
 			break;
 		case "MOOSHROOM":
-			 	name = "MUSHROOM_COW";
+			name = "MUSHROOM_COW";
 		case "MUSHROOM_COW":
 			String[] daCowVariant = {"BROWN","RED"};
 			int randomcow;
@@ -3268,7 +3310,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				randomviltyp = 2;
 				randomvilpro = 11;
 			}
-			if(DropIt2(chanceConfig.getDouble("chance_percent.villager." + daVillagerType[randomviltyp].toLowerCase() + "." + 
+			if(DropIt2(chanceConfig.getDouble("chance_percent.villager." + daVillagerType[randomviltyp].toLowerCase() + "." +
 					daVillagerProfession[randomvilpro].toLowerCase(), defpercent))){
 				return VillagerHeads.valueOf(name + "_" + daVillagerProfession[randomvilpro] + "_" + daVillagerType[randomviltyp]).getTexture().toString();
 			}
@@ -3299,9 +3341,9 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				return SheepHeads.valueOf(name + "_" + daSheepColor[randomshe]).getTexture().toString();
 			}
 			break;//*/
-		/**case "STRIDER":
+			/**case "STRIDER":
 			Strider strider = (Strider) entity;
-			
+
 			break;*/
 		case "AXOLOTL":
 			String[] daAxolotlVariant = {"BLUE","CYAN","GOLD","LUCY","WILD"};
@@ -3333,71 +3375,71 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				return MobHeads.valueOf(name).getTexture().toString();
 			}
 			break;
-    	
-    	}
-    	return "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI3YWY5ZTQ0MTEyMTdjN2RlOWM2MGFjYmQzYzNmZDY1MTk3ODMzMzJhMWIzYmM1NmZiZmNlOTA3MjFlZjM1In19fQ==";
-    }//*/
-    
-    public boolean chance25oftrue() {
-    	//For 25% chance of true
-    	return (random.nextInt(4) == 0) ? true : false;
-    }
-    public void consoleLog(String string) {
-    	if(!silent_console) {
-    		loading(string);
-    	}
-    }
-	
-	public String LoadTime(long startTime) {
-	    long elapsedTime = System.currentTimeMillis() - startTime;
-	    long minutes = TimeUnit.MILLISECONDS.toMinutes(elapsedTime);
-	    long seconds = TimeUnit.MILLISECONDS.toSeconds(elapsedTime) % 60;
-	    long milliseconds = elapsedTime % 1000;
-	    
-	    if (minutes > 0) {
-	        return String.format("%d min %d s %d ms.", minutes, seconds, milliseconds);
-	    } else if (seconds > 0) {
-	        return String.format("%d s %d ms.", seconds, milliseconds);
-	    } else {
-	        return String.format("%d ms.", elapsedTime);
-	    }
+
+		}
+		return "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI3YWY5ZTQ0MTEyMTdjN2RlOWM2MGFjYmQzYzNmZDY1MTk3ODMzMzJhMWIzYmM1NmZiZmNlOTA3MjFlZjM1In19fQ==";
+	}//*/
+
+	public boolean chance25oftrue() {
+		//For 25% chance of true
+		return (random.nextInt(4) == 0) ? true : false;
 	}
-    
+	public void consoleLog(String string) {
+		if(!silent_console) {
+			loading(string);
+		}
+	}
+
+	public String LoadTime(long startTime) {
+		long elapsedTime = System.currentTimeMillis() - startTime;
+		long minutes = TimeUnit.MILLISECONDS.toMinutes(elapsedTime);
+		long seconds = TimeUnit.MILLISECONDS.toSeconds(elapsedTime) % 60;
+		long milliseconds = elapsedTime % 1000;
+
+		if (minutes > 0) {
+			return String.format("%d min %d s %d ms.", minutes, seconds, milliseconds);
+		} else if (seconds > 0) {
+			return String.format("%d s %d ms.", seconds, milliseconds);
+		} else {
+			return String.format("%d ms.", elapsedTime);
+		}
+	}
+
 
 	@SuppressWarnings("static-access")
 	public String get(String key, String... defaultValue) {
 		return lang2.get(key, defaultValue);
 	}
-	
+
 	public boolean isPluginRequired(String pluginName) {
-	    String[] requiredPlugins = {"SinglePlayerSleep", "MoreMobHeads", "NoEndermanGrief", "ShulkerRespawner", "DragonDropElytra", "RotationalWrench", "SilenceMobs", "VillagerWorkstationHighlights"};
-	    for (String requiredPlugin : requiredPlugins) {
-	        if (getServer().getPluginManager().getPlugin(requiredPlugin) != null && getServer().getPluginManager().isPluginEnabled(requiredPlugin)) {
-	            if (requiredPlugin.equals(pluginName)) {
-	                return true;
-	            } else {
-	                return false;
-	            }
-	        }
-	    }
-	    return true;
+		String[] requiredPlugins = {"SinglePlayerSleep", "MoreMobHeads", "NoEndermanGrief", "ShulkerRespawner", "DragonDropElytra", "RotationalWrench", "SilenceMobs", "VillagerWorkstationHighlights"};
+		for (String requiredPlugin : requiredPlugins) {
+			if ((getServer().getPluginManager().getPlugin(requiredPlugin) != null) && getServer().getPluginManager().isPluginEnabled(requiredPlugin)) {
+				if (requiredPlugin.equals(pluginName)) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
-    
+
 	public void dumpConfig(FileConfiguration config) {
-	    for (String key : config.getKeys(true)) {
-	        Object value = config.get(key);
-	        if (value != null && value.getClass().isArray()) {
-	            value = Arrays.asList((Object[]) value);
-	        }
-	        log(key + "=" + value);
-	    }
+		for (String key : config.getKeys(true)) {
+			Object value = config.get(key);
+			if ((value != null) && value.getClass().isArray()) {
+				value = Arrays.asList((Object[]) value);
+			}
+			log(key + "=" + value);
+		}
 	}
-	
+
 	public String getNamedTropicalFishName(Pattern pattern, DyeColor color1, DyeColor color2) {
-	    String key = pattern.name() + "-" + color1.name() + "-" + color2.name();
-	    log("key=" + key);
-	    log("namedTropicalFish=" +  namedTropicalFish.isEmpty());
-	    return namedTropicalFish.getOrDefault(key, "TROPICAL_FISH");
+		String key = pattern.name() + "-" + color1.name() + "-" + color2.name();
+		log("key=" + key);
+		log("namedTropicalFish=" +  namedTropicalFish.isEmpty());
+		return namedTropicalFish.getOrDefault(key, "TROPICAL_FISH");
 	}
-	
+
 }

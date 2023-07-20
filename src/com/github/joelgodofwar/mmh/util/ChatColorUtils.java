@@ -1,5 +1,8 @@
 package com.github.joelgodofwar.mmh.util;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.bukkit.ChatColor;
 
 public class ChatColorUtils 
@@ -52,36 +55,35 @@ public class ChatColorUtils
 	    		.replace("<ITALIC>", "" + ChatColor.ITALIC).replace("<RESET>", "" + ChatColor.RESET);
 	  return s;
 	}
-	public static String setColors(String s)
-	{
-	    s = s.replace("&0", ChatColor.BLACK.toString() )							.replace("&1", ChatColor.DARK_BLUE.toString() )
-	    		.replace("&2", ChatColor.DARK_GREEN.toString() )					.replace("&3", ChatColor.DARK_AQUA.toString() )
-	    		.replace("&4", ChatColor.DARK_RED.toString() )						.replace("&5", ChatColor.DARK_PURPLE.toString() )
-	    		.replace("&6", ChatColor.GOLD.toString() )							.replace("&7", ChatColor.GRAY.toString() )
-	    		.replace("&8", ChatColor.DARK_GRAY.toString() )						.replace("&9", ChatColor.BLUE.toString() )
-	    		.replace("&a", ChatColor.GREEN.toString() )							.replace("&b", ChatColor.AQUA.toString() )
-	    		.replace("&c", ChatColor.RED.toString() )							.replace("&d", ChatColor.LIGHT_PURPLE.toString() )
-	    		.replace("&e", ChatColor.YELLOW.toString() )						.replace("&f", ChatColor.WHITE.toString() )
-	    		.replace("&k", ChatColor.MAGIC.toString() )							.replace("&l", ChatColor.BOLD.toString() )
-	    		.replace("&m", ChatColor.STRIKETHROUGH.toString() )					.replace("&n", ChatColor.UNDERLINE.toString() )
-	    		.replace("&o", ChatColor.ITALIC.toString() )						.replace("&r", ChatColor.RESET.toString() )
-	    		.replace("&A", ChatColor.GREEN.toString() )							.replace("&B", ChatColor.AQUA.toString() )
-	    		.replace("&C", ChatColor.RED.toString() )							.replace("&D", ChatColor.LIGHT_PURPLE.toString() )
-	    		.replace("&E", ChatColor.YELLOW.toString() )						.replace("&F", ChatColor.WHITE.toString() )
-	    		.replace("&K", ChatColor.MAGIC.toString() )							.replace("&L", ChatColor.BOLD.toString() )
-	    		.replace("&M", ChatColor.STRIKETHROUGH.toString() )					.replace("&N", ChatColor.UNDERLINE.toString() )
-	    		.replace("&O", ChatColor.ITALIC.toString() )						.replace("&R", ChatColor.RESET.toString() )
-	    		.replace("<BLACK>", ChatColor.BLACK.toString() )					.replace("<DARK_BLUE>", ChatColor.DARK_BLUE.toString() )
-	    		.replace("<DARK_GREEN>", ChatColor.DARK_GREEN.toString() )			.replace("<DARK_AQUA>", ChatColor.DARK_AQUA.toString() )
-	    		.replace("<DARK_RED>", ChatColor.DARK_RED.toString() )				.replace("<DARK_PURPLE>", ChatColor.DARK_PURPLE.toString() )
-	    		.replace("<GOLD>", ChatColor.GOLD.toString() )						.replace("<GRAY>", ChatColor.GRAY.toString() )
-	    		.replace("<DARK_GRAY>", ChatColor.DARK_GRAY.toString() )			.replace("<BLUE>", ChatColor.BLUE.toString() )
-	    		.replace("<GREEN>", ChatColor.GREEN.toString() )					.replace("<AQUA>", ChatColor.AQUA.toString() )
-	    		.replace("<RED>", ChatColor.RED.toString() )						.replace("<LIGHT_PURPLE>", ChatColor.LIGHT_PURPLE.toString() )
-	    		.replace("<YELLOW>", ChatColor.YELLOW.toString() )					.replace("<WHITE>", ChatColor.WHITE.toString() )
-	    		.replace("<MAGIC>", ChatColor.MAGIC.toString() )					.replace("<BOLD>", ChatColor.BOLD.toString() )
-	    		.replace("<STRIKETHROUGH>", ChatColor.STRIKETHROUGH.toString() )	.replace("<UNDERLINE>", ChatColor.UNDERLINE.toString() )
-	    		.replace("<ITALIC>", ChatColor.ITALIC.toString() )					.replace("<RESET>", ChatColor.RESET.toString() );
-	    return s;
+	public static String setColors(String string) {
+	    // Replace color placeholders while ignoring case
+	    Pattern pattern = Pattern.compile("<(\\w+)>", Pattern.CASE_INSENSITIVE);
+	    Matcher matcher = pattern.matcher(string);
+	    while (matcher.find()) {
+	        String colorPlaceholder = matcher.group(1);
+	        String color = setColors2("<" + colorPlaceholder.toUpperCase() + ">");
+	        if (color != null) {
+	            string = string.replaceFirst(Pattern.quote(matcher.group()), color);
+	        }
+	    }
+
+	    // Apply color formatting
+	    string = ChatColor.translateAlternateColorCodes('&', string);
+
+	    return string;
+	}
+	public static String setColors2(String string)	{
+	    string = 	string.replace("<BLACK>", "&0" )					.replace("<DARK_BLUE>", "&1" )
+	    		.replace("<DARK_GREEN>", "&2" )				.replace("<DARK_AQUA>", "&3" )
+	    		.replace("<DARK_RED>", "&4" )				.replace("<DARK_PURPLE>", "&5" )
+	    		.replace("<GOLD>", "&6" )					.replace("<GRAY>", "&7" )
+	    		.replace("<DARK_GRAY>", "&8" )				.replace("<BLUE>", "&9" )
+	    		.replace("<GREEN>", "&a" )					.replace("<AQUA>", "&b" )
+	    		.replace("<RED>", "&c" )					.replace("<LIGHT_PURPLE>", "&d" )
+	    		.replace("<YELLOW>", "&e" )					.replace("<WHITE>", "&f" )
+	    		.replace("<MAGIC>", "&k" )					.replace("<BOLD>", "&l" )
+	    		.replace("<STRIKETHROUGH>", "&m" )			.replace("<UNDERLINE>", "&n" )
+	    		.replace("<ITALIC>", "&o" )					.replace("<RESET>", "&r" );
+	    return string;
 	}
 }

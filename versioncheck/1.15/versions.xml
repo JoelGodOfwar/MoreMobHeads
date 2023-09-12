@@ -10,7 +10,7 @@ D6	Fixing color code conversion for beheading messages. Fixed some damage source
 D7	Fixed beheading weapon detection. messages.yml will now auto update, preserving old messages.
 D8	Fixced GiveMH with several mob names. Added new Wither/Vex coding to 1.19 EventHandler.
 	Killed by lore can now display color codes. Can be changed in countrycode_mobnames.yml file.
-	If your en_US_mobnames.yml does not have "killedby: <RED>Killed <RESET>By <YELLOW><player>", delete your lang folder, mmh will repopulate it.
+	If your en_US_mobnames.yml does not have "killedby: &lt;RED&gt;Killed &lt;RESET&gt;By &lt;YELLOW&gt;&lt;player&gt;", delete your lang folder, mmh will repopulate it.
 </notes>
     <link>https://www.spigotmc.org/resources/moremobheads.73997/history</link>
   </release>

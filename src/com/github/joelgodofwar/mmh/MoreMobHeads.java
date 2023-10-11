@@ -282,8 +282,11 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		}
 		String checkconfigversion = oldconfig.getString("version", "1.0.0");
 		if(checkconfigversion != null){
-			log("config.yml, Expected version:[" + configVersion + "], Read version:[" + checkconfigversion + "]\nThese should be the same.");
+			if(checkconfigversion.equalsIgnoreCase("1.0.0")) {
+				log(Ansi.RED + "Error reading config.yml version" + Ansi.RESET);
+			}
 			if(!checkconfigversion.equalsIgnoreCase(configVersion)){
+				log("config.yml, Expected version:[" + configVersion + "], Read version:[" + checkconfigversion + "]\nThese should be the same.");
 				try {
 					copyFile_Java7(getDataFolder() + "" + File.separatorChar + "config.yml",getDataFolder() + "" + File.separatorChar + "old_config.yml");
 				} catch (IOException e) {
@@ -1127,14 +1130,6 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	}
 
 	public boolean DropIt(EntityDeathEvent event, double chancepercent){// TODO: DropIt
-		if(event.getEntity().getKiller() instanceof Creeper) {
-			Creeper creeper = (Creeper) event.getEntity().getKiller();
-			if(creeper.isPowered()) {
-				return true;
-			}else {
-				return false;
-			}
-		}
 		Player player = event.getEntity().getKiller();
 		ItemStack itemstack = event.getEntity().getKiller().getInventory().getItemInMainHand();
 		if(itemstack != null){

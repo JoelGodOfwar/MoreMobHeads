@@ -1,3 +1,10 @@
+1.0.34
+D1	
+1.0.33
+D1	Fixed an issue with GiveMH that caused an exception.
+D2	Fixed an issue with charged creepers, and added 1.20.2 support.
+D3	Fixed an issue with commands and console not having permissions.
+D4	
 1.0.32
 D1	Added TNT and End Crystal(Hands, Arrow, Snowball, Trident) as possible weapons in the beheading messages.
 D2	Changed to a per player random system, this should make the odds more accurate.

@@ -672,7 +672,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 						double cchance = ConfigHelper.Double(chanceConfig, "chance_percent.creeper", defpercent);
 						if (creeper.isPowered()) {
 							name = "CREEPER_CHARGED";
-							cchance = 1.00;
+							cchance = ConfigHelper.Double(chanceConfig, "chance_percent.creeper_charged", defpercent);
 						}
 						if (mmh.DropIt(event, cchance)) {
 							if (mmh.getConfig().getBoolean("vanilla_heads.creeper", false)
@@ -2190,7 +2190,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 			}
 			if (args[0].equalsIgnoreCase("reload")) {
 				String perm = "moremobheads.reload";
-				boolean hasPerm = sender.hasPermission(perm);
+				boolean hasPerm = sender.hasPermission(perm) || !(sender instanceof Player) ? true : false;
 				if (debug) {
 					mmh.logDebug(sender.getName() + " has the permission " + perm + "=" + hasPerm);
 				}
@@ -2375,7 +2375,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 			}
 			if (args[0].equalsIgnoreCase("toggledebug") || args[0].equalsIgnoreCase("td")) {
 				String perm = "moremobheads.toggledebug";
-				boolean hasPerm = sender.hasPermission(perm);
+				boolean hasPerm = sender.hasPermission(perm) || !(sender instanceof Player) ? true : false;
 				if (debug) {
 					logDebug(sender.getName() + " has the permission " + perm + "=" + hasPerm);
 				}
@@ -3157,7 +3157,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 				// cmd 0 1 2 3
 				if (args.length == 4) {
 					String perm = "moremobheads.give";
-					boolean hasPerm = sender.hasPermission(perm);
+					boolean hasPerm = sender.hasPermission(perm) || !(sender instanceof Player) ? true : false;
 					if (debug) {
 						logDebug(sender.getName() + " has the permission " + perm + "=" + hasPerm);
 					}
@@ -3336,7 +3336,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 			if (args[0].equalsIgnoreCase("givePH")) {
 				if (args.length >= 2) {
 					String perm = "moremobheads.give";
-					boolean hasPerm = sender.hasPermission(perm);
+					boolean hasPerm = sender.hasPermission(perm) || !(sender instanceof Player) ? true : false;
 					if (debug) {
 						logDebug(sender.getName() + " has the permission " + perm + "=" + hasPerm);
 					}
@@ -3392,7 +3392,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 				}
 				if (args.length >= 2) {
 					String perm = "moremobheads.give";
-					boolean hasPerm = sender.hasPermission(perm);
+					boolean hasPerm = sender.hasPermission(perm) || !(sender instanceof Player) ? true : false;
 					if (debug) {
 						logDebug(sender.getName() + " has the permission " + perm + "=" + hasPerm);
 					}
@@ -3626,7 +3626,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 								}
 							}
 							autoCompletes.remove(autoCompletes.indexOf("axolotl"));
-							autoCompletes.remove(autoCompletes.indexOf("bee.chance_percent"));
+							autoCompletes.remove(autoCompletes.indexOf("bee"));
 							autoCompletes.remove(autoCompletes.indexOf("cat"));
 							autoCompletes.remove(autoCompletes.indexOf("fox"));
 							autoCompletes.remove(autoCompletes.indexOf("goat"));

@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>MoreMobHeads</groupId>
   <artifactId>MoreMobHeads</artifactId>
-  <version>1.15_1.0.32.D8-DEV</version>
+  <version>1.15_1.0.33</version>
   <name>More Mob Heads</name>
   <description>Drops mob heads when a mob is killed.</description>
   <scm>
@@ -101,7 +101,7 @@
     <dependency>
       <groupId>lib.github.joelgodofwar</groupId>
       <artifactId>MoreMobHeadsLib</artifactId>
-      <version>0.1.5-SNAPSHOT</version>
+      <version>0.1.7-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.spigotmc</groupId>

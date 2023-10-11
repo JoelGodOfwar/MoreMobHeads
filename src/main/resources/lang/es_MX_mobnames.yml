@@ -294,10 +294,9 @@ wandering_trader: Cabeza de Mercader Errante
 warden: Cabeza de Warden
 witch: Cabeza de Bruja
 wither: 
-  1: Cabeza de Wither
-  2: Invulnerable Wither Head
-  3: Armored Wither Head
-  4: Armored Invulnerable Wither Head
+  normal: Wither Head
+  projectile: Wither Projectile
+  blue_projectile: Blue Wither Projectile
 wither_skeleton: Cabeza de Esqueleto Negro
 wolf: Cabeza de Lobo
 zoglin: Cabeza de Zoglin

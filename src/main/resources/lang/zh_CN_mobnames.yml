@@ -291,11 +291,10 @@ vindicator: 卫道士头
 wandering_trader: 流浪商人头
 warden: 守望者头
 witch: 巫婆头
-wither: 
-  1: 枯萎头
-  2: Invulnerable Wither Head
-  3: Armored Wither Head
-  4: Armored Invulnerable Wither Head
+wither:
+  normal: 枯萎头
+  projectile: 枯萎投射物
+  blue_projectile: 蓝色枯萎投射物
 wither_skeleton: 凋灵骷髅头
 wolf: 狼头
 zoglin: Zoglin头

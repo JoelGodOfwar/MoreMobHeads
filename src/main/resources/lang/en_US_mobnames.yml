@@ -1,4 +1,4 @@
-killedby: Killed By
+killedby: <RED>Killed <RESET>By <YELLOW><player>
 player: Player Head
 allay: Allay Head
 axolotl:
@@ -173,6 +173,7 @@ tropical_fish:
     yellow_tang: Yellow Tang Head
 turtle: Turtle Head
 vex: Vex Head
+vex_angry: Angry Vex Head
 villager:
   desert:
     armorer: Desert Armorer Villager Head
@@ -291,10 +292,9 @@ wandering_trader: Wandering Trader Head
 warden: Warden Head
 witch: Witch Head
 wither:
-  1: Wither Head
-  2: Invulnerable Wither Head
-  3: Armored Wither Head
-  4: Armored Invulnerable Wither Head
+  normal: Wither Head
+  projectile: Wither Projectile Head
+  blue_projectile: Blue Wither Projectile Head
 wither_skeleton: Wither Skeleton Head
 wolf: Wolf Head
 wolf_angry: Angry Wolf Head

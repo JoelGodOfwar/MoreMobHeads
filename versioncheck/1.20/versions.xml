@@ -7,7 +7,7 @@ D3	Fixed an issue with commands and console not having permissions.</notes>
     <link>https://www.spigotmc.org/resources/moremobheads.73997/history</link>
   </release>
   <developer>
-    <version>1.20_1.0.34.D8</version>
+    <version>1.20_1.0.34.D15</version>
     <notes>D1	Fixed missing vex.angry head in giveMH command.
 D2	Changed to PlayerProfile created heads via bukkit API.
 D3	Fixed GiveMH and GivePH commands.
@@ -15,7 +15,15 @@ D4	Fixed CustomTrader heads losing sound 1.20-1.20.2 less than Build 3936.
 D5	Build 3936 did not fix CustomTrader heads from losing their sound. Will use my fix until further notice.
 D6	Fixed reload command. Removed block_heads_1_17_3.yml, and block_heads_1_19.yml
 D7	Fixed issue with reload command causing exception.
-D8	Fixed issue with player heads number set to zero. Fixed Mob heads having long name.</notes>
+D8	Fixed issue with player heads number set to zero. Fixed Mob heads having long name.
+D9	Playerheads from player kills now are placed in inventory or dropped naturally instead of added to drops.
+	Added more debug logs, and made debug logs easier to understand on head drop.
+D10	Added debug logs to player kill heads.
+D11	Fixed chance_config updater.
+D12	PlayerHead skin fix?
+D13	Restructured config.yml, fixed displayname/name for Killed by lore.
+D14	Testing Config value verifier.
+D15	If debug is true for any reason mmh will dump the config into console on loading.</notes>
     <link>https://discord.com/channels/654087250665144321/662940711167066123</link>
   </developer>
 </versions>

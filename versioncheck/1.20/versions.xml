@@ -23,7 +23,11 @@ D11	Fixed chance_config updater.
 D12	PlayerHead skin fix?
 D13	Restructured config.yml, fixed displayname/name for Killed by lore.
 D14	Testing Config value verifier.
-D15	If debug is true for any reason mmh will dump the config into console on loading.</notes>
+D15	If debug is true for any reason mmh will dump the config into console on loading.
+D16	Fixed mobname lang file checker so it does not replace files everytime.
+D17	Fixed missing UUIDs from 5 mobs.
+D18	NameTag if mob has helmet head will drop naturally, named mobs with helmet will not drop head when killed.
+</notes>
     <link>https://discord.com/channels/654087250665144321/662940711167066123</link>
   </developer>
 </versions>

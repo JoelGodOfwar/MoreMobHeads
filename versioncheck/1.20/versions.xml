@@ -7,7 +7,7 @@ D3	Fixed an issue with commands and console not having permissions.</notes>
     <link>https://www.spigotmc.org/resources/moremobheads.73997/history</link>
   </release>
   <developer>
-    <version>1.20_1.0.34.D21</version>
+    <version>1.20_1.0.34.D22</version>
     <notes>D1	Fixed missing vex.angry head in giveMH command.
 D2	Changed to PlayerProfile created heads via bukkit API.
 D3	Fixed GiveMH and GivePH commands.
@@ -29,7 +29,8 @@ D17	Fixed missing UUIDs from 5 mobs.
 D18	NameTag if mob has helmet head will drop naturally, named mobs with helmet will not drop head when killed.
 D19	Added Exception handling system.
 D20	Fixed errors in some mobnames files.
-D21    New logging system should look cleaner.</notes>
+D21    New logging system should look cleaner.
+D22	Fixed issue with new logger system.</notes>
     <link>https://discord.com/channels/654087250665144321/662940711167066123</link>
   </developer>
 </versions>

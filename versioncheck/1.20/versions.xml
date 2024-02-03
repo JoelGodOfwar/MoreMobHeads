@@ -1,9 +1,33 @@
 <versions>
   <release>
-    <version>1.15_1.0.33</version>
-    <notes>D1	Fixed an issue with GiveMH that caused an exception.
-D2	Fixed an issue with charged creepers, and added 1.20.2 support.
-D3	Fixed an issue with commands and console not having permissions.</notes>
+    <version>1.20_1.0.34</version>
+    <notes>D1	Fixed missing vex.angry head in giveMH command.
+D2	Changed to PlayerProfile created heads via bukkit API.
+D3	Fixed GiveMH and GivePH commands.
+D4	Fixed CustomTrader heads losing sound 1.20-1.20.2 less than Build 3936.
+D5	Build 3936 did not fix CustomTrader heads from losing their sound. Will use my fix until further notice.
+D6	Fixed reload command. Removed block_heads_1_17_3.yml, and block_heads_1_19.yml
+D7	Fixed issue with reload command causing exception.
+D8	Fixed issue with player heads number set to zero. Fixed Mob heads having long name.
+D9	Playerheads from player kills now are placed in inventory or dropped naturally instead of added to drops.
+	Added more debug logs, and made debug logs easier to understand on head drop.
+D10	Added debug logs to player kill heads.
+D11	Fixed chance_config updater.
+D12	PlayerHead skin fix?
+D13	Restructured config.yml, fixed displayname/name for Killed by lore.
+D14	Testing Config value verifier.
+D15	If debug is true for any reason mmh will dump the config into console on loading.
+D16	Fixed mobname lang file checker so it does not replace files everytime.
+D17	Fixed missing UUIDs from 5 mobs.
+D18	NameTag if mob has helmet head will drop naturally, named mobs with helmet will not drop head when killed.
+D19	Added Exception handling system.
+D20	Fixed errors in some mobnames files.
+D21	New logging system should look cleaner.
+D22	Fixed issue with new logger system.
+D23	Fixed base64 codes for Zombie Villagers.
+D24	Fixed issue of some commands not telling user they do not have permission to use.
+D25	Fixed and issue where chance_config.yml would be deleted upon config.yml update.
+D26	Fixed some typos in config calls.</notes>
     <link>https://www.spigotmc.org/resources/moremobheads.73997/history</link>
   </release>
   <developer>

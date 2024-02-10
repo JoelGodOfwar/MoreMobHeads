@@ -16,6 +16,6 @@ ___A list of your plugins___
 ___This can be found by running `/version` on your server. `latest` is not a proper version number; we require the output of `/version` so we can properly track down the issue.___
 
 ### Submit issue on Discord:
-___https://discord.gg/Fq9HQ2dmtd___
+https://discord.gg/Fq9HQ2dmtd
 
-Issues submitted here will be closed with a comment pointing to the discord server.
+# Issues submitted here will be closed with a comment pointing to the discord server.

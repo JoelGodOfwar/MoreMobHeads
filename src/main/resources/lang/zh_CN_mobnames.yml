@@ -1,13 +1,15 @@
 # Add the translations for your language here
 # 在此处添加您的语言的翻译
+version: 1.0.2
+killedby: <RED>Killed <RESET>By <YELLOW><player>
 player: Player头
 allay: 悦灵头
 axolotl:
-    blue: 藍蠑螈頭
-    cyan: 青色蠑螈頭
-    gold: 金蠑螈頭
-    lucy: 露西蠑螈頭
-    wild: 野生蠑螈頭
+  blue: 藍蠑螈頭
+  cyan: 青色蠑螈頭
+  gold: 金蠑螈頭
+  lucy: 露西蠑螈頭
+  wild: 野生蠑螈頭
 bat: 蝙蝠头
 bee:
   angry_pollinated: 愤怒授粉的蜜蜂头
@@ -54,8 +56,8 @@ ghast: 恶魂头
 giant: 巨人头
 glow_squid: 辉光鱿鱼头
 goat:
-    normal: 山羊頭
-    screaming: 尖叫山羊頭
+  normal: 山羊頭
+  screaming: 尖叫山羊頭
 guardian: 守卫者头
 hoglin: Hoglin头
 horse:
@@ -149,31 +151,32 @@ trader_llama:
   gray: 灰色羊驼商人头
   white: 白色羊驼商人头
 tropical_fish:
-    tropical_fish: Tropical Fish Head
-    anemone: Anemone Head
-    black_tang: Black Tang Head
-    blue_tang: Blue Tang Head
-    butterflyfish: Butterflyfish Head
-    cichlid: Cichlid Head
-    clownfish: Clownfish Head
-    cotton_candy_betta: Cotton Candy Betta Head
-    dottyback: Dottyback Head
-    emperor_red_snapper: Emperor Red Snapper Head
-    goatfish: Goatfish Head
-    moorish_idol: Moorish Idol Head
-    ornate_butterflyfish: Ornate Butterflyfish Head
-    parrotfish: Parrotfish Head
-    queen_angelfish: Queen Angelfish Head
-    red_cichlid: Red Cichlid Head
-    red_lipped_blenny: Red Lipped Blenny Head 
-    red_snapper: Red Snapper Head
-    threadfin: Threadfin Head
-    tomato_clownfish: Tomato Clownfish Head
-    triggerfish: Triggerfish Head
-    yellow_parrotfish: Yellow Parrotfish Head
-    yellow_tang: Yellow Tang Head
+  tropical_fish: Tropical Fish
+  anemone: Anemone
+  black_tang: Black Tang
+  blue_tang: Blue Tang
+  butterflyfish: Butterflyfish
+  cichlid: Cichlid
+  clownfish: Clownfish
+  cotton_candy_betta: Cotton Candy Betta
+  dottyback: Dottyback
+  emperor_red_snapper: Emperor Red Snapper
+  goatfish: Goatfish
+  moorish_idol: Moorish Idol
+  ornate_butterflyfish: Ornate Butterflyfish
+  parrotfish: Parrotfish
+  queen_angelfish: Queen Angelfish
+  red_cichlid: Red Cichlid
+  red_lipped_blenny: Red Lipped Blenny 
+  red_snapper: Red Snapper
+  threadfin: Threadfin
+  tomato_clownfish: Tomato Clownfish
+  triggerfish: Triggerfish
+  yellow_parrotfish: Yellow Parrotfish
+  yellow_tang: Yellow Tang
 turtle: 龟头
-vex: Vex 头
+vex: Vex
+vex_angry: Angry Vex
 villager:
   desert:
     armorer: 沙漠军械员村民头
@@ -297,8 +300,10 @@ wither:
   blue_projectile: 蓝色枯萎投射物
 wither_skeleton: 凋灵骷髅头
 wolf: 狼头
+wolf_angry: Angry Wolf
 zoglin: Zoglin头
 zombie: 僵尸头
+zombie_hoglin: Zombie Hoglin
 zombie_horse: 僵尸马头
 zombie_pigman: 僵尸猪人头
 zombified_piglin: 僵尸Piglin头

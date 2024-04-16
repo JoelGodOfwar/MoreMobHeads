@@ -5,15 +5,14 @@ import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.Plugin;
 
 import com.github.joelgodofwar.mmh.MoreMobHeads;
 
 public class ConfigAPI  {
 
 	public final static Logger logger = Logger.getLogger("Minecraft");
-	
-	public static  void CheckForConfig(Plugin plugin){
+
+	public void CheckForConfig(MoreMobHeads plugin){
 		try{
 			if(!plugin.getDataFolder().exists()){
 				log(": Data Folder doesn't exist");
@@ -27,33 +26,33 @@ public class ConfigAPI  {
 				log("config.yml not found, creating!");
 				plugin.saveDefaultConfig();
 				FileConfiguration config = plugin.getConfig();
-				
+
 				config.options().copyDefaults(true);
 				plugin.saveConfig();
 			}
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
-	
-	public static void Reloadconfig(Plugin plugin){
+
+	public static void Reloadconfig(MoreMobHeads plugin){
 		// Load config.
 		FileConfiguration config = plugin.getConfig();
 		String daString = config.getString("debug").replace("'", "") + ",";
-		
+
 		if(daString.contains("true")){
-			MoreMobHeads.debug = true;
+			plugin.debug = true;
 		}else{
-			MoreMobHeads.debug = false;
+			plugin.debug = false;
 		}
 		String daString2 = config.getString("auto_update_check").replace("'", "") + ",";
 		if(daString2.contains("true")){
-			MoreMobHeads.UpdateCheck = true;
+			plugin.UpdateCheck = true;
 		}else{
-			MoreMobHeads.UpdateCheck = false;
+			plugin.UpdateCheck = false;
 		}
-		
-		if(MoreMobHeads.debug){log("UpdateCheck = " + MoreMobHeads.UpdateCheck);} //TODO: Logger
+
+		if(plugin.debug){log("UpdateCheck = " + plugin.UpdateCheck);} //TODO: Logger
 	}
 	public static  void log(String dalog){
 		Bukkit.getLogger().info(dalog);

@@ -22,10 +22,10 @@ import com.github.joelgodofwar.mmh.MoreMobHeads;
 public class NameTag {
 
 	public static boolean canWearHead(LivingEntity mob) {
-		if(mob instanceof Skeleton||mob instanceof Zombie||mob instanceof PigZombie||mob instanceof Villager||
-			mob instanceof Drowned||mob instanceof Stray||mob instanceof Husk||mob instanceof WitherSkeleton||
-			mob instanceof ZombieVillager||mob instanceof Evoker||mob instanceof WanderingTrader||mob instanceof Vex||
-			mob instanceof Illusioner||mob instanceof Pillager||mob instanceof Vindicator){
+		if((mob instanceof Skeleton)||(mob instanceof Zombie)||(mob instanceof PigZombie)||(mob instanceof Villager)||
+				(mob instanceof Drowned)||(mob instanceof Stray)||(mob instanceof Husk)||(mob instanceof WitherSkeleton)||
+				(mob instanceof ZombieVillager)||(mob instanceof Evoker)||(mob instanceof WanderingTrader)||(mob instanceof Vex)||
+				(mob instanceof Illusioner)||(mob instanceof Pillager)||(mob instanceof Vindicator)){
 			return true;
 		}
 		double vers = Double.parseDouble( MoreMobHeads.getMCVersion().substring(2, 4) ); // 1.16.2

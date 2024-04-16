@@ -1,7 +1,7 @@
 <versions>
   <release>
-    <version>1.20_1.0.36</version>
-    <notes>D1	Fixed a console spam bug.</notes>
+    <version>1.20_1.0.37</version>
+    <notes>D1 Removed Birthday Message code. Please accept my apologies.</notes>
     <link>https://www.spigotmc.org/resources/moremobheads.73997/history</link>
   </release>
   <developer>

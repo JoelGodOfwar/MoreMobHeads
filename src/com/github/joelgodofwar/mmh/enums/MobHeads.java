@@ -118,7 +118,7 @@ public enum MobHeads {
 			"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTJiYTM0NDE2NjcwNDU0YjFhMjA0OTZmODBiOTM5ODUyOWY0OTAwM2ZjNjEzZWI5MzAyNDhlYTliNWQxYTM5MSJ9fX0="
 			),
 	HOGLIN(
-			"Hoglin", "hoglin", "",
+			"Hoglin", "hoglin", "6ba8c18c-881a-4829-86e6-d641611ad18e",
 			"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGE3ZTI4OGUzNTQ0NWI1MjhjNDAxZWJjNzkwZjU1MWY2ZGM3NDkxYzBkZTY2YjYzNjI2YzUxNzU5MWJkNTViNCJ9fX0="
 			),
 	HUSK(
@@ -158,7 +158,7 @@ public enum MobHeads {
 			"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTU0NmU0MzZkMTY2YjE3ZjA1MjFiZDg1MzhlYTEzY2Q2ZWUzYjVkZjEwMmViMzJlM2U0MjVjYjI4NWQ0NDA2MyJ9fX0="
 			),
 	PANDA_BROWN(
-			"Drown Panda",	"panda.brown",	"e19e8aae-3bf4-4c7a-83bc-9a8c9f6ad544",
+			"Brown Panda",	"panda.brown",	"e19e8aae-3bf4-4c7a-83bc-9a8c9f6ad544",
 			"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWQ1ZjZkNjEyNjcyODY3MWI0NGMxYzc3NWY5OTYxNzQyNGUzMzYxMWI1ZDMxYWQyYWNmZjI4MDRlYjk2ZWIwNiJ9fX0="
 			),
 	PANDA_LAZY(
@@ -278,11 +278,11 @@ public enum MobHeads {
 			"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTkyYjU1OTcwODVlMzVkYjUzZDliZGEwMDhjYWU3MmIyZjAwY2Q3ZDRjZDhkYzY5ZmYxNzRhNTViNjg5ZTZlIn19fQ=="
 			),
 	STRIDER(
-			"Strider",	"strider",	"",
+			"Strider",	"strider",	"9fde30af-3e79-433b-b4af-ae9cc52b0c96",
 			"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGQ2OWVlODMxMmNjN2IxY2ZiZDk1ZTQxZTg5NzFiMmIzNjAyY2FmYTExMDJjMWNjODhhZGQ2MTdmMjhjZmM3ZCJ9fX0="
 			),
 	STRIDER_SHIVERING(
-			"Shivering Strider",	"strider_shivering",	"",
+			"Shivering Strider",	"strider_shivering",	"d843d702-9a8c-419a-80d5-da6c51a2c006",
 			"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjkwYTEyMDI4YjkwYzBkYTFkNGQxN2U2ZmUxYmY1YmNhZjMzZGNmY2Y0ZTVkNTQ5MzkxMDZiMTg2Y2UyMWQ3NiJ9fX0="
 			),
 	TROPICAL_FISH(
@@ -342,7 +342,7 @@ public enum MobHeads {
 			"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGQxYWE3ZTNiOTU2NGIzODQ2ZjFkZWExNGYxYjFjY2JmMzk5YmJiMjNiOTUyZGJkN2VlYzQxODAyYTI4OWM5NiJ9fX0="
 			),
 	ZOGLIN(
-			"Zoglin",	"zoglin",	"",
+			"Zoglin",	"zoglin",	"746fe686-6785-4584-9fdb-c76ae015af4e",
 			"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzY0Y2ZjNjFhYzUyOTUzMzhkZDJmNGZlNjdmYWI2MjhjZWZkOTQ5MjY5OTIzZjE5YTBjNzcxNjRmOGYwMzRiZiJ9fX0="
 			),
 	ZOMBIE(

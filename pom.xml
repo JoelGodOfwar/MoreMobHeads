@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>MoreMobHeads</groupId>
   <artifactId>MoreMobHeads</artifactId>
-  <version>1.15_1.0.33</version>
+  <version>1.20_1.0.38.D1-DEV</version>
   <name>More Mob Heads</name>
   <description>Drops mob heads when a mob is killed.</description>
   <scm>
@@ -96,17 +96,30 @@
       <id>placeholderapi</id>
       <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
     </repository>
+    <repository>
+      <id>essentials-releases</id>
+      <url>https://repo.essentialsx.net/releases/</url>
+    </repository>
+    <repository>
+      <id>majek-repo</id>
+      <url>https://repo.majek.dev/releases/</url>
+    </repository>
   </repositories>
   <dependencies>
-    <dependency>
+    <!--<dependency>
       <groupId>lib.github.joelgodofwar</groupId>
       <artifactId>MoreMobHeadsLib</artifactId>
       <version>0.1.7-SNAPSHOT</version>
+    </dependency>-->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20210307</version>
     </dependency>
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot</artifactId>
-      <version>1.18-R0.1-SNAPSHOT</version>
+      <version>1.20-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <!--  bStats -->
@@ -137,6 +150,24 @@
       <version>2.11.3</version>
       <scope>provided</scope>
       <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>net.essentialsx</groupId>
+      <artifactId>EssentialsX</artifactId>
+      <version>2.19.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.majek</groupId>
+      <artifactId>hexnicks</artifactId>
+      <version>3.1.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.Aust1n46</groupId>
+      <artifactId>VentureChat</artifactId>
+      <version>2.19.1</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 </project>

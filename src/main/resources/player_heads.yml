@@ -1,6 +1,6 @@
 # players
 players:
-  number: 32
+  number: 33
   player_1:
     price_1:
       ==: org.bukkit.inventory.ItemStack
@@ -617,7 +617,6 @@ players:
         internal: H4sIAAAAAAAAAFWQSZKrRhCGeQ47op/CN9FCjBIsvBAgQTFPxVA7BEggJolJwFl8BB/S6u63sFdZkZXxf5nfBsM22J9uOVaV1bXXoso22Ob9emTdUGT9T+xjyOZh7LJ+g2HYjw/sp1vcmviz89s/yl3ixs5rmj23zZYmpxTglEewFYdjhKuQJ4+687CjsnOoZ3519ceu2dWD2qapWcDT3ijXk8SWCYjJaB4BH9MxKa4kcT08GFflBbW8ddLVda5rawseSpSzWZfrDV6lZTvCbQeJ5/UpjSSTC2gy+eXoUh0l1ojmVj8J6euqnaSQ4qihT5xBRaJnBvEBUsqWVe82H6Cei6YSFlnK+omfdk47j6qrnekCV2pmxB3H3T89QR0R5JZgum7Vyyu8wk5bstwydjMuXtZdFql+qh0FwSKgFRqeLDyX1BFApuYzm9JAHn2KoaCVkOM5btbT0e6y2LqrQdTs2oiVl+Oe7zVyL/OWtkORQdolHfDDljMXqmlnVmK2vOLuJU60jANhowdtwdiEU2Ss8SmjbX2iQmqR4DX0e+XFy+QSsGbBHAhHC7pDpS4VxZvrhEfbB9nGp+TCTvXzZB0amE8JHOv1kN5H9YCCx2tWPZ263KqVWaqhIqgnJRKaxub4aoWhzT2FhE5a3hpyAJ/uTaoYbqVM5NQ+gK+QKM5sODf7S7703gxy+QxmXj7uyoyhQMGOkwBEmRYgvV/7UKn6kjgqHhvL0uXFHHp7zwWKZOdBUitniRGVVuzgOgw9rCciENMO+Mb+Uc5yKx+Um4UvyoAgA3a65qadSgtvgvS8qXynJXyNr1P4Oh/Eub0PK6s4Rjs1+l8f2B9+XI3Zj7+zV3sDgoLHAVEllJNfwmMBxPame5DRxdNL9+zPSprCSwXCsUhkZUJ11SNYlaA47oEASENyKtMrcSSdKF1McCTmd1M64aZo1KgGlCmiuxkAxnRBLxTHG2j45UKix0XyzejN/c5RvJis9lk9V5fgPILiF4+smkt9xtO3J1j7cxpUCwrsrx1TWSGQ+z2XSj6dyv6CQv3r7/uuN6syNBfS/+99zodK/4vbprLzMgt2+k/GeAmqEQXGEgUI12qmSgUOR2H+tYe26vOnE8NL78YaUVEA52i9vYw1oYz3nVEQEVENFsPz70i0Kd1LqLcHGt1PhC4CwgycTz/LO4PQ76hGgV/qkl18uRF47rNe7QeHYR/Y70ZcZ9jGLYt1rbI6bjDsX+WHW6mmBAAA
         skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzEwMTY1N2M3NjdhZTFjODA3Nzc1YjlhZjViYjI1NWNkNDcxNzdmYjhmMTUwMjU5ZGM4YTIwMTUyNmZlZWQwZCJ9fX0=
     quantity: 1
-    chance: 0.002
   player_29:
     price_1:
       ==: org.bukkit.inventory.ItemStack
@@ -707,4 +706,30 @@ players:
         internal: H4sIAAAAAAAA/02PO07DQBiEfxBIwXCYxcZGLlIQIiXrZDf4/egSexN7vTZRYifYFUeg4ghUVIiOnjNwCe7AlnTfaD6NNAqAAldu2QrxsHtcF4IpoEjasl1TsP0FDBr21LQ7tlcA4GQA58FStAw+WWehJMpRFlki7bAhs+ciscB8e4vroFvdYwNXsp/eGfPO/OfqzTLURaxZeVLb7aoK0FxzBJs612nlH2i/0QjHKuH+kYYE0dCXnN6QSazTflTQyilj1eGkL4+Up/0itHU6oSUZb9TYC8qEy12e5YTbiHh5kYxHOXUtcx2hIcAlnOJMHjl7rb+Kt+Hs4/3l1/z5nj0D/AHjbEqoCgEAAA==
         skull-owner: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzg3MjI2MjUwNWM0NWU2Mjc4MGY5NzBiNmRkY2RjMzkwNjczOWQ5NGNkMDg2YTVkZjJhZjdhMjQ0MThiZDBhNSJ9fX0=
     quantity: 1
-    
+  player_33:
+    price_1:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3700
+      type: EMERALD
+    price_2:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3700
+      type: AIR
+    itemstack:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3700
+      type: PLAYER_HEAD
+      meta:
+        ==: ItemMeta
+        meta-type: SKULL
+        display-name: §r§eSmallishbeans
+        lore:
+        - §bMoreMobHeads
+        skull-owner:
+          ==: PlayerProfile
+          uniqueId: 69b3107a-6d03-4122-b567-7652fcc3cdb2
+          name: Smallishbeans
+          properties:
+          - name: textures
+            value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2FiYjM5NTU1Nzk0N2JlODM1ODE5ZmZiZTgwOTg4MDA0YThjZDQ5MzgxZTI2ZWE3ZTMwNTE3YzUyNGUxYTJmOCJ9fX0=
+    quantity: 1

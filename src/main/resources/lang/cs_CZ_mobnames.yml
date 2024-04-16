@@ -1,323 +1,325 @@
 # Add the translations for your language here
 # Zde přidejte překlady pro váš jazyk
-killedby: Killed By
-player: Player Head
-allay: Allay Head
+version: 1.0.2
+killedby: <RED>Killed <RESET>By <YELLOW><player>
+player: Player
+allay: Allay
 axolotl:
-    blue: Blue Axolotl Head
-    cyan: Cyan Axolotl Head
-    gold: Gold Axolotl Head
-    lucy: Lucy Axolotl Head
-    wild: Wild Axolotl Head
-bat: Bat Head
+  blue: Blue Axolotl
+  cyan: Cyan Axolotl
+  gold: Gold Axolotl
+  lucy: Lucy Axolotl
+  wild: Wild Axolotl
+bat: Bat
 bee:
-  angry_pollinated: Angry Pollinated Bee Head
-  angry: Angry Bee Head
-  pollinated: Pollinated Bee Head
-  none: Bee Head
-blaze: Blaze Head
-camel: Camel Head
+  angry_pollinated: Angry Pollinated Bee
+  angry: Angry Bee
+  pollinated: Pollinated Bee
+  none: Bee
+blaze: Blaze
+camel: Camel
 cat:
-  all_black: Black Cat Head
-  black: Tuxedo Cat Head
-  british_shorthair: British Shorthair Cat Head
-  calico: Calico Cat Head
-  jellie: Jellie Cat Head
-  persian: Persian Cat Head
-  ragdoll: Ragdoll Cat Head
-  red: Red Cat Head
-  siamese: Siamese Cat  Head
-  tabby: Tabby Cat Head
-  white: White Cat Head
-  wild_ocelot: Ocelot Head
-cave_spider: Cave Spider Head
-chicken: Chicken Head
-cod: Cod Head
-cow: Cow Head
-creeper: Creeper Head
-creepeer_charged: Charged Creeper Head
-dolphin: Dolphin Head
-donkey: Donkey Head
-drowned: Drowned Head
-elder_guardian: Elder Guardian Head
-ender_dragon: Ender Dragon Head
-enderman: Enderman Head
-endermite: Endermite Head
-evoker: Evoker Head
+  all_black: Black Cat
+  black: Tuxedo Cat
+  british_shorthair: British Shorthair Cat
+  calico: Calico Cat
+  jellie: Jellie Cat
+  persian: Persian Cat
+  ragdoll: Ragdoll Cat
+  red: Red Cat
+  siamese: Siamese Cat 
+  tabby: Tabby Cat
+  white: White Cat
+  wild_ocelot: Ocelot
+cave_spider: Cave Spider
+chicken: Chicken
+cod: Cod
+cow: Cow
+creeper: Creeper
+creepeer_charged: Charged Creeper
+dolphin: Dolphin
+donkey: Donkey
+drowned: Drowned
+elder_guardian: Elder Guardian
+ender_dragon: Ender Dragon
+enderman: Enderman
+endermite: Endermite
+evoker: Evoker
 fox:
-  red: Red Fox Head
-  snow: Snow Fox Head
+  red: Red Fox
+  snow: Snow Fox
 frog:
-  cold: Cold Frog Head
-  temperate: Temperate Frog Head
-  warm: Warm Frog Head
-ghast: Ghast Head
-giant: Giant Head
-glow_squid: Glow Squid Head
+  cold: Cold Frog
+  temperate: Temperate Frog
+  warm: Warm Frog
+ghast: Ghast
+giant: Giant
+glow_squid: Glow Squid
 goat:
-    normal: Goat Head
-    screaming: Screaming Goat Head
-guardian: Guardian Head
-hoglin: Hoglin Head
+  normal: Goat
+  screaming: Screaming Goat
+guardian: Guardian
+hoglin: Hoglin
 horse:
-  black: Black Horse Head
-  brown: Brown Horse Head
-  chestnut: Chestnut Horse Head
-  creamy: Creamy Horse Head
-  dark_brown: Dark Brown Horse Head
-  gray: Gray Horse Head
-  white: White Horse Head
-husk: Husk Head
-illusioner: Illusioner Head
-iron_golem: Iron Golem Head
+  black: Black Horse
+  brown: Brown Horse
+  chestnut: Chestnut Horse
+  creamy: Creamy Horse
+  dark_brown: Dark Brown Horse
+  gray: Gray Horse
+  white: White Horse
+husk: Husk
+illusioner: Illusioner
+iron_golem: Iron Golem
 llama:
-  brown: Brown Llama Head
-  creamy: Creamy Llama Head
-  gray: Gray Llama Head
-  white: White Llama Head
-magma_cube: Magma Cube Head
-mule: Mule Head 
+  brown: Brown Llama
+  creamy: Creamy Llama
+  gray: Gray Llama
+  white: White Llama
+magma_cube: Magma Cube
+mule: Mule 
 mushroom_cow:
-  red: Mushroom Cow Head
-  brown: Brown Mushroom Cow Head
+  red: Mushroom Cow
+  brown: Brown Mushroom Cow
 panda:
-  aggressive: Aggressive Panda Head
-  brown: Brown Panda Head
-  lazy: Lazy Panda Head
-  normal: Panda Head
-  playful: Playful Panda Head
-  weak: Weak Panda Head
-  worried: Worried Panda Head
+  aggressive: Aggressive Panda
+  brown: Brown Panda
+  lazy: Lazy Panda
+  normal: Panda
+  playful: Playful Panda
+  weak: Weak Panda
+  worried: Worried Panda
 parrot:
-  blue: Blue Parrot Head
-  cyan: Cyan Parrot Head
-  gray: Gray Parrot Head
-  green: Green Parrot Head
-  red: Red Parrot Head
-phantom: Phantom Head
-pig: Pig Head
-piglin: Piglin Head
-piglin_brute: Piglin Brute Head
-pig_zombie: Zombie Pigman Head
-pillager: Pillager Head
-polar_bear: Polar Bear Head
-pufferfish: Pufferfish Head
+  blue: Blue Parrot
+  cyan: Cyan Parrot
+  gray: Gray Parrot
+  green: Green Parrot
+  red: Red Parrot
+phantom: Phantom
+pig: Pig
+piglin: Piglin
+piglin_brute: Piglin Brute
+pig_zombie: Zombie Pigman
+pillager: Pillager
+polar_bear: Polar Bear
+pufferfish: Pufferfish
 rabbit:
-  black: Black Rabbit Head
-  black_and_white: Black and White Rabbit Head
-  brown: Brown Rabbit Head
-  gold: Gold Rabbit Head
-  salt_and_pepper: Salt and Pepper Rabbit Head
-  the_killer_bunny: The Killer Bunny Head
-  toast: Toast Rabbit Head
-  white: White Rabbit Head
-ravager: Ravager Head
-salmon: Salmon Head
+  black: Black Rabbit
+  black_and_white: Black and White Rabbit
+  brown: Brown Rabbit
+  gold: Gold Rabbit
+  salt_and_pepper: Salt and Pepper Rabbit
+  the_killer_bunny: The Killer Bunny
+  toast: Toast Rabbit
+  white: White Rabbit
+ravager: Ravager
+salmon: Salmon
 sheep:
-  black: Black Sheep Head
-  blue: Blue Sheep Head
-  brown: Brown Sheep Head
-  cyan: Cyan Sheep Head
-  gray: Gray Sheep Head
-  green: Green Sheep Head
-  jeb_: Jeb_ Sheep Head
-  light_blue: Light Blue Sheep Head
-  light_gray: Light Gray Sheep Head
-  lime: Lime Sheep Head
-  magenta: Magenta Sheep Head
-  orange: Orange Sheep Head
-  pink: Pink Sheep Head
-  purple: Purple Sheep Head
-  red: Red Sheep Head
-  white: White Sheep Head
-  yellow: Yellow Sheep Head
-shulker: Shulker Head
-silverfish: Silverfish Head
-skeleton: Skeleton Head
-skeleton_horse: Skeleton Horse Head
-slime: Slime Head
-sniffer: Sniffer Head
-snowman: Snowman Head
-spider: Spider Head
-squid: Squid Head
-stray: Stray Head
-strider: Strider Head
-strider_shivering: Shivering Strider Head
-tadpole: Tadpole Head
+  black: Black Sheep
+  blue: Blue Sheep
+  brown: Brown Sheep
+  cyan: Cyan Sheep
+  gray: Gray Sheep
+  green: Green Sheep
+  jeb_: Jeb_ Sheep
+  light_blue: Light Blue Sheep
+  light_gray: Light Gray Sheep
+  lime: Lime Sheep
+  magenta: Magenta Sheep
+  orange: Orange Sheep
+  pink: Pink Sheep
+  purple: Purple Sheep
+  red: Red Sheep
+  white: White Sheep
+  yellow: Yellow Sheep
+shulker: Shulker
+silverfish: Silverfish
+skeleton: Skeleton
+skeleton_horse: Skeleton Horse
+slime: Slime
+sniffer: Sniffer
+snowman: Snowman
+spider: Spider
+squid: Squid
+stray: Stray
+strider: Strider
+strider_shivering: Shivering Strider
+tadpole: Tadpole
 trader_llama:
-  brown: Brown Trader Llama Head
-  creamy: Creamy Trader Llama Head
-  gray: Gray Trader Llama Head
-  white: White Trader Llama Head
+  brown: Brown Trader Llama
+  creamy: Creamy Trader Llama
+  gray: Gray Trader Llama
+  white: White Trader Llama
 tropical_fish:
-    tropical_fish: Tropical Fish Head
-    anemone: Anemone Head
-    black_tang: Black Tang Head
-    blue_tang: Blue Tang Head
-    butterflyfish: Butterflyfish Head
-    cichlid: Cichlid Head
-    clownfish: Clownfish Head
-    cotton_candy_betta: Cotton Candy Betta Head
-    dottyback: Dottyback Head
-    emperor_red_snapper: Emperor Red Snapper Head
-    goatfish: Goatfish Head
-    moorish_idol: Moorish Idol Head
-    ornate_butterflyfish: Ornate Butterflyfish Head
-    parrotfish: Parrotfish Head
-    queen_angelfish: Queen Angelfish Head
-    red_cichlid: Red Cichlid Head
-    red_lipped_blenny: Red Lipped Blenny Head 
-    red_snapper: Red Snapper Head
-    threadfin: Threadfin Head
-    tomato_clownfish: Tomato Clownfish Head
-    triggerfish: Triggerfish Head
-    yellow_parrotfish: Yellow Parrotfish Head
-    yellow_tang: Yellow Tang Head
-turtle: Turtle Head
-vex: Vex Head
+  tropical_fish: Tropical Fish
+  anemone: Anemone
+  black_tang: Black Tang
+  blue_tang: Blue Tang
+  butterflyfish: Butterflyfish
+  cichlid: Cichlid
+  clownfish: Clownfish
+  cotton_candy_betta: Cotton Candy Betta
+  dottyback: Dottyback
+  emperor_red_snapper: Emperor Red Snapper
+  goatfish: Goatfish
+  moorish_idol: Moorish Idol
+  ornate_butterflyfish: Ornate Butterflyfish
+  parrotfish: Parrotfish
+  queen_angelfish: Queen Angelfish
+  red_cichlid: Red Cichlid
+  red_lipped_blenny: Red Lipped Blenny 
+  red_snapper: Red Snapper
+  threadfin: Threadfin
+  tomato_clownfish: Tomato Clownfish
+  triggerfish: Triggerfish
+  yellow_parrotfish: Yellow Parrotfish
+  yellow_tang: Yellow Tang
+turtle: Turtle
+vex: Vex
+vex_angry: Angry Vex
 villager:
   desert:
-    armorer: Desert Armorer Villager Head
-    butcher: Desert Butcher Villager Head
-    cartographer: Desert Cartographer Villager Head
-    cleric: Desert Cleric Villager Head
-    farmer: Desert Farmer Villager Head
-    fisherman: Desert Fisherman Villager Head
-    fletcher: Desert Fletcher Villager Head
-    leatherworker: Desert Leatherworker Villager Head
-    librarian: Desert Librarian Villager Head
-    mason: Desert Mason Villager Head
-    nitwit: Desert Nitwit Villager Head
-    none: Desert Villager Head
-    shepherd: Desert Shepherd Villager Head
-    toolsmith: Desert Toolsmith Villager Head
-    weaponsmith: Desert Weaponsmith Villager Head
+    armorer: Desert Armorer Villager
+    butcher: Desert Butcher Villager
+    cartographer: Desert Cartographer Villager
+    cleric: Desert Cleric Villager
+    farmer: Desert Farmer Villager
+    fisherman: Desert Fisherman Villager
+    fletcher: Desert Fletcher Villager
+    leatherworker: Desert Leatherworker Villager
+    librarian: Desert Librarian Villager
+    mason: Desert Mason Villager
+    nitwit: Desert Nitwit Villager
+    none: Desert Villager
+    shepherd: Desert Shepherd Villager
+    toolsmith: Desert Toolsmith Villager
+    weaponsmith: Desert Weaponsmith Villager
   jungle:
-    armorer: Jungle Armorer Villager Head
-    butcher: Jungle Butcher Villager Head
-    cartographer: Jungle Cartographer Villager Head
-    cleric: Jungle Cleric Villager Head
-    farmer: Jungle Farmer Villager Head
-    fisherman: Jungle Fisherman Villager Head
-    fletcher: Jungle Fletcher Villager Head
-    leatherworker: Jungle Leatherworker Villager Head
-    librarian: Jungle Librarian Villager Head
-    mason: Jungle Mason Villager Head
-    nitwit: Jungle Nitwit Villager Head
-    none: Jungle Villager Head
-    shepherd: Jungle Shepherd Villager Head
-    toolsmith: Jungle Toolsmith Villager Head
-    weaponsmith: Jungle Weaponsmith Villager Head
+    armorer: Jungle Armorer Villager
+    butcher: Jungle Butcher Villager
+    cartographer: Jungle Cartographer Villager
+    cleric: Jungle Cleric Villager
+    farmer: Jungle Farmer Villager
+    fisherman: Jungle Fisherman Villager
+    fletcher: Jungle Fletcher Villager
+    leatherworker: Jungle Leatherworker Villager
+    librarian: Jungle Librarian Villager
+    mason: Jungle Mason Villager
+    nitwit: Jungle Nitwit Villager
+    none: Jungle Villager
+    shepherd: Jungle Shepherd Villager
+    toolsmith: Jungle Toolsmith Villager
+    weaponsmith: Jungle Weaponsmith Villager
   plains:
-    armorer: Plains Armorer Villager Head
-    butcher: Plains Butcher Villager Head
-    cartographer: Plains Cartographer Villager Head
-    cleric: Plains Cleric Villager Head
-    farmer: Plains Farmer Villager Head
-    fisherman: Plains Fisherman Villager Head
-    fletcher: Plains Fletcher Villager Head
-    leatherworker: Plains Leatherworker Villager Head
-    librarian: Plains Librarian Villager Head
-    mason: Plains Mason Villager Head
-    nitwit: Plains Nitwit Villager Head
-    none: Plains Villager Head
-    shepherd: Plains Shepherd Villager Head
-    toolsmith: Plains Toolsmith Villager Head
-    weaponsmith: Plains Weaponsmith Villager Head
+    armorer: Plains Armorer Villager
+    butcher: Plains Butcher Villager
+    cartographer: Plains Cartographer Villager
+    cleric: Plains Cleric Villager
+    farmer: Plains Farmer Villager
+    fisherman: Plains Fisherman Villager
+    fletcher: Plains Fletcher Villager
+    leatherworker: Plains Leatherworker Villager
+    librarian: Plains Librarian Villager
+    mason: Plains Mason Villager
+    nitwit: Plains Nitwit Villager
+    none: Plains Villager
+    shepherd: Plains Shepherd Villager
+    toolsmith: Plains Toolsmith Villager
+    weaponsmith: Plains Weaponsmith Villager
   savanna:
-    armorer: Savanna Armorer Villager Head
-    butcher: Savanna Butcher Villager Head
-    cartographer: Savanna Cartographer Villager Head
-    cleric: Savanna Cleric Villager Head
-    farmer: Savanna Farmer Villager Head
-    fisherman: Savanna Fisherman Villager Head
-    fletcher: Savanna Fletcher Villager Head
-    leatherworker: Savanna Leatherworker Villager Head
-    librarian: Savanna Librarian Villager Head
-    mason: Savanna Mason Villager Head
-    nitwit: Savanna Nitwit Villager Head
-    none: Savanna Villager Head
-    shepherd: Savanna Shepherd Villager Head
-    toolsmith: Savanna Toolsmith Villager Head
-    weaponsmith: Savanna Weaponsmith Villager Head
+    armorer: Savanna Armorer Villager
+    butcher: Savanna Butcher Villager
+    cartographer: Savanna Cartographer Villager
+    cleric: Savanna Cleric Villager
+    farmer: Savanna Farmer Villager
+    fisherman: Savanna Fisherman Villager
+    fletcher: Savanna Fletcher Villager
+    leatherworker: Savanna Leatherworker Villager
+    librarian: Savanna Librarian Villager
+    mason: Savanna Mason Villager
+    nitwit: Savanna Nitwit Villager
+    none: Savanna Villager
+    shepherd: Savanna Shepherd Villager
+    toolsmith: Savanna Toolsmith Villager
+    weaponsmith: Savanna Weaponsmith Villager
   snow:
-    armorer: Snow Armorer Villager Head
-    butcher: Snow Butcher Villager Head
-    cartographer: Snow Cartographer Villager Head
-    cleric: Snow Cleric Villager Head
-    farmer: Snow Farmer Villager Head
-    fisherman: Snow Fisherman Villager Head
-    fletcher: Snow Fletcher Villager Head
-    leatherworker: Snow Leatherworker Villager Head
-    librarian: Snow Librarian Villager Head
-    mason: Snow Mason Villager Head
-    nitwit: Snow Nitwit Villager Head
-    none: Snow Villager Head
-    shepherd: Snow Shepherd Villager Head
-    toolsmith: Snow Toolsmith Villager Head
-    weaponsmith: Snow Weaponsmith Villager Head
+    armorer: Snow Armorer Villager
+    butcher: Snow Butcher Villager
+    cartographer: Snow Cartographer Villager
+    cleric: Snow Cleric Villager
+    farmer: Snow Farmer Villager
+    fisherman: Snow Fisherman Villager
+    fletcher: Snow Fletcher Villager
+    leatherworker: Snow Leatherworker Villager
+    librarian: Snow Librarian Villager
+    mason: Snow Mason Villager
+    nitwit: Snow Nitwit Villager
+    none: Snow Villager
+    shepherd: Snow Shepherd Villager
+    toolsmith: Snow Toolsmith Villager
+    weaponsmith: Snow Weaponsmith Villager
   swamp:
-    armorer: Swamp Armorer Villager Head
-    butcher: Swamp Butcher Villager Head
-    cartographer: Swamp Cartographer Villager Head
-    cleric: Swamp Cleric Villager Head
-    farmer: Swamp Farmer Villager Head
-    fisherman: Swamp Fisherman Villager Head
-    fletcher: Swamp Fletcher Villager Head
-    leatherworker: Swamp Leatherworker Villager Head
-    librarian: Swamp Librarian Villager Head
-    mason: Swamp Mason Villager Head
-    nitwit: Swamp Nitwit Villager Head
-    none: Swamp Villager Head
-    shepherd: Swamp Shepherd Villager Head
-    toolsmith: Swamp Toolsmith Villager Head
-    weaponsmith: Swamp Weaponsmith Villager Head
+    armorer: Swamp Armorer Villager
+    butcher: Swamp Butcher Villager
+    cartographer: Swamp Cartographer Villager
+    cleric: Swamp Cleric Villager
+    farmer: Swamp Farmer Villager
+    fisherman: Swamp Fisherman Villager
+    fletcher: Swamp Fletcher Villager
+    leatherworker: Swamp Leatherworker Villager
+    librarian: Swamp Librarian Villager
+    mason: Swamp Mason Villager
+    nitwit: Swamp Nitwit Villager
+    none: Swamp Villager
+    shepherd: Swamp Shepherd Villager
+    toolsmith: Swamp Toolsmith Villager
+    weaponsmith: Swamp Weaponsmith Villager
   taiga:
-    armorer: Taiga Armorer Villager Head
-    butcher: Taiga Butcher Villager Head
-    cartographer: Taiga Cartographer Villager Head
-    cleric: Taiga Cleric Villager Head
-    farmer: Taiga Farmer Villager Head
-    fisherman: Taiga Fisherman Villager Head
-    fletcher: Taiga Fletcher Villager Head
-    leatherworker: Taiga Leatherworker Villager Head
-    librarian: Taiga Librarian Villager Head
-    mason: Taiga Mason Villager Head
-    nitwit: Taiga Nitwit Villager Head
-    none: Taiga Villager Head
-    shepherd: Taiga Shepherd Villager Head
-    toolsmith: Taiga Toolsmith Villager Head
-    weaponsmith: Taiga Weaponsmith Villager Head
-vindicator: Vindicator Head
-wandering_trader: Wandering Trader Head
-warden: Warden Head
-witch: Witch Head
+    armorer: Taiga Armorer Villager
+    butcher: Taiga Butcher Villager
+    cartographer: Taiga Cartographer Villager
+    cleric: Taiga Cleric Villager
+    farmer: Taiga Farmer Villager
+    fisherman: Taiga Fisherman Villager
+    fletcher: Taiga Fletcher Villager
+    leatherworker: Taiga Leatherworker Villager
+    librarian: Taiga Librarian Villager
+    mason: Taiga Mason Villager
+    nitwit: Taiga Nitwit Villager
+    none: Taiga Villager
+    shepherd: Taiga Shepherd Villager
+    toolsmith: Taiga Toolsmith Villager
+    weaponsmith: Taiga Weaponsmith Villager
+vindicator: Vindicator
+wandering_trader: Wandering Trader
+warden: Warden
+witch: Witch
 wither:
-  normal: Wither Head
+  normal: Wither
   projectile: Wither Projectile
   blue_projectile: Blue Wither Projectile
-wither_skeleton: Wither Skeleton Head
-wolf: Wolf Head
-wolf_angry: Angry Wolf Head
-zoglin: Zoglin Head
-zombie: Zombie Head
-zombie_hoglin: Zombie Hoglin Head
-zombie_horse: Zombie Horse Head
-zombie_pigman: Zombie Pigman Head
-zombified_piglin: Zombified Piglin Head
+wither_skeleton: Wither Skeleton
+wolf: Wolf
+wolf_angry: Angry Wolf
+zoglin: Zoglin
+zombie: Zombie
+zombie_hoglin: Zombie Hoglin
+zombie_horse: Zombie Horse
+zombie_pigman: Zombie Pigman
+zombified_piglin: Zombified Piglin
 zombie_villager:
-  armorer: Zombie Armorer Villager Head
-  butcher: Zombie Butcher Villager Head
-  cartographer: Zombie Cartographer Villager Head
-  cleric: Zombie Cleric Villager Head
-  farmer: Zombie Farmer Villager Head
-  fisherman: Zombie Fisherman Villager Head
-  fletcher: Zombie Fletcher Villager Head
-  leatherworker: Zombie Leatherworker Villager Head
-  librarian: Zombie Librarian Villager Head
-  mason: Zombie Mason Villager Head
-  nitwit: Zombie Nitwit Villager Head
-  none: Zombie Villager Head
-  shepherd: Zombie Shepherd Villager Head
-  toolsmith: Zombie Toolsmith Villager Head
-  weaponsmith: Zombie Weaponsmith Villager Head
+  armorer: Zombie Armorer Villager
+  butcher: Zombie Butcher Villager
+  cartographer: Zombie Cartographer Villager
+  cleric: Zombie Cleric Villager
+  farmer: Zombie Farmer Villager
+  fisherman: Zombie Fisherman Villager
+  fletcher: Zombie Fletcher Villager
+  leatherworker: Zombie Leatherworker Villager
+  librarian: Zombie Librarian Villager
+  mason: Zombie Mason Villager
+  nitwit: Zombie Nitwit Villager
+  none: Zombie Villager
+  shepherd: Zombie Shepherd Villager
+  toolsmith: Zombie Toolsmith Villager
+  weaponsmith: Zombie Weaponsmith Villager

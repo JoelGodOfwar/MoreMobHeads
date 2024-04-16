@@ -1,322 +1,326 @@
 # Add the translations for your language here
 # Agregue las traducciones para su idioma aquí
 # Translated by Federe76, Traducido por Federe76
-killedby: Asesinado por
-player: Cabeza del jugador
-allay: Cabeza de Allay
+version: 1.0.2
+killedby: <RED>Asesinado <RESET>por <YELLOW><player>
+player: jugador
+allay: Allay
 axolotl:
-    blue: Cabeza de ajolote azul
-    cyan: Cabeza de ajolote cian
-    gold: Cabeza de ajolote dorado
-    lucy: Cabeza de Lucy ajolote
-    wild: Cabeza de ajolote salvaje
-bat: Cabeza de murciélago
+  blue: ajolote azul
+  cyan: ajolote cian
+  gold: ajolote dorado
+  lucy: Lucy ajolote
+  wild: ajolote salvaje
+bat: murciélago
 bee:
-  angry_pollinated: Cabeza de Abeja Agresiva con pólen
-  angry: Cabeza de Abeja Agresiva
-  pollinated: Cabeza de Abeja con pólen
-  none: Cabeza de Abeja
-blaze: Cabeza de Blaze
-camel: Cabeza de Camello
+  angry_pollinated: Abeja Agresiva con pólen
+  angry: Abeja Agresiva
+  pollinated: Abeja con pólen
+  none: Abeja
+blaze: Blaze
+camel: Camello
 cat:
-  all_black: Cabeza de Gato Negro
-  black: Cabeza de Gato Esmoquin
-  british_shorthair: Cabeza de Gato Inglés Pelicorto
-  calico: Cabeza de Gato Atigrado
-  jellie: Cabeza de Gato Tapado
-  persian: Cabeza de Gato Persa
-  ragdoll: Cabeza de Gato Blancuzco
-  red: Cabeza de Gato Anaranjado
-  siamese: Cabeza de Gato Siamés
-  tabby: Cabeza de Gato Marrón
-  white: Cabeza de Gato Blanco
-  wild_ocelot: Cabeza de Gato Silvestre
-cave_spider: Cabeza de Araña Venenosa
-chicken: Cabeza de Gallina
-cod: Cabeza de pez Cod
-cow: Cabeza de Vaca
-creeper: Cabeza de Creeper
-creepeer_charged: Cabeza de enredadera cargada
-dolphin: Cabeza de Delfín
-donkey: Cabeza de Burro
-drowned: Cabeza de Ahogado
-elder_guardian: Cabeza de Guardían Anciano
-ender_dragon: Cabeza de Dragón
-enderman: Cabeza de Enderman
-endermite: Cabeza de Endermita
-evoker: Cabeza de Invocador
+  all_black: Gato Negro
+  black: Gato Esmoquin
+  british_shorthair: Gato Inglés Pelicorto
+  calico: Gato Atigrado
+  jellie: Gato Tapado
+  persian: Gato Persa
+  ragdoll: Gato Blancuzco
+  red: Gato Anaranjado
+  siamese: Gato Siamés
+  tabby: Gato Marrón
+  white: Gato Blanco
+  wild_ocelot: Gato Silvestre
+cave_spider: Araña Venenosa
+chicken: Gallina
+cod: pez Cod
+cow: Vaca
+creeper: Creeper
+creepeer_charged: enredadera cargada
+dolphin: Delfín
+donkey: Burro
+drowned: Ahogado
+elder_guardian: Guardían Anciano
+ender_dragon: Dragón
+enderman: Enderman
+endermite: Endermita
+evoker: Invocador
 fox:
-  red: Cabeza de Zorro Rojo
-  snow: Cabeza de Zorro Nevado
+  red: Zorro Rojo
+  snow: Zorro Nevado
 frog:
-  cold: Cabeza de rana fría
-  temperate: Cabeza de rana templada
-  warm: Cabeza de rana caliente
-ghast: Cabeza de Ghast
-giant: Cabeza de Gigante
-glow_squid: Cabeza de calamar resplandor
+  cold: rana fría
+  temperate: rana templada
+  warm: rana caliente
+ghast: Ghast
+giant: Gigante
+glow_squid: calamar resplandor
 goat:
-    normal: Cabeza de cabra
-    screaming: Cabeza de cabra gritando
-guardian: Cabeza de Guardián
-hoglin: Cabeza de Hoglin
+  normal: cabra
+  screaming: cabra gritando
+guardian: Guardián
+hoglin: Hoglin
 horse:
-  black: Cabeza de Caballo Negro
-  brown: Cabeza de Caballo Marrón
-  chestnut: Cabeza de Caballo de Frente Blanca
-  creamy: Cabeza de Caballo color Crema
-  dark_brown: Cabeza de Caballo Marrón Oscuro
-  gray: Cabeza de Caballo Gris
-  white: Cabeza de Caballo Blanco
-husk: Cabeza de Zombie del Desierto
-illusioner: Cabeza de Ilusionista
-iron_golem: Cabeza de Gólem de Hierro
+  black: Caballo Negro
+  brown: Caballo Marrón
+  chestnut: Caballo de Frente Blanca
+  creamy: Caballo color Crema
+  dark_brown: Caballo Marrón Oscuro
+  gray: Caballo Gris
+  white: Caballo Blanco
+husk: Zombie del Desierto
+illusioner: Ilusionista
+iron_golem: Gólem de Hierro
 llama:
-  brown: Cabeza de Llama Marrón
-  creamy: Cabeza de Llama color Crema
-  gray: Cabeza de Llama Gris
-  white: Cabeza de Llama Blanca
-magma_cube: Cabeza de Monstruo de Magma
-mule: Cabeza de Mula
+  brown: Llama Marrón
+  creamy: Llama color Crema
+  gray: Llama Gris
+  white: Llama Blanca
+magma_cube: Monstruo de Magma
+mule: Mula
 mushroom_cow:
-  red: Cabeza de VacaHongo Roja
-  brown: Cabeza de VacaHongo Marrón
+  red: VacaHongo Roja
+  brown: VacaHongo Marrón
 panda:
-  aggressive: Cabeza de Panda Agresivo
-  brown: Cabeza de Panda Marrón
-  lazy: Cabeza de Panda Perezoso
-  normal: Cabeza de Panda
-  playful: Cabeza de Panda Juguetón
-  weak: Cabeza de Panda Débil
-  worried: Cabeza de Panda Preocupado
+  aggressive: Panda Agresivo
+  brown: Panda Marrón
+  lazy: Panda Perezoso
+  normal: Panda
+  playful: Panda Juguetón
+  weak: Panda Débil
+  worried: Panda Preocupado
 parrot:
-  blue: Cabeza de Perico Azul
-  cyan: Cabeza de Perico Cyan
-  gray: Cabeza de Perico Gris
-  green: Cabeza de Perico Verde
-  red: Cabeza de Perico Rojo
-phantom: Cabeza de Fantasma
-pig: Cabeza de Cerdo
-piglin: Cabeza de Piglin
-piglin_brute: Cabeza de Piglin Brute
-pig_zombie: Cabeza de Zombie Pigman
-pillager: Cabeza de Saqueador
-polar_bear: Cabeza de Oso Polar
-pufferfish: Cabeza de Pez Globo
+  blue: Perico Azul
+  cyan: Perico Cyan
+  gray: Perico Gris
+  green: Perico Verde
+  red: Perico Rojo
+phantom: Fantasma
+pig: Cerdo
+piglin: Piglin
+piglin_brute: Piglin Brute
+pig_zombie: Zombie Pigman
+pillager: Saqueador
+polar_bear: Oso Polar
+pufferfish: Pez Globo
 rabbit:
-  black: Cabeza de Conejo Negro
-  black_and_white: Cabeza de Conejo Blanco y Negro
-  brown: Cabeza de Conejo Marrón
-  gold: Cabeza de Conejo Dorado
-  salt_and_pepper: Cabeza de Conejo Salteado
-  the_killer_bunny: Cabeza de Conejo Asesino
-  toast: Cabeza de Conejo Tostado
-  white: Cabeza de Conejo Blanco
-ravager: Cabeza de Toro
-salmon: Cabeza de Salmón
+  black: Conejo Negro
+  black_and_white: Conejo Blanco y Negro
+  brown: Conejo Marrón
+  gold: Conejo Dorado
+  salt_and_pepper: Conejo Salteado
+  the_killer_bunny: Conejo Asesino
+  toast: Conejo Tostado
+  white: Conejo Blanco
+ravager: Toro
+salmon: Salmón
 sheep:
-  black: Cabeza de Oveja Negra
-  blue: Cabeza de Oveja Azul
-  brown: Cabeza de Oveja Marrón
-  cyan: Cabeza de Oveja Cyan
-  gray: Cabeza de Oveja Gris
-  green: Cabeza de Oveja Verde
-  jeb_: Cabeza de Oveja Jeb
-  light_blue: Cabeza de Oveja Celeste
-  light_gray: Cabeza de Oveja Gris Clara
-  lime: Cabeza de Oveja Lima
-  magenta: Cabeza de Oveja Magenta
-  orange: Cabeza de Oveja Naranja
-  pink: Cabeza de Oveja Rosa
-  purple: Cabeza de Oveja Púrpura
-  red: Cabeza de Oveja Roja
-  white: Cabeza de Oveja Blanca
-  yellow: Cabeza de Oveja Amarilla
-shulker: Cabeza de Shulker
-silverfish: Cabeza de Pez Plateado
-skeleton: Cabeza de Esqueleto
-skeleton_horse: Cabeza de Caballo Esqueleto
-slime: Cabeza de Slime
-sniffer: Cabeza de Sniffer
-snowman: Cabeza de Gólem de Nieve
-spider: Cabeza de Araña
-squid: Cabeza de Calamar
-stray: Cabeza de Esqueleto Helado
-strider: Cabeza de Strider
-strider_shivering: Cabeza de Shivering Strider
-tadpole: Cabeza de renacuajo
+  black: Oveja Negra
+  blue: Oveja Azul
+  brown: Oveja Marrón
+  cyan: Oveja Cyan
+  gray: Oveja Gris
+  green: Oveja Verde
+  jeb_: Oveja Jeb
+  light_blue: Oveja Celeste
+  light_gray: Oveja Gris Clara
+  lime: Oveja Lima
+  magenta: Oveja Magenta
+  orange: Oveja Naranja
+  pink: Oveja Rosa
+  purple: Oveja Púrpura
+  red: Oveja Roja
+  white: Oveja Blanca
+  yellow: Oveja Amarilla
+shulker: Shulker
+silverfish: Pez Plateado
+skeleton: Esqueleto
+skeleton_horse: Caballo Esqueleto
+slime: Slime
+sniffer: Sniffer
+snowman: Gólem de Nieve
+spider: Araña
+squid: Calamar
+stray: Esqueleto Helado
+strider: Strider
+strider_shivering: Shivering Strider
+tadpole: renacuajo
 trader_llama:
-  brown: Cabeza de Llama Mercante Marrón
-  creamy: Cabeza de Llama Mercante color Crema
-  gray: Cabeza de Llama Mercante Gris
-  white: Cabeza de Llama Mercante Blanca
+  brown: Llama Mercante Marrón
+  creamy: Llama Mercante color Crema
+  gray: Llama Mercante Gris
+  white: Llama Mercante Blanca
 tropical_fish:
-    tropical_fish: Tropical Fish Head
-    anemone: Anemone Head
-    black_tang: Black Tang Head
-    blue_tang: Blue Tang Head
-    butterflyfish: Butterflyfish Head
-    cichlid: Cichlid Head
-    clownfish: Clownfish Head
-    cotton_candy_betta: Cotton Candy Betta Head
-    dottyback: Dottyback Head
-    emperor_red_snapper: Emperor Red Snapper Head
-    goatfish: Goatfish Head
-    moorish_idol: Moorish Idol Head
-    ornate_butterflyfish: Ornate Butterflyfish Head
-    parrotfish: Parrotfish Head
-    queen_angelfish: Queen Angelfish Head
-    red_cichlid: Red Cichlid Head
-    red_lipped_blenny: Red Lipped Blenny Head 
-    red_snapper: Red Snapper Head
-    threadfin: Threadfin Head
-    tomato_clownfish: Tomato Clownfish Head
-    triggerfish: Triggerfish Head
-    yellow_parrotfish: Yellow Parrotfish Head
-    yellow_tang: Yellow Tang Head
-turtle: Cabeza de Tortuga
-vex: Cabeza de Hada
+  tropical_fish: Tropical Fish Head
+  anemone: Anemone Head
+  black_tang: Black Tang Head
+  blue_tang: Blue Tang Head
+  butterflyfish: Butterflyfish Head
+  cichlid: Cichlid Head
+  clownfish: Clownfish Head
+  cotton_candy_betta: Cotton Candy Betta Head
+  dottyback: Dottyback Head
+  emperor_red_snapper: Emperor Red Snapper Head
+  goatfish: Goatfish Head
+  moorish_idol: Moorish Idol Head
+  ornate_butterflyfish: Ornate Butterflyfish Head
+  parrotfish: Parrotfish Head
+  queen_angelfish: Queen Angelfish Head
+  red_cichlid: Red Cichlid Head
+  red_lipped_blenny: Red Lipped Blenny Head 
+  red_snapper: Red Snapper Head
+  threadfin: Threadfin Head
+  tomato_clownfish: Tomato Clownfish Head
+  triggerfish: Triggerfish Head
+  yellow_parrotfish: Yellow Parrotfish Head
+  yellow_tang: Yellow Tang Head
+turtle: Tortuga
+vex: Vex
+vex_angry: Angry Vex
 villager:
   desert:
-    armorer: Cabeza de Aldeano Herrero del Desierto
-    butcher: Cabeza de Aldeano Carnicero del Desierto
-    cartographer: Cabeza de Aldeano Cartógrafo del Desierto
-    cleric: Cabeza de Aldeano Clérigo del Desierto
-    farmer: Cabeza de Aldeano Granjero del Desierto
-    fisherman: Cabeza de Aldeano Pescador del Desierto
-    fletcher: Cabeza de Aldeano Arquero del Desierto
-    leatherworker: Cabeza de Aldeano Talabartero del Desierto
-    librarian: Cabeza de Aldeano Bibliotecario del Desierto
-    mason: Cabeza de Aldeano Masón del Desierto
-    nitwit: Cabeza de Aldeano Desempleado del Desierto
-    none: Cabeza de Aldeano del Desierto
-    shepherd: Cabeza de Aldeano Pastor del Desierto
-    toolsmith: Cabeza de Aldeano Ferretero del Desierto
-    weaponsmith: Cabeza de Aldeano Armero del Desierto
+    armorer: Aldeano Herrero del Desierto
+    butcher: Aldeano Carnicero del Desierto
+    cartographer: Aldeano Cartógrafo del Desierto
+    cleric: Aldeano Clérigo del Desierto
+    farmer: Aldeano Granjero del Desierto
+    fisherman: Aldeano Pescador del Desierto
+    fletcher: Aldeano Arquero del Desierto
+    leatherworker: Aldeano Talabartero del Desierto
+    librarian: Aldeano Bibliotecario del Desierto
+    mason: Aldeano Masón del Desierto
+    nitwit: Aldeano Desempleado del Desierto
+    none: Aldeano del Desierto
+    shepherd: Aldeano Pastor del Desierto
+    toolsmith: Aldeano Ferretero del Desierto
+    weaponsmith: Aldeano Armero del Desierto
   jungle:
-    armorer: Cabeza de Aldeano Herrero de la Jungla
-    butcher: Cabeza de Aldeano Carnicero de la Jungla
-    cartographer: Cabeza de Aldeano Cartógrafo de la Jungla
-    cleric: Cabeza de Aldeano Clérigo de la Jungla
-    farmer: Cabeza de Aldeano Granjero de la Jungla
-    fisherman: Cabeza de Aldeano Pescador de la Jungla
-    fletcher: Cabeza de Aldeano Arquero de la Jungla
-    leatherworker: Cabeza de Aldeano Talabartero de la Jungla
-    librarian: Cabeza de Aldeano Bibliotecario de la Jungla
-    mason: Cabeza de Aldeano Masón de la Jungla
-    nitwit: Cabeza de Aldeano Desempleado de la Jungla
-    none: Cabeza de Aldeano de la Jungla
-    shepherd: Cabeza de Aldeano Pastor de la Jungla
-    toolsmith: Cabeza de Aldeano Ferretero de la Jungla
-    weaponsmith: Cabeza de Aldeano Armero de la Jungla
+    armorer: Aldeano Herrero de la Jungla
+    butcher: Aldeano Carnicero de la Jungla
+    cartographer: Aldeano Cartógrafo de la Jungla
+    cleric: Aldeano Clérigo de la Jungla
+    farmer: Aldeano Granjero de la Jungla
+    fisherman: Aldeano Pescador de la Jungla
+    fletcher: Aldeano Arquero de la Jungla
+    leatherworker: Aldeano Talabartero de la Jungla
+    librarian: Aldeano Bibliotecario de la Jungla
+    mason: Aldeano Masón de la Jungla
+    nitwit: Aldeano Desempleado de la Jungla
+    none: Aldeano de la Jungla
+    shepherd: Aldeano Pastor de la Jungla
+    toolsmith: Aldeano Ferretero de la Jungla
+    weaponsmith: Aldeano Armero de la Jungla
   plains:
-    armorer: Cabeza de Aldeano Herrero de las Planicies
-    butcher: Cabeza de Aldeano Carnicero de las Planicies
-    cartographer: Cabeza de Aldeano Cartógrafo de las Planicies
-    cleric: Cabeza de Aldeano Clérigo de las Planicies
-    farmer: Cabeza de Aldeano Granjero de las Planicies
-    fisherman: Cabeza de Aldeano Pescador de las Planicies
-    fletcher: Cabeza de Aldeano Arquero de las Planicies
-    leatherworker: Cabeza de Aldeano Talabartero de las Planicies
-    librarian: Cabeza de Aldeano Bibliotecario de las Planicies
-    mason: Cabeza de Aldeano Masón de las Planicies
-    nitwit: Cabeza de Aldeano Desempleado de las Planicies
-    none: Cabeza de Aldeano de las Planicies
-    shepherd: Cabeza de Aldeano Pastor de las Planicies
-    toolsmith: Cabeza de Aldeano Ferretero de las Planicies
-    weaponsmith: Cabeza de Aldeano Armero de las Planicies
+    armorer: Aldeano Herrero de las Planicies
+    butcher: Aldeano Carnicero de las Planicies
+    cartographer: Aldeano Cartógrafo de las Planicies
+    cleric: Aldeano Clérigo de las Planicies
+    farmer: Aldeano Granjero de las Planicies
+    fisherman: Aldeano Pescador de las Planicies
+    fletcher: Aldeano Arquero de las Planicies
+    leatherworker: Aldeano Talabartero de las Planicies
+    librarian: Aldeano Bibliotecario de las Planicies
+    mason: Aldeano Masón de las Planicies
+    nitwit: Aldeano Desempleado de las Planicies
+    none: Aldeano de las Planicies
+    shepherd: Aldeano Pastor de las Planicies
+    toolsmith: Aldeano Ferretero de las Planicies
+    weaponsmith: Aldeano Armero de las Planicies
   savanna:
-    armorer: Cabeza de Aldeano Herrero de la Savana
-    butcher: Cabeza de Aldeano Carnicero de la Savana
-    cartographer: Cabeza de Aldeano Cartógrafo de la Savana
-    cleric: Cabeza de Aldeano Clérigo de la Savana
-    farmer: Cabeza de Aldeano Granjero de la Savana
-    fisherman: Cabeza de Aldeano Pescador de la Savana
-    fletcher: Cabeza de Aldeano Arquero de la Savana
-    leatherworker: Cabeza de Aldeano Talabartero de la Savana
-    librarian: Cabeza de Aldeano Bibliotecario de la Savana
-    mason: Cabeza de Aldeano Masón de la Savana
-    nitwit: Cabeza de Aldeano Desempleado de la Savana
-    none: Cabeza de Aldeano de la Savana
-    shepherd: Cabeza de Aldeano Pastor de la Savana
-    toolsmith: Cabeza de Aldeano Ferretero de la Savana
-    weaponsmith: Cabeza de Aldeano Armero de la Savana
+    armorer: Aldeano Herrero de la Savana
+    butcher: Aldeano Carnicero de la Savana
+    cartographer: Aldeano Cartógrafo de la Savana
+    cleric: Aldeano Clérigo de la Savana
+    farmer: Aldeano Granjero de la Savana
+    fisherman: Aldeano Pescador de la Savana
+    fletcher: Aldeano Arquero de la Savana
+    leatherworker: Aldeano Talabartero de la Savana
+    librarian: Aldeano Bibliotecario de la Savana
+    mason: Aldeano Masón de la Savana
+    nitwit: Aldeano Desempleado de la Savana
+    none: Aldeano de la Savana
+    shepherd: Aldeano Pastor de la Savana
+    toolsmith: Aldeano Ferretero de la Savana
+    weaponsmith: Aldeano Armero de la Savana
   snow:
-    armorer: Cabeza de Aldeano Herrero Nevado
-    butcher: Cabeza de Aldeano Carnicero Nevado
-    cartographer: Cabeza de Aldeano Cartógrafo Nevado
-    cleric: Cabeza de Aldeano Clérigo Nevado
-    farmer: Cabeza de Aldeano Granjero Nevado
-    fisherman: Cabeza de Aldeano Pescador Nevado
-    fletcher: Cabeza de Aldeano Arquero Nevado
-    leatherworker: Cabeza de Aldeano Talabartero Nevado
-    librarian: Cabeza de Aldeano Bibliotecario Nevado
-    mason: Cabeza de Aldeano Masón Nevado
-    nitwit: Cabeza de Aldeano Desempleado Nevado
-    none: Cabeza de Aldeano Nevado
-    shepherd: Cabeza de Aldeano Pastor Nevado
-    toolsmith: Cabeza de Aldeano Ferretero Nevado
-    weaponsmith: Cabeza de Aldeano Armero Nevado
+    armorer: Aldeano Herrero Nevado
+    butcher: Aldeano Carnicero Nevado
+    cartographer: Aldeano Cartógrafo Nevado
+    cleric: Aldeano Clérigo Nevado
+    farmer: Aldeano Granjero Nevado
+    fisherman: Aldeano Pescador Nevado
+    fletcher: Aldeano Arquero Nevado
+    leatherworker: Aldeano Talabartero Nevado
+    librarian: Aldeano Bibliotecario Nevado
+    mason: Aldeano Masón Nevado
+    nitwit: Aldeano Desempleado Nevado
+    none: Aldeano Nevado
+    shepherd: Aldeano Pastor Nevado
+    toolsmith: Aldeano Ferretero Nevado
+    weaponsmith: Aldeano Armero Nevado
   swamp:
-    armorer: Cabeza de Aldeano Herrero de los Pantanos
-    butcher: Cabeza de Aldeano Carnicero de los Pantanos
-    cartographer: Cabeza de Aldeano Cartógrafo de los Pantanos
-    cleric: Cabeza de Aldeano Clérigo de los Pantanos
-    farmer: Cabeza de Aldeano Granjero de los Pantanos
-    fisherman: Cabeza de Aldeano Pescador de los Pantanos
-    fletcher: Cabeza de Aldeano Arquero de los Pantanos
-    leatherworker: Cabeza de Aldeano Talabartero de los Pantanos
-    librarian: Cabeza de Aldeano Bibliotecario de los Pantanos
-    mason: Cabeza de Aldeano Masón de los Pantanos
-    nitwit: Cabeza de Aldeano Desempleado de los Pantanos
-    none: Cabeza de Aldeano de los Pantanos
-    shepherd: Cabeza de Aldeano Pastor de los Pantanos
-    toolsmith: Cabeza de Aldeano Ferretero de los Pantanos
-    weaponsmith: Cabeza de Aldeano Armero de los Pantanos
+    armorer: Aldeano Herrero de los Pantanos
+    butcher: Aldeano Carnicero de los Pantanos
+    cartographer: Aldeano Cartógrafo de los Pantanos
+    cleric: Aldeano Clérigo de los Pantanos
+    farmer: Aldeano Granjero de los Pantanos
+    fisherman: Aldeano Pescador de los Pantanos
+    fletcher: Aldeano Arquero de los Pantanos
+    leatherworker: Aldeano Talabartero de los Pantanos
+    librarian: Aldeano Bibliotecario de los Pantanos
+    mason: Aldeano Masón de los Pantanos
+    nitwit: Aldeano Desempleado de los Pantanos
+    none: Aldeano de los Pantanos
+    shepherd: Aldeano Pastor de los Pantanos
+    toolsmith: Aldeano Ferretero de los Pantanos
+    weaponsmith: Aldeano Armero de los Pantanos
   taiga:
-    armorer: Cabeza de Aldeano Herrero de las Montañas
-    butcher: Cabeza de Aldeano Carnicero de las Montañas
-    cartographer: Cabeza de Aldeano Cartógrafo de las Montañas
-    cleric: Cabeza de Aldeano Clérigo de las Montañas
-    farmer: Cabeza de Aldeano Granjero de las Montañas
-    fisherman: Cabeza de Aldeano Pescador de las Montañas
-    fletcher: Cabeza de Aldeano Arquero de las Montañas
-    leatherworker: Cabeza de Aldeano Talabartero de las Montañas
-    librarian: Cabeza de Aldeano Bibliotecario de las Montañas
-    mason: Cabeza de Aldeano Masón de las Montañas
-    nitwit: Cabeza de Aldeano Desempleado de las Montañas
-    none: Cabeza de Aldeano de las Montañas
-    shepherd: Cabeza de Aldeano Pastor de las Montañas
-    toolsmith: Cabeza de Aldeano Ferretero de las Montañas
-    weaponsmith: Cabeza de Aldeano Armero de las Montañas
-vindicator: Cabeza de Vengador
-wandering_trader: Cabeza de Mercader Errante
-warden: Cabeza de Warden
-witch: Cabeza de Bruja
+    armorer: Aldeano Herrero de las Montañas
+    butcher: Aldeano Carnicero de las Montañas
+    cartographer: Aldeano Cartógrafo de las Montañas
+    cleric: Aldeano Clérigo de las Montañas
+    farmer: Aldeano Granjero de las Montañas
+    fisherman: Aldeano Pescador de las Montañas
+    fletcher: Aldeano Arquero de las Montañas
+    leatherworker: Aldeano Talabartero de las Montañas
+    librarian: Aldeano Bibliotecario de las Montañas
+    mason: Aldeano Masón de las Montañas
+    nitwit: Aldeano Desempleado de las Montañas
+    none: Aldeano de las Montañas
+    shepherd: Aldeano Pastor de las Montañas
+    toolsmith: Aldeano Ferretero de las Montañas
+    weaponsmith: Aldeano Armero de las Montañas
+vindicator: Vengador
+wandering_trader: Mercader Errante
+warden: Warden
+witch: Bruja
 wither: 
   normal: Wither Head
   projectile: Wither Projectile
   blue_projectile: Blue Wither Projectile
-wither_skeleton: Cabeza de Esqueleto Negro
-wolf: Cabeza de Lobo
-zoglin: Cabeza de Zoglin
-zombie: Cabeza de Zombie
-zombie_horse: Cabeza de Caballo Zombie
-zombie_pigman: Cabeza de Zombie Pigman
-zombified_piglin: Cabeza de Zombified Piglin
+wither_skeleton: Esqueleto Negro
+wolf: Lobo
+wolf_angry: Angry Wolf
+zoglin: Zoglin
+zombie: Zombie
+zombie_hoglin: Zombie Hoglin
+zombie_horse: Caballo Zombie
+zombie_pigman: Zombie Pigman
+zombified_piglin: Zombified Piglin
 zombie_villager:
-    armorer: Cabeza de Aldeano Herrero Zombie
-    butcher: Cabeza de Aldeano Carnicero Zombie
-    cartographer: Cabeza de Aldeano Cartógrafo Zombie
-    cleric: Cabeza de Aldeano Clérigo Zombie
-    farmer: Cabeza de Aldeano Granjero Zombie
-    fisherman: Cabeza de Aldeano Pescador Zombie
-    fletcher: Cabeza de Aldeano Arquero Zombie
-    leatherworker: Cabeza de Aldeano Talabartero Zombie
-    librarian: Cabeza de Aldeano Bibliotecario Zombie
-    mason: Cabeza de Aldeano Masón Zombie
-    nitwit: Cabeza de Aldeano Desempleado Zombie
-    none: Cabeza de Aldeano Zombie
-    shepherd: Cabeza de Aldeano Pastor Zombie
-    toolsmith: Cabeza de Aldeano Ferretero Zombie
-    weaponsmith: Cabeza de Aldeano Armero Zombie
+    armorer: Aldeano Herrero Zombie
+    butcher: Aldeano Carnicero Zombie
+    cartographer: Aldeano Cartógrafo Zombie
+    cleric: Aldeano Clérigo Zombie
+    farmer: Aldeano Granjero Zombie
+    fisherman: Aldeano Pescador Zombie
+    fletcher: Aldeano Arquero Zombie
+    leatherworker: Aldeano Talabartero Zombie
+    librarian: Aldeano Bibliotecario Zombie
+    mason: Aldeano Masón Zombie
+    nitwit: Aldeano Desempleado Zombie
+    none: Aldeano Zombie
+    shepherd: Aldeano Pastor Zombie
+    toolsmith: Aldeano Ferretero Zombie
+    weaponsmith: Aldeano Armero Zombie

@@ -6,3 +6,8 @@ change custom trades to check all trades each time.
 
 Fix this
 player.sendMessage(THIS_NAME + " v" + THIS_VERSION + " Sorry could not find \"" + blockName + "\""); // TODO: Add translation for this line.
+
+the dropped head item name and lore “killed by username” are customizable in the language file, but colorcodes eg. &c or <RED> do not work
+
+add a new command, "/mmh backup" that will backup all the main files into a backup folder, it could zip them with a date and time, and later cull ones older than say a week.
+Of course I'd want to add configs for which files to backup, whether to zip them or not, and whether to cull them or not.

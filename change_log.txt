@@ -1,5 +1,7 @@
 1.20_1.0.38
-D1	
+D1	Added better error and log handling
+D2	Changed drop chance to handle less than 1 values.
+D3	
 1.20_1.0.37
 D1	Removed Birthday Message code.
 1.20_1.0.36

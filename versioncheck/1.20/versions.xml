@@ -5,7 +5,7 @@
     <link>https://www.spigotmc.org/resources/moremobheads.73997/history</link>
   </release>
   <developer>
-    <version>1.20_1.0.38.D8</version>
+    <version>1.20_1.0.38.D9</version>
     <notes>D1	Added better error and log handling
 D2	Changed drop chance to handle less than 1 values.
 D3	Fixed exception caused by long names.
@@ -13,7 +13,8 @@ D4	Paper 1.20.6 fixes
 D5	Fixing 1.20.6 disabling of custom wandering trader.
 D6	Testing new system for Custom Wandering Trader.
 D7	Adding more persistent data.
-D8	First 1.20.5 and 1.21 dev build.</notes>
+D8	First 1.20.5 and 1.21 dev build.
+D9	Fixed some missed code.</notes>
     <link>https://discord.com/channels/654087250665144321/662940711167066123</link>
   </developer>
 </versions>

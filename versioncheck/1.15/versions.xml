@@ -32,9 +32,8 @@ D26	Fixed some typos in config calls.</notes>
     <link>https://www.spigotmc.org/resources/moremobheads.73997/history</link>
   </release>
   <developer>
-    <version>1.20_1.0.38.D10</version>
-    <notes>
-D1	Added better error and log handling
+    <version>1.20_1.0.38.D12</version>
+    <notes>D1	Added better error and log handling
 D2	Changed drop chance to handle less than 1 values.
 D3	Fixed exception caused by long names.
 D4	Paper 1.20.6 fixes
@@ -44,7 +43,8 @@ D7	Adding more persistent data.
 D8	First 1.20.5 and 1.21 dev build.
 D9	Fixed some missed code.
 D10	MMHLib is back, added Armadillo and Wolf variants.
-</notes>
+D11	Cleaning up code, fixing broken commands, some commands removed.
+D12	Fixed numerical issue, added better file updater.</notes>
     <link>https://discord.com/channels/654087250665144321/662940711167066123</link>
   </developer>
 </versions>

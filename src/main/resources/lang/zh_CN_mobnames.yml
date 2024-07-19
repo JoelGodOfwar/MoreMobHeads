@@ -1,9 +1,10 @@
 # Add the translations for your language here
 # 在此处添加您的语言的翻译
-version: 1.0.2
+version: 1.0.4
 killedby: <RED>Killed <RESET>By <YELLOW><player>
 player: Player头
 allay: 悦灵头
+armadillo: 犰狳
 axolotl:
   blue: 藍蠑螈頭
   cyan: 青色蠑螈頭
@@ -17,6 +18,8 @@ bee:
   pollinated: 授粉的蜜蜂头
   none: 蜜蜂头
 blaze: 烈焰人头
+bogged: 沼骸
+breeze: 微风
 camel: 骆驼头
 cat:
   all_black: 黑猫头
@@ -299,8 +302,25 @@ wither:
   projectile: 枯萎投射物
   blue_projectile: 蓝色枯萎投射物
 wither_skeleton: 凋灵骷髅头
-wolf: 狼头
-wolf_angry: Angry Wolf
+wolf:
+  ashen: 灰烬狼
+  black: 黑狼
+  chestnut: 栗色狼
+  pale: 苍白狼
+  rusty: 铁锈狼
+  snowy: 雪狼
+  spotted: 斑点狼
+  striped: 条纹狼
+  woods: 森林狼
+  angry_ashen: 愤怒的灰烬狼
+  angry_black: 愤怒的黑狼
+  angry_chestnut: 愤怒的栗色狼
+  angry_pale: 愤怒的苍白狼
+  angry_rusty: 愤怒的铁锈狼
+  angry_snowy: 愤怒的雪狼
+  angry_spotted: 愤怒的斑点狼
+  angry_striped: 愤怒的条纹狼
+  angry_woods: 愤怒的森林狼
 zoglin: Zoglin头
 zombie: 僵尸头
 zombie_hoglin: Zombie Hoglin

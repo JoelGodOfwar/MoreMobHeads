@@ -47,22 +47,26 @@ import io.papermc.lib.features.blockstatesnapshot.BlockStateSnapshotResult;
 class BlockListener2 implements Listener  {
 	public final static Logger logger = Logger.getLogger("Minecraft");
 	private Plugin plugin;
-	
+
 	BlockListener2(Plugin plugin) {
-	this.plugin = plugin;
+		this.plugin = plugin;
 	}
 
 	// Persistent Heads
 	private final NamespacedKey NAME_KEY = new NamespacedKey(plugin, "head_name");
 	private final NamespacedKey LORE_KEY = new NamespacedKey(plugin, "head_lore");
 	private final PersistentDataType<String,String[]> LORE_PDT = new JsonDataType<>(String[].class);
-	
+
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onBlockPlaceEvent(BlockPlaceEvent event) {
 		@Nonnull ItemStack headItem = event.getItemInHand();
-		if (headItem.getType() != Material.PLAYER_HEAD) return;
+		if (headItem.getType() != Material.PLAYER_HEAD) {
+			return;
+		}
 		ItemMeta meta = headItem.getItemMeta();
-		if (meta == null) return;
+		if (meta == null) {
+			return;
+		}
 		@Nonnull String name = meta.getDisplayName();
 		@Nullable List<String> lore = meta.getLore();
 		@Nonnull Block block = event.getBlockPlaced();
@@ -71,36 +75,50 @@ class BlockListener2 implements Listener  {
 		TileState skullState = (TileState) blockStateSnapshotResult.getState();
 		@Nonnull PersistentDataContainer skullPDC = skullState.getPersistentDataContainer();
 		skullPDC.set(NAME_KEY, PersistentDataType.STRING, name);
-		if (lore != null) skullPDC.set(LORE_KEY, LORE_PDT, lore.toArray(new String[0]));
-		if (blockStateSnapshotResult.isSnapshot()) skullState.update();
+		if (lore != null) {
+			skullPDC.set(LORE_KEY, LORE_PDT, lore.toArray(new String[0]));
+		}
+
+		if (blockStateSnapshotResult.isSnapshot()) {
+			skullState.update();
+		}
 		String strLore = "null";
 		if(lore != null){ strLore = lore.toString(); }
-		log(Level.INFO, "Player " + event.getPlayer().getName() + " placed a head named \"" + name + "\" with lore=\'" + strLore + "\' at " + event.getBlockPlaced().getLocation());
+		log(Level.INFO, ChatColor.RED + "Player " + event.getPlayer().getName() + " placed a head named \"" + name + "\" with lore=\'" + strLore + "\' at " + event.getBlockPlaced().getLocation());
 	}
 
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onBlockDropItemEvent(BlockDropItemEvent event) {
 		@Nonnull BlockState blockState = event.getBlockState();
 		Material blockType = blockState.getType();
-		if (blockType != Material.PLAYER_HEAD && blockType != Material.PLAYER_WALL_HEAD) return;
+		if ((blockType != Material.PLAYER_HEAD) && (blockType != Material.PLAYER_WALL_HEAD)) {
+			return;
+		}
 		TileState skullState = (TileState) blockState;
 		@Nonnull PersistentDataContainer skullPDC = skullState.getPersistentDataContainer();
 		@Nullable String name = skullPDC.get(NAME_KEY, PersistentDataType.STRING);
 		@Nullable String[] lore = skullPDC.get(LORE_KEY, LORE_PDT);
-		if (name == null) return;
+		if (name == null) {
+			return;
+		}
 		for (Item item: event.getItems()) { // Ideally should only be one...
 			@Nonnull ItemStack itemstack = item.getItemStack();
 			if (itemstack.getType() == Material.PLAYER_HEAD) {
-			@Nullable ItemMeta meta = itemstack.getItemMeta();
-			if (meta == null) continue; // This shouldn't happen
-			meta.setDisplayName(name);
-			if (lore != null) meta.setLore(Arrays.asList(lore));
-			itemstack.setItemMeta(meta);
+				@Nullable ItemMeta meta = itemstack.getItemMeta();
+				if (meta == null)
+				{
+					continue; // This shouldn't happen
+				}
+				meta.setDisplayName(name);
+				if (lore != null) {
+					meta.setLore(Arrays.asList(lore));
+				}
+				itemstack.setItemMeta(meta);
 			}
 		}
 		log(Level.INFO, "BDIE - Persistent head completed.");
 	}
-	
+
 	/**
 	 * Prevents player from removing player-head NBT by water logging them
 	 */
@@ -108,7 +126,7 @@ class BlockListener2 implements Listener  {
 	public void onPlayerBucketEmpty(PlayerBucketEmptyEvent event) {
 		handleBlock(event.getBlock(), event, false);
 	}
-	
+
 	/**
 	 * Prevents player from removing player-head NBT using running water
 	 */
@@ -116,7 +134,7 @@ class BlockListener2 implements Listener  {
 	public void onLiquidFlow(BlockFromToEvent event) {
 		handleBlock(event.getToBlock(), event, true);
 	}
-	
+
 	/*
 	 * Prevents explosion from removing player-head NBT using an explosion
 	 */
@@ -124,7 +142,7 @@ class BlockListener2 implements Listener  {
 	public void onBlockExplosion(BlockExplodeEvent event) {
 		handleExplosionEvent(event.blockList(), event.getYield());
 	}
-	
+
 	/*
 	 * Prevents entity from removing player-head NBT using an explosion
 	 */
@@ -132,7 +150,7 @@ class BlockListener2 implements Listener  {
 	public void onEntityExplosion(EntityExplodeEvent event) {
 		handleExplosionEvent(event.blockList(), event.getYield());
 	}
-	
+
 	/*
 	 * Prevents piston extending from removing NBT data.
 	 */
@@ -148,7 +166,7 @@ class BlockListener2 implements Listener  {
 			}
 		}
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void handleExplosionEvent(@Nonnull final List<Block> blocksExploded, final float explosionYield) {
 		final Random random = ThreadLocalRandom.current();
@@ -161,40 +179,58 @@ class BlockListener2 implements Listener  {
 			}
 		}
 	}
-	
+
 	private void handleBlock(Block block, Cancellable event, boolean cancelEvent) {
 		@Nonnull BlockState blockState = block.getState();
-		if (blockState.getType() != Material.PLAYER_HEAD && blockState.getType() != Material.PLAYER_WALL_HEAD) return;
+		if ((blockState.getType() != Material.PLAYER_HEAD) && (blockState.getType() != Material.PLAYER_WALL_HEAD)) {
+			return;
+		}
 		Skull skullState = (Skull) blockState;
 		@Nonnull PersistentDataContainer skullPDC = skullState.getPersistentDataContainer();
 		@Nullable String name = skullPDC.get(NAME_KEY, PersistentDataType.STRING);
 		@Nullable String[] lore = skullPDC.get(LORE_KEY, LORE_PDT);
-		if (name == null) return;
+		if (name == null) {
+			return;
+		}
 		@Nonnull Optional<ItemStack> skullStack = block.getDrops().stream().filter(is -> is.getType() == Material.PLAYER_HEAD).findAny();
 		if (skullStack.isPresent()) {
-			if (updateDrop(block, name, lore, skullStack.get())) return; // This shouldn't happen
-			if (cancelEvent) event.setCancelled(true);
+			if (updateDrop(block, name, lore, skullStack.get()))
+			{
+				return; // This shouldn't happen
+			}
+			if (cancelEvent) {
+				event.setCancelled(true);
+			}
 		}
 
 		BlockState blockState1 = block.getWorld().getBlockAt(block.getLocation()).getState();
 		blockState1.update(true, true);
 		log(Level.INFO, "HB - Persistent head completed.");
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void handleEvent(Supplier<Block> blockSupplier, Cancellable event, boolean cancelEvent) {
 		Block block = blockSupplier.get();
 		@Nonnull BlockState blockState = block.getState();
-		if (blockState.getType() != Material.PLAYER_HEAD && blockState.getType() != Material.PLAYER_WALL_HEAD) return;
+		if ((blockState.getType() != Material.PLAYER_HEAD) && (blockState.getType() != Material.PLAYER_WALL_HEAD)) {
+			return;
+		}
 		Skull skullState = (Skull) blockState;
 		@Nonnull PersistentDataContainer skullPDC = skullState.getPersistentDataContainer();
 		@Nullable String name = skullPDC.get(NAME_KEY, PersistentDataType.STRING);
 		@Nullable String[] lore = skullPDC.get(LORE_KEY, LORE_PDT);
-		if (name == null) return;
+		if (name == null) {
+			return;
+		}
 		@Nonnull Optional<ItemStack> skullStack = block.getDrops().stream().filter(is -> is.getType() == Material.PLAYER_HEAD).findAny();
 		if (skullStack.isPresent()) {
-			if (updateDrop(block, name, lore, skullStack.get())) return; // This shouldn't happen
-			if (cancelEvent) event.setCancelled(true);
+			if (updateDrop(block, name, lore, skullStack.get()))
+			{
+				return; // This shouldn't happen
+			}
+			if (cancelEvent) {
+				event.setCancelled(true);
+			}
 		}
 
 		BlockState blockState1 = block.getWorld().getBlockAt(block.getLocation()).getState();
@@ -204,9 +240,13 @@ class BlockListener2 implements Listener  {
 
 	private boolean updateDrop(Block block, @Nullable String name, @Nullable String[] lore, @Nonnull ItemStack itemstack) {
 		@Nullable ItemMeta meta = itemstack.getItemMeta();
-		if (meta == null) return true;
+		if (meta == null) {
+			return true;
+		}
 		meta.setDisplayName(name);
-		if (lore != null) meta.setLore(Arrays.asList(lore));
+		if (lore != null) {
+			meta.setLore(Arrays.asList(lore));
+		}
 		itemstack.setItemMeta(meta);
 
 		block.getWorld().dropItemNaturally(block.getLocation(), itemstack);
@@ -216,11 +256,11 @@ class BlockListener2 implements Listener  {
 		return false;
 	}
 	// Persistent Heads
-	
+
 	public void log(String string) {
 		log(Level.INFO, string);
 	}
-	
+
 	public	void log(Level level, String dalog){ //TODO: Log
 		PluginDescriptionFile pdfFile = plugin.getDescription();
 		logger.log(level, ChatColor.YELLOW + pdfFile.getName() + " v" + pdfFile.getVersion() + ChatColor.RESET + " " + dalog );

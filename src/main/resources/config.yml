@@ -1,5 +1,5 @@
 # DO NOT CHANGE VERSION
-version: 1.0.22
+version: 1.0.23
 # Plugin related settings.
 plugin_settings:
   # change to false to stop auto-update-check
@@ -38,6 +38,10 @@ head_settings:
     show_killer: true
     # set whether MoreMobHeads is added to lore.
     show_plugin_name: true
+  # Mini_Block settings.
+  mini_blocks:
+    # Should MMH allow stonecutting Mini_Blocks(Block Heads)?
+    stonecutter: true
   # player_heads settings.
   player_heads:
     announce_kill:

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -13,15 +14,15 @@ import java.util.Random;
 import java.util.UUID;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.block.Skull;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -85,6 +86,7 @@ import org.bukkit.profile.PlayerProfile;
 import org.bukkit.profile.PlayerTextures;
 
 import com.github.joelgodofwar.mmh.MoreMobHeads;
+import com.github.joelgodofwar.mmh.MoreMobHeadsLib;
 import com.github.joelgodofwar.mmh.common.PluginLibrary;
 import com.github.joelgodofwar.mmh.common.error.DetailedErrorReporter;
 import com.github.joelgodofwar.mmh.common.error.Report;
@@ -99,9 +101,12 @@ import com.github.joelgodofwar.mmh.enums.RabbitHeads;
 import com.github.joelgodofwar.mmh.enums.SheepHeads;
 import com.github.joelgodofwar.mmh.enums.TropicalFishHeads;
 import com.github.joelgodofwar.mmh.enums.VillagerHeads;
+import com.github.joelgodofwar.mmh.enums.WolfHeads;
 import com.github.joelgodofwar.mmh.enums.ZombieVillagerHeads;
 import com.github.joelgodofwar.mmh.util.ChatColorUtils;
 import com.github.joelgodofwar.mmh.util.ConfigHelper;
+import com.github.joelgodofwar.mmh.util.MiniBlockRecipes;
+import com.github.joelgodofwar.mmh.util.SkinUtils;
 import com.github.joelgodofwar.mmh.util.StrUtils;
 import com.github.joelgodofwar.mmh.util.Utils;
 import com.github.joelgodofwar.mmh.util.VerifyConfig;
@@ -117,7 +122,7 @@ import de.tr7zw.changeme.nbtapi.NBTItem;
  */
 
 @SuppressWarnings("deprecation")
-public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, Listener {
+public class EventHandler_1_20_R2 implements CommandExecutor, TabCompleter, Listener {
 	/** Variables */
 	MoreMobHeads mmh;
 	double defpercent = 13.0;
@@ -152,14 +157,14 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 
 
 
-	@SuppressWarnings({ "static-access", "unchecked" })
-	public EventHandler_1_20_R1(final MoreMobHeads plugin) { // TODO: Top of code
+	@SuppressWarnings({ "static-access" })
+	public EventHandler_1_20_R2(final MoreMobHeads plugin) { // TODO: Top of code
 		try { // REPORT_EVENT_HANDLER_LOAD "Error while loading EventHandler."
 			/** Set variables */
 			mmh = plugin;
 			reporter = new DetailedErrorReporter(mmh);
 			verify = new VerifyConfig(mmh);
-			mmh.LOGGER.log("Loading 1.20 EventHandler...");
+			mmh.LOGGER.log("Loading 1.20.6/1.21 EventHandler...");
 			long startTime = System.currentTimeMillis();
 			mmh.getCommand("mmh").setExecutor(this);
 			world_whitelist = mmh.config.getString("world.whitelist", "");
@@ -174,211 +179,14 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 			//Version is_1_20_6 = new Version("1.20.6");
 			Version current = new Version(mmh.getServer());
 			mmh.LOGGER.debug("EH 1_20 current=" + current);
-			if ( mmh.config.getBoolean("wandering_trades.custom_wandering_trader", true) ) {
-				if (!blockFile117.exists()) {
-					mmh.saveResource("block_heads_1_17.yml", true);
-					mmh.LOGGER.log("block_heads_1_17.yml not found! Creating in " + mmh.getDataFolder() + "");
-				}
-				if (!blockFile1172.exists()) {
-					mmh.saveResource("block_heads_1_17_2.yml", true);
-					mmh.LOGGER.log("block_heads_1_17_2.yml not found! Creating in " + mmh.getDataFolder() + "");
-				}
-				if (!blockFile120.exists()) {
-					mmh.saveResource("block_heads_1_20.yml", true);
-					mmh.LOGGER.log("block_heads_1_20.yml not found! Creating in " + mmh.getDataFolder() + "");
-				}
-				blockHeads = new YamlConfiguration();
-				try {
-					mmh.LOGGER.log("Loading " + blockFile117 + "...");
-					blockHeads.load(blockFile117);
-				} catch (Exception exception) {
-					mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_BLOCKHEAD_LOAD_ERROR).error(exception));
-				}
-				blockHeads2 = new YamlConfiguration();
-				try {
-					mmh.LOGGER.log("Loading " + blockFile1172 + "...");
-					blockHeads2.load(blockFile1172);
-				} catch (Exception exception) {
-					mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_BLOCKHEAD_LOAD_ERROR).error(exception));
-				}
-				/**if (Double.parseDouble(mmh.getMCVersion().substring(0, 4)) >= 1.20) {
-					blockFile1173 = blockFile120;
-				}//*/
-				blockHeads3 = new YamlConfiguration();
-				try {
-					mmh.LOGGER.log("Loading " + blockFile120 + "...");
-					blockHeads3.load(blockFile120);
-				} catch (Exception exception) {
-					mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_BLOCKHEAD_LOAD_ERROR).error(exception));
-				}
-				// Check if Player heads and Block heads files are up to date.
-				int checkBH = blockHeads.getInt("blocks.block_1.maxuses", -1);
-				if(checkBH == -1) {
-					mmh.LOGGER.log("block_heads_1_17.yml outdated! Copying to " + mmh.getDataFolder() + "" + File.separatorChar + "backup");
-					try {
-						mmh.copyFile(blockFile117.getAbsolutePath(),mmh.getDataFolder() + "" + File.separatorChar + "backup" + File.separatorChar + "block_heads_1_17.yml");
-					} catch (Exception exception) {
-						reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_COPY_FILE).error(exception));
-					}
-					mmh.saveResource("block_heads_1_17.yml", true);
-					mmh.LOGGER.log("New block_heads_1_17.yml saved in " + mmh.getDataFolder() + "");
-					try {
-						mmh.LOGGER.log("Loading " + blockFile117 + "...");
-						blockHeads.load(blockFile117);
-					} catch (Exception exception) {
-						mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_BLOCKHEAD_LOAD_ERROR).error(exception));
-					}
-				}
-				int checkBH2 = blockHeads2.getInt("blocks.block_1.maxuses", -1);
-				if(checkBH2 == -1) {
-					mmh.LOGGER.log("block_heads_1_17_2.yml outdated! Copying to " + mmh.getDataFolder() + "" + File.separatorChar + "backup");
-					try {
-						mmh.copyFile(blockFile1172.getAbsolutePath(),mmh.getDataFolder() + "" + File.separatorChar + "backup" + File.separatorChar + "block_heads_1_17_2.yml");
-					} catch (Exception exception) {
-						reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_COPY_FILE).error(exception));
-					}
-					mmh.saveResource("block_heads_1_17_2.yml", true);
-					mmh.LOGGER.log("New block_heads_1_17_2.yml saved in " + mmh.getDataFolder() + "");
-					try {
-						mmh.LOGGER.log("Loading " + blockFile1172 + "...");
-						blockHeads2.load(blockFile1172);
-					} catch (Exception exception) {
-						mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_BLOCKHEAD_LOAD_ERROR).error(exception));
-					}
-				}
-				int checkBH3 = blockHeads3.getInt("blocks.block_1.maxuses", -1);
-				if(checkBH3 == -1) {
-					mmh.LOGGER.log("block_heads_1_20.yml outdated! Copying to " + mmh.getDataFolder() + "" + File.separatorChar + "backup");
-					try {
-						mmh.copyFile(blockFile120.getAbsolutePath(),mmh.getDataFolder() + "" + File.separatorChar + "backup" + File.separatorChar + "block_heads_1_20.yml");
-					} catch (Exception exception) {
-						reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_COPY_FILE).error(exception));
-					}
-					mmh.saveResource("block_heads_1_20.yml", true);
-					mmh.LOGGER.log("New block_heads_1_20.yml saved in " + mmh.getDataFolder() + "");
-					try {
-						mmh.LOGGER.log("Loading " + blockFile120 + "...");
-						blockHeads3.load(blockFile120);
-					} catch (Exception exception) {
-						mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_BLOCKHEAD_LOAD_ERROR).error(exception));
-					}
-				}
+			checkMiniBlocks();
+			MiniBlockRecipes miniblockrecipes = new MiniBlockRecipes(blockhead_recipes);
+			miniblockrecipes.register();
+			mmh.blockHeads = blockHeads;
+			mmh.blockHeads2 = blockHeads2;
+			mmh.blockHeads3 = blockHeads3;
+			mmh.LOGGER.log("EventHandler_1_20 took " + mmh.LoadTime(startTime) + " to load");
 
-				//boolean showlore = mmh.config.getBoolean("head_settings.lore.show_plugin_name", true);
-				//ArrayList<String> headlore = new ArrayList();
-				//headlore.add(ChatColor.AQUA + "" + mmh.getName());
-
-				mmh.LOGGER.log("Loading PlayerHead Recipes...");
-				for (int i = 1; i < (mmh.playerHeads.getInt("players.number") + 1); i++) {
-					// Get Head parts and make head an ItemStack.
-					String name = mmh.playerHeads.getString("players.player_" + i + ".head.name", nameDEF);
-					String uuid = mmh.playerHeads.getString("players.player_" + i + ".head.uuid", uuidDEF);
-					String texture = mmh.playerHeads.getString("players.player_" + i + ".head.texture", textureDEF);
-					List<String> lore = (List<String>) mmh.playerHeads.getList("players.player_" + i + ".head.lore", loreDEF);
-					//mmh.LOGGER.debug("lore = " + lore);
-					int amount = mmh.playerHeads.getInt("players.player_" + i + ".head.amount", 1);
-					int maxuses = mmh.playerHeads.getInt("players.player_" + i + ".maxuses", 1);
-					ItemStack itemstack = mmh.makeHeads(name, texture, uuid, lore,  EntityType.PLAYER, amount);
-
-					MerchantRecipe recipe = new MerchantRecipe(itemstack, maxuses);
-					ItemStack price1 = mmh.playerHeads.getItemStack("players.player_" + i + ".price_1", new ItemStack(Material.AIR));
-					if(!price1.getType().equals(Material.AIR)) {recipe.addIngredient(price1);}
-					ItemStack price2 = mmh.playerHeads.getItemStack("players.player_" + i + ".price_2", new ItemStack(Material.AIR));
-					if(!price2.getType().equals(Material.AIR)) {recipe.addIngredient(price2);}
-
-					playerhead_recipes.add(recipe);
-				}
-				mmh.LOGGER.log(playerhead_recipes.size() + " PlayerHead Recipes ADDED...");
-				mmh.LOGGER.log("Loading BlockHead Recipes...");
-				BHNum = blockHeads.getInt("blocks.number");
-				// BlockHeads
-				mmh.LOGGER.log("BlockHeads=" + BHNum);
-				for (int i = 1; i < (BHNum + 1); i++) {
-					String name = blockHeads.getString("blocks.block_" + i + ".head.name", nameDEF);
-					String uuid = blockHeads.getString("blocks.block_" + i + ".head.uuid", uuidDEF);
-					String texture = blockHeads.getString("blocks.block_" + i + ".head.texture", textureDEF);
-					List<String> lore = (List<String>) blockHeads.getList("blocks.block_" + i + ".head.lore", loreDEF);
-					int amount = blockHeads.getInt("blocks.block_" + i + ".head.amount", 1);
-					int maxuses = blockHeads.getInt("blocks.block_" + i + ".maxuses", 1);
-					ItemStack itemstack = mmh.makeHeads(name, texture, uuid, lore,  EntityType.PLAYER, amount);
-
-					MerchantRecipe recipe = new MerchantRecipe(itemstack, maxuses);
-					ItemStack price1 = blockHeads.getItemStack("blocks.block_" + i + ".price_1", new ItemStack(Material.AIR));
-					if(!price1.getType().equals(Material.AIR)) {recipe.addIngredient(price1);}
-					ItemStack price2 = blockHeads.getItemStack("blocks.block_" + i + ".price_2", new ItemStack(Material.AIR));
-					if(!price2.getType().equals(Material.AIR)) {recipe.addIngredient(price2);}
-
-					blockhead_recipes.add(recipe);
-				}
-				BHNum2 = blockHeads2.getInt("blocks.number");
-				// blockHeads 2
-				mmh.LOGGER.log("BlockHeads2=" + BHNum2);
-				for (int i = 1; i < (BHNum2 + 1); i++) {
-					String name = blockHeads2.getString("blocks.block_" + i + ".head.name", nameDEF);
-					String uuid = blockHeads2.getString("blocks.block_" + i + ".head.uuid", uuidDEF);
-					String texture = blockHeads2.getString("blocks.block_" + i + ".head.texture", textureDEF);
-					List<String> lore = (List<String>) blockHeads2.getList("blocks.block_" + i + ".head.lore", loreDEF);
-					int amount = blockHeads2.getInt("blocks.block_" + i + ".head.amount", 1);
-					int maxuses = blockHeads2.getInt("blocks.block_" + i + ".maxuses", 1);
-					ItemStack itemstack = mmh.makeHeads(name, texture, uuid, lore,  EntityType.PLAYER, amount);
-
-					MerchantRecipe recipe = new MerchantRecipe(itemstack, maxuses);
-					ItemStack price1 = blockHeads2.getItemStack("blocks.block_" + i + ".price_1", new ItemStack(Material.AIR));
-					if(!price1.getType().equals(Material.AIR)) {recipe.addIngredient(price1);}
-					ItemStack price2 = blockHeads2.getItemStack("blocks.block_" + i + ".price_2", new ItemStack(Material.AIR));
-					if(!price2.getType().equals(Material.AIR)) {recipe.addIngredient(price2);}
-
-					blockhead_recipes.add(recipe);
-				}
-				BHNum3 = blockHeads3.getInt("blocks.number");
-				// blockHeads 3
-				mmh.LOGGER.log("BlockHeads3=" + BHNum3);
-				for (int i = 1; i < (BHNum3 + 1); i++) {
-					String name = blockHeads3.getString("blocks.block_" + i + ".head.name", nameDEF);
-					String uuid = blockHeads3.getString("blocks.block_" + i + ".head.uuid", uuidDEF);
-					String texture = blockHeads3.getString("blocks.block_" + i + ".head.texture", textureDEF);
-					List<String> lore = (List<String>) blockHeads3.getList("blocks.block_" + i + ".head.lore", loreDEF);
-					int amount = blockHeads3.getInt("blocks.block_" + i + ".head.amount", 1);
-					int maxuses = blockHeads3.getInt("blocks.block_" + i + ".maxuses", 1);
-					ItemStack itemstack = mmh.makeHeads(name, texture, uuid, lore,  EntityType.PLAYER, amount);
-
-					MerchantRecipe recipe = new MerchantRecipe(itemstack, maxuses);
-					ItemStack price1 = blockHeads3.getItemStack("blocks.block_" + i + ".price_1", new ItemStack(Material.AIR));
-					if(!price1.getType().equals(Material.AIR)) {recipe.addIngredient(price1);}
-					ItemStack price2 = blockHeads3.getItemStack("blocks.block_" + i + ".price_2", new ItemStack(Material.AIR));
-					if(!price2.getType().equals(Material.AIR)) {recipe.addIngredient(price2);}
-
-					blockhead_recipes.add(recipe);
-				}
-
-				mmh.LOGGER.log(blockhead_recipes.size() + " BlockHead Recipes ADDED...");
-				/**mmh.LOGGER.log("Loading CustomTrades Recipes...");
-				for (int i = 1; i < (mmh.traderCustom.getInt("custom_trades.number") + 1); i++) {
-					ItemStack price1 = mmh.traderCustom.getItemStack("custom_trades.trade_" + i + ".price_1", new ItemStack(Material.AIR));
-					ItemStack price2 = mmh.traderCustom.getItemStack("custom_trades.trade_" + i + ".price_2", new ItemStack(Material.AIR));
-					ItemStack itemstack = mmh.traderCustom.getItemStack("custom_trades.trade_" + i + ".itemstack", new ItemStack(Material.AIR));
-					// Code to fix missing noteblock SkullMeta
-					boolean doIt = Utils.isSupportedVersion("1.20.2.3936");
-					if(doIt) {
-						mmh.LOGGER.log("doIt=" + doIt);
-						if(itemstack.getType().equals(Material.PLAYER_HEAD)) {
-							SkullMeta meta = (SkullMeta) itemstack.getItemMeta();
-							String sound = mmh.traderCustom.getString("custom_trades.trade_" + i + ".note_block_sound", "entity.player.hurt");
-							meta.setNoteBlockSound(NamespacedKey.minecraft(sound));
-							itemstack.setItemMeta(meta);
-						}
-					}
-					// Code to fix missing noteblock SkullMeta
-					MerchantRecipe recipe = new MerchantRecipe(itemstack,
-							mmh.traderCustom.getInt("custom_trades.trade_" + i + ".quantity", 1));
-					recipe.setExperienceReward(true);
-					recipe.addIngredient(price1);
-					recipe.addIngredient(price2);
-					custometrade_recipes.add(recipe);
-				}//*/
-				mmh.LOGGER.log(custometrade_recipes.size() + " CustomTrades Recipes ADDED...");
-				mmh.LOGGER.log("EventHandler_1_20 took " + mmh.LoadTime(startTime) + "ms to load");
-			}
 		}catch(Exception exception) {
 			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_EVENT_HANDLER_LOAD).error(exception));
 		}
@@ -483,6 +291,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 			} else if (event.getDamager() instanceof EnderCrystal) {
 				EnderCrystal ec = (EnderCrystal) event.getDamager();
 				UUID pUUID = mmh.endCrystals.get(ec.getUniqueId());
+				if(pUUID == null) {return;}
 				player = Bukkit.getPlayer(pUUID);
 				mmh.playerWeapons.put(player.getUniqueId(), new ItemStack(Material.END_CRYSTAL));
 				return;
@@ -631,13 +440,13 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 			} else if (event.getEntity() instanceof LivingEntity) {
 				if ((entity.getKiller() instanceof Player) || (entity.getKiller() instanceof Creeper)) {
 					String name = event.getEntityType().toString().replace(" ", "_");
-					mmh.LOGGER.debug("EDE name=" + name);
+					mmh.LOGGER.debug("EDE NM name=" + name);
 					String isNametag = null;
 					@Nonnull
 					PersistentDataContainer pdc = entity.getPersistentDataContainer();
 					isNametag = entity.getPersistentDataContainer().get(mmh.NAMETAG_KEY, PersistentDataType.STRING);// .getScoreboardTags();//
 					if ((isNametag != null)) {
-						mmh.LOGGER.debug("EDE isNametag=" + isNametag.toString());
+						mmh.LOGGER.debug("EDE NM isNametag=" + isNametag.toString());
 					}
 
 					if ( (entity.getKiller() instanceof Creeper) || (entity.getKiller().hasPermission("moremobheads.mobs")  || mmh.isDev) ) {
@@ -668,7 +477,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 										boolean onblacklist = mmh.config.getString("head_settings.player_heads.blacklist.player_head_blacklist", "")
 												.toLowerCase().contains(entity.getCustomName().toLowerCase());
 										/**  */
-										if (mmh.DropIt(event, chanceConfig.getDouble("named_mob", 10.0))) {
+										if (mmh.DropIt(event, chanceConfig.getDouble("chance_percent.named_mob", 10.0))) {
 											boolean isTrue = false;
 											if (enforcewhitelist && enforceblacklist) {
 												if (onwhitelist && !(onblacklist)) {
@@ -711,9 +520,10 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 												meta.setLore(lore);
 												meta.setLore(lore);
 												head.setItemMeta(meta);
-												if(entity.getEquipment().getHelmet().isSimilar(head)) {
+												if(entity.getEquipment().getHelmet().getType() == Material.PLAYER_HEAD) {
+													head = entity.getEquipment().getHelmet();
 													Drops.add(head);
-													mmh.LOGGER.debug(" EDE " + entity.getCustomName().toString() + " Head Dropped");
+													mmh.LOGGER.debug("EDE " + entity.getCustomName().toString() + " Head Dropped");
 													if (mmh.config.getBoolean("head_settings.mob_heads.announce_kill.enabled", true)) {
 														announceBeheading(entity, entity.getCustomName(),
 																entity.getKiller(), mmh.config.getBoolean("head_settings.mob_heads.announce_kill.displayname", true));
@@ -748,6 +558,8 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 								reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_PLAYER_NAMED_MOB).error(exception));
 							}
 						}
+
+						mmh.LOGGER.debug("EDE NM LivingEntity = " + (event.getEntity() instanceof LivingEntity));
 
 						try { // REPORT_PLAYER_KILL_MOB "Unable to parse Mob Kill."
 							switch (name) {
@@ -938,31 +750,20 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 								break;
 							case "WOLF":
 								Wolf wolf = (Wolf) event.getEntity();
+								String name2 = MoreMobHeadsLib.getName(name, wolf);
+								mmh.LOGGER.debug("EDE name2 = " + name2);
 								// ConfigHelper.Double(chanceConfig, "chance_percent." + name.toLowerCase(),
 								// defpercent)
-								if (mmh.DropIt(event, ConfigHelper.Double(chanceConfig, "chance_percent." + name.toLowerCase(),
-										defpercent))) {
-									if (wolf.isAngry()) {
-										String name2 = name + "_ANGRY";
-										Drops.add(
-												mmh.makeHead( mmh.langName.getString(name2.toLowerCase(), MobHeads.valueOf(name2).getName() + "")
-														, MobHeads.valueOf(name2).getTexture().toString(), MobHeads.valueOf(name2).getOwner(), entity.getType(), entity.getKiller() )
-												);
-										mmh.LOGGER.debug("EDE Angry Wolf Head Dropped");
-										if (mmh.config.getBoolean("head_settings.mob_heads.announce_kill.enabled", true)) {
-											announceBeheading(entity, mmh.langName.getString(name.toLowerCase() + "_angry", MobHeads.valueOf(name + "_ANGRY").getName() + "")
-													.replace(" Head", ""), entity.getKiller(), mmh.config.getBoolean("head_settings.mob_heads.announce_kill.displayname", true));
-										}
-									} else {
-										Drops.add(
-												mmh.makeHead( mmh.langName.getString(name.toLowerCase(), MobHeads.valueOf(name).getName() + "")
-														, MobHeads.valueOf(name).getTexture().toString(), MobHeads.valueOf(name).getOwner(), entity.getType(), entity.getKiller() )
-												);
-										mmh.LOGGER.debug("EDE Wolf Head Dropped");
-										if (mmh.config.getBoolean("head_settings.mob_heads.announce_kill.enabled", true)) {
-											announceBeheading(entity, mmh.langName.getString(name.toLowerCase(), MobHeads.valueOf(name).getName() + "")
-													.replace(" Head", ""), entity.getKiller(), mmh.config.getBoolean("head_settings.mob_heads.announce_kill.displayname", true));
-										}
+								if (mmh.DropIt(event, ConfigHelper.Double(chanceConfig, "chance_percent." + name.toLowerCase() + "." + name2.toLowerCase(), defpercent))) {
+									Drops.add(
+											mmh.makeHead( mmh.langName.getString(name2.toLowerCase(), WolfHeads.valueOf(name2).getName() + "")
+													, WolfHeads.valueOf(name2).getTexture().toString(), WolfHeads.valueOf(name2).getUUID(), entity.getType(), entity.getKiller() )
+											);
+									//name2 = (name2 + name).replace("_", " ");
+									mmh.LOGGER.debug("EDE " + name2 + " Head Dropped");
+									if (mmh.config.getBoolean("head_settings.mob_heads.announce_kill.enabled", true)) {
+										announceBeheading(entity, mmh.langName.getString(name2.toLowerCase(), WolfHeads.valueOf(name2).getName() + "")
+												.replace(" Head", ""), entity.getKiller(), mmh.config.getBoolean("head_settings.mob_heads.announce_kill.displayname", true));
 									}
 								}
 								break;
@@ -1475,6 +1276,8 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 								break;
 							case "CAMEL":
 							case "SNIFFER":
+							case "BOGGED":
+							case "BREEZE":
 								mmh.LOGGER.debug("EDE CS name=" + name);
 								mmh.LOGGER.debug("EDE CS texture=" + MobHeads120.valueOf(name).getTexture().toString());
 								mmh.LOGGER.debug("EDE CS location=" + entity.getLocation().toString());
@@ -1526,6 +1329,9 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 								}
 								break;
 							default:
+								if(name == "SNOW_GOLEM") {
+									name = "SNOWMAN";
+								}
 								// mmh.makeSkull(MobHeads.valueOf(name).getTexture(), name);
 								mmh.LOGGER.debug("EDE name=" + name + " line:1122");
 								mmh.LOGGER.debug("EDE texture=" + MobHeads.valueOf(name).getTexture().toString() + " line:1123");
@@ -1623,7 +1429,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 
 						int min = mmh.config.getInt("wandering_trades.block_heads.pre_116.min", 0);
 						int max;
-						if (Double.parseDouble(mmh.getMCVersion().substring(0, 4)) >= 1.16) {
+						if (Double.parseDouble(MoreMobHeads.getMCVersion().substring(0, 4)) >= 1.16) {
 							max = mmh.config.getInt("wandering_trades.block_heads.pre_116.max", bhMaxDef);
 						} else {
 							max = mmh.config.getInt("wandering_trades.block_heads.pre_116.max", bhMaxDef);
@@ -1659,7 +1465,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 					 * Block Heads 2
 					 */
 					if (mmh.config.getBoolean("wandering_trades.block_heads.enabled", true)) {
-						if (Double.parseDouble(mmh.getMCVersion().substring(0, 4)) >= 1.16) {
+						if (Double.parseDouble(MoreMobHeads.getMCVersion().substring(0, 4)) >= 1.16) {
 							// check if default max BH is larger than number of block heads
 							int numOfblockheads = ((BHNum + BHNum2) - 1) >= 0 ? (BHNum + BHNum2) - 1 : 0;
 							int bhMaxDef = (5 >= numOfblockheads) ? 5 : numOfblockheads;
@@ -1692,7 +1498,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 								used.clear();
 							}
 						}
-						if (Double.parseDouble(mmh.getMCVersion().substring(0, 4)) >= 1.17) {
+						if (Double.parseDouble(MoreMobHeads.getMCVersion().substring(0, 4)) >= 1.17) {
 							// check if default max BH is larger than number of blockheads
 							int numOfblockheads = ((BHNum + BHNum2 + BHNum3) - 1) >= 0 ? (BHNum + BHNum2 + BHNum3) - 1 : 0;
 							int bhMaxDef = (5 >= numOfblockheads) ? 5 : numOfblockheads;
@@ -1911,7 +1717,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 							sender.sendMessage(
 									"" + mmh.getName() + " " + mmh.getDescription().getVersion() + " display varss start");
 							sender.sendMessage("debug=" + debug);
-							sender.sendMessage("daLang=" + mmh.daLang);
+							sender.sendMessage("daLang=" + MoreMobHeads.daLang);
 
 							world_whitelist = mmh.config.getString("global_settings.world.whitelist", "");
 							world_blacklist = mmh.config.getString("global_settings.world.blacklist", "");
@@ -1951,7 +1757,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 										}
 										pw.flush();
 									} catch (Exception exception) {
-										mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_PLUGIN_UNKNOWN_ERROR).error(exception));
+										MoreMobHeads.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_PLUGIN_UNKNOWN_ERROR).error(exception));
 									} finally {
 										pw.close();
 									}
@@ -1979,7 +1785,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 										}
 										pw.flush();
 									} catch (Exception exception) {
-										mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_PLUGIN_UNKNOWN_ERROR).error(exception));
+										MoreMobHeads.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_PLUGIN_UNKNOWN_ERROR).error(exception));
 									} finally {
 										pw.close();
 									}
@@ -2008,11 +1814,39 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 							//mmh.configReload();
 							mmh.LOGGER.log("Reloading 1.20 EventHandler...");
 							long startTime = System.currentTimeMillis();
+							saveFileVersions();
+
+							mmh.LOGGER.log("Loading file version checker...");
+							mmh.fileVersionsFile = new File(mmh.getDataFolder() + "" + File.separatorChar + "fileVersions.yml");
 							try {
-								mmh.config.load(new File(mmh.getDataFolder(), "config.yml"));
+								mmh.fileVersions.load(mmh.fileVersionsFile);
 							} catch (Exception exception) {
-								mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_LOAD_CONFIG).error(exception));
+								reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_LOAD_FILEVERSION).error(exception));
 							}
+
+							mmh.config = new YmlConfiguration();
+							mmh.beheadingMessages = new YmlConfiguration();
+
+							// Make sure directory exists and files exist.
+							mmh.checkDirectories();
+							mmh.LOGGER.log("Loading file version checker...");
+							mmh.fileVersionsFile = new File(mmh.getDataFolder() + "" + File.separatorChar + "fileVersions.yml");
+							try {
+								mmh.fileVersions.load(mmh.fileVersionsFile);
+							} catch (Exception exception) {
+								reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_LOAD_FILEVERSION).error(exception));
+							}
+							// Check if Config needs update.
+							mmh.checkConfig();
+							// Check if MEssages needs update.
+							mmh.checkMessages();
+							// Check if MiniBlocks needs update,
+							mmh.checkMiniBlocks();
+							// Check if Chance needs update.
+							mmh.checkChance();
+							// Check if Lang needs update.
+							mmh.checkLang();
+
 							world_whitelist = mmh.config.getString("global_settings.world.whitelist", "");
 							world_blacklist = mmh.config.getString("global_settings.world.blacklist", "");
 							mob_whitelist = mmh.config.getString("head_settings.mob_heads.whitelist", "");
@@ -2022,183 +1856,17 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 							blockFile117 = new File(mmh.getDataFolder() + "" + File.separatorChar + "block_heads_1_17.yml");
 							blockFile1172 = new File(mmh.getDataFolder() + "" + File.separatorChar + "block_heads_1_17_2.yml");
 							blockFile120 = new File(mmh.getDataFolder() + "" + File.separatorChar + "block_heads_1_20.yml");
+							blockhead_recipes = new ArrayList<MerchantRecipe>();
+							checkMiniBlocks();
 
-							if (mmh.config.getBoolean("wandering_trades.custom_wandering_trader", true)) {
-								if (!blockFile117.exists()) {
-									mmh.saveResource("block_heads_1_17.yml", true);
-									mmh.LOGGER.log("block_heads_1_17.yml not found! Creating in " + mmh.getDataFolder() + "");
-								}
-								if (!blockFile1172.exists()) {
-									mmh.saveResource("block_heads_1_17_2.yml", true);
-									mmh.LOGGER.log("block_heads_1_17_2.yml not found! Creating in " + mmh.getDataFolder() + "");
-								}
-								if (!blockFile120.exists()) {
-									mmh.saveResource("block_heads_1_20.yml", true);
-									mmh.LOGGER.log("block_heads_1_20.yml not found! Creating in " + mmh.getDataFolder() + "");
-								}
-								blockHeads = new YamlConfiguration();
-								try {
-									mmh.LOGGER.log("Loading " + blockFile117 + "...");
-									blockHeads.load(blockFile117);
-								} catch (Exception exception) {
-									mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_PLUGIN_UNKNOWN_ERROR).error(exception));
-								}
-								blockHeads2 = new YamlConfiguration();
-								try {
-									mmh.LOGGER.log("Loading " + blockFile1172 + "...");
-									blockHeads2.load(blockFile1172);
-								} catch (Exception exception) {
-									mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_PLUGIN_UNKNOWN_ERROR).error(exception));
-								}
-								blockHeads3 = new YamlConfiguration();
-								try {
-									mmh.LOGGER.log("Loading " + blockFile120 + "...");
-									blockHeads3.load(blockFile120);
-								} catch (Exception exception) {
-									mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_PLUGIN_UNKNOWN_ERROR).error(exception));
-								}
+							MiniBlockRecipes miniblockrecipes = new MiniBlockRecipes(blockhead_recipes);
+							miniblockrecipes.register();
 
-								boolean showlore = mmh.config.getBoolean("head_settings.lore.show_plugin_name", true);
-								ArrayList<String> headlore = new ArrayList();
-								headlore.add(ChatColor.AQUA + "" + mmh.getName());
+							mmh.LOGGER.log("EventHandler_1_20 took " + mmh.LoadTime(startTime) + " to load");
 
-								if(!mmh.playerFile.exists()){
-									mmh.saveResource("player_heads.yml", true);
-									mmh.LOGGER.log("player_heads.yml not found! copied player_heads.yml to " + mmh.getDataFolder() + "");
-								}
-								mmh.LOGGER.log("Loading player_heads file...");
-								mmh.playerHeads = new YamlConfiguration();
-								try {
-									mmh.playerHeads.load(mmh.playerFile);
-								} catch (Exception exception) {
-									reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_PLAYERHEAD_LOAD_ERROR).error(exception));
-								}
 
-								mmh.LOGGER.log("Loading PlayerHead Recipes...");
-								for (int i = 1; i < (mmh.playerHeads.getInt("players.number") + 1); i++) {
-									ItemStack price1 = mmh.playerHeads.getItemStack("players.player_" + i + ".price_1",
-											new ItemStack(Material.AIR));
-									ItemStack price2 = mmh.playerHeads.getItemStack("players.player_" + i + ".price_2",
-											new ItemStack(Material.AIR));
-									ItemStack itemstack = mmh.playerHeads.getItemStack("players.player_" + i + ".itemstack",
-											new ItemStack(Material.AIR));
-									if (showlore) {
-										SkullMeta meta = (SkullMeta) itemstack.getItemMeta();
-										meta.setLore(headlore);
-										itemstack.setItemMeta(meta);
-										itemstack.setItemMeta(meta);
-									}
-									MerchantRecipe recipe = new MerchantRecipe(itemstack,
-											mmh.playerHeads.getInt("players.player_" + i + ".quantity", 3));
-									recipe.addIngredient(price1);
-									recipe.addIngredient(price2);
-									playerhead_recipes.add(recipe);
-								}
-								mmh.LOGGER.log(playerhead_recipes.size() + " PlayerHead Recipes ADDED...");
-								mmh.LOGGER.log("Loading BlockHead Recipes...");
-								BHNum = blockHeads.getInt("blocks.number");
-								// BlockHeads
-								mmh.LOGGER.log("BlockHeads=" + BHNum);
-								for (int i = 1; i < (BHNum + 1); i++) {
-									ItemStack price1 = blockHeads.getItemStack("blocks.block_" + i + ".price_1",
-											new ItemStack(Material.AIR));
-									ItemStack price2 = blockHeads.getItemStack("blocks.block_" + i + ".price_2",
-											new ItemStack(Material.AIR));
-									ItemStack itemstack = blockHeads.getItemStack("blocks.block_" + i + ".itemstack",
-											new ItemStack(Material.AIR));
-									if (showlore) {
-										SkullMeta meta = (SkullMeta) itemstack.getItemMeta();
-										meta.setLore(headlore);
-										itemstack.setItemMeta(meta);
-										itemstack.setItemMeta(meta);
-									}
-									MerchantRecipe recipe = new MerchantRecipe(itemstack,
-											blockHeads.getInt("blocks.block_" + i + ".quantity", 8));
-									recipe.setExperienceReward(true);
-									recipe.addIngredient(price1);
-									recipe.addIngredient(price2);
-									blockhead_recipes.add(recipe);
-								}
-								BHNum2 = blockHeads2.getInt("blocks.number");
-								// blockHeads 2
-								mmh.LOGGER.log("BlockHeads2=" + BHNum2);
-								for (int i = 1; i < (BHNum2 + 1); i++) {
-									ItemStack price1 = blockHeads2.getItemStack("blocks.block_" + i + ".price_1",
-											new ItemStack(Material.AIR));
-									ItemStack price2 = blockHeads2.getItemStack("blocks.block_" + i + ".price_2",
-											new ItemStack(Material.AIR));
-									ItemStack itemstack = blockHeads2.getItemStack("blocks.block_" + i + ".itemstack",
-											new ItemStack(Material.AIR));
-									if (showlore) {
-										SkullMeta meta = (SkullMeta) itemstack.getItemMeta();
-										meta.setLore(headlore);
-										itemstack.setItemMeta(meta);
-										itemstack.setItemMeta(meta);
-									}
-									MerchantRecipe recipe = new MerchantRecipe(itemstack,
-											blockHeads2.getInt("blocks.block_" + i + ".quantity", 8));
-									recipe.setExperienceReward(true);
-									recipe.addIngredient(price1);
-									recipe.addIngredient(price2);
-									blockhead_recipes.add(recipe);
-								}
-								BHNum3 = blockHeads3.getInt("blocks.number");
-								// blockHeads 3
-								mmh.LOGGER.log("BlockHeads3=" + BHNum3);
-								for (int i = 1; i < (BHNum3 + 1); i++) {
-									ItemStack price1 = blockHeads3.getItemStack("blocks.block_" + i + ".price_1",
-											new ItemStack(Material.AIR));
-									ItemStack price2 = blockHeads3.getItemStack("blocks.block_" + i + ".price_2",
-											new ItemStack(Material.AIR));
-									ItemStack itemstack = blockHeads3.getItemStack("blocks.block_" + i + ".itemstack",
-											new ItemStack(Material.AIR));
-									if (showlore) {
-										SkullMeta meta = (SkullMeta) itemstack.getItemMeta();
-										meta.setLore(headlore);
-										itemstack.setItemMeta(meta);
-										itemstack.setItemMeta(meta);
-									}
-									MerchantRecipe recipe = new MerchantRecipe(itemstack,
-											blockHeads3.getInt("blocks.block_" + i + ".quantity", 8));
-									recipe.setExperienceReward(true);
-									recipe.addIngredient(price1);
-									recipe.addIngredient(price2);
-									blockhead_recipes.add(recipe);
-								}
-
-								mmh.LOGGER.log(blockhead_recipes.size() + " BlockHead Recipes ADDED...");
-								mmh.LOGGER.log("Loading CustomTrades Recipes...");
-								for (int i = 1; i < (mmh.traderCustom.getInt("custom_trades.number") + 1); i++) {
-									ItemStack price1 = mmh.traderCustom.getItemStack("custom_trades.trade_" + i + ".price_1",
-											new ItemStack(Material.AIR));
-									ItemStack price2 = mmh.traderCustom.getItemStack("custom_trades.trade_" + i + ".price_2",
-											new ItemStack(Material.AIR));
-									ItemStack itemstack = mmh.traderCustom.getItemStack("custom_trades.trade_" + i + ".itemstack",
-											new ItemStack(Material.AIR));
-									/** Code to fix missing noteblock SkullMeta */
-									boolean doIt = Utils.isSupportedVersion("1.20.2.3936");
-									if(doIt) {
-										mmh.LOGGER.log("doIt=" + doIt);
-										if(itemstack.getType().equals(Material.PLAYER_HEAD)) {
-											SkullMeta meta = (SkullMeta) itemstack.getItemMeta();
-											String sound = mmh.traderCustom.getString("custom_trades.trade_" + i + ".note_block_sound", "entity.player.hurt");
-											meta.setNoteBlockSound(NamespacedKey.minecraft(sound));
-											itemstack.setItemMeta(meta);
-										}//*/
-									}
-									/** Code to fix missing noteblock SkullMeta */
-									MerchantRecipe recipe = new MerchantRecipe(itemstack,
-											mmh.traderCustom.getInt("custom_trades.trade_" + i + ".quantity", 1));
-									recipe.setExperienceReward(true);
-									recipe.addIngredient(price1);
-									recipe.addIngredient(price2);
-									custometrade_recipes.add(recipe);
-								}
-								mmh.LOGGER.log(custometrade_recipes.size() + " CustomTrades Recipes ADDED...");
-								mmh.LOGGER.log("EventHandler_1_20 took " + mmh.LoadTime(startTime) + "ms to load");
-							}
 							sender.sendMessage(
-									ChatColor.YELLOW + mmh.getName() + ChatColor.RED + " " + mmh.get("mmh.message.reloaded"));
+									ChatColor.YELLOW + mmh.getName() + ChatColor.GREEN + " " + mmh.get("mmh.message.reloaded"));
 
 							return true;
 						} else if (!hasPerm) {
@@ -2265,6 +1933,10 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 								if (price2 == null) {
 									price2 = new ItemStack(Material.AIR);
 								}
+								if(itemstack.getType() == Material.PLAYER_HEAD) {
+									sender.sendMessage("Player Heads must be added manually.");
+									return false;
+								}
 								// Material price1 = item1.getType();
 								// Material price2 = item2.getType();
 
@@ -2327,7 +1999,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 									mmh.traderCustom.save(mmh.customFile);
 									mmh.traderCustom.load(mmh.customFile);
 								} catch (Exception exception) {
-									mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_PLUGIN_UNKNOWN_ERROR).error(exception));
+									MoreMobHeads.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_PLUGIN_UNKNOWN_ERROR).error(exception));
 								}
 								mmh.LOGGER.debug("CMD CT ADD End -----");
 								sender.sendMessage(ChatColor.YELLOW + mmh.getName() + ChatColor.WHITE + " trade_"
@@ -2350,7 +2022,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 										mmh.traderCustom.save(mmh.customFile);
 										mmh.traderCustom.load(mmh.customFile);
 									} catch (Exception exception) {
-										mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_PLUGIN_UNKNOWN_ERROR).error(exception));
+										MoreMobHeads.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_PLUGIN_UNKNOWN_ERROR).error(exception));
 
 										mmh.LOGGER.debug("CMD CT Remove End Exception -----");
 
@@ -2440,7 +2112,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 											mmh.traderCustom.save(mmh.customFile);
 											mmh.traderCustom.load(mmh.customFile);
 										} catch (Exception exception) {
-											mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_PLUGIN_UNKNOWN_ERROR).error(exception));
+											MoreMobHeads.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_PLUGIN_UNKNOWN_ERROR).error(exception));
 											mmh.LOGGER.debug("CMD CT Replace End Exception -----");
 											sender.sendMessage(ChatColor.YELLOW + mmh.getName() + ChatColor.RED + " "
 													+ mmh.get("mmh.command.ct.error"));
@@ -2475,7 +2147,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 						reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_COMMAND_CUSTOM_TRADER).error(exception));
 					}
 				}
-				if (args[0].equalsIgnoreCase("playerheads") || args[0].equalsIgnoreCase("ph")) {
+				/**if (args[0].equalsIgnoreCase("playerheads") || args[0].equalsIgnoreCase("ph")) {
 					try { // REPORT_COMMAND_PLAYER_HEADS "Error executing PlayerHeads Command."
 						String perm = "moremobheads.playerheads";
 						boolean hasPerm = sender.hasPermission(perm);
@@ -2488,12 +2160,10 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 								+ ChatColor.GREEN + "]===============[]");
 								sender.sendMessage(ChatColor.WHITE + " ");
 								sender.sendMessage(ChatColor.WHITE + " /mmh ph - " + mmh.get("mmh.command.ct.help"));
-								sender.sendMessage(ChatColor.WHITE + " /mmh ph add - " + mmh.get("mmh.command.ct.add")
-								+ "player_heads.yml");
+								//sender.sendMessage(ChatColor.WHITE + " /mmh ph add - " + mmh.get("mmh.command.ct.add") + "player_heads.yml");
 								sender.sendMessage(ChatColor.WHITE + " /mmh ph remove # - "
 										+ mmh.get("mmh.command.ct.remove").replace("custom_trades", "playerheads"));
-								sender.sendMessage(ChatColor.WHITE + " /mmh ph replace # - " + mmh.get("mmh.command.ct.replace")
-								.replace("<num>", "#").replace("custom trade", "pleayerhead"));
+								sender.sendMessage(ChatColor.WHITE + " /mmh ph replace # - " + mmh.get("mmh.command.ct.replace").replace("<num>", "#").replace("custom trade", "pleayerhead"));
 								// sender.sendMessage(ChatColor.WHITE + " ");
 								sender.sendMessage(ChatColor.WHITE + " ");
 								sender.sendMessage(ChatColor.GREEN + "[]===============[" + ChatColor.YELLOW + mmh.getName()
@@ -2698,7 +2368,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 					}catch (Exception exception) {
 						reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_COMMAND_PLAYER_HEADS).error(exception));
 					}
-				}
+				}//*/
 				if (args[0].equalsIgnoreCase("fixhead") || args[0].equalsIgnoreCase("fh")) {
 					try { // REPORT_COMMAND_FIX_HEAD "Error executing Fixhead Command."
 						String perm = "moremobheads.fixhead";
@@ -2744,6 +2414,8 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 																	.getNameFromTexture(skullname.getOwner().toString());
 															String isZombieVillager = ZombieVillagerHeads
 																	.getNameFromTexture(skullname.getOwner().toString());
+															String isWolf = WolfHeads
+																	.getNameFromTexture(skullname.getOwner().toString());
 															String isplayerhead = mmh
 																	.isPlayerHead(skullname.getOwner().toString());
 															String isblockhead = mmh
@@ -2775,6 +2447,9 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 															}
 															if (isZombieVillager != null) {
 																daMobName = isZombieVillager;
+															}
+															if (isWolf != null) {
+																daMobName = isWolf;
 															}
 															if (daMobName == null) {
 																if (blockHeads != null) {
@@ -2887,7 +2562,94 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 									if (args[1].equalsIgnoreCase("steve")) {
 										ItemStack mainHand = player.getInventory().getItemInMainHand();
 										if( mainHand.getType() == Material.PLAYER_HEAD ) {
-											@Nonnull PersistentDataContainer skullPDC = mainHand.getItemMeta().getPersistentDataContainer();
+											ItemStack item = mainHand;
+
+
+
+											Block block = player.getTargetBlock(null, 5);
+											Skull skull = (Skull) block.getState();
+											PlayerProfile profile = skull.getOwnerProfile();
+											//String name = profile.getName();
+											URL skin = profile.getTextures().getSkin();
+											UUID uuid = profile.getUniqueId();
+											mmh.LOGGER.debug("getName = " + profile.getName());
+											mmh.LOGGER.debug("getSkin = " + profile.getTextures().getSkin());
+											mmh.LOGGER.debug("getUniqueId = " + profile.getUniqueId());//*/
+
+
+
+											SkinUtils skinUtils = new SkinUtils();
+											/**String name = skinUtils.getHeadDisplayName(item) ;
+											String texture = skinUtils.getHeadTexture(item) ;
+											String uuid = skinUtils.getHeadUUID(item) ;
+											String noteblocksound = skinUtils.getHeadNoteblockSound(item).getKey() ;
+											mmh.LOGGER.debug("name = " + name );
+											mmh.LOGGER.debug("texture = " + texture );
+											mmh.LOGGER.debug("uuid = " + uuid );
+											mmh.LOGGER.debug("noteblocksound = " + noteblocksound );//*/
+
+
+											/**String texture = skinUtils.getHeadTexture(mainHand);
+											mmh.LOGGER.debug("texture = " + texture );
+											String name = MobHeads.getNameFromTexture(texture);
+											mmh.LOGGER.debug("name = " + name );
+											String enumName = MobHeads.getEnumNameFromTexture(texture);
+											mmh.LOGGER.debug("enumName = " + enumName );
+
+											SkullMeta skullmeta = (SkullMeta) mainHand.getItemMeta();
+											skullmeta.setDisplayName(enumName);
+											GameProfile gameProfile = new GameProfile(null, "");
+											skullmeta.setOwnerProfile(null);/**/
+
+											/**ItemMeta itemMeta = mainHand.getItemMeta();
+											Object profile = ReflectionUtils.getPrivate(null, itemMeta, itemMeta.getClass(), "profile");
+											if ((profile == null) || !(profile instanceof GameProfile)) {
+												return false;
+											}
+											GameProfile gameProfile = (GameProfile)profile;
+											PropertyMap properties = gameProfile.getProperties();
+											if (properties == null) {
+												return false;
+											}
+											Collection<Property> textures = properties.get("textures");
+											if ((textures != null) && (textures.size() > 0)) {
+												Property textureProperty = textures.iterator().next();
+												mmh.LOGGER.debug("textureProperty = " + textureProperty.toString() );
+												String input = textureProperty.toString();
+												String texture = input.substring(input.indexOf("ey"), input.lastIndexOf(','));
+												mmh.LOGGER.debug("texture = " + texture );
+											}//*/
+
+
+
+											//String texture = SkinUtils.getProfileURL(profile);
+											//mmh.LOGGER.debug("texture = " + url );
+
+											/**SkullMeta sm = (SkullMeta) item.getItemMeta();
+											String owner = sm.getOwner();
+											mmh.LOGGER.debug("owner = " + owner );
+											PlayerProfile ownerProfile = sm.getOwnerProfile();
+											URL skin = ownerProfile.getTextures().getSkin();
+											mmh.LOGGER.debug("skin = " + skin );
+
+											NBTItem nbti = new NBTItem(item);
+											NBTCompound nbtc = nbti.getCompound("properties");
+											String name = nbtc.getString("name");
+											mmh.LOGGER.debug("name = " + name );
+											String value = nbtc.getString("value");
+											mmh.LOGGER.debug("value = " + value );
+
+											NBT.modifyComponents(item, nbt -> {
+												ReadWriteNBT profileNbt = nbt.getOrCreateCompound("minecraft:profile");
+												mmh.LOGGER.debug("UUID = " + profileNbt.getUUID("id") );
+												ReadWriteNBTCompoundList propertiesNbt = profileNbt.getCompoundList("properties");
+												mmh.LOGGER.debug("name = " + propertiesNbt.get(0).getString("name"));
+												ReadWriteNBTCompoundList propertiesNbt2 = profileNbt.getCompoundList("value");
+												mmh.LOGGER.debug("value = " + propertiesNbt2.get(0).getString("value"));
+												mmh.LOGGER.debug("size = " + propertiesNbt2.size());
+											});//*/
+
+											/**@Nonnull PersistentDataContainer skullPDC = mainHand.getItemMeta().getPersistentDataContainer();
 											@Nullable String name = skullPDC.get(mmh.NAME_KEY, PersistentDataType.STRING);
 											@Nullable String[] lore = skullPDC.get(mmh.LORE_KEY, mmh.LORE_PDT);
 											String uuid = skullPDC.get(mmh.UUID_KEY, PersistentDataType.STRING);
@@ -2906,7 +2668,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 											PlayerProfile ownerprofile = sm.getOwnerProfile();
 											OfflinePlayer owningplayer = sm.getOwningPlayer();
 											owningplayer.getPlayerProfile();
-											mainHand.setItemMeta(meta);
+											mainHand.setItemMeta(meta);//*/
 
 										}
 									}
@@ -2958,6 +2720,8 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 														);
 											}
 											break;
+										case "mooshroom":
+											splitmob[0] = "mushroom_cow";
 										case "mushroom_cow":
 											mmh.playerGiveOrDropHead(player,
 													mmh.makeHeads(
@@ -3150,6 +2914,13 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 															MobHeads120.valueOf((splitmob[0]).toUpperCase()).getOwner(), EntityType.SNIFFER, number)
 													);
 											break;
+										case "wolf":
+											mmh.playerGiveOrDropHead(player,
+													mmh.makeHeads(mmh.langName.getString(WolfHeads.valueOf((splitmob[1]).toUpperCase()).getNameString()),
+															WolfHeads.valueOf((splitmob[1]).toUpperCase()).getTexture(),
+															WolfHeads.valueOf((splitmob[1]).toUpperCase()).getUUID(), EntityType.WOLF, number)
+													);
+											break;
 										case "allay":
 										case "tadpole":
 										case "warden":
@@ -3162,9 +2933,9 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 											break;
 										case "tropical_fish":// TropicalFishHeads
 											String fishType = splitmob[1].toUpperCase();
-											mmh.LOGGER.log("splitmob[0]=" + splitmob[0]);
-											mmh.LOGGER.log("splitmob[1]=" + splitmob[1]);
-											mmh.LOGGER.log("fishType=" + fishType);
+											mmh.LOGGER.debug("splitmob[0]=" + splitmob[0]);
+											mmh.LOGGER.debug("splitmob[1]=" + splitmob[1]);
+											mmh.LOGGER.debug("fishType=" + fishType);
 											mmh.playerGiveOrDropHead(player,
 													mmh.makeHeads(mmh.langName.getString((splitmob[0] + "." + splitmob[1]).toLowerCase(),
 															TropicalFishHeads.valueOf((splitmob[0] + "." + splitmob[1]).toUpperCase()).getName()),
@@ -3173,6 +2944,9 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 													);
 											break;
 										default:
+											if(mob == "SNOW_GOLEM") {
+												mob = "SNOWMAN";
+											}
 											mmh.playerGiveOrDropHead(player,
 													mmh.makeHeads(mmh.langName.getString(mob.toLowerCase(),
 															MobHeads.valueOf(mob.replace(".", "_").toUpperCase()).getName()),
@@ -3296,8 +3070,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 					try { // REPORT_COMMAND_DEV_ERROR "Error exuting dev Command."
 						if (sender instanceof Player) {
 							Player player = (Player) sender;
-							if (player.getName().equalsIgnoreCase("JoelGodOfWar")
-									|| player.getName().equalsIgnoreCase("JoelYahwehOfWar")) {
+							if (player.getName().equalsIgnoreCase("JoelGodOfWar") || player.getName().equalsIgnoreCase("JoelYahwehOfWar")) {
 								mmh.isDev = !mmh.isDev;
 								player.sendMessage("You have toggled isDev to " + mmh.isDev);
 								return true;
@@ -3327,7 +3100,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 				if (args.length == 1) { // reload, toggledebug, playerheads, customtrader, headfix
 					autoCompletes.add("reload");
 					autoCompletes.add("toggledebug");
-					autoCompletes.add("playerheads");
+					//autoCompletes.add("playerheads");
 					autoCompletes.add("customtrader");
 					autoCompletes.add("fixhead");
 					autoCompletes.add("givemh");
@@ -3351,7 +3124,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 						autoCompletes.add("stack");
 						return autoCompletes; // then return the list
 					}
-					if (args[0].equalsIgnoreCase("playerheads") || (args[0].equalsIgnoreCase("ph") && args[1].isEmpty())) {
+					/**if (args[0].equalsIgnoreCase("playerheads") || (args[0].equalsIgnoreCase("ph") && args[1].isEmpty())) {
 						autoCompletes.add("add");
 						autoCompletes.add("remove");
 						autoCompletes.add("replace");
@@ -3366,7 +3139,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 							autoCompletes.add("0");
 							return autoCompletes; // then return the list
 						}
-					}
+					}//*/
 					if (args[0].equalsIgnoreCase("customtrader") || (args[0].equalsIgnoreCase("ct") && args[1].isEmpty())) {
 						autoCompletes.add("add");
 						autoCompletes.add("remove");
@@ -3393,21 +3166,18 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 						}
 						if (args.length > 2) {
 							for (int i = 1; i < blockHeads.getInt("blocks.number"); ++i) {
-								ItemStack stack = blockHeads.getItemStack("blocks.block_" + i + ".itemstack");
-								String name = stack.getItemMeta().getDisplayName().replace(" ", "_");
+								String name = blockHeads.getString("blocks.block_" + i + ".head.name").replace(" ", "_");
 								autoCompletes.add(ChatColor.stripColor(name));
 							}
-							if (Double.parseDouble(StrUtils.Left(mmh.getMCVersion(), 4)) >= 1.16) {
+							if (Double.parseDouble(StrUtils.Left(MoreMobHeads.getMCVersion(), 4)) >= 1.16) {
 								for (int i = 1; i < blockHeads2.getInt("blocks.number"); ++i) {
-									ItemStack stack = blockHeads2.getItemStack("blocks.block_" + i + ".itemstack");
-									String name = stack.getItemMeta().getDisplayName().replace(" ", "_");
+									String name = blockHeads2.getString("blocks.block_" + i + ".head.name").replace(" ", "_");
 									autoCompletes.add(ChatColor.stripColor(name));
 								}
 							}
-							if (Double.parseDouble(StrUtils.Left(mmh.getMCVersion(), 4)) >= 1.17) {
+							if (Double.parseDouble(StrUtils.Left(MoreMobHeads.getMCVersion(), 4)) >= 1.17) {
 								for (int i = 1; i < blockHeads3.getInt("blocks.number"); ++i) {
-									ItemStack stack = blockHeads3.getItemStack("blocks.block_" + i + ".itemstack");
-									String name = stack.getItemMeta().getDisplayName().replace(" ", "_");
+									String name = blockHeads3.getString("blocks.block_" + i + ".head.name").replace(" ", "_");
 									autoCompletes.add(ChatColor.stripColor(name));
 								}
 							}
@@ -3448,9 +3218,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 								// System.out.println(key);
 								autoCompletes.add(key);
 								// System.out.println(key);
-								if (key.equalsIgnoreCase("wolf")) {
-									autoCompletes.add("wolf.angry");
-								} else if (key.equalsIgnoreCase("wither")) {
+								if (key.equalsIgnoreCase("wither")) {
 									autoCompletes.add("wither.normal");
 									autoCompletes.add("wither.projectile");
 									autoCompletes.add("wither.blue_projectile");
@@ -3499,6 +3267,7 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 							autoCompletes.remove(autoCompletes.indexOf("villager.swamp"));
 							autoCompletes.remove(autoCompletes.indexOf("villager.taiga"));
 							autoCompletes.remove(autoCompletes.indexOf("frog"));
+							autoCompletes.remove(autoCompletes.indexOf("wolf"));
 
 							return autoCompletes;
 						} else if (args.length == 4) {
@@ -3666,8 +3435,217 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 		return Optional.empty();
 	}
 
+	@SuppressWarnings("unchecked")
+	public void checkMiniBlocks() {
+		if ( mmh.config.getBoolean("wandering_trades.custom_wandering_trader", true) || mmh.config.getBoolean("head_settings.mini_blocks.stonecutter", true) ) {
+			if (!blockFile117.exists()) {
+				mmh.saveResource("block_heads_1_17.yml", true);
+				mmh.LOGGER.log("block_heads_1_17.yml not found! Creating in " + mmh.getDataFolder() + "");
+			}
+			Version curBlock1Version = new Version(mmh.fileVersions.getString("block_heads_1_17", "0.0.1"));
+			if(curBlock1Version.compareTo(mmh.minBlock117Version) < 0) {
+				mmh.LOGGER.log("block_heads_1_17.yml is outdated backing up...");
+				try {
+					MoreMobHeads.copyFile(mmh.getDataFolder() + "" + File.separatorChar + "config.yml",mmh.getDataFolder() + "" + File.separatorChar + "backup" + File.separatorChar + "block_heads_1_17.yml");
+				} catch (Exception exception) {
+					reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_COPY_FILE).error(exception));
+				}
+				mmh.LOGGER.log("Saving new block_heads_1_17.yml...");
+				mmh.saveResource("block_heads_1_17.yml", true);
+			}
+			if (!blockFile1172.exists()) {
+				mmh.saveResource("block_heads_1_17_2.yml", true);
+				mmh.LOGGER.log("block_heads_1_17_2.yml not found! Creating in " + mmh.getDataFolder() + "");
+			}
+			Version curBlock2Version = new Version(mmh.fileVersions.getString("block_heads_1_17_2", "0.0.1"));
+			if(curBlock2Version.compareTo(mmh.minBlock1172Version) < 0) {
+				mmh.LOGGER.log("block_heads_1_17_2.yml is outdated backing up...");
+				try {
+					MoreMobHeads.copyFile(mmh.getDataFolder() + "" + File.separatorChar + "config.yml",mmh.getDataFolder() + "" + File.separatorChar + "backup" + File.separatorChar + "block_heads_1_17_2.yml");
+				} catch (Exception exception) {
+					reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_COPY_FILE).error(exception));
+				}
+				mmh.LOGGER.log("Saving new block_heads_1_17_2.yml...");
+				mmh.saveResource("block_heads_1_17_2.yml", true);
+			}
+			if (!blockFile120.exists()) {
+				mmh.saveResource("block_heads_1_20.yml", true);
+				mmh.LOGGER.log("block_heads_1_20.yml not found! Creating in " + mmh.getDataFolder() + "");
+			}
+			Version curBlock3Version = new Version(mmh.fileVersions.getString("block_heads_1_20", "0.0.1"));
+			if(curBlock3Version.compareTo(mmh.minBlock120Version) < 0) {
+				mmh.LOGGER.log("block_heads_1_20.yml is outdated backing up...");
+				try {
+					MoreMobHeads.copyFile(mmh.getDataFolder() + "" + File.separatorChar + "config.yml",mmh.getDataFolder() + "" + File.separatorChar + "backup" + File.separatorChar + "block_heads_1_20.yml");
+				} catch (Exception exception) {
+					reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_COPY_FILE).error(exception));
+				}
+				mmh.LOGGER.log("Saving new block_heads_1_20.yml...");
+				mmh.saveResource("block_heads_1_20.yml", true);
+			}
+			blockHeads = new YamlConfiguration();
+			try {
+				mmh.LOGGER.log("Loading block_heads_1_17.yml...");
+				blockHeads.load(blockFile117);
+			} catch (Exception exception) {
+				MoreMobHeads.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_BLOCKHEAD_LOAD_ERROR).error(exception));
+			}
+
+			blockHeads2 = new YamlConfiguration();
+			try {
+				mmh.LOGGER.log("Loading block_heads_1_17_2.yml...");
+				blockHeads2.load(blockFile1172);
+			} catch (Exception exception) {
+				MoreMobHeads.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_BLOCKHEAD_LOAD_ERROR).error(exception));
+			}
+
+			blockHeads3 = new YamlConfiguration();
+			try {
+				mmh.LOGGER.log("Loading block_heads_1_20.yml...");
+				blockHeads3.load(blockFile120);
+			} catch (Exception exception) {
+				MoreMobHeads.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_BLOCKHEAD_LOAD_ERROR).error(exception));
+			}
 
 
+			mmh.LOGGER.log("Loading PlayerHead Recipes...");
+			for (int i = 1; i < (mmh.playerHeads.getInt("players.number") + 1); i++) {
+				// Get Head parts and make head an ItemStack.
+				String name = mmh.playerHeads.getString("players.player_" + i + ".head.name", nameDEF);
+				String uuid = mmh.playerHeads.getString("players.player_" + i + ".head.uuid", uuidDEF);
+				String texture = mmh.playerHeads.getString("players.player_" + i + ".head.texture", textureDEF);
+				List<String> lore = (List<String>) mmh.playerHeads.getList("players.player_" + i + ".head.lore", loreDEF);
+				//mmh.LOGGER.debug("lore = " + lore);
+				int amount = mmh.playerHeads.getInt("players.player_" + i + ".head.amount", 1);
+				int maxuses = mmh.playerHeads.getInt("players.player_" + i + ".maxuses", 1);
+				ItemStack head = mmh.makeHeads(name, texture, uuid, lore,  EntityType.PLAYER, amount);
+
+				MerchantRecipe recipe = new MerchantRecipe(head, maxuses);
+				ItemStack price1 = mmh.playerHeads.getItemStack("players.player_" + i + ".price_1", new ItemStack(Material.AIR));
+				if(!price1.getType().equals(Material.AIR)) {recipe.addIngredient(price1);}
+				ItemStack price2 = mmh.playerHeads.getItemStack("players.player_" + i + ".price_2", new ItemStack(Material.AIR));
+				if(!price2.getType().equals(Material.AIR)) {recipe.addIngredient(price2);}
+
+				playerhead_recipes.add(recipe);
+			}
+			mmh.LOGGER.log(playerhead_recipes.size() + " PlayerHead Recipes ADDED...");
+			mmh.LOGGER.log("Loading BlockHead Recipes...");
+			BHNum = blockHeads.getInt("blocks.number");
+			// BlockHeads
+			mmh.LOGGER.log("BlockHeads=" + BHNum);
+			for (int i = 1; i < (BHNum + 1); i++) {
+				String name = blockHeads.getString("blocks.block_" + i + ".head.name", nameDEF);
+				String uuid = blockHeads.getString("blocks.block_" + i + ".head.uuid", uuidDEF);
+				String texture = blockHeads.getString("blocks.block_" + i + ".head.texture", textureDEF);
+				List<String> lore = (List<String>) blockHeads.getList("blocks.block_" + i + ".head.lore", loreDEF);
+				int amount = blockHeads.getInt("blocks.block_" + i + ".head.amount", 1);
+				int maxuses = blockHeads.getInt("blocks.block_" + i + ".maxuses", 1);
+				ItemStack head = mmh.makeHeads(name, texture, uuid, lore,  EntityType.PLAYER, amount);
+				// Add to list for give command.
+				mmh.blockhead_list.add(head);
+				MerchantRecipe recipe = new MerchantRecipe(head, maxuses);
+				ItemStack price1 = blockHeads.getItemStack("blocks.block_" + i + ".price_1", new ItemStack(Material.AIR));
+				if(!price1.getType().equals(Material.AIR)) {recipe.addIngredient(price1);}
+				ItemStack price2 = blockHeads.getItemStack("blocks.block_" + i + ".price_2", new ItemStack(Material.AIR));
+				if(!price2.getType().equals(Material.AIR)) {recipe.addIngredient(price2);}
+
+				blockhead_recipes.add(recipe);
+			}
+			BHNum2 = blockHeads2.getInt("blocks.number");
+			// blockHeads 2
+			mmh.LOGGER.log("BlockHeads2=" + BHNum2);
+			for (int i = 1; i < (BHNum2 + 1); i++) {
+				String name = blockHeads2.getString("blocks.block_" + i + ".head.name", nameDEF);
+				String uuid = blockHeads2.getString("blocks.block_" + i + ".head.uuid", uuidDEF);
+				String texture = blockHeads2.getString("blocks.block_" + i + ".head.texture", textureDEF);
+				List<String> lore = (List<String>) blockHeads2.getList("blocks.block_" + i + ".head.lore", loreDEF);
+				int amount = blockHeads2.getInt("blocks.block_" + i + ".head.amount", 1);
+				int maxuses = blockHeads2.getInt("blocks.block_" + i + ".maxuses", 1);
+				ItemStack head = mmh.makeHeads(name, texture, uuid, lore,  EntityType.PLAYER, amount);
+				// Add to list for give command.
+				mmh.blockhead_list.add(head);
+
+				MerchantRecipe recipe = new MerchantRecipe(head, maxuses);
+				ItemStack price1 = blockHeads2.getItemStack("blocks.block_" + i + ".price_1", new ItemStack(Material.AIR));
+				if(!price1.getType().equals(Material.AIR)) {recipe.addIngredient(price1);}
+				ItemStack price2 = blockHeads2.getItemStack("blocks.block_" + i + ".price_2", new ItemStack(Material.AIR));
+				if(!price2.getType().equals(Material.AIR)) {recipe.addIngredient(price2);}
+
+				blockhead_recipes.add(recipe);
+			}
+			BHNum3 = blockHeads3.getInt("blocks.number");
+			// blockHeads 3
+			mmh.LOGGER.log("BlockHeads3=" + BHNum3);
+			for (int i = 1; i < (BHNum3 + 1); i++) {
+				String name = blockHeads3.getString("blocks.block_" + i + ".head.name", nameDEF);
+				String uuid = blockHeads3.getString("blocks.block_" + i + ".head.uuid", uuidDEF);
+				String texture = blockHeads3.getString("blocks.block_" + i + ".head.texture", textureDEF);
+				List<String> lore = (List<String>) blockHeads3.getList("blocks.block_" + i + ".head.lore", loreDEF);
+				int amount = blockHeads3.getInt("blocks.block_" + i + ".head.amount", 1);
+				int maxuses = blockHeads3.getInt("blocks.block_" + i + ".maxuses", 1);
+				ItemStack head = mmh.makeHeads(name, texture, uuid, lore,  EntityType.PLAYER, amount);
+				// Add to list for give command.
+				mmh.blockhead_list.add(head);
+
+				MerchantRecipe recipe = new MerchantRecipe(head, maxuses);
+				ItemStack price1 = blockHeads3.getItemStack("blocks.block_" + i + ".price_1", new ItemStack(Material.AIR));
+				if(!price1.getType().equals(Material.AIR)) {recipe.addIngredient(price1);}
+				ItemStack price2 = blockHeads3.getItemStack("blocks.block_" + i + ".price_2", new ItemStack(Material.AIR));
+				if(!price2.getType().equals(Material.AIR)) {recipe.addIngredient(price2);}
+
+				blockhead_recipes.add(recipe);
+			}
+
+			mmh.LOGGER.log(blockhead_recipes.size() + " BlockHead Recipes ADDED...");
+
+			/**mmh.LOGGER.log("Loading CustomTrades Recipes...");
+			for (int i = 1; i < (mmh.traderCustom.getInt("custom_trades.number") + 1); i++) {
+				ItemStack price1 = mmh.traderCustom.getItemStack("custom_trades.trade_" + i + ".price_1", new ItemStack(Material.AIR));
+				ItemStack price2 = mmh.traderCustom.getItemStack("custom_trades.trade_" + i + ".price_2", new ItemStack(Material.AIR));
+				ItemStack itemstack = mmh.traderCustom.getItemStack("custom_trades.trade_" + i + ".itemstack", new ItemStack(Material.AIR));
+				// Code to fix missing noteblock SkullMeta
+				boolean doIt = Utils.isSupportedVersion("1.20.2.3936");
+				if(doIt) {
+					mmh.LOGGER.log("doIt=" + doIt);
+					if(itemstack.getType().equals(Material.PLAYER_HEAD)) {
+						SkullMeta meta = (SkullMeta) itemstack.getItemMeta();
+						String sound = mmh.traderCustom.getString("custom_trades.trade_" + i + ".note_block_sound", "entity.player.hurt");
+						meta.setNoteBlockSound(NamespacedKey.minecraft(sound));
+						itemstack.setItemMeta(meta);
+					}
+				}
+				// Code to fix missing noteblock SkullMeta
+				MerchantRecipe recipe = new MerchantRecipe(itemstack,
+						mmh.traderCustom.getInt("custom_trades.trade_" + i + ".quantity", 1));
+				recipe.setExperienceReward(true);
+				recipe.addIngredient(price1);
+				recipe.addIngredient(price2);
+				custometrade_recipes.add(recipe);
+			}
+			mmh.LOGGER.log(custometrade_recipes.size() + " CustomTrades Recipes ADDED...");//*/
+
+		}
+	}
+
+	public void saveFileVersions() {
+		String defVer = "0.1.0";
+		mmh.fileVersions.set("config", mmh.config.getString("version", defVer));
+		mmh.fileVersions.set("messages", mmh.beheadingMessages.getString("version", defVer));
+		mmh.fileVersions.set("player_heads", mmh.playerHeads.getString("version", defVer));
+		mmh.fileVersions.set("custom_trades", mmh.traderCustom.getString("custom_trades.version", defVer));
+		mmh.fileVersions.set("chance_config", chanceConfig.getString("version", defVer));
+		mmh.fileVersions.set("lang", mmh.langName.getString("version", defVer));
+		mmh.fileVersions.set("block_heads_1_17", blockHeads.getString("version", defVer));
+		mmh.fileVersions.set("block_heads_1_17_2", blockHeads2.getString("version", defVer));
+		mmh.fileVersions.set("block_heads_1_20", blockHeads3.getString("version", defVer));
+		mmh.fileVersionsFile = new File(mmh.getDataFolder() + "" + File.separatorChar + "fileVersions.yml");
+		try {
+			mmh.fileVersions.save(mmh.fileVersionsFile);
+		} catch (Exception exception) {
+			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_SAVE_FILEVERSION).error(exception));
+		}
+		mmh.fileVersions  = new YamlConfiguration();
+	}
 
 
 }

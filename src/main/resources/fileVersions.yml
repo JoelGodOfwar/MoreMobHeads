@@ -1,0 +1,10 @@
+# Tracks versions of key files.
+config: 1.0.22
+chance_config: 1.0.27
+messages: 1.0.2
+player_heads: 1.0.0
+block_heads_1_17: 1.0.0
+block_heads_1_17_2: 1.0.0
+block_heads_1_20: 1.0.0
+custom_trades: 1.0.0
+lang: 1.0.3

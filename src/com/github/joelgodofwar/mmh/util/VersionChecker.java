@@ -8,15 +8,14 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-//import java.util.Scanner;
-//import java.io.IOException;
-//import java.io.InputStream;
-import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.github.joelgodofwar.mmh.MoreMobHeads;
 
 @SuppressWarnings("unused")
 public class VersionChecker {
@@ -29,9 +28,10 @@ public class VersionChecker {
 	private List<String> releaseList = new ArrayList<>();
 	private List<String> developerList = new ArrayList<>();
 	private String recommendedVersion = "uptodate";
+	private MoreMobHeads mmh;
 
-	public VersionChecker(JavaPlugin plugin, int projectID, String githubURL) {
-		this.plugin = plugin;
+	public VersionChecker(MoreMobHeads plugin, int projectID, String githubURL) {
+		this.mmh = plugin;
 		this.projectID = projectID;
 		this.currentVersion = plugin.getDescription().getVersion();
 		this.githubURL = githubURL;
@@ -80,9 +80,9 @@ public class VersionChecker {
 		}
 		String releaseVersion = releaseList.get(0);
 		String developerVersion = developerList.get(0);
-		Bukkit.getLogger().warning(Ansi.LIGHT_YELLOW + "currentVersion=" + currentVersion + Ansi.RESET);
-		Bukkit.getLogger().warning(Ansi.LIGHT_YELLOW + "releaseVersion=" + releaseVersion + Ansi.RESET);
-		Bukkit.getLogger().warning(Ansi.LIGHT_YELLOW + "developerVersion=" + developerVersion + Ansi.RESET);
+		mmh.LOGGER.debug(ChatColor.RED + "currentVersion=" + currentVersion);
+		mmh.LOGGER.debug(ChatColor.RED + "releaseVersion=" + releaseVersion);
+		mmh.LOGGER.debug(ChatColor.RED + "developerVersion=" + developerVersion);
 		if (currentVersion.compareTo(releaseVersion) < 0) {
 			recommendedVersion = "release";
 			return true;

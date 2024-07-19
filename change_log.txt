@@ -1,7 +1,23 @@
 1.20_1.0.38
 D1	Added better error and log handling
 D2	Changed drop chance to handle less than 1 values.
-D3	
+D3	Fixed exception caused by long names.
+D4	Paper 1.20.6 fixes
+D5	Fixing 1.20.6 disabling of custom wandering trader.
+D6	Testing new system for Custom Wandering Trader.
+D7	Adding more persistent data.
+D8	First 1.20.5 and 1.21 dev build.
+D9	Fixed some missed code.
+D10	MMHLib is back, added Armadillo and Wolf variants.
+D11	Cleaning up code, fixing broken commands, some commands removed.
+D12	Fixed numerical issue, added better file updater.
+D13	Added MiniBlocks and some code fixes.
+D14	Fixed reload command and fileVersion checker.
+D15	Fixed chance for named_mob, fixed nametagged mobs to get player_heads of the name.
+D16	Added a check for playerheads from named_mobs to ensure the player exists.
+D17	Fixed an exception that could occur placing a head.
+D18	Updated givePH command.
+D19	
 1.20_1.0.37
 D1	Removed Birthday Message code.
 1.20_1.0.36

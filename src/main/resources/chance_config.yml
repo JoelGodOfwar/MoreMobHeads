@@ -1,5 +1,5 @@
 # DO NOT CHANGE VERSION
-version: 1.0.25
+version: 1.0.28
 # Following are chance percent settings for each mob and variants of mobs.
 # Hieronder volgen instellingen voor het toevalspercentage voor elke mob en varianten van mobs.
 # Voici les paramÃ¨tres de pourcentage de chance pour chaque mob et les variantes de mobs.
@@ -12,6 +12,7 @@ chance_percent:
   player: 50.0
   named_mob: 10.0
   allay: 20.0
+  armadillo: 10.0
   axolotl:
     blue: 100.0
     cyan: 20.0
@@ -25,6 +26,8 @@ chance_percent:
     pollinated: 20.0
     normal: 20.0
   blaze: 0.5
+  bogged: 6.0
+  breeze: 10.0
   camel: 27.0
   cat:
     all_black: 33.0
@@ -302,7 +305,25 @@ chance_percent:
   witch: 0.5
   wither: 100.0
   wither_skeleton: 2.5
-  wolf: 20.0
+  wolf:
+    ashen: 20.0
+    black: 20.0
+    chestnut: 20.0
+    pale: 20.0
+    rusty: 20.0
+    snowy: 50.0
+    spotted: 20.0
+    striped: 20.0
+    woods: 20.0
+    angry_ashen: 20.0
+    angry_black: 20.0
+    angry_chestnut: 20.0
+    angry_pale: 20.0
+    angry_rusty: 20.0
+    angry_snowy: 50.0
+    angry_spotted: 20.0
+    angry_striped: 20.0
+    angry_woods: 20.0
   zoglin: 20.0
   zombie: 2.5
   zombie_horse: 100.0

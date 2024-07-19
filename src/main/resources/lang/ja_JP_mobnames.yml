@@ -1,9 +1,10 @@
 # Add the translations for your language here
 # ここにあなたの言語の翻訳を追加してください
-version: 1.0.2
+version: 1.0.4
 killedby: <RED>Killed <RESET>By <YELLOW><player>
 player: Player
 allay: Allay
+armadillo: Armadillo
 axolotl:
   blue: Blue Axolotl
   cyan: Cyan Axolotl
@@ -17,6 +18,8 @@ bee:
   pollinated: Pollinated Bee
   none: Bee
 blaze: Blaze
+bogged: Bogged
+breeze: Breeze
 camel: Camel
 cat:
   all_black: Black Cat
@@ -299,8 +302,25 @@ wither:
   projectile: Wither Projectile
   blue_projectile: Blue Wither Projectile
 wither_skeleton: Wither Skeleton
-wolf: Wolf
-wolf_angry: Angry Wolf
+wolf:
+  ashen: Ashen Wolf
+  black: Black Wolf
+  chestnut: Chestnut Wolf
+  pale: Pale Wolf
+  rusty: Rusty Wolf
+  snowy: Snowy Wolf
+  spotted: Spotted Wolf
+  striped: Striped Wolf
+  woods: Woods Wolf
+  angry_ashen: Angry Ashen Wolf
+  angry_black: Angry Black Wolf
+  angry_chestnut: Angry Chestnut Wolf
+  angry_pale: Angry Pale Wolf
+  angry_rusty: Angry Rusty Wolf
+  angry_snowy: Angry Snowy Wolf
+  angry_spotted: Angry Spotted Wolf
+  angry_striped: Angry Striped Wolf
+  angry_woods: Angry Woods Wolf
 zoglin: Zoglin
 zombie: Zombie
 zombie_hoglin: Zombie Hoglin

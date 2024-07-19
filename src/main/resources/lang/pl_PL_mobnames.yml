@@ -1,9 +1,10 @@
 # Add the translations for your language here
 # Dodaj tłumaczenia dla swojego języka w tym miejscu
-version: 1.0.2
+version: 1.0.4
 killedby: <RED>Zdobyta <RESET>przez <YELLOW><player>
 player: Gracz
 allay: Otuszek
+armadillo: Pancernik
 axolotl:
   blue: Niebieski Aksolotl
   cyan: Błękitny Aksolotl
@@ -17,6 +18,8 @@ bee:
   pollinated: Pszczoła
   none: Pszczoła
 blaze: Płomyk
+bogged: Bogged
+breeze: Breeze
 camel: Wielbłąd
 cat:
   all_black: Czarny kot
@@ -298,8 +301,25 @@ wither:
   projectile: Pocisk Withera
   blue_projectile: Niebieski Pocisk Withera
 wither_skeleton: Witherowy Szkielet
-wolf: Wilk
-wolf_angry: Wściekły Wilk
+wolf:
+  ashen: Ashen Wilk
+  black: Black Wilk
+  chestnut: Chestnut Wilk
+  pale: Pale Wilk
+  rusty: Rusty Wilk
+  snowy: Snowy Wilk
+  spotted: Spotted Wilk
+  striped: Striped Wilk
+  woods: Woods Wilk
+  angry_ashen: Wściekły Ashen Wilk
+  angry_black: Wściekły Black Wilk
+  angry_chestnut: Wściekły Chestnut Wilk
+  angry_pale: Wściekły Pale Wilk
+  angry_rusty: Wściekły Rusty Wilk
+  angry_snowy: Wściekły Snowy Wilk
+  angry_spotted: Wściekły Spotted Wilk
+  angry_striped: Wściekły Striped Wilk
+  angry_woods: Wściekły Woods Wilk
 zoglin: Zoglin
 zombie: Zombie
 zombie_hoglin: Zombie Hoglin

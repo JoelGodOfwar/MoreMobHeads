@@ -448,17 +448,29 @@ public enum VillagerHeads {
 	public static final String getNameFromTexture(String texture)
 	{
 		//MoreMobHeads.logger.info("texture=" + texture);
-		for(VillagerHeads verbosity : VillagerHeads.values())
+		for(VillagerHeads head : VillagerHeads.values())
 		{
 			//MoreMobHeads.logger.info(verbosity.getName() + "=" + verbosity.getTexture());
-			if(verbosity.getTexture().contains(texture) ) {
-				return verbosity.getNameString() ;
+			if(head.getTexture().contains(texture) ) {
+				return head.getNameString() ;
 			}
 		}
-
 		return null;
 	}
-
+	/**
+	 * Returns the enum name for the given texture string.
+	 *
+	 * @param texture the texture string to search for
+	 * @return the enum name, or null if not found
+	 */
+	public static String getEnumNameFromTexture(String texture) {
+		for (VillagerHeads head : VillagerHeads.values()) {
+			if (head.getTexture().equals(texture)) {
+				return head.name();
+			}
+		}
+		return null;
+	}
 	/**
 	 * @return the owner
 	 */

@@ -57,14 +57,14 @@ public enum CatHeads {
 			"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGRiOTE2YTA3NTg0MDRkMTIzZjNlZTE3YTZiNzUxNmIxMzg3N2YyODFkOTEwNmM0NDA1NWY0MmY0OTUxOTY2MSJ9fX0="
 			),
 	;
-	private final String owner;
+	private final String uuid;
 	private final String texture;
 	private final String name;
 	private final String nameString;
 
 	CatHeads(String name, String nameString, String ownerUUID, String texture){
 		this.name = name;
-		this.owner = ownerUUID;
+		this.uuid = ownerUUID;
 		this.texture = texture;
 		this.nameString = nameString;
 	}
@@ -82,8 +82,20 @@ public enum CatHeads {
 
 		return null;
 	}
-
-
+	/**
+	 * Returns the enum name for the given texture string.
+	 *
+	 * @param texture the texture string to search for
+	 * @return the enum name, or null if not found
+	 */
+	public static String getEnumNameFromTexture(String texture) {
+		for (CatHeads cathead : CatHeads.values()) {
+			if (cathead.getTexture().equals(texture)) {
+				return cathead.name();
+			}
+		}
+		return null;
+	}
 	/**
 	 * @return the name
 	 */
@@ -94,8 +106,8 @@ public enum CatHeads {
 	/**
 	 * @return the owner
 	 */
-	public String getOwner() {
-		return owner;
+	public String getUUID() {
+		return uuid;
 	}
 
 	/**

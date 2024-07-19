@@ -1,5 +1,8 @@
 package com.github.joelgodofwar.mmh.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.ChatColor;
 
 public class StrUtils {
@@ -84,5 +87,23 @@ public class StrUtils {
 		}
 
 		return input.substring(0, 1).toUpperCase() + input.substring(1).toLowerCase();
+	}
+
+	/**
+	 * Removes blank lines from a list of strings.
+	 *
+	 * @param lore The list of strings to process. Null elements are ignored.
+	 * @return A new list containing only non-blank strings from the input list.
+	 */
+	public static List<String> removeBlanks(List<String> lore) {
+		List<String> cleanedLore = new ArrayList<>();
+		if (lore != null) {
+			for (String line : lore) {
+				if (!line.isBlank()) {
+					cleanedLore.add(line);
+				}
+			}
+		}
+		return cleanedLore;
 	}
 }

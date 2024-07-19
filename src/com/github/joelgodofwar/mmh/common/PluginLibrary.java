@@ -20,7 +20,7 @@ public class PluginLibrary {
 	/**
 	 * The maximum version MoreMobHeads has been tested with.
 	 */
-	public static final String MAXIMUM_MINECRAFT_VERSION = "1.20.4";
+	public static final String MAXIMUM_MINECRAFT_VERSION = "1.21";
 
 	/**
 	 * The date (with ISO 8601 or YYYY-MM-DD) when the most recent version (1.20.4) was released.
@@ -48,7 +48,7 @@ public class PluginLibrary {
 
 	// Every possible error or warning report type
 	public static final ReportType REPORT_CANNOT_DELETE_CONFIG = new ReportType("Cannot delete old MoreMobHeads configuration.");
-
+	public static final ReportType REPORT_CANNOT_COPY_FILE = new ReportType("Cannot copy file.");
 	public static final ReportType REPORT_METRICS_LOAD_ERROR = new ReportType("Cannot load bStats Metrics.");
 
 	public static final ReportType REPORT_PLUGIN_LOAD_ERROR = new ReportType("Cannot load MoreMobHeads.");
@@ -89,13 +89,13 @@ public class PluginLibrary {
 	public static final ReportType REPORT_PLAYER_KILL_PLAYER = new ReportType("Unable to parse Player Death.");
 	public static final ReportType REPORT_WHITE_BLACK_LIST = new ReportType("Unable to parse global whitelist/blacklist.");
 	public static final ReportType REPORT_PLAYER_KILL_MOB = new ReportType("Unable to parse Mob Kill.");
-	public static final ReportType REPORT_EDBE_EVENT_ERROR = new ReportType("Unable to get damager weapon.");
+
 	public static final ReportType REPORT_EVENT_HANDLER_LOAD = new ReportType("Error while loading EventHandler.");
 	public static final ReportType REPORT_CS_EVENT_ERROR = new ReportType("Error while entity spawning.");
 	public static final ReportType REPORT_ANNOUNCE_ERROR = new ReportType("Error announcing beheading.");
 	public static final ReportType REPORT_RESOLVE_DAMAGE_WEAPON = new ReportType("Error resolving the Damaging Weapon.");
 	public static final ReportType REPORT_GET_WEAPON_ERROR = new ReportType("Error getting weapon.");
-	public static final ReportType REPORT_TAB_COMPLETE_ERROR = new ReportType("Error parsing Tab Complete.");
+
 
 	public static final ReportType REPORT_COMMAND_MENU_ERROR = new ReportType("Error displaying Command Menu.");
 	public static final ReportType REPORT_COMMAND_HEADNBT_ERROR = new ReportType("Error executing HeadNBT command.");
@@ -111,6 +111,18 @@ public class PluginLibrary {
 	public static final ReportType REPORT_COMMAND_GIVE_PH = new ReportType("Error executing GivePH Command.");
 	public static final ReportType REPORT_COMMAND_GIVE_BH = new ReportType("Error executing GiveBH Command.");
 	public static final ReportType REPORT_COMMAND_DEV_ERROR = new ReportType("Error exuting dev Command.");
+
+	public static final ReportType UNHANDLED_COMMAND_ERROR = new ReportType("Command had an Unhandled exception.");
+	public static final ReportType REPORT_TAB_COMPLETE_ERROR = new ReportType("Error parsing Tab Complete.");
+
+	public static final ReportType UNHANDLED_ENTITYDEATHEVENT_ERROR = new ReportType("Unhandled EntityDeathEvent Exception.");
+	public static final ReportType UNHANDLED_ENTITYDAMAGE_EVENT_ERROR = new ReportType("Unable to parse fire damage.");
+	public static final ReportType UNHANDLED_ENTITYDAMAGEBYENTITY_EVENT_ERROR = new ReportType("Unable to get damager weapon.");
+
+	public static final ReportType BLOCK_PLACE_EVENT_ERROR = new ReportType("Unable to handle block place event.");
+	public static final ReportType ERROR_ENABLING_PLUGIN = new ReportType("Error during onEnable.");
+	public static final ReportType REPORT_CANNOT_LOAD_FILEVERSION = new ReportType("Error loading fileVersion checker.");
+	public static final ReportType REPORT_CANNOT_SAVE_FILEVERSION = new ReportType("Error saving fileVersion checker.");
 
 
 

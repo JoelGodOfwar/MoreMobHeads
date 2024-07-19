@@ -1,6 +1,6 @@
 package com.github.joelgodofwar.mmh.common;
 
-import java.text.MessageFormat;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,7 +44,7 @@ public class PluginLogger {
 		String pluginName = ChatColor.RESET + "[" + ChatColor.YELLOW + mmh.getName() + ChatColor.RESET + "] ";
 		if (!areAllArgsBlank(args)) {
 			//logger.log(level, applyColorFormatting(MessageFormat.format(message, args)));
-			Bukkit.getConsoleSender().sendMessage(pluginName + MessageFormat.format(pluginName + message, args));
+			Bukkit.getConsoleSender().sendMessage(pluginName + String.format(pluginName + message, args));
 		} else {
 			//logger.log(level, applyColorFormatting(message));
 			Bukkit.getConsoleSender().sendMessage(pluginName + message);

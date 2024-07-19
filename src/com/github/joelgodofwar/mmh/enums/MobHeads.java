@@ -5,6 +5,10 @@ public enum MobHeads {
 			"Player",	"player",	"a1ae4481-f3f0-4af9-a83e-75d3a7f87853",
 			"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI3YWY5ZTQ0MTEyMTdjN2RlOWM2MGFjYmQzYzNmZDY1MTk3ODMzMzJhMWIzYmM1NmZiZmNlOTA3MjFlZjM1In19fQ=="
 			),
+	ARMADILLO(
+			"Armadillo",	"armadillo",	"a975dd11-542b-4c4a-9e3e-2a254b0eb6b7",
+			"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzRjZDQ1MmNhZGNmMTEwMGQzODZiMDBmNTAxNmFhMmY2YmUwMjJiOGY0MjcwZmYyOGM3ZDUzMTEzYTgyZjJjNyJ9fX0="
+			),
 	ARMOR_STAND(
 			"Armor Stand",	"armor_stand",	"912657c1-58f0-4a6c-b388-9666a0aaa750",
 			"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjY0MzZmNTc5MWMwZTY1OTQ3MWE0OWE5MWY4MzZjOWZkMzA5YzI4YjA4MzI2NGJkOTJiYTVlOWJkM2E3NjhiOCJ9fX0="
@@ -387,15 +391,28 @@ public enum MobHeads {
 	public static final String getNameFromTexture(String texture)
 	{
 		//MoreMobHeads.logger.info("texture=" + texture);
-		for(MobHeads verbosity : MobHeads.values()){
+		for(MobHeads monheads : MobHeads.values()){
 			//MoreMobHeads.logger.info(verbosity.getName() + "=" + verbosity.getTexture());
-			if(verbosity.getTexture().contains(texture) ) {
-				return verbosity.getNameString() ;
+			if(monheads.getTexture().contains(texture) ) {
+				return monheads.getNameString() ;
 			}
 		}
 		return null;
 	}
-
+	/**
+	 * Returns the enum name for the given texture string.
+	 *
+	 * @param texture the texture string to search for
+	 * @return the enum name, or null if not found
+	 */
+	public static String getEnumNameFromTexture(String texture) {
+		for (MobHeads monheads : MobHeads.values()) {
+			if (monheads.getTexture().equals(texture)) {
+				return monheads.name();
+			}
+		}
+		return null;
+	}
 	/**
 	 * @return the owner
 	 */

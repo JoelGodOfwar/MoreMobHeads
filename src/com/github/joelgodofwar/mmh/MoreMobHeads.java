@@ -92,6 +92,7 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -226,7 +227,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	public final NamespacedKey SOUND_KEY = new NamespacedKey(this, "head_sound");
 	public final PersistentDataType<String,String[]> LORE_PDT = new JsonDataType<>(String[].class);
 
-	public Version minConfigVersion = new Version("1.0.23");
+	public Version minConfigVersion = new Version("1.0.24");
 	public Version minMessagesVersion = new Version("1.0.2");
 	public Version minChanceVersion = new Version("1.0.28");
 	public Version minLangVersion = new Version("1.0.4");
@@ -261,19 +262,19 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		silent_console = getConfig().getBoolean("global_settings.console.silent_console", false);
 
 		try{
-			// Handle unexpected Minecraft versions
-			Version checkVersion = this.verifyMinecraftVersion();
-
 			LOGGER.log(ChatColor.YELLOW + "**************************************" + ChatColor.RESET);
 			LOGGER.log(ChatColor.GREEN + " v" + THIS_VERSION + ChatColor.RESET + " Loading...");
 			LOGGER.log("Server Version: " + getServer().getVersion().toString());
+
+			// Handle unexpected Minecraft versions
+			Version checkVersion = this.verifyMinecraftVersion();
 
 			/** DEV check **/
 			File jarfile = this.getFile().getAbsoluteFile();
 			if(jarfile.toString().contains("-DEV")){
 				debug = true;
 				LOGGER.warn(ChatColor.RED + "Jar file contains -DEV, debug set to true" + ChatColor.RESET);
-				LOGGER.warn(ChatColor.RED + "jarfilename= " + StrUtils.Right(jarfilename, jarfilename.length() - jarfilename.lastIndexOf(File.separatorChar)) + ChatColor.RESET);
+				LOGGER.warn(ChatColor.RED + "jarfilename = " + StrUtils.Right(jarfilename, jarfilename.length() - jarfilename.lastIndexOf(File.separatorChar)) + ChatColor.RESET);
 				//log("jarfile contains dev, debug set to true.");
 			}
 
@@ -1072,6 +1073,14 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		if(player.getDisplayName().equals("JoelYahwehOfWar")||player.getDisplayName().equals("JoelGodOfWar")){
 			player.sendMessage(THIS_NAME + " " + THIS_VERSION + " Hello father!");
 		}
+	}
+
+	/**
+	 * Removes player from map when they leave the server
+	 */
+	@EventHandler
+	public void onPlayerQuit(PlayerQuitEvent event) {
+		chanceRandoms.remove(event.getPlayer());
 	}
 
 	/**
@@ -1960,53 +1969,55 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_CHECK_CONFIG).error(exception));
 		}
 		LOGGER.log("Copying values from backup" + File.separatorChar + "config.yml...");
-		config.set("plugin_settings.auto_update_check", oldconfig.get("auto_update_check", true));
-		config.set("plugin_settings.debug", oldconfig.get("debug", false));
-		config.set("plugin_settings.lang", oldconfig.get("lang", "en_US"));
+		config.set("plugin_settings.auto_update_check"							, oldconfig.get("plugin_settings.auto_update_check", true));
+		config.set("plugin_settings.debug"										, oldconfig.get("plugin_settings.debug", false));
+		config.set("plugin_settings.lang"										, oldconfig.get("plugin_settings.lang", "en_US"));
 
-		config.set("global_settings.console.colorful_console", oldconfig.get("console.colorful_console", true));
-		config.set("global_settings.console.silent_console", oldconfig.get("console.silent_console", false));
-		config.set("global_settings.console.longpluginname", oldconfig.get("console.longpluginname", true));
-		config.set("global_settings.world.whitelist", oldconfig.get("world.whitelist", ""));
-		config.set("global_settings.world.blacklist", oldconfig.get("world.blacklist", ""));
-		config.set("global_settings.event.piston_extend", oldconfig.get("event.piston_extend", true));
+		config.set("global_settings.console.colorful_console"					, oldconfig.get("global_settings.console.colorful_console", true));
+		config.set("global_settings.console.silent_console"						, oldconfig.get("global_settings.console.silent_console", false));
+		config.set("global_settings.console.longpluginname"						, oldconfig.get("global_settings.console.longpluginname", true));
+		config.set("global_settings.world.whitelist"							, oldconfig.get("global_settings.world.whitelist", ""));
+		config.set("global_settings.world.blacklist"							, oldconfig.get("global_settings.world.blacklist", ""));
+		config.set("global_settings.event.piston_extend"						, oldconfig.get("global_settings.event.piston_extend", true));
 
-		config.set("head_settings.apply_looting", oldconfig.get("apply_looting", true));
-		config.set("head_settings.lore.show_killer", oldconfig.get("lore.show_killer", true));
-		config.set("head_settings.lore.show_plugin_name", oldconfig.get("lore.show_plugin_name", true));
-		config.set("head_settings.player_heads.announce_kill.enabled", oldconfig.get("announce.players.enabled", true));
-		config.set("head_settings.player_heads.announce_kill.displayname", oldconfig.get("announce.players.displayname", true));
-		config.set("head_settings.player_heads.whitelist.enforce", oldconfig.get("whitelist.enforce", true));
-		config.set("head_settings.player_heads.whitelist.player_head_whitelist", oldconfig.get("whitelist.player_head_whitelist", "names_go_here"));
-		config.set("head_settings.player_heads.blacklist.enforce", oldconfig.get("enforce_blacklist", true));
-		config.set("head_settings.player_heads.blacklist.player_head_blacklist", oldconfig.get("blacklist.player_head_blacklist", "names_go_here"));
-		config.set("head_settings.mob_heads.announce_kill.enabled", oldconfig.get("announce.mobs.enabled", true));
-		config.set("head_settings.mob_heads.announce_kill.displayname", oldconfig.get("announce.mobs.displayname", true));
-		config.set("head_settings.mob_heads.whitelist", oldconfig.get("mob.whitelist", ""));
-		config.set("head_settings.mob_heads.blacklist", oldconfig.get("mob.blacklist", ""));
-		config.set("head_settings.mob_heads.nametag", oldconfig.get("mob.nametag", false));
-		config.set("head_settings.mob_heads.vanilla_heads.creeper", oldconfig.get("vanilla_heads.creepers", false));
-		config.set("head_settings.mob_heads.vanilla_heads.ender_dragon", oldconfig.get("vanilla_heads.ender_dragon", false));
-		config.set("head_settings.mob_heads.vanilla_heads.piglin", oldconfig.get("vanilla_heads.piglin", false));
-		config.set("head_settings.mob_heads.vanilla_heads.skeleton", oldconfig.get("vanilla_heads.skeleton", false));
-		config.set("head_settings.mob_heads.vanilla_heads.wither_skeleton", oldconfig.get("vanilla_heads.wither_skeleton", false));
-		config.set("head_settings.mob_heads.vanilla_heads.zombie", oldconfig.get("vanilla_heads.zombie", false));
+		config.set("head_settings.apply_looting"								, oldconfig.get("head_settings.apply_looting", true));
+		config.set("head_settings.lore.show_killer"								, oldconfig.get("head_settings.lore.show_killer", true));
+		config.set("head_settings.lore.show_plugin_name"						, oldconfig.get("head_settings.lore.show_plugin_name", true));
+		config.set("head_settings.mini_blocks.stonecutter"						, oldconfig.get("head_settings.mini_blocks.stonecutter", false));
+		config.set("head_settings.mini_blocks.perblock"							, oldconfig.get("head_settings.mini_blocks.perblock", 1));
+		config.set("head_settings.player_heads.announce_kill.enabled"			, oldconfig.get("head_settings.player_heads.announce_kill.enabled", true));
+		config.set("head_settings.player_heads.announce_kill.displayname"		, oldconfig.get("head_settings.player_heads.announce_kill.displayname", true));
+		config.set("head_settings.player_heads.whitelist.enforce"				, oldconfig.get("head_settings.player_heads.whitelist.enforce", true));
+		config.set("head_settings.player_heads.whitelist.player_head_whitelist"	, oldconfig.get("head_settings.player_heads.whitelist.player_head_whitelist", "names_go_here"));
+		config.set("head_settings.player_heads.blacklist.enforce"				, oldconfig.get("head_settings.player_heads.blacklist.enforce", true));
+		config.set("head_settings.player_heads.blacklist.player_head_blacklist"	, oldconfig.get("head_settings.player_heads.blacklist.player_head_blacklist", "names_go_here"));
+		config.set("head_settings.mob_heads.announce_kill.enabled"				, oldconfig.get("head_settings.mob_heads.announce_kill.enabled", true));
+		config.set("head_settings.mob_heads.announce_kill.displayname"			, oldconfig.get("head_settings.mob_heads.announce_kill.displayname", true));
+		config.set("head_settings.mob_heads.whitelist"							, oldconfig.get("head_settings.mob_heads.whitelist", ""));
+		config.set("head_settings.mob_heads.blacklist"							, oldconfig.get("head_settings.mob_heads.blacklist", ""));
+		config.set("head_settings.mob_heads.nametag"							, oldconfig.get("head_settings.mob_heads.nametag", false));
+		config.set("head_settings.mob_heads.vanilla_heads.creeper"				, oldconfig.get("head_settings.mob_heads.vanilla_heads.creeper", false));
+		config.set("head_settings.mob_heads.vanilla_heads.ender_dragon"			, oldconfig.get("head_settings.mob_heads.vanilla_heads.ender_dragon", false));
+		config.set("head_settings.mob_heads.vanilla_heads.piglin"				, oldconfig.get("head_settings.mob_heads.vanilla_heads.piglin", false));
+		config.set("head_settings.mob_heads.vanilla_heads.skeleton"				, oldconfig.get("head_settings.mob_heads.vanilla_heads.skeleton", false));
+		config.set("head_settings.mob_heads.vanilla_heads.wither_skeleton"		, oldconfig.get("head_settings.mob_heads.vanilla_heads.wither_skeleton", false));
+		config.set("head_settings.mob_heads.vanilla_heads.zombie"				, oldconfig.get("head_settings.mob_heads.vanilla_heads.zombie", false));
 
-		config.set("wandering_trades.custom_wandering_trader", oldconfig.get("wandering_trades.custom_wandering_trader", true));
-		config.set("wandering_trades.keep_default_trades", oldconfig.get("wandering_trades.keep_default_trades", true));
-		config.set("wandering_trades.player_heads.enabled", oldconfig.get("wandering_trades.player_heads.enabled", true));
-		config.set("wandering_trades.player_heads.min", oldconfig.get("wandering_trades.player_heads.min", 0));
-		config.set("wandering_trades.player_heads.max", oldconfig.get("wandering_trades.player_heads.max", 5));
-		config.set("wandering_trades.block_heads.enabled", oldconfig.get("wandering_trades.block_heads.enabled", true));
-		config.set("wandering_trades.block_heads.pre_116.min", oldconfig.get("wandering_trader_min_block_heads", 0));
-		config.set("wandering_trades.block_heads.pre_116.max", oldconfig.get("wandering_trader_max_block_heads", 5));
-		config.set("wandering_trades.block_heads.is_116.min", oldconfig.get("wandering_trader_min_block_heads", 0));
-		config.set("wandering_trades.block_heads.is_116.max", oldconfig.get("wandering_trader_max_block_heads", 5));
-		config.set("wandering_trades.block_heads.is_117.min", oldconfig.get("wandering_trader_min_block_heads", 0));
-		config.set("wandering_trades.block_heads.is_117.max", oldconfig.get("wandering_trader_max_block_heads", 5));
-		config.set("wandering_trades.custom_trades.enabled", oldconfig.get("wandering_trades.custom_trades.enabled", false));
-		config.set("wandering_trades.custom_trades.min", oldconfig.get("wandering_trades.custom_trades.min", 0));
-		config.set("wandering_trades.custom_trades.max", oldconfig.get("wandering_trades.custom_trades.max", 5));
+		config.set("wandering_trades.custom_wandering_trader"					, oldconfig.get("wandering_trades.custom_wandering_trader", true));
+		config.set("wandering_trades.keep_default_trades"						, oldconfig.get("wandering_trades.keep_default_trades", true));
+		config.set("wandering_trades.player_heads.enabled"						, oldconfig.get("wandering_trades.player_heads.enabled", true));
+		config.set("wandering_trades.player_heads.min"							, oldconfig.get("wandering_trades.player_heads.min", 0));
+		config.set("wandering_trades.player_heads.max"							, oldconfig.get("wandering_trades.player_heads.max", 5));
+		config.set("wandering_trades.block_heads.enabled"						, oldconfig.get("wandering_trades.block_heads.enabled", true));
+		config.set("wandering_trades.block_heads.pre_116.min"					, oldconfig.get("wandering_trades.block_heads.pre_116.min", 0));
+		config.set("wandering_trades.block_heads.pre_116.max"					, oldconfig.get("wandering_trades.block_heads.pre_116.max", 5));
+		config.set("wandering_trades.block_heads.is_116.min"					, oldconfig.get("wandering_trades.block_heads.is_116.min", 0));
+		config.set("wandering_trades.block_heads.is_116.max"					, oldconfig.get("wandering_trades.block_heads.is_116.max", 5));
+		config.set("wandering_trades.block_heads.is_117.min"					, oldconfig.get("wandering_trades.block_heads.is_117.min", 0));
+		config.set("wandering_trades.block_heads.is_117.max"					, oldconfig.get("wandering_trades.block_heads.is_117.max", 5));
+		config.set("wandering_trades.custom_trades.enabled"						, oldconfig.get("wandering_trades.custom_trades.enabled", false));
+		config.set("wandering_trades.custom_trades.min"							, oldconfig.get("wandering_trades.custom_trades.min", 0));
+		config.set("wandering_trades.custom_trades.max"							, oldconfig.get("wandering_trades.custom_trades.max", 5));
 		LOGGER.log("Saving config.yml...");
 		try {
 			config.save(new File(getDataFolder(), "config.yml"));
@@ -2393,7 +2404,9 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			//PersistentDataContainer pdc = headItem.getItemMeta().getPersistentDataContainer();
 			String uuid = skinUtils.getHeadUUID(headItem);
 			String texture = skinUtils.getHeadTexture(headItem); // pdc.get(TEXTURE_KEY, PersistentDataType.STRING);
-			String sound = skinUtils.getHeadNoteblockSound(headItem).toString(); // pdc.get(SOUND_KEY, PersistentDataType.STRING);
+			NamespacedKey nskSound = skinUtils.getHeadNoteblockSound(headItem);
+			String sound = null;
+			if(nskSound != null) { sound = nskSound.toString(); }
 			@Nonnull Block block = event.getBlockPlaced();
 			// NOTE: Not using snapshots is broken: https://github.com/PaperMC/Paper/issues/3913
 			//BlockStateSnapshotResult blockStateSnapshotResult = PaperLib.getBlockState(block, true);
@@ -2453,6 +2466,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				if (uuid != null) { skullPDC.set(UUID_KEY, PersistentDataType.STRING, uuid); }
 				if (texture != null) { skullPDC.set(TEXTURE_KEY, PersistentDataType.STRING, texture); }
 				if (sound != null) { skullPDC.set(SOUND_KEY, PersistentDataType.STRING, sound); }
+				itemstack.setItemMeta(meta);
 				itemstack.setItemMeta(meta);
 			}
 		}

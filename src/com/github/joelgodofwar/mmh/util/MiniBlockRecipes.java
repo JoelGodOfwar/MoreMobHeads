@@ -16,9 +16,11 @@ import com.github.joelgodofwar.mmh.MoreMobHeads;
 
 public class MiniBlockRecipes {
 	public static List<MerchantRecipe> blockhead_recipes = new ArrayList<MerchantRecipe>();
+	public static int quanity;
 
-	public MiniBlockRecipes(List<MerchantRecipe> recipes) {
+	public MiniBlockRecipes(List<MerchantRecipe> recipes, int quanity) {
 		MiniBlockRecipes.blockhead_recipes = recipes;
+		MiniBlockRecipes.quanity = quanity;
 	}
 
 	public static void addRecipes(String name, ItemStack itemstack, String meterial) {
@@ -62,6 +64,7 @@ public class MiniBlockRecipes {
 
 				// Check if the display name of the head contains "(Lit)"
 				ItemMeta meta = headStack.getItemMeta();
+				headStack.setAmount(quanity);
 				if ((meta != null) && meta.hasDisplayName() && meta.getDisplayName().toLowerCase().contains("(lit)")) {
 					materialName += "_lit";
 				}

@@ -180,8 +180,11 @@ public class EventHandler_1_20_R2 implements CommandExecutor, TabCompleter, List
 			Version current = new Version(mmh.getServer());
 			mmh.LOGGER.debug("EH 1_20 current=" + current);
 			checkMiniBlocks();
-			MiniBlockRecipes miniblockrecipes = new MiniBlockRecipes(blockhead_recipes);
-			miniblockrecipes.register();
+			if(mmh.config.getBoolean("head_settings.mini_blocks.stonecutter", false)) {
+				int quanity = mmh.config.getInt("head_settings.mini_blocks.perblock", 1);
+				MiniBlockRecipes miniblockrecipes = new MiniBlockRecipes(blockhead_recipes, quanity);
+				miniblockrecipes.register();
+			}
 			mmh.blockHeads = blockHeads;
 			mmh.blockHeads2 = blockHeads2;
 			mmh.blockHeads3 = blockHeads3;
@@ -1575,10 +1578,16 @@ public class EventHandler_1_20_R2 implements CommandExecutor, TabCompleter, List
 						}
 					}
 
-					if (mmh.config.getBoolean("wandering_trades.keep_default_trades", true)) {
-						recipes.addAll(oldRecipes);
+					if (mmh.config.getBoolean("wandering_trades.keep_default_trades", true) || (recipes == null) || recipes.isEmpty() ) {
+						if((oldRecipes != null) && !oldRecipes.isEmpty()) {
+							recipes.addAll(oldRecipes);
+						}
 					}
-					trader.setRecipes(recipes);
+
+					if ((recipes != null) && !recipes.isEmpty()) {
+						trader.setRecipes(recipes);
+					}
+
 					/** }});// */
 				}
 
@@ -1859,11 +1868,13 @@ public class EventHandler_1_20_R2 implements CommandExecutor, TabCompleter, List
 							blockhead_recipes = new ArrayList<MerchantRecipe>();
 							checkMiniBlocks();
 
-							MiniBlockRecipes miniblockrecipes = new MiniBlockRecipes(blockhead_recipes);
-							miniblockrecipes.register();
+							if(mmh.config.getBoolean("head_settings.mini_blocks.stonecutter", false)) {
+								int quanity = mmh.config.getInt("head_settings.mini_blocks.perblock", 1);
+								MiniBlockRecipes miniblockrecipes = new MiniBlockRecipes(blockhead_recipes, quanity);
+								miniblockrecipes.register();
+							}
 
 							mmh.LOGGER.log("EventHandler_1_20 took " + mmh.LoadTime(startTime) + " to load");
-
 
 							sender.sendMessage(
 									ChatColor.YELLOW + mmh.getName() + ChatColor.GREEN + " " + mmh.get("mmh.message.reloaded"));

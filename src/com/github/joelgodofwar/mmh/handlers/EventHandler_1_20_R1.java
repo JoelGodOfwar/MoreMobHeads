@@ -1769,10 +1769,12 @@ public class EventHandler_1_20_R1 implements CommandExecutor, TabCompleter, List
 						}
 					}
 
-					if (mmh.config.getBoolean("wandering_trades.keep_default_trades", true)) {
+					if (mmh.config.getBoolean("wandering_trades.keep_default_trades", true) || (recipes == null) || recipes.isEmpty() ) {
 						recipes.addAll(oldRecipes);
 					}
-					trader.setRecipes(recipes);
+					if ((recipes != null) && !recipes.isEmpty()) {
+						trader.setRecipes(recipes);
+					}
 					/** }});// */
 				}
 

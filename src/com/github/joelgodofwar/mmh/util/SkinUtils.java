@@ -73,6 +73,7 @@ public class SkinUtils {
 		// return the complete head.
 		return head;
 	}
+
 	/**
 	 * Converts a Base64-encoded string containing a JSON structure or a URL string to a URL object
 	 * representing the texture's URL.
@@ -96,6 +97,7 @@ public class SkinUtils {
 		String jsurl = skin.getString("url");
 		return new URL(jsurl);
 	}
+
 	/**
 	 * Extracts the Base64 texture string from an ItemStack's ItemMeta.
 	 *
@@ -119,6 +121,7 @@ public class SkinUtils {
 		}
 		return null;
 	}
+
 	/**
 	 * Extracts the Base64 texture string from an ItemStack's ItemMeta.
 	 *
@@ -139,6 +142,7 @@ public class SkinUtils {
 		}
 		return null;
 	}
+
 	/**
 	 * Extracts the Base64 texture string from an ItemStack's ItemMeta.
 	 *
@@ -159,6 +163,7 @@ public class SkinUtils {
 		}
 		return null;
 	}
+
 	/**
 	 * Extracts the Base64 texture string from an ItemStack's ItemMeta.
 	 *
@@ -193,6 +198,7 @@ public class SkinUtils {
 		}
 		return null;
 	}
+
 	/**
 	 * Extracts the Base64 texture string from an ItemStack's ItemMeta.
 	 *
@@ -219,6 +225,7 @@ public class SkinUtils {
 		}
 		return null;
 	}
+
 	/**
 	 * Reflection to get Private field of ItemStack
 	 * */

@@ -1,3 +1,10 @@
+1.20_1.0.40
+D1	Fixed memory leak with per player randoms.
+D2	
+1.20_1.0.39
+D1	Fixed NPE when getting noteblock sound on paper server.
+D2	Fixed exception involving empty recipes list.
+D3	Added new config for MiniBlocks perblock
 1.20_1.0.38
 D1	Added better error and log handling
 D2	Changed drop chance to handle less than 1 values.
@@ -17,7 +24,6 @@ D15	Fixed chance for named_mob, fixed nametagged mobs to get player_heads of the
 D16	Added a check for playerheads from named_mobs to ensure the player exists.
 D17	Fixed an exception that could occur placing a head.
 D18	Updated givePH command.
-D19	
 1.20_1.0.37
 D1	Removed Birthday Message code.
 1.20_1.0.36

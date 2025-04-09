@@ -659,6 +659,10 @@ blocks:
       texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTZhYWI1OGZhMDFmY2U5YWY0NjllZDc0N2FlZDgxMWQ3YmExOGM0NzZmNWE3ZjkwODhlMTI5YzMxYjQ1ZjMifX19
       amount: 8
     maxuses: 1
+	
+	
+	
+	
   block_42:
     price_1:
       ==: org.bukkit.inventory.ItemStack

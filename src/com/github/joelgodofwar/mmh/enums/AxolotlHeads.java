@@ -29,15 +29,17 @@ public enum AxolotlHeads {
 			"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2UzN2E5YzBkOWIwYmI3ODQ3Y2Y2ZjA3NzVmMDJiNjJkNGZjZjVmNTZjYmZkZTZhOGI0ZjRlYWIxZjdkYzRkYyJ9fX0="
 			),
 	;
-	private final UUID owner;
+
+	private final String displayName;
+	private final String langName;
+	private final UUID uuid;
 	private final String texture;
-	private final String name;
-	private final String nameString;
-	AxolotlHeads(String name, String nameString, String ownerUUID, String texture){
-		this.name = name;
-		this.owner = UUID.fromString(ownerUUID);
+
+	AxolotlHeads(String displayName, String langName, String uuid, String texture){
+		this.displayName = displayName;
+		this.langName = langName;
+		this.uuid = UUID.fromString(uuid);
 		this.texture = texture;
-		this.nameString = nameString;
 	}
 	public static final String getNameFromTexture(String texture)
 	{
@@ -69,13 +71,13 @@ public enum AxolotlHeads {
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return displayName;
 	}
 	/**
 	 * @return the owner
 	 */
 	public UUID getOwner() {
-		return owner;
+		return uuid;
 	}
 	/**
 	 * @return the texture
@@ -87,6 +89,6 @@ public enum AxolotlHeads {
 	 * @return the name
 	 */
 	public String getNameString() {
-		return nameString;
+		return langName;
 	}
 }

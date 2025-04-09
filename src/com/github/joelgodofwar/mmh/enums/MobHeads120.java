@@ -25,16 +25,16 @@ public enum MobHeads120 {
     ),*/
 	;
 
-	private final String owner;
+	private final String uuid;
 	private final String texture;
-	private final String name;
-	private final String nameString;
+	private final String displayName;
+	private final String langName;
 
-	MobHeads120(String name, String nameString, String ownerUUID, String texture){
+	MobHeads120(String displayName, String langName, String uuid, String texture){
 		this.texture = texture;
-		this.name = name;
-		this.owner = ownerUUID;
-		this.nameString = nameString;
+		this.displayName = displayName;
+		this.uuid = uuid;
+		this.langName = langName;
 	}
 
 	public static final String getNameFromTexture(String texture)
@@ -66,7 +66,7 @@ public enum MobHeads120 {
 	 * @return the owner
 	 */
 	public String getOwner() {
-		return owner;
+		return uuid;
 	}
 
 	/**
@@ -80,14 +80,14 @@ public enum MobHeads120 {
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return displayName;
 	}
 
 	/**
 	 * @return the name
 	 */
 	public String getNameString() {
-		return nameString;
+		return langName;
 	}
 
 }

@@ -105,7 +105,7 @@ import com.github.joelgodofwar.mmh.enums.WolfHeads;
 import com.github.joelgodofwar.mmh.enums.ZombieVillagerHeads;
 import com.github.joelgodofwar.mmh.util.ChatColorUtils;
 import com.github.joelgodofwar.mmh.util.ConfigHelper;
-import com.github.joelgodofwar.mmh.util.MiniBlockRecipes;
+import com.github.joelgodofwar.mmh.util.MiniBlockRecipesOld;
 import com.github.joelgodofwar.mmh.util.SkinUtils;
 import com.github.joelgodofwar.mmh.util.StrUtils;
 import com.github.joelgodofwar.mmh.util.Utils;
@@ -141,6 +141,7 @@ public class EventHandler_1_20_R2 implements CommandExecutor, TabCompleter, List
 	public FileConfiguration blockHeads2 = new YamlConfiguration();
 	public FileConfiguration blockHeads3 = new YamlConfiguration();
 	public FileConfiguration blockHeads4 = new YamlConfiguration();
+	public YamlConfiguration beheadingMessages = new YamlConfiguration();
 
 	// Head default values.
 	String nameDEF = "Name Not Found";
@@ -182,12 +183,17 @@ public class EventHandler_1_20_R2 implements CommandExecutor, TabCompleter, List
 			checkMiniBlocks();
 			if(mmh.config.getBoolean("head_settings.mini_blocks.stonecutter", false)) {
 				int quanity = mmh.config.getInt("head_settings.mini_blocks.perblock", 1);
-				MiniBlockRecipes miniblockrecipes = new MiniBlockRecipes(blockhead_recipes, quanity);
+				MiniBlockRecipesOld miniblockrecipes = new MiniBlockRecipesOld(blockhead_recipes, quanity);
 				miniblockrecipes.register();
 			}
 			mmh.blockHeads = blockHeads;
 			mmh.blockHeads2 = blockHeads2;
 			mmh.blockHeads3 = blockHeads3;
+			try {
+				beheadingMessages.load(new File(mmh.getDataFolder() + "" + File.separatorChar + "messages.yml"));
+			} catch (Exception exception) {
+				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_MESSAGES_LOAD_ERROR).error(exception));
+			}
 			mmh.LOGGER.log("EventHandler_1_20 took " + mmh.LoadTime(startTime) + " to load");
 
 		}catch(Exception exception) {
@@ -817,8 +823,8 @@ public class EventHandler_1_20_R2 implements CommandExecutor, TabCompleter, List
 								if (mmh.DropIt(event, ConfigHelper.Double(chanceConfig, "chance_percent." + name.toLowerCase(),
 										defpercent))) {
 									Drops.add(
-											mmh.makeHead( mmh.langName.getString(name.toLowerCase(), MobHeads.valueOf(name).getName() + "")
-													, MobHeads.valueOf(name).getTexture().toString(), MobHeads.valueOf(name).getOwner(), entity.getType(), entity.getKiller() )
+											mmh.makeHead( mmh.langName.getString(name.toLowerCase(), MobHeads.valueOf(name).getName() + ""),
+													MobHeads.valueOf(name).getTexture().toString(), MobHeads.valueOf(name).getOwner(), entity.getType(), entity.getKiller() )
 											);
 									mmh.LOGGER.debug("EDE " + name + " Head Dropped");
 									if (mmh.config.getBoolean("head_settings.mob_heads.announce_kill.enabled", true)) {
@@ -1069,6 +1075,7 @@ public class EventHandler_1_20_R2 implements CommandExecutor, TabCompleter, List
 								break;
 							case "ZOMBIE_VILLAGER":
 								ZombieVillager daZombieVillager = (ZombieVillager) entity;
+								String daZombieVillagerType = daZombieVillager.getVillagerType().toString();
 								String daZombieVillagerProfession = daZombieVillager.getVillagerProfession().toString();
 								//String daZombieVillagerName = ZombieVillagerHeads.valueOf(name + "_" + daZombieVillagerProfession).getName() + " Head";
 								mmh.LOGGER.debug("EDE " + name + "_" + daZombieVillagerProfession);
@@ -1543,34 +1550,46 @@ public class EventHandler_1_20_R2 implements CommandExecutor, TabCompleter, List
 					 * Custom Trades
 					 */
 					if (mmh.config.getBoolean("wandering_trades.custom_trades.enabled", false)) {
-						int numOfCustomTrades = (custometrade_recipes.size() - 1) >= 0 ? custometrade_recipes.size() - 1
-								: 0;
-						numOfCustomTrades = numOfCustomTrades - 1;
+						int numOfCustomTrades = custometrade_recipes.size() > 0 ? custometrade_recipes.size() : 0;
 						int ctMaxDef = (5 >= numOfCustomTrades) ? 5 : numOfCustomTrades;
-
+						mmh.LOGGER.debug("CSE CT numOfCustomTrades=" + numOfCustomTrades);
 						int customRandom = mmh.randomBetween(
 								mmh.config.getInt("wandering_trades.custom_trades.min", 0),
 								mmh.config.getInt("wandering_trades.custom_trades.max", ctMaxDef));
 
-						// if(debug){mmh.TEST.debug("CSE numOfCustomTrades=" + numOfCustomTrades);}
-						// int customRandom =
-						// randomBetween(getConfig().getInt("wandering_trades.min_custom_trades", 0),
-						// mmh.config.getInt("wandering_trades.max_custom_trades", 3));
-						mmh.LOGGER.debug("CSE customRandom=" + customRandom);
+						mmh.LOGGER.debug("CSE CT customRandom=" + customRandom);
 						if (customRandom > 0) {
-							mmh.LOGGER.debug("CSE customRandom > 0");
-							// for(int randomCustomTrade=1; randomCustomTrade<numOfCustomTrades;
-							// randomCustomTrade++){
-							HashSet<Integer> used = new HashSet<Integer>();
-							for (int i = 0; i < customRandom; i++) {
+							mmh.LOGGER.debug("CSE CT customRandom > 0");
 
-								double chance = Math.random();
-								mmh.LOGGER.debug("CSE chance=" + chance + " line:1540");
-								if (mmh.traderCustom.getDouble("custom_trades.trade_" + i + ".chance", 0.002) > chance) {
-									recipes.add(custometrade_recipes.get(i));
+							HashSet<Integer> used = new HashSet<Integer>();
+							for (int i = 1; i < customRandom; i++) {
+								mmh.LOGGER.debug("CSE CT i=" + i);
+								int randomCustomTrade = mmh.randomBetween(1, numOfCustomTrades);
+
+								int attempts = 0;
+								while (used.contains(randomCustomTrade)) {
+									randomCustomTrade = mmh.randomBetween(1, numOfCustomTrades);
+									if (++attempts >= 500) {
+										mmh.LOGGER.debug("CSE CT timed out");
+										break;
+									}
+								}
+								used.add(randomCustomTrade);
+
+								double chance = Math.random() * 100;
+								mmh.LOGGER.debug("CSE CT chance=" + chance + " line:1574");
+								mmh.LOGGER.debug("CSE CT randomCustomTrade=" + randomCustomTrade);
+								double rawChance = mmh.traderCustom.getDouble("custom_trades.trade_" + randomCustomTrade + ".chance", 33);
+								if(rawChance < 1) {
+									mmh.LOGGER.debug("CSE CT custom_trades.trade_" + randomCustomTrade + ".chance is old format" + " line:1577");
+								}
+								double tradeChance = (rawChance < 1 ? rawChance * 100 : rawChance);
+								mmh.LOGGER.debug("CSE CT tradeChance=" + tradeChance + " line:1580");
+								if ( tradeChance > chance ) {
+									recipes.add(custometrade_recipes.get(randomCustomTrade - 1));
 								}
 								if (i >= 500) {
-									mmh.LOGGER.debug("CSE.CT timed out");
+									mmh.LOGGER.debug("CSE CT timed out");
 									break;
 								}
 							}
@@ -1642,6 +1661,7 @@ public class EventHandler_1_20_R2 implements CommandExecutor, TabCompleter, List
 				}catch (Exception exception) {
 					reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_COMMAND_MENU_ERROR).error(exception));
 				}
+
 				if (args[0].equalsIgnoreCase("headNBT")) {
 					try { // REPORT_COMMAND_HEADNBT_ERROR "Error executing HeadNBT command."
 						if (!(sender instanceof Player)) {
@@ -1835,7 +1855,12 @@ public class EventHandler_1_20_R2 implements CommandExecutor, TabCompleter, List
 
 							mmh.config = new YmlConfiguration();
 							mmh.beheadingMessages = new YmlConfiguration();
-
+							beheadingMessages = new YamlConfiguration();
+							try {
+								beheadingMessages.load(new File(mmh.getDataFolder() + "" + File.separatorChar + "messages.yml"));
+							} catch (Exception exception) {
+								reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_MESSAGES_LOAD_ERROR).error(exception));
+							}
 							// Make sure directory exists and files exist.
 							mmh.checkDirectories();
 							mmh.LOGGER.log("Loading file version checker...");
@@ -1870,7 +1895,7 @@ public class EventHandler_1_20_R2 implements CommandExecutor, TabCompleter, List
 
 							if(mmh.config.getBoolean("head_settings.mini_blocks.stonecutter", false)) {
 								int quanity = mmh.config.getInt("head_settings.mini_blocks.perblock", 1);
-								MiniBlockRecipes miniblockrecipes = new MiniBlockRecipes(blockhead_recipes, quanity);
+								MiniBlockRecipesOld miniblockrecipes = new MiniBlockRecipesOld(blockhead_recipes, quanity);
 								miniblockrecipes.register();
 							}
 
@@ -3338,16 +3363,16 @@ public class EventHandler_1_20_R2 implements CommandExecutor, TabCompleter, List
 					if (!damagingWeapon.getItemMeta().hasDisplayName()) {
 						weaponName = damagingWeapon.getType().name();
 					}
-					int randomIndex = (int) (Math.random() * mmh.beheadingMessages.getConfigurationSection("messages").getKeys(false).size()) + 1;
-					String announcement = mmh.beheadingMessages.getString("messages.message_" + randomIndex, "%killerName% beheaded %entityName% with %weaponName%.")
+					int randomIndex = (int) (Math.random() * beheadingMessages.getConfigurationSection("messages").getKeys(false).size()) + 1;
+					String announcement = beheadingMessages.getString("messages.message_" + randomIndex, "%killerName% beheaded %entityName% with %weaponName%.")
 							.replace("%killerName%", killerName).replace("%entityName%", entityName).replace("%weaponName%", weaponName);
 
 					Bukkit.broadcastMessage(ChatColorUtils.setColors(announcement));
 				}
 			} else if ((damagingPlayerUUID != null) && (damagingWeapon == null)) { // Bare Hands?
 				String weaponName = "Bare Hands";
-				int randomIndex = (int) (Math.random() * mmh.beheadingMessages.getConfigurationSection("messages").getKeys(false).size()) + 1;
-				String announcement = mmh.beheadingMessages.getString("messages.message_" + randomIndex, "%killerName% beheaded %entityName% with %weaponName%.")
+				int randomIndex = (int) (Math.random() * beheadingMessages.getConfigurationSection("messages").getKeys(false).size()) + 1;
+				String announcement = beheadingMessages.getString("messages.message_" + randomIndex, "%killerName% beheaded %entityName% with %weaponName%.")
 						.replace("%killerName%", killerName).replace("%entityName%", entityName).replace("%weaponName%", weaponName);
 
 				Bukkit.broadcastMessage(ChatColorUtils.setColors(announcement));
@@ -3609,28 +3634,19 @@ public class EventHandler_1_20_R2 implements CommandExecutor, TabCompleter, List
 
 			mmh.LOGGER.log(blockhead_recipes.size() + " BlockHead Recipes ADDED...");
 
-			/**mmh.LOGGER.log("Loading CustomTrades Recipes...");
+			mmh.LOGGER.log("Loading CustomTrades Recipes...");
 			for (int i = 1; i < (mmh.traderCustom.getInt("custom_trades.number") + 1); i++) {
 				ItemStack price1 = mmh.traderCustom.getItemStack("custom_trades.trade_" + i + ".price_1", new ItemStack(Material.AIR));
 				ItemStack price2 = mmh.traderCustom.getItemStack("custom_trades.trade_" + i + ".price_2", new ItemStack(Material.AIR));
 				ItemStack itemstack = mmh.traderCustom.getItemStack("custom_trades.trade_" + i + ".itemstack", new ItemStack(Material.AIR));
-				// Code to fix missing noteblock SkullMeta
-				boolean doIt = Utils.isSupportedVersion("1.20.2.3936");
-				if(doIt) {
-					mmh.LOGGER.log("doIt=" + doIt);
-					if(itemstack.getType().equals(Material.PLAYER_HEAD)) {
-						SkullMeta meta = (SkullMeta) itemstack.getItemMeta();
-						String sound = mmh.traderCustom.getString("custom_trades.trade_" + i + ".note_block_sound", "entity.player.hurt");
-						meta.setNoteBlockSound(NamespacedKey.minecraft(sound));
-						itemstack.setItemMeta(meta);
-					}
-				}
-				// Code to fix missing noteblock SkullMeta
+
+				mmh.LOGGER.log("i=" + i);
+
+				if(itemstack.getType().equals(Material.AIR)) {continue;}
 				MerchantRecipe recipe = new MerchantRecipe(itemstack,
 						mmh.traderCustom.getInt("custom_trades.trade_" + i + ".quantity", 1));
-				recipe.setExperienceReward(true);
-				recipe.addIngredient(price1);
-				recipe.addIngredient(price2);
+				if(!price1.getType().equals(Material.AIR)) {recipe.addIngredient(price1);}
+				if(!price2.getType().equals(Material.AIR)) {recipe.addIngredient(price2);}
 				custometrade_recipes.add(recipe);
 			}
 			mmh.LOGGER.log(custometrade_recipes.size() + " CustomTrades Recipes ADDED...");//*/
@@ -3641,14 +3657,26 @@ public class EventHandler_1_20_R2 implements CommandExecutor, TabCompleter, List
 	public void saveFileVersions() {
 		String defVer = "0.1.0";
 		mmh.fileVersions.set("config", mmh.config.getString("version", defVer));
-		mmh.fileVersions.set("messages", mmh.beheadingMessages.getString("version", defVer));
-		mmh.fileVersions.set("player_heads", mmh.playerHeads.getString("version", defVer));
-		mmh.fileVersions.set("custom_trades", mmh.traderCustom.getString("custom_trades.version", defVer));
+		if(mmh.beheadingMessages != null) {
+			mmh.fileVersions.set("messages", beheadingMessages.getString("version", defVer));
+		}
+		if(mmh.playerHeads != null) {
+			mmh.fileVersions.set("player_heads", mmh.playerHeads.getString("version", defVer));
+		}
+		if(mmh.traderCustom != null) {
+			mmh.fileVersions.set("custom_trades", mmh.traderCustom.getString("custom_trades.version", defVer));
+		}
 		mmh.fileVersions.set("chance_config", chanceConfig.getString("version", defVer));
 		mmh.fileVersions.set("lang", mmh.langName.getString("version", defVer));
-		mmh.fileVersions.set("block_heads_1_17", blockHeads.getString("version", defVer));
-		mmh.fileVersions.set("block_heads_1_17_2", blockHeads2.getString("version", defVer));
-		mmh.fileVersions.set("block_heads_1_20", blockHeads3.getString("version", defVer));
+		if(blockHeads != null) {
+			mmh.fileVersions.set("block_heads_1_17", blockHeads.getString("version", defVer));
+		}
+		if(blockHeads2 != null) {
+			mmh.fileVersions.set("block_heads_1_17_2", blockHeads2.getString("version", defVer));
+		}
+		if(blockHeads3 != null) {
+			mmh.fileVersions.set("block_heads_1_20", blockHeads3.getString("version", defVer));
+		}
 		mmh.fileVersionsFile = new File(mmh.getDataFolder() + "" + File.separatorChar + "fileVersions.yml");
 		try {
 			mmh.fileVersions.save(mmh.fileVersionsFile);

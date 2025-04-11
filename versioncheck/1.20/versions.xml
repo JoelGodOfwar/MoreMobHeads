@@ -7,7 +7,7 @@ D3	Added new config for MiniBlocks perblock</notes>
     <link>https://www.spigotmc.org/resources/moremobheads.73997/history</link>
   </release>
   <developer>
-    <version>1.20_1.0.40.D9</version>
+    <version>1.20_1.0.40.D10</version>
     <notes>D1	Fixed memory leak with per player randoms.
 D2	Fixed NPE caused by disabling playerheads for wandering traders.
 D3	Fixed beheading message loading in 1.21 eventHandler.
@@ -17,7 +17,10 @@ D6	Fixed missing custom trades loader.
 D7	Added a null check on updateDrop for Persistent Heads.
 D8	Enums switched to json files. New permission and new command.
 D9	Added givehead subcommand to replace the give commands.
-	added viewheads subcommand, so player can view all available heads.</notes>
+	added viewheads subcommand, so player can view all available heads.
+D10	Added automatic JSON updates via update.json - back up custom JSON files as they may be modified or deleted.
+	Removed blockhead.yml chance_config.yml and old enum files. And other minor tweaks.
+	Added version compatibility for heads using min_mc_version and max_mc_version.</notes>
     <link>https://discord.com/channels/654087250665144321/662940711167066123</link>
   </developer>
 </versions>

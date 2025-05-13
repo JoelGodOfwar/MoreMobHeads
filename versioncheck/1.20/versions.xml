@@ -7,7 +7,7 @@ D3	Added new config for MiniBlocks perblock</notes>
     <link>https://www.spigotmc.org/resources/moremobheads.73997/history</link>
   </release>
   <developer>
-    <version>1.20_1.0.40.D11</version>
+    <version>1.20_1.0.40.D12</version>
     <notes>D1	Fixed memory leak with per player randoms.
 D2	Fixed NPE caused by disabling playerheads for wandering traders.
 D3	Fixed beheading message loading in 1.21 eventHandler.
@@ -21,7 +21,8 @@ D9	Added givehead subcommand to replace the give commands.
 D10	Added automatic JSON updates via update.json - back up custom JSON files as they may be modified or deleted.
 	Removed blockhead.yml chance_config.yml and old enum files. And other minor tweaks.
 	Added version compatibility for heads using min_mc_version and max_mc_version.
-D11	Fixed Creeper normal causing exception. Updated missing lang file entries.</notes>
+D11	Fixed Creeper normal causing exception. Updated missing lang file entries.
+D12	Fixed Ender_chest texture.</notes>
     <link>https://discord.com/channels/654087250665144321/662940711167066123</link>
   </developer>
 </versions>

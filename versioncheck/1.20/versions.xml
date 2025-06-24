@@ -8,7 +8,7 @@ D3	Added new config for MiniBlocks perblock</notes>
     <link>https://www.spigotmc.org/resources/moremobheads.73997/history</link>
   </release>
   <developer>
-    <version>1.20_1.0.40.D15</version>
+    <version>1.20_1.0.40.D16</version>
     <notes>D1	Fixed memory leak with per player randoms.
 D2	Fixed NPE caused by disabling playerheads for wandering traders.
 D3	Fixed beheading message loading in 1.21 eventHandler.
@@ -28,7 +28,8 @@ D13	Added use_default_player_heads config to toggle default heads.
 	Added converter for custom heads in player_heads.yml to JSONs.
 	Warns if no heads when defaults off.
 D14	Added head updater. Creates an update directory inside the MMH directory, that is used for updating heads using zip files.
-D15	Made some general improvements and updates to the plugin, including DLC installation detection. Added Happy_Ghast</notes>
+D15	Made some general improvements and updates to the plugin, including DLC installation detection. Added Happy_Ghast
+D16	Including the new Ghastling mob. Snowman renamed Snow Golem. Updated lang files for mob changes.</notes>
     <link>https://discord.com/channels/654087250665144321/662940711167066123</link>
   </developer>
 </versions>

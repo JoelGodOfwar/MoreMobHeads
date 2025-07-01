@@ -1,9 +1,9 @@
 <versions>
   <dlcs>mmh_all_logs.zip;48;$2;heads/block/all_logs_acacia_log_horizontal.json,mmh_all_woods;22;$1;heads/block/acacia_wood.json,mmh_all_shulker_boxes;17;$1;heads/block/red_shulker_box.json</dlcs>
   <release>
-    <version>1.20_1.0.41</version>
-    <notes>1.20_1.0.41
-D1	Updated Library for 1.21.6 and 1.21.7</notes>
+    <version>1.20_1.0.42</version>
+    <notes>1.20_1.0.42
+D1    Fixed Wolves, Cows, Pigs, Chickens broken by spigot and paper. added player.json to entity for player head chance.</notes>
     <link>https://www.spigotmc.org/resources/moremobheads.73997/history</link>
   </release>
   <developer>

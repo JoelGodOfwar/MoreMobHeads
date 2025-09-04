@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "AIR",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "BdoubleO100",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjcwOTYyYTM3YTNkZjgxN2E1ODg2MTlkNTlkZjA5MWYxMmM4NDE5NTJkZDFkMGZkMmQwMjliNjk3MjJlNWQ3ZiJ9fX0=",
+    "uuid": "7163fbce-39ac-4a02-b836-a991c45d2dd1",
+    "lore": [],
+    "noteblockSound": "entity.player.hurt",
+    "quantity": 1,
+    "maxUses": 3
+  }
+}  

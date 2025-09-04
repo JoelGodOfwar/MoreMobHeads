@@ -1,1 +1,31 @@
-
+{
+  "structure": "nested",
+  "defaultChance": 100.0,
+  "heads": {},
+  "min_mc_version": "1.13",
+  "max_mc_version": "1.21.6",
+  "files": [
+	{"file": "entity/snowman.json", "delete": true},
+	{"file": "entity/ghastling.json", "compare": true, "forced": ["chance"]},
+    {"file": "block_heads_1_17.yml", "backup/delete": true},
+    {"file": "block_heads_1_17_2.yml", "backup/delete": true},
+    {"file": "block_heads_1_20.yml", "backup/delete": true},
+    {"file": "chance_config.yml", "backup/delete": true},
+	{"file": "entity/creeper.json", "backup/delete": true},
+    {"file": "entity/cow.json", "delete": true},
+    {"file": "entity/cow_cold.json", "delete": true},
+    {"file": "entity/cow_temperate.json", "delete": true},
+    {"file": "entity/cow_warm.json", "delete": true},
+    {"file": "entity/chicken.json", "delete": true},
+    {"file": "entity/chicken_cold.json", "delete": true},
+    {"file": "entity/chicken_temperate.json", "delete": true},
+    {"file": "entity/chicken_warm.json", "delete": true},
+    {"file": "entity/pig.json", "delete": true},
+    {"file": "entity/pig_cold.json", "delete": true},
+    {"file": "entity/pig_temperate.json", "delete": true},
+    {"file": "entity/pig_warm.json", "delete": true},
+    {"file": "entity/cow.json", "compare": true, "forced": ["chance"]},
+    {"file": "entity/chicken.json", "compare": true, "forced": ["chance"]},
+    {"file": "entity/pig.json", "compare": true, "forced": ["chance"]}
+  ]
+}

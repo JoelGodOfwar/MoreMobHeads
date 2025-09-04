@@ -1,0 +1,27 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "AIR",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "Jessassin",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTM0MzdiMGY0NDRlYTQzYmJjNDc3ZWMyMTI3YzlkNjY3NDdlM2U3M2M2YTdkN2UxMjBhZmQxYTA0M2E4YWMxZCJ9fX0=",
+    "uuid": "350c312e-4eb8-49bf-a1b6-8decb3a16f52",
+    "lore": [
+      "Former Hermit"
+    ],
+    "noteblockSound": "entity.player.hurt",
+    "quantity": 1,
+    "maxUses": 3
+  }
+}  

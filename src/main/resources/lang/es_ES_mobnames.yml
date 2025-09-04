@@ -1,0 +1,361 @@
+# Add the translations for your language here
+# Agregue las traducciones para su idioma aquí
+version: 1.0.6
+killedby: <RED>Killed <RESET>By <YELLOW><player>
+player: Player
+allay: Allay
+armadillo: Armadillo
+axolotl:
+  blue: Blue Axolotl
+  cyan: Cyan Axolotl
+  gold: Gold Axolotl
+  lucy: Lucy Axolotl
+  wild: Wild Axolotl
+bat: Bat
+bee:
+  angry_pollinated: Angry Pollinated Bee
+  angry: Angry Bee
+  pollinated: Pollinated Bee
+  none: Bee
+blaze: Blaze
+bogged: Bogged
+breeze: Breeze
+camel: Camel
+cat:
+  all_black: Black Cat
+  black: Tuxedo Cat
+  british_shorthair: British Shorthair Cat
+  calico: Calico Cat
+  jellie: Jellie Cat
+  persian: Persian Cat
+  ragdoll: Ragdoll Cat
+  red: Red Cat
+  siamese: Siamese Cat 
+  tabby: Tabby Cat
+  white: White Cat
+  wild_ocelot: Ocelot
+cave_spider: Cave Spider
+chicken:
+  normal: Chicken
+  cold: Cold Chicken
+  temperate: Temperate Chicken
+  warm: Warm Chicken
+cod: Cod
+cow:
+  normal: Cow
+  cold: Cold Cow
+  temperate: Temperate Cow
+  warm: Warm Cow
+creaking: Creaking
+creeper:
+  normal: Creeper
+  charged: Charged Creeper
+dolphin: Dolphin
+donkey: Donkey
+drowned: Drowned
+elder_guardian: Elder Guardian
+ender_dragon: Ender Dragon
+enderman: Enderman
+endermite: Endermite
+evoker: Evoker
+fox:
+  red: Red Fox
+  snow: Snow Fox
+frog:
+  cold: Cold Frog
+  temperate: Temperate Frog
+  warm: Warm Frog
+ghast: Ghast
+ghastling: Ghastling
+giant: Giant
+glow_squid: Glow Squid
+goat:
+  normal: Goat
+  screaming: Screaming Goat
+guardian: Guardian
+happy_ghast: Happy Ghast
+hoglin: Hoglin
+horse:
+  black: Black Horse
+  brown: Brown Horse
+  chestnut: Chestnut Horse
+  creamy: Creamy Horse
+  dark_brown: Dark Brown Horse
+  gray: Gray Horse
+  white: White Horse
+husk: Husk
+illusioner: Illusioner
+iron_golem: Iron Golem
+llama:
+  brown: Brown Llama
+  creamy: Creamy Llama
+  gray: Gray Llama
+  white: White Llama
+magma_cube: Magma Cube
+mule: Mule 
+mushroom_cow:
+  red: Mushroom Cow
+  brown: Brown Mushroom Cow
+panda:
+  aggressive: Aggressive Panda
+  brown: Brown Panda
+  lazy: Lazy Panda
+  normal: Panda
+  playful: Playful Panda
+  weak: Weak Panda
+  worried: Worried Panda
+parrot:
+  blue: Blue Parrot
+  cyan: Cyan Parrot
+  gray: Gray Parrot
+  green: Green Parrot
+  red: Red Parrot
+phantom: Phantom
+pig:
+  normal: Pig
+  cold: Cold Pig
+  temperate: Temperate Pig
+  warm: Warm Pig
+piglin: Piglin
+piglin_brute: Piglin Brute
+pig_zombie: Zombie Pigman
+pillager: Pillager
+polar_bear: Polar Bear
+pufferfish: Pufferfish
+rabbit:
+  black: Black Rabbit
+  black_and_white: Black and White Rabbit
+  brown: Brown Rabbit
+  gold: Gold Rabbit
+  salt_and_pepper: Salt and Pepper Rabbit
+  the_killer_bunny: The Killer Bunny
+  toast: Toast Rabbit
+  white: White Rabbit
+ravager: Ravager
+salmon: Salmon
+sheep:
+  black: Black Sheep
+  blue: Blue Sheep
+  brown: Brown Sheep
+  cyan: Cyan Sheep
+  gray: Gray Sheep
+  green: Green Sheep
+  jeb_: Jeb_ Sheep
+  light_blue: Light Blue Sheep
+  light_gray: Light Gray Sheep
+  lime: Lime Sheep
+  magenta: Magenta Sheep
+  orange: Orange Sheep
+  pink: Pink Sheep
+  purple: Purple Sheep
+  red: Red Sheep
+  white: White Sheep
+  yellow: Yellow Sheep
+shulker: Shulker
+silverfish: Silverfish
+skeleton: Skeleton
+skeleton_horse: Skeleton Horse
+slime: Slime
+sniffer: Sniffer
+snow_golem: Snow Golem
+spider: Spider
+squid: Squid
+stray: Stray
+strider: Strider
+strider_shivering: Shivering Strider
+tadpole: Tadpole
+trader_llama:
+  brown: Brown Trader Llama
+  creamy: Creamy Trader Llama
+  gray: Gray Trader Llama
+  white: White Trader Llama
+tropical_fish:
+  tropical_fish: Tropical Fish
+  anemone: Anemone
+  black_tang: Black Tang
+  blue_tang: Blue Tang
+  butterflyfish: Butterflyfish
+  cichlid: Cichlid
+  clownfish: Clownfish
+  cotton_candy_betta: Cotton Candy Betta
+  dottyback: Dottyback
+  emperor_red_snapper: Emperor Red Snapper
+  goatfish: Goatfish
+  moorish_idol: Moorish Idol
+  ornate_butterflyfish: Ornate Butterflyfish
+  parrotfish: Parrotfish
+  queen_angelfish: Queen Angelfish
+  red_cichlid: Red Cichlid
+  red_lipped_blenny: Red Lipped Blenny 
+  red_snapper: Red Snapper
+  threadfin: Threadfin
+  tomato_clownfish: Tomato Clownfish
+  triggerfish: Triggerfish
+  yellow_parrotfish: Yellow Parrotfish
+  yellow_tang: Yellow Tang
+turtle: Turtle
+vex: Vex
+vex_angry: Angry Vex
+villager:
+  desert:
+    armorer: Desert Armorer Villager
+    butcher: Desert Butcher Villager
+    cartographer: Desert Cartographer Villager
+    cleric: Desert Cleric Villager
+    farmer: Desert Farmer Villager
+    fisherman: Desert Fisherman Villager
+    fletcher: Desert Fletcher Villager
+    leatherworker: Desert Leatherworker Villager
+    librarian: Desert Librarian Villager
+    mason: Desert Mason Villager
+    nitwit: Desert Nitwit Villager
+    none: Desert Villager
+    shepherd: Desert Shepherd Villager
+    toolsmith: Desert Toolsmith Villager
+    weaponsmith: Desert Weaponsmith Villager
+  jungle:
+    armorer: Jungle Armorer Villager
+    butcher: Jungle Butcher Villager
+    cartographer: Jungle Cartographer Villager
+    cleric: Jungle Cleric Villager
+    farmer: Jungle Farmer Villager
+    fisherman: Jungle Fisherman Villager
+    fletcher: Jungle Fletcher Villager
+    leatherworker: Jungle Leatherworker Villager
+    librarian: Jungle Librarian Villager
+    mason: Jungle Mason Villager
+    nitwit: Jungle Nitwit Villager
+    none: Jungle Villager
+    shepherd: Jungle Shepherd Villager
+    toolsmith: Jungle Toolsmith Villager
+    weaponsmith: Jungle Weaponsmith Villager
+  plains:
+    armorer: Plains Armorer Villager
+    butcher: Plains Butcher Villager
+    cartographer: Plains Cartographer Villager
+    cleric: Plains Cleric Villager
+    farmer: Plains Farmer Villager
+    fisherman: Plains Fisherman Villager
+    fletcher: Plains Fletcher Villager
+    leatherworker: Plains Leatherworker Villager
+    librarian: Plains Librarian Villager
+    mason: Plains Mason Villager
+    nitwit: Plains Nitwit Villager
+    none: Plains Villager
+    shepherd: Plains Shepherd Villager
+    toolsmith: Plains Toolsmith Villager
+    weaponsmith: Plains Weaponsmith Villager
+  savanna:
+    armorer: Savanna Armorer Villager
+    butcher: Savanna Butcher Villager
+    cartographer: Savanna Cartographer Villager
+    cleric: Savanna Cleric Villager
+    farmer: Savanna Farmer Villager
+    fisherman: Savanna Fisherman Villager
+    fletcher: Savanna Fletcher Villager
+    leatherworker: Savanna Leatherworker Villager
+    librarian: Savanna Librarian Villager
+    mason: Savanna Mason Villager
+    nitwit: Savanna Nitwit Villager
+    none: Savanna Villager
+    shepherd: Savanna Shepherd Villager
+    toolsmith: Savanna Toolsmith Villager
+    weaponsmith: Savanna Weaponsmith Villager
+  snow:
+    armorer: Snow Armorer Villager
+    butcher: Snow Butcher Villager
+    cartographer: Snow Cartographer Villager
+    cleric: Snow Cleric Villager
+    farmer: Snow Farmer Villager
+    fisherman: Snow Fisherman Villager
+    fletcher: Snow Fletcher Villager
+    leatherworker: Snow Leatherworker Villager
+    librarian: Snow Librarian Villager
+    mason: Snow Mason Villager
+    nitwit: Snow Nitwit Villager
+    none: Snow Villager
+    shepherd: Snow Shepherd Villager
+    toolsmith: Snow Toolsmith Villager
+    weaponsmith: Snow Weaponsmith Villager
+  swamp:
+    armorer: Swamp Armorer Villager
+    butcher: Swamp Butcher Villager
+    cartographer: Swamp Cartographer Villager
+    cleric: Swamp Cleric Villager
+    farmer: Swamp Farmer Villager
+    fisherman: Swamp Fisherman Villager
+    fletcher: Swamp Fletcher Villager
+    leatherworker: Swamp Leatherworker Villager
+    librarian: Swamp Librarian Villager
+    mason: Swamp Mason Villager
+    nitwit: Swamp Nitwit Villager
+    none: Swamp Villager
+    shepherd: Swamp Shepherd Villager
+    toolsmith: Swamp Toolsmith Villager
+    weaponsmith: Swamp Weaponsmith Villager
+  taiga:
+    armorer: Taiga Armorer Villager
+    butcher: Taiga Butcher Villager
+    cartographer: Taiga Cartographer Villager
+    cleric: Taiga Cleric Villager
+    farmer: Taiga Farmer Villager
+    fisherman: Taiga Fisherman Villager
+    fletcher: Taiga Fletcher Villager
+    leatherworker: Taiga Leatherworker Villager
+    librarian: Taiga Librarian Villager
+    mason: Taiga Mason Villager
+    nitwit: Taiga Nitwit Villager
+    none: Taiga Villager
+    shepherd: Taiga Shepherd Villager
+    toolsmith: Taiga Toolsmith Villager
+    weaponsmith: Taiga Weaponsmith Villager
+vindicator: Vindicator
+wandering_trader: Wandering Trader
+warden: Warden
+witch: Witch
+wither:
+  normal: Wither
+  projectile: Wither Projectile
+  blue_projectile: Blue Wither Projectile
+wither_skeleton: Wither Skeleton
+wolf:
+  ashen: Ashen Wolf
+  black: Black Wolf
+  chestnut: Chestnut Wolf
+  pale: Pale Wolf
+  rusty: Rusty Wolf
+  snowy: Snowy Wolf
+  spotted: Spotted Wolf
+  striped: Striped Wolf
+  woods: Woods Wolf
+  angry_ashen: Angry Ashen Wolf
+  angry_black: Angry Black Wolf
+  angry_chestnut: Angry Chestnut Wolf
+  angry_pale: Angry Pale Wolf
+  angry_rusty: Angry Rusty Wolf
+  angry_snowy: Angry Snowy Wolf
+  angry_spotted: Angry Spotted Wolf
+  angry_striped: Angry Striped Wolf
+  angry_woods: Angry Woods Wolf
+zoglin: Zoglin
+zombie: Zombie
+zombie_hoglin: Zombie Hoglin
+zombie_horse: Zombie Horse
+zombie_pigman: Zombie Pigman
+zombified_piglin: Zombified Piglin
+zombie_villager:
+  armorer: Zombie Armorer Villager
+  butcher: Zombie Butcher Villager
+  cartographer: Zombie Cartographer Villager
+  cleric: Zombie Cleric Villager
+  farmer: Zombie Farmer Villager
+  fisherman: Zombie Fisherman Villager
+  fletcher: Zombie Fletcher Villager
+  leatherworker: Zombie Leatherworker Villager
+  librarian: Zombie Librarian Villager
+  mason: Zombie Mason Villager
+  nitwit: Zombie Nitwit Villager
+  none: Zombie Villager
+  shepherd: Zombie Shepherd Villager
+  toolsmith: Zombie Toolsmith Villager
+  weaponsmith: Zombie Weaponsmith Villager

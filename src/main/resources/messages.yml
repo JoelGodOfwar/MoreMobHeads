@@ -1,0 +1,9 @@
+# DO NOT CHANGE VERSION
+version: 1.0.2
+# Configuration file for announcement messages
+messages:
+  message_1: "Using %weaponName%, %killerName% beheaded %entityName%."
+  message_2: "%killerName% struck down %entityName% using %weaponName%."
+  message_3: "%killerName% <RED>delivered<RESET> <WHITE>a<RESET> <BLUE>fatal<RESET> <YELLOW>blow<RESET> <GREEN>to<RESET> %entityName% <LIGHT_PURPLE>with<RESET> %weaponName%."
+  message_4: "%entityName% was beheaded by %killerName% using %weaponName%."
+  message_5: "%killerName% took down %entityName% with %weaponName%."

@@ -1,0 +1,16 @@
+{
+  "defaultChance": 5.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Silverfish",
+      "langName": "silverfish",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjI1ZTlmYWUzNzE2NjRkZTFhODAwYzg0ZDAyNTEyNGFiYjhmMTUxMTE4MDdjOGJjMWFiOTEyNmFhY2JkNGY5NSJ9fX0=",
+      "uuid": "49ff3529-bb63-44ee-99e6-bd57b888463d",
+      "lore": [],
+      "noteblockSound": "entity.silverfish.ambient",
+      "quantity": 1,
+      "chance": 5.0
+    }
+  ]
+} 

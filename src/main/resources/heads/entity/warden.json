@@ -1,0 +1,16 @@
+{
+  "defaultChance": 100.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Warden",
+      "langName": "warden",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDY4ZjgzMzU3Zjk2MWMxMWZmMTE1NDVkZmU0MDkzZjJmOWM3Mzg2NTg0MDIwZjI5OGM2N2I4NGZjZjQ0N2Q5In19fQ==",
+      "uuid": "4b289e0c-847f-11eb-8dcd-0242ac130003",
+      "lore": [],
+      "noteblockSound": "entity.warden.ambient",
+      "quantity": 1,
+      "chance": 100.0
+    }
+  ]
+}  

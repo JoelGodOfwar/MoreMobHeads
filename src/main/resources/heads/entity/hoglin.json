@@ -1,0 +1,16 @@
+{
+  "defaultChance": 3.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Hoglin",
+      "langName": "hoglin",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGE3ZTI4OGUzNTQ0NWI1MjhjNDAxZWJjNzkwZjU1MWY2ZGM3NDkxYzBkZTY2YjYzNjI2YzUxNzU5MWJkNTViNCJ9fX0=",
+      "uuid": "6ba8c18c-881a-4829-86e6-d641611ad18e",
+      "lore": [],
+      "noteblockSound": "entity.hoglin.ambient",
+      "quantity": 1,
+      "chance": 3.0
+    }
+  ]
+} 

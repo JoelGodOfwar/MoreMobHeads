@@ -1,0 +1,16 @@
+{
+  "defaultChance": 5.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Shulker",
+      "langName": "shulker",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmI5ZTZhZjZiODE5ZjNkOTBlNjdjZTJlNzA1OWZiZWYzMWRhMmFhOTUzZDM1ZTM0NTRmMTAyMWZhOTEyZWZkZSJ9fX0=",
+      "uuid": "eb8f9276-54f8-4ce0-917e-3479038e36d1",
+      "lore": [],
+      "noteblockSound": "entity.shulker.ambient",
+      "quantity": 1,
+      "chance": 5.0
+    }
+  ]
+}  

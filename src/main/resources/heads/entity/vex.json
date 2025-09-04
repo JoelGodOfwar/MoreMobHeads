@@ -1,0 +1,28 @@
+{
+  "defaultChance": 10.0,
+  "structure": "nested",
+  "heads": {
+    "vex": {
+      "normal": {
+        "displayName": "Vex",
+        "langName": "vex.normal",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTQ1MWZjNGYzYWZlMDBlYzBjMDczYzdiMzA4YmNhNDVkZjQ4MGVlYTE5MjBlYjNlMTAzNDEzM2U2YzZjYzJkMCJ9fX0=",
+        "uuid": "fec1a798-abc0-4648-9a4d-fd807af2fab0",
+        "lore": [],
+        "noteblockSound": "entity.vex.ambient",
+        "quantity": 1,
+        "chance": 10.0
+      },
+      "angry": {
+        "displayName": "Angry Vex",
+        "langName": "vex.angry",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjBjNzEzYWNkODhiMDJhYmI2MjAxOGQ4ZjY4YWJlMmY2YmMxODk5ZTlkOTQwZjk0MzQ0MWYyZDYzZDFhOTAzZCJ9fX0=",
+        "uuid": "81699482-75c4-4ae9-a07f-936836043f94",
+        "lore": [],
+        "noteblockSound": "entity.vex.charge",
+        "quantity": 1,
+        "chance": 10.0
+      }
+    }
+  }
+}

@@ -1,0 +1,1072 @@
+{
+  "defaultChance": 50.0,
+  "structure": "nested",
+  "heads": {
+    "zombie_villager": {
+      "plains": {
+        "armorer": {
+          "displayName": "Plains Armorer Zombie Villager",
+          "langName": "zombie_villager.plains.armorer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWYzNzA4OTJlMjYxNTg0MGIyNGM4ZWNkMGMxYTVhM2M4YjI4ZTZlNTM3YmU3ODIyZTkzOTQxZGI1M2Q2ODExYyJ9fX0=",
+          "uuid": "00000f2b-c62e-491f-9cc4-595ec506ea6f",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_armorer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "butcher": {
+          "displayName": "Plains Butcher Zombie Villager",
+          "langName": "zombie_villager.plains.butcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTI3YTAzZDM0YjE5MDIxZjNlNDUzNmUxMmUwNDIxNDUwMzRjNmY0NmJjM2RjOTIxYzNkOWZkODM0MmE5MTg4NCJ9fX0=",
+          "uuid": "ffffe61a-3ce5-4224-9766-004321534560",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_butcher",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "cartographer": {
+          "displayName": "Plains Cartographer Zombie Villager",
+          "langName": "zombie_villager.plains.cartographer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTZlZDZhNGFjYmUxOTIzM2I1NzU1NWI2MjE0NDViMWU0NmFiZDQ2ZTQwYTY2OTJiODgxZmQ1MzIyYzg0MjYzNyJ9fX0=",
+          "uuid": "00001e4c-152c-49f1-b0e8-e506a201fd3f",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_cartographer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "cleric": {
+          "displayName": "Plains Cleric Zombie Villager",
+          "langName": "zombie_villager.plains.cleric",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWNmZDEyN2IyMjBiN2MzZDFkYjFiNzhiNmMzYzRlODY3NWMxYTAzZTQzNzlhOWEzYmY2MjFmOGRjYzhkNDI1ZiJ9fX0=",
+          "uuid": "0000095e-0c3d-4a19-9cd5-0d0a01f142e5",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_cleric",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "farmer": {
+          "displayName": "Plains Farmer Zombie Villager",
+          "langName": "zombie_villager.plains.farmer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWQ1ODBjYzczYjhmMDBhYTc5MWNiYzhjNDkxN2IyZTg0YzE0MjNmNTczZmQzM2ExNmQyMmRmNDM2NjZlOWNlYSJ9fX0=",
+          "uuid": "00000282-b8c5-4b45-a755-c2021380068a",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_farmer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "fisherman": {
+          "displayName": "Plains Fisherman Zombie Villager",
+          "langName": "zombie_villager.plains.fisherman",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWU2ZWJlZTI5MDc5OThiNDNlNGNkYjg1NmRlZmY5MmI5YzFiNmZmN2RmZWI0OGU0NGI1OWI4Y2YzMjIxMzg5NCJ9fX0=",
+          "uuid": "000022bf-2d76-443b-99e5-204cb37ba66f",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_fisherman",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "fletcher": {
+          "displayName": "Plains Fletcher Zombie Villager",
+          "langName": "zombie_villager.plains.fletcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDY0NDhlOWYzODUyNTRjZTRiYTNjNmI4MDM1YzljN2NiMDlhZmNhMTQ4ZmVhYzIxYjg3YWNjOGU4ZGY5YzYyZiJ9fX0=",
+          "uuid": "fffec857-a4e4-4465-8d30-ed5628d9eeb0",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_fletcher",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "leatherworker": {
+          "displayName": "Plains Leatherworker Zombie Villager",
+          "langName": "zombie_villager.plains.leatherworker",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDM5ZGJkZmNjZDJmM2I3OWRlODM2MTdmYjEzOTQwMjIwZDgxMjg1OGM0MGRiZWJmNmM1NDdkZTQ2Y2RkYWIwNiJ9fX0=",
+          "uuid": "ffffe5cb-469d-4c26-8fa7-f3606dae6248",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_leatherworker",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "librarian": {
+          "displayName": "Plains Librarian Zombie Villager",
+          "langName": "zombie_villager.plains.librarian",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMThjNjAwZTdiNTY3OTU3ZjM2ZWQ0NDE0YzUxN2M2YmQyMzU2MWUzN2MyYmNjMjQ0Mzg2YTcwZDlmZDUyZTRjZiJ9fX0=",
+          "uuid": "ffffdaff-d3fb-49cf-83fa-75cce24279bc",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_librarian",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "mason": {
+          "displayName": "Plains Mason Zombie Villager",
+          "langName": "zombie_villager.plains.mason",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzExOGNjNjc3MzYyYjlkZjg5N2FkMGQwODRhNWEyMmNiNDVhMjk1MDkxZWM0MDYyNjkzMWZkOWFjZDlmNzNmNCJ9fX0=",
+          "uuid": "fffffaad-3a97-4fd4-9d39-b4d1091225a4",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_mason",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "nitwit": {
+          "displayName": "Plains Nitwit Zombie Villager",
+          "langName": "zombie_villager.plains.nitwit",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzhhNzlhOWRhNzgzMDQ3MDhlYzQyYWMzYWY3NzljOWU0OTEzZDgyMmUxZTJiMDQ0ZmU3NjM2YTg3YWUyYThhNiJ9fX0=",
+          "uuid": "ffffe013-dd82-48b2-a953-efae128cd3e0",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.ambient",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "none": {
+          "displayName": "Plains Zombie Villager",
+          "langName": "zombie_villager.plains.none",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDI2YzMyZmJkM2MyNjA2ZTg3MjhkOTM5MDAxZjFlZDA0NmE5ZDc3ZTE1MzJhNGI1YWVjMDNlNDgwZDRmNWI5OCJ9fX0=",
+          "uuid": "52a02422-5d8b-454a-802e-feb3a8d3f6a7",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.ambient",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "sheperd": {
+          "displayName": "Plains Shepherd Zombie Villager",
+          "langName": "zombie_villager.plains.sheperd",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzA1ODU2YTY2N2FmZjQwMjY3ZmNkZjExMTM3M2JhMDMzYzQzNDgyOTA4NDcxMzhkNTMzNjBkZTZlNzY5ZjQ1NSJ9fX0=",
+          "uuid": "000004d7-4677-455c-9d30-8cfff5f8a6f7",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_shepherd",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "toolsmith": {
+          "displayName": "Plains Toolsmith Zombie Villager",
+          "langName": "zombie_villager.plains.toolsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODBlMTFiNzA4MmM0M2E1MzE4ZWIwMzVjMGE4ZDE3NmUzNWE2NzQwOTRlZWMxYmUzY2VmN2FkZjZiZjMzMDQ0MCJ9fX0=",
+          "uuid": "ffffdf28-ad5b-4fe3-8427-0b60af8050d3",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_toolsmith",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "weaponsmith": {
+          "displayName": "Plains Weaponsmith Zombie Villager",
+          "langName": "zombie_villager.plains.weaponsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTQyZjY1YWMxZjk3Y2YxODRmNzUyZmZmMzViYWJiODBjNTIyNDc2YWQ3YmU0MDA5NWRkNDk1MWY0YTEzNTZhNCJ9fX0=",
+          "uuid": "ffffe1c6-dbb6-4b57-94bc-98c5bf88af69",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_weaponsmith",
+          "quantity": 1,
+          "chance": 50.0
+        }
+      },
+      "desert": {
+        "armorer": {
+          "displayName": "Desert Armorer Zombie Villager",
+          "langName": "zombie_villager.desert.armorer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWUyZDc1NmJiMGU4NGZmN2E1NjQ2MTFjODRhOTk2OTJjMjBiZWIxYzE4NDJjYzgzMWNkOGFmYTBlNzFkN2E4In19fQ==",
+          "uuid": "0000154e-864d-4ba6-9d9b-a85b7aba34fb",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_armorer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "butcher": {
+          "displayName": "Desert Butcher Zombie Villager",
+          "langName": "zombie_villager.desert.butcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjljY2I5MmNkNGZmY2YyN2Q1ZTZjNWJkODY3OTg1ZTliZTJkZjRkZGVlZWI0NjRmNGVlNjE4ZjhmYmNmYjEwNiJ9fX0=",
+          "uuid": "00002521-1371-4d98-ab79-f46004594cda",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_butcher",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "cartographer": {
+          "displayName": "Desert Cartographer Zombie Villager",
+          "langName": "zombie_villager.desert.cartographer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmMwMzhhMTJhZjY3YzY5OTY2NjkzY2NlMzczOTNjMGFkY2M3MDA1ZGJlOWRmYThlNGVlN2ExNWRkMzdmMjcwNiJ9fX0=",
+          "uuid": "000022e7-e54a-4ac1-9e93-23db810e2fd4",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_cartographer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "cleric": {
+          "displayName": "Desert Cleric Zombie Villager",
+          "langName": "zombie_villager.desert.cleric",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjBhZjExNDJkZjZjNjJiYjY3YzE5YTBjZWIzOTZmYjkxMjVlYmNhNWJiODM3NWMwNTJiOGRkYjY0MmQ4YjYyYiJ9fX0=",
+          "uuid": "fffff944-d1db-4fd1-b6e2-8c9b0f8a8371",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_cleric",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "farmer": {
+          "displayName": "Desert Farmer Zombie Villager",
+          "langName": "zombie_villager.desert.farmer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTcyMjE0NDgxMTAyZjk0NjI0MjcwMWFhMjdmZWMzNDQ1Y2MwYTljOTI4NDA5NjU5M2E1NzUwNDM5MWE3NTQwMCJ9fX0=",
+          "uuid": "fffff0b8-667f-486c-b95b-f96587383411",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_farmer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "fisherman": {
+          "displayName": "Desert Fisherman Zombie Villager",
+          "langName": "zombie_villager.desert.fisherman",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjM1MTI3ZjgxYzg4MzljNjEwYWRlYWUyNmQzNDc3YTRlYWJlYjU4NjZjZjAxNTBmNjhhMDEwZGFlNTM4NzczNSJ9fX0=",
+          "uuid": "0000259b-1209-4f6f-9421-6825dff3e598",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_fisherman",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "fletcher": {
+          "displayName": "Desert Fletcher Zombie Villager",
+          "langName": "zombie_villager.desert.fletcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDgwNzhlNDQ5ODU0NzcwMTVmNzMyOTkyYTY5NmRkZjMxYmQ0NmI4NWMxZGMwMGRiODhkOTliYzVlNWM3MGY1In19fQ==",
+          "uuid": "00002283-1c27-4268-af18-023d3bbc237a",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_fletcher",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "leatherworker": {
+          "displayName": "Desert Leatherworker Zombie Villager",
+          "langName": "zombie_villager.desert.leatherworker",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTUzNDAzNDc5NzQ0YWM0OGI3MjdmOWIyNGMyYzI0YzQ4NmQ5MTY5MDI5MTIyMzVmN2NkZTJiYzdmZjc3ZjZlIn19fQ==",
+          "uuid": "fffff8ee-69c2-4138-ae5f-9586ff78b7b7",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_leatherworker",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "librarian": {
+          "displayName": "Desert Librarian Zombie Villager",
+          "langName": "zombie_villager.desert.librarian",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWQzNzIzZmJjMGQyMTk1ODFmNTZjZjc5MjBjNGU2N2E0MzQ5NTQ2OWMxNDkyZmU1OTc3NzQ1OGEzYjc5YTk1OCJ9fX0=",
+          "uuid": "fffffb1f-b969-4833-a1a4-fe30f340b0ae",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_librarian",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "mason": {
+          "displayName": "Desert Mason Zombie Villager",
+          "langName": "zombie_villager.desert.mason",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDhkNTFlZjg0MWViMDUwYWRhNDM0YjBkM2Q2ZTYzOTJlYTUzOWRmYjBmZWRhNThiM2RiNTA3Y2U4NDNlNzczYyJ9fX0=",
+          "uuid": "000024be-8a9c-4413-93aa-f3754ca46aab",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_mason",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "nitwit": {
+          "displayName": "Desert Nitwit Zombie Villager",
+          "langName": "zombie_villager.desert.nitwit",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWU2Y2VkZmFkYTQwZDIxNjE4Yzg3MjMyYjhhYmFjMmIzNTlkZmM0YjEwNDI2YThiYmIyY2U4ZWM1NmQ0M2JjIn19fQ==",
+          "uuid": "fffff42e-7823-4ca5-9959-3ae04ca2c18a",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.ambient",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "none": {
+          "displayName": "Desert Zombie Villager",
+          "langName": "zombie_villager.desert.none",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWI3YzY4ZDQ1MDg3ODRhMzVlODBhNDFkN2U1NGYxMDEwYmRmNmU3NmMxMzExNjk4ZDUzZDg5YTZiNWFjYzhmNCJ9fX0=",
+          "uuid": "442042c9-13cc-4676-89b3-7571d3cea298",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.ambient",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "sheperd": {
+          "displayName": "Desert Sheperd Zombie Villager",
+          "langName": "zombie_villager.desert.sheperd",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTUxMGFlNzk0ZmI2YTMwYWY1MzYzZTJiYWE2NTNhNzI5YTE0ZTA1NTY4ODI1Yzc0ZmJiNmU1NGEwNDUwOTI4In19fQ==",
+          "uuid": "00001587-f442-4b96-b3f9-ecf2f8e3bc25",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_shepherd",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "toolsmith": {
+          "displayName": "Desert Toolsmith Zombie Villager",
+          "langName": "zombie_villager.desert.toolsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmE0ZGM4ZDNhZjJmNzY2NDE4YjFhZDcxYTkwNTE0MWVmMDM0NzRhNTg0MTY3ODg4YzFiMTZjOWJmNmUyYmY0OCJ9fX0=",
+          "uuid": "000012c2-38fb-4006-8bf5-418e53cd0fa5",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_toolsmith",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "weaponsmith": {
+          "displayName": "Desert Weaponsmith Zombie Villager",
+          "langName": "zombie_villager.desert.weaponsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzYyMzNlZWMxNWZlNjQ3YzZjOGQ5OTc2NzRjNmVhODk4ZjhkZjY4OTM5MDExYWJhYjE2OTMxNTA2NDc1MDMwYSJ9fX0=",
+          "uuid": "00000d1b-78d7-477d-9386-d17be360fcc2",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_weaponsmith",
+          "quantity": 1,
+          "chance": 50.0
+        }
+      },
+      "jungle": {
+        "armorer": {
+          "displayName": "Jungle Armorer Zombie Villager",
+          "langName": "zombie_villager.jungle.armorer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmM5NjlhOGEzYjdjMmI4NjZiODRjMTkyZmY4MjAxNDRjYWZiMTNhMzM1NmJjMDg2MDJiNGQ0YTFjYzRhNmE5MiJ9fX0=",
+          "uuid": "fffff4dc-976f-4dfd-abbf-5a41ae5f251a",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_armorer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "butcher": {
+          "displayName": "Jungle Butcher Zombie Villager",
+          "langName": "zombie_villager.jungle.butcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2MyYjQyZmY1N2IyYzBmNzViMDRmZWQ5MWMyYjFlMGY4NDUwY2ZjNjE2ODViYzc1MTY3MTRiMzM5YjRiZTFiMyJ9fX0=",
+          "uuid": "ffffeba5-ce9e-4b3e-b9db-73038ac97740",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_butcher",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "cartographer": {
+          "displayName": "Jungle Cartographer Zombie Villager",
+          "langName": "zombie_villager.jungle.cartographer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmE4YWU3NzNlOWEwMTg4ZWY4MjRkYTZmMmE0MTFiNWE5YzY2OTg1MDA1NGIyNzg4Zjg5ZWVlYjFiYmZhYzQ3YyJ9fX0=",
+          "uuid": "fffff7db-908d-4a97-ac97-e469b82fe4ef",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_cartographer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "cleric": {
+          "displayName": "Jungle Cleric Zombie Villager",
+          "langName": "zombie_villager.jungle.cleric",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDNkNGYwYzg1YWM1YTBjODQyZWU4NDZhNzJhNDQ2MGVhOTgyY2IxZTRhYmFhNWU2YWVhYzM3MWVkN2UyYWY4MyJ9fX0=",
+          "uuid": "00002057-92a6-4f2f-988d-06b1fd7060b6",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_cleric",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "farmer": {
+          "displayName": "Jungle Farmer Zombie Villager",
+          "langName": "zombie_villager.jungle.farmer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTAwOGRkZGY0YWNlNGNiNGQzMjZlNjJjZDU1YzI3ZGM2NzU3NDJkZjIyMjFlMzM5ODM3Y2M1MmJhZDk1N2JkZCJ9fX0=",
+          "uuid": "fffff073-ff9e-403e-96cc-e59cdf445c35",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_farmer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "fisherman": {
+          "displayName": "Jungle Fisherman Zombie Villager",
+          "langName": "zombie_villager.jungle.fisherman",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTUzZGNjYWU4NzBhMTNmNWJhYWUyOGM0MDIwYTk4OTNmZmJhMGU2OTU5Y2NkNGFhYzVlMjE1NmFhYzBkOWMzIn19fQ==",
+          "uuid": "ffffe972-307b-4daf-9dd2-75d024a13b83",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_fisherman",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "fletcher": {
+          "displayName": "Jungle Fletcher Zombie Villager",
+          "langName": "zombie_villager.jungle.fletcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjcwODQyY2FhNjYyNjNhMzA0Mzk4NjViYTc4M2E1Njc5Njk4NjI0ODg2MDJjZWIxMGY1MjU1MGEyMDM0NGY1YiJ9fX0=",
+          "uuid": "fffffd85-0018-442b-b5ef-d015493f2607",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_fletcher",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "leatherworker": {
+          "displayName": "Jungle Leatherworker Zombie Villager",
+          "langName": "zombie_villager.jungle.leatherworker",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzVjNzRiNzc3ZmNhZjgxYTA4NTJmYmYwOTY1Zjc2YTY0MDEwMTIwY2ZiNmEyNTc4MzEyM2U0NzYzNDAyYjc5NiJ9fX0=",
+          "uuid": "fffff93f-6e00-49e9-98e7-4f322e6fe105",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_leatherworker",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "librarian": {
+          "displayName": "Jungle Librarian Zombie Villager",
+          "langName": "zombie_villager.jungle.librarian",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGRkMzllMTA2ODM1YTFlYzNmNDQyNWE1ZWY3ZDc2MzU2OGIyYzZmZmJhZjJkYjMyYzRlYTA4NTY2MGVjZWQ5MCJ9fX0=",
+          "uuid": "00000d3b-8f20-4bf5-b167-b7f1aa9448df",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_librarian",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "mason": {
+          "displayName": "Jungle Mason Zombie Villager",
+          "langName": "zombie_villager.jungle.mason",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDMxYWNiOTEwN2EyZDVhOWNhNzkyZDYxY2NjMmQxNTQ5NGZmMzgyNGZhYjBlZmQyMTVmN2FhNzJlMGNhZGU3YSJ9fX0=",
+          "uuid": "0000224f-2368-400c-a442-8d21fb8a65de",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_mason",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "nitwit": {
+          "displayName": "Jungle Nitwit Zombie Villager",
+          "langName": "zombie_villager.jungle.nitwit",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQ2MWQ0ZGY1N2NkY2VjODhlMGMyNzgzMjI1YWIxZmZlMmM3YThkZWNlMjI5NjJjZWY3YjIyNDNhM2VjMWJjYSJ9fX0=",
+          "uuid": "00002459-b7ff-44aa-a929-1340231609ff",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.ambient",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "none": {
+          "displayName": "Jungle Zombie Villager",
+          "langName": "zombie_villager.jungle.none",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTdlN2ZjNDE4YTczN2JjNWFiZmI5YjUwOTI4ZWYxNzllNTkyMTYzMDFlOWEwNzQ5NmE4MjE5ZGY5MTNkMjJhZiJ9fX0=",
+          "uuid": "e435b6ff-9435-4d04-8d7c-14389c733fdf",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.ambient",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "sheperd": {
+          "displayName": "Jungle Sheperd Zombie Villager",
+          "langName": "zombie_villager.jungle.sheperd",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTc2YmRhZTcyYWExODY3YWMwZTQ5YTE3Y2FkOWI4MzE2NjVmNDc2ZTMxM2NhYzdjN2RjNjQ0NjQ0ZmFhNGE3NSJ9fX0=",
+          "uuid": "fffff492-5a4a-4016-9889-1ce47ece6701",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_shepherd",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "toolsmith": {
+          "displayName": "Jungle Toolsmith Zombie Villager",
+          "langName": "zombie_villager.jungle.toolsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzE1Nzg2MmU2N2EwNjFjYmY2MWUzMTRjNTIwYTAwNDk1YmMwMDMzNGU0ODZlYWU3YmI3NjNiNGMzYWU0MTZkYiJ9fX0=",
+          "uuid": "00001455-c459-4c74-a580-6c017152da6f",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_toolsmith",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "weaponsmith": {
+          "displayName": "Jungle Weaponsmith Zombie Villager",
+          "langName": "zombie_villager.jungle.weaponsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTg3ZWU0MTMxYjdhNjE2ODJlM2M3ODZiOGI1NmM1ZmUxNWE1OGZiYjcxNGY4ZDFjOTVlYzdlMTVkYmE3NjlkOSJ9fX0=",
+          "uuid": "00001d61-c5ae-4cad-bc5b-f979108f462f",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_weaponsmith",
+          "quantity": 1,
+          "chance": 50.0
+        }
+      },
+      "savanna": {
+        "armorer": {
+          "displayName": "Savanna Armorer Zombie Villager",
+          "langName": "zombie_villager.savanna.armorer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjYyY2E3MDQzMTg4Y2NiZjMyOTgyNTEyMjQ3YzI3MDZmZDc4MGNkM2Y1ZDlkY2UzNTcyNjExY2IyN2JmOWMyIn19fQ==",
+          "uuid": "ffffe00a-0d4b-4f87-b038-4c8ee0211717",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_armorer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "butcher": {
+          "displayName": "Savanna Butcher Zombie Villager",
+          "langName": "zombie_villager.savanna.butcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmM2NTE2YzI1ZTM3MDE0OGZlZGVmZTU1MGIwYjMyYmJlZTRmYTVhYzUxNzBjNjVhZDFjYzBlNDhlMTM3ZWFhOSJ9fX0=",
+          "uuid": "fffffec0-1988-422b-8cd9-c3971091e3ac",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_butcher",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "cartographer": {
+          "displayName": "Savanna Cartographer Zombie Villager",
+          "langName": "zombie_villager.savanna.cartographer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzdhOGZkNDNkOWIxODAxN2U1YjU1NDZlMmQ5MWM2MzU0MGMzZGE0NmU4ZDRkYTc2YzI1ZGMxNjk2MmJhYmJiYSJ9fX0=",
+          "uuid": "00001a04-e302-4df2-9451-cfb50def996b",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_cartographer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "cleric": {
+          "displayName": "Savanna Cleric Zombie Villager",
+          "langName": "zombie_villager.savanna.cleric",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzRmMWMyZjg4ZDMzZjZmYWYyMmRhZTVkYTdiMjNjNDk1NmY0MjgwMmY2Zjg1NjQyZmYwMGQzMzVjNWFlNmYxNiJ9fX0=",
+          "uuid": "00000bf5-8982-48a3-95e0-6273f0131a86",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_cleric",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "farmer": {
+          "displayName": "Savanna Farmer Zombie Villager",
+          "langName": "zombie_villager.savanna.farmer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmViMTA3NDQ5ZmY4ZmI1ZGU4MmY5YmNlOWIyZDJmZWMwNTViMjRkMDZlNDA1NjJhZDJhYTQzMzg0MzkwMDMyNSJ9fX0=",
+          "uuid": "fffff3b8-ca9f-43fe-8ce7-706e7a57f375",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_farmer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "fisherman": {
+          "displayName": "Savanna Fisherman Zombie Villager",
+          "langName": "zombie_villager.savanna.fisherman",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGZmMjQ2ZjJmMTgzMTllNzZiZjk2MGI1OTM3ZGJiN2MwMzBhZDliN2ViYzkwM2YxMDM0OTRhNDRhMzZlZTYyNyJ9fX0=",
+          "uuid": "000026f3-d26d-4f76-90fd-25dcdc51bece",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_fisherman",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "fletcher": {
+          "displayName": "Savanna Fletcher Zombie Villager",
+          "langName": "zombie_villager.savanna.fletcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzJlNDEwNTE1NGY3ODUxNmNiYmQ0Njc1ZWZhMGVkMDY4MDBlYzk5MzUxMTZlZjRiYTZlNWJhMGI0ZjY3MWE1OCJ9fX0=",
+          "uuid": "fffff914-5607-4cf7-b9b9-d185f69c6474",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_fletcher",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "leatherworker": {
+          "displayName": "Savanna Leatherworker Zombie Villager",
+          "langName": "zombie_villager.savanna.leatherworker",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTNiMDhlMzMwY2VmNjQ3NzljYTQ3YzBlZWZlOTQyYjhjMWRjNTYxZjE5NTRhNzkxOTAzM2M1ZTMxNTliMDcwMSJ9fX0=",
+          "uuid": "00000633-5c29-4ca6-ad37-5f5d6b656895",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_leatherworker",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "librarian": {
+          "displayName": "Savanna Librarian Zombie Villager",
+          "langName": "zombie_villager.savanna.librarian",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzJhZTdkMWM3ZjljM2Y1YWY4MzY5ZWRhNmRkMmEwOWQ2ODRhZTYyMjkyMDQ3MzdiOWZlMWY4Yzc5ZWI3NTQ4MyJ9fX0=",
+          "uuid": "0000032b-5552-4094-b52c-cf92302db963",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_librarian",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "mason": {
+          "displayName": "Savanna Mason Zombie Villager",
+          "langName": "zombie_villager.savanna.mason",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDkwYjQzYWE1NWMyODZhMjA4ZGM4MWU5OWVjOTc0YzgyYmFmOTZhMDYwMjNjNjA5YmVhMjIzOTZhODdhNzU3MiJ9fX0=",
+          "uuid": "00000946-9977-4a3a-ae26-a10ce10bb0a2",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_mason",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "nitwit": {
+          "displayName": "Savanna Nitwit Zombie Villager",
+          "langName": "zombie_villager.savanna.nitwit",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzc2MWU3ZmIyNzU3NmI5YWI5MWMzYjg1ZmQ2YjZmNDE2ZmIzZWRjOTBhNGQ1MDkxOGJiMzJjZjdhNDRiNGZkIn19fQ==",
+          "uuid": "fffff012-91b4-44f1-bc25-e8003286723d",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.ambient",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "none": {
+          "displayName": "Savanna Zombie Villager",
+          "langName": "zombie_villager.savanna.none",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTJkZDQxNDNlYzMyOGJiM2E4NjJkZjFmZDcwMWYyYjI1N2YxMmIyMmYxNTMyMDdkZmQxYzdkOTA5NmYxYWExMyJ9fX0=",
+          "uuid": "85634710-3285-4501-8710-eb6ab119bf22",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.ambient",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "sheperd": {
+          "displayName": "Savanna Sheperd Zombie Villager",
+          "langName": "zombie_villager.savanna.sheperd",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjNhZDVjNTk1ZjRhMWZhOWQzZWJlMDQ4Njg5MDMzNjFkY2EyNmJlZTNiZTQxN2RlNWRjYWQ3YTRhZWE4NzYzYSJ9fX0=",
+          "uuid": "fffff27a-a27f-42b3-b0b3-7c6a358f6d62",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_shepherd",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "toolsmith": {
+          "displayName": "Savanna Toolsmith Zombie Villager",
+          "langName": "zombie_villager.savanna.toolsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2UzYmUxNmNiZWY1ODkzZTViMjE2NTBjY2FmMmJkOWYzZTM2ZGY3MjVkZGVkMmYyNmEwZTE5ZTFhMGIxNmQ1OCJ9fX0=",
+          "uuid": "000010ce-a416-48ea-abc2-7c31eb7dca6c",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_toolsmith",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "weaponsmith": {
+          "displayName": "Savanna Weaponsmith Zombie Villager",
+          "langName": "zombie_villager.savanna.weaponsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjRkNzViZGFhMTIwNzRiNmUwZWFhMzhjMDk4ZTlhN2MyZWZjZDljZTQ4MGYwMWMxYWQ1MjkxNWYzNDZjNjVlMyJ9fX0=",
+          "uuid": "0000081b-4201-431f-9d6b-158bae325aac",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_weaponsmith",
+          "quantity": 1,
+          "chance": 50.0
+        }
+      },
+      "snow": {
+        "armorer": {
+          "displayName": "Snow Armorer Zombie Villager",
+          "langName": "zombie_villager.snow.armorer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2MzYzc5NGFlMWE3YTkyNTkxZmRjNDZmN2VmYThhZWFmMGQwOWQxNzNiMjZkM2Y4YTEyMjVlZTI3YTIwZWRkYiJ9fX0=",
+          "uuid": "0000084b-6520-4388-b760-6af7537c6dbb",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_armorer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "butcher": {
+          "displayName": "Snow Butcher Zombie Villager",
+          "langName": "zombie_villager.snow.butcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODJhYjEzMjY3ZGNhMmYxMjRkZjBhMDdjOGJkNGM5ODc3ZDg3ZmZmNmZiNmMyNjJiZGJkZDQyMmM2ZmZkNmQyZiJ9fX0=",
+          "uuid": "0000016f-0cae-458d-acf7-12520452ab0c",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_butcher",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "cartographer": {
+          "displayName": "Snow Cartographer Zombie Villager",
+          "langName": "zombie_villager.snow.cartographer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGVhMTk0OTcyYzZmYzczYjY1NmY3MmY2Zjg2ZTNjZDliOTJlYzZhMWZmMmEwZjcyYTFkNGFmOTg3ODFlYjI2YyJ9fX0=",
+          "uuid": "0000241b-a3c7-4439-bd80-b3f306b07c3e",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_cartographer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "cleric": {
+          "displayName": "Snow Cleric Zombie Villager",
+          "langName": "zombie_villager.snow.cleric",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjJhMGE4ODczYzhjMTE1ZWM1MDRhZjU4Yjk4ODg0YzljZTk0OTY5ZDhhZDAwMWFkYjBlMjg1YTFlNmE2MTFiNyJ9fX0=",
+          "uuid": "00001146-da10-4ab2-8747-1f74056eef20",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_cleric",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "farmer": {
+          "displayName": "Snow Farmer Zombie Villager",
+          "langName": "zombie_villager.snow.farmer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzJmN2I0ZGNkZDQ3ZjQ4MDhmODc4OTNmMWI0MGU2NWQyMzU0NDdmZTMxNGZmYzk4Y2ExNDhkNGZmYTY5YWVlZCJ9fX0=",
+          "uuid": "0000092a-0c22-4b1d-8e4f-b3efe17fba8b",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_farmer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "fisherman": {
+          "displayName": "Snow Fisherman Zombie Villager",
+          "langName": "zombie_villager.snow.fisherman",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTg1NzhjNWI5MzgyZWVjZmQxZGI5ZGI0NDA4ODk0YjQ2YTFhOWE0ZGQ3ZDA0NjE0ZjM0Yzc4OTU1YjY3NGFjOSJ9fX0=",
+          "uuid": "00002337-de20-4fed-b348-5b9d0cf5da23",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_fisherman",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "fletcher": {
+          "displayName": "Snow Fletcher Zombie Villager",
+          "langName": "zombie_villager.snow.fletcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmY1MWMyOGFjMTJlYjE0ODJjOGEyNzYwYmQwMGMxMjcxMGE2ZDA5Y2FmNTcwZWQ2ZWZjZmZmM2E2YjI2YWJkNSJ9fX0=",
+          "uuid": "0000180e-7bb4-4358-8e6e-2eadb1ab9d16",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_fletcher",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "leatherworker": {
+          "displayName": "Snow Leatherworker Zombie Villager",
+          "langName": "zombie_villager.snow.leatherworker",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTJkN2I5ZGEwNTg3ZTVlNDY3ZGU3MzNkYjBmZDk5YWMwYTY0ZWIxZmZlOTE1N2IzNTg1MDcxZDE0ZDgxNzc1NSJ9fX0=",
+          "uuid": "000015e4-0ee1-438f-a938-7e66905094c7",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_leatherworker",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "librarian": {
+          "displayName": "Snow Librarian Zombie Villager",
+          "langName": "zombie_villager.snow.librarian",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmZiOTYzNmZjN2Y5ODFhOTVhYWMzODk3MTY2MDAzZjA0MTY2YzgyNzY5YWMxODJmYmRmN2JhY2IwODdhNjU3OCJ9fX0=",
+          "uuid": "000016cc-a45f-4d95-a845-574f4034142a",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_librarian",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "mason": {
+          "displayName": "Snow Mason Zombie Villager",
+          "langName": "zombie_villager.snow.mason",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWExMGZhMTAxZjk5MzQ1NTdiNmVlMDY1MzVkMGVhYTNmNDJjYjFjNDRmZDZkODhmNzk0NmI2ZDk2ZGU1NGU4ZSJ9fX0=",
+          "uuid": "00001528-802e-4e93-9d3c-7e160f501167",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_mason",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "nitwit": {
+          "displayName": "Snow Nitwit Zombie Villager",
+          "langName": "zombie_villager.snow.nitwit",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWY1ODVkNTdmZmM3MzIzMmI4ZGMxNGVkY2FmODU2NzI5MjYxMTYyY2JlZmJjNmQ2ZDUyYWQ4ZDcwZGQwOWU0NCJ9fX0=",
+          "uuid": "00000589-2702-4962-8e54-3c4a418711bf",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.ambient",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "none": {
+          "displayName": "Snow Zombie Villager",
+          "langName": "zombie_villager.snow.none",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2JjODZhZTFkOGEwYzQ2M2M5ZmJlZTIzODViY2ZiMmQ4M2E0ZTU0YzBhNmVhNDU5Yjc2YjExZDE4MmVmZDg2ZSJ9fX0=",
+          "uuid": "02a7447e-e86c-4a73-a507-5ba322df0cdf",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.ambient",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "sheperd": {
+          "displayName": "Snow Sheperd Zombie Villager",
+          "langName": "zombie_villager.snow.sheperd",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmE2MDIzODU5NWYzMDYxY2U2MjE3NzhjZmJmYzdjZTNlNTkxODczZjY0NDYwMDEwMWJhYTkyNjUzZDMyYTJjNyJ9fX0=",
+          "uuid": "000004ef-6009-4411-966e-efc1625baef3",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_shepherd",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "toolsmith": {
+          "displayName": "Snow Toolsmith Zombie Villager",
+          "langName": "zombie_villager.snow.toolsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjczNmRhMDU3NTVlOGE1YjZkMTY4MzUxY2FlNWMzNjI4NjVlMmFjMTk1ZmUzYzEzY2M3N2EyOTU1NzBjODVhMiJ9fX0=",
+          "uuid": "000011ee-f0cd-49c4-8474-455acc394490",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_toolsmith",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "weaponsmith": {
+          "displayName": "Snow Weaponsmith Zombie Villager",
+          "langName": "zombie_villager.snow.weaponsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDIzODc1NDYzOTM3MjQxYzdmMjNjZTM5OWM1ZDJiZGYyMzNhZmYzMGI3NTdjZDNkMzJiYTYzYTc4NGNlMWRhMCJ9fX0=",
+          "uuid": "00001d17-072f-4d57-a509-cafdb6d4d025",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_weaponsmith",
+          "quantity": 1,
+          "chance": 50.0
+        }
+      },
+      "swamp": {
+        "armorer": {
+          "displayName": "Swamp Armorer Zombie Villager",
+          "langName": "zombie_villager.swamp.armorer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2U0OWI4MjBmZDk2NTRjNTc4N2JhNDcwY2QzN2U3ZWI1MmE3MDI4ZDI0YmY1NmU1ZGYzZWJkOWIzNGViNDlhMiJ9fX0=",
+          "uuid": "0000e044-65f6-4265-abcb-5ce59352d068",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_armorer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "butcher": {
+          "displayName": "Swamp Butcher Zombie Villager",
+          "langName": "zombie_villager.swamp.butcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2VhNmVkY2MwZDNhZDVlNWQ0YjM2YjM4YTE4YjY1NjZiNGJlMDYyOWZlYWZlNmFlNWE0MjM0NGU4M2Q2NzA0MiJ9fX0=",
+          "uuid": "0000b1b3-62ae-4902-a1ac-cbd23e403e4f",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_butcher",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "cartographer": {
+          "displayName": "Swamp Cartographer Zombie Villager",
+          "langName": "zombie_villager.swamp.cartographer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTM3ZDA5YzE3Yzc0Mjc5MDAxMDZlMTYzZjM2NjY4NzUwNzNlMmU1OTkyODliYTU0M2YwMjZmZTJjM2VjNjFjNSJ9fX0=",
+          "uuid": "ffff1f71-b80f-4c5d-bf88-b1ebed10d325",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_cartographer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "cleric": {
+          "displayName": "Swamp Cleric Zombie Villager",
+          "langName": "zombie_villager.swamp.cleric",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmIxMThhOGY0MTljNTllNmNkNDFhOWU5Yjc5MjM4YzEwMWE4NDc3MzhlZmVhOTdhMDE2ZDA5NzU0ODY4YTcxMyJ9fX0=",
+          "uuid": "fffea2b3-2172-4304-8faf-37e6c70e4be1",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_cleric",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "farmer": {
+          "displayName": "Swamp Farmer Zombie Villager",
+          "langName": "zombie_villager.swamp.farmer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2EyNTQ3NzYyNjY3MTllYWY4NTRkNTczMDIwOGFiMmM3NjY1YjVmNTMyMzFhOGRkYTUwYjE2YTQ4YjFmOWJkZSJ9fX0=",
+          "uuid": "00011a79-4121-489a-b0aa-7b157802fbfd",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_farmer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "fisherman": {
+          "displayName": "Swamp Fisherman Zombie Villager",
+          "langName": "zombie_villager.swamp.fisherman",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2QyZDI5NGExMGMzMDNjMTk5ZWUxNjUwZTU0OWI0NTUzZTA4ZjA2ZTMyOTU5YjJhZGNjOWU3NDc4NDBhMWY3MiJ9fX0=",
+          "uuid": "00013d6c-5f31-4978-884e-047837f50830",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_fisherman",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "fletcher": {
+          "displayName": "Swamp Fletcher Zombie Villager",
+          "langName": "zombie_villager.swamp.fletcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2QwZDgzZDA5YTIyMTVmZjJmMzJkOTZjZTY2MGI5YTU3NDE0YTVkNTg4ZWM3MWMyM2U2YTMxNzBjYjY3OTcxMCJ9fX0=",
+          "uuid": "0000e540-bbdf-4624-be86-a20c66b129bd",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_fletcher",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "leatherworker": {
+          "displayName": "Swamp Leatherworker Zombie Villager",
+          "langName": "zombie_villager.swamp.leatherworker",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTM1OTAzNWU1NmIwOTk2NDJiNGY0MDllMjczYTdiYzA5YmZlZWU2MTg0ZDg1ZDRhYjJkZWUwNTk0YzZjZmFkNiJ9fX0=",
+          "uuid": "00009a5b-b8e9-42d7-a306-27f79bc06736",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_leatherworker",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "librarian": {
+          "displayName": "Swamp Librarian Zombie Villager",
+          "langName": "zombie_villager.swamp.librarian",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzYyZWNmNWJkNjJlMzVhZDYzNDk2YTM2ZGI1YWEwM2QyYTA1ZDRkZTY5M2QwNDlkY2RjNGI4OGRkZWJmMjdhIn19fQ==",
+          "uuid": "00011382-280b-457c-8024-0cd17d850756",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_librarian",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "mason": {
+          "displayName": "Swamp Mason Zombie Villager",
+          "langName": "zombie_villager.swamp.mason",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODg0MmFjZmU2NzZlMDllYjcwYjVhM2Y3OWNjNmQxNmJiOGQ4MTM0ZWMwMDRiYWI0ZTIwNGYwOTdmNWJhOWRjNSJ9fX0=",
+          "uuid": "000003b0-1280-43c8-92e9-64e7a7fa2895",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_mason",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "nitwit": {
+          "displayName": "Swamp Nitwit Zombie Villager",
+          "langName": "zombie_villager.swamp.nitwit",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDhmNTZkYTUyZTE5ODJiYjk0MmQxOGEzNzE2ZmU3ZDAzMjdhOWVjODhkZjU4YzFlODU5ZGM1MzEwMGRkMTUyMCJ9fX0=",
+          "uuid": "ffff5f3a-e134-4e95-a72e-80d3cf1eeb8b",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.ambient",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "none": {
+          "displayName": "Swamp Zombie Villager",
+          "langName": "zombie_villager.swamp.none",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzJjMjEyNTgzODhmMjg3N2IyOGI3NjA5ZGE3MzE5MzE5YzJiNTJiMmM4YjMxMTVlMmRlOTBjNWRiNDcxNDk2MSJ9fX0=",
+          "uuid": "74897e15-ae69-4199-aa86-bf39b63b210a",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.ambient",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "sheperd": {
+          "displayName": "Swamp Sheperd Zombie Villager",
+          "langName": "zombie_villager.swamp.sheperd",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTVkN2VmOWQyZjQyMTRiYjUxNTk0MmMzYzA4YzAyNTYyYTRhMzYxMjI1N2Y0Y2FhNzhiZDczM2U1YWRhMGI5YyJ9fX0=",
+          "uuid": "00009712-f907-4c82-82fc-0fd63ce0d8d4",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_shepherd",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "toolsmith": {
+          "displayName": "Swamp Toolsmith Zombie Villager",
+          "langName": "zombie_villager.swamp.toolsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDkzYzJjZjdmYWY4MWI3OTlhMGExZDdhNjNiMmNkN2JiM2E4ZTdlNzIyYWZhODk1MzIyNjYwZTY1MWM1YWJkNiJ9fX0=",
+          "uuid": "0000db32-9628-472e-b43a-928c320050e5",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_toolsmith",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "weaponsmith": {
+          "displayName": "Swamp Weaponsmith Zombie Villager",
+          "langName": "zombie_villager.swamp.weaponsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmVlMmQ5ZjAwMWNlNDllY2I1ZTMzZTk0ZDQ3NDc4OTU5YzU3MWNkYTQ3ODI2MjdhMDg4NDY5MWY4NjdlNTJkYiJ9fX0=",
+          "uuid": "00014933-8da4-4288-9598-eedc1f181fe7",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_weaponsmith",
+          "quantity": 1,
+          "chance": 50.0
+        }
+      },
+      "taiga": {
+        "armorer": {
+          "displayName": "Taiga Armorer Zombie Villager",
+          "langName": "zombie_villager.taiga.armorer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTQ4ZTAzYTZiMzEyMDIyOWY0NTBhNWM4MDc4NzM1Zjc0NGE2OTNlMzcyMDZkMDMxZDhkM2Q1MTE0ODJhNDk3MCJ9fX0=",
+          "uuid": "8967de5d-9837-483f-8870-9c2e2ead11b9",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_armorer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "butcher": {
+          "displayName": "Taiga Butcher Zombie Villager",
+          "langName": "zombie_villager.taiga.butcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGMyMTExOTJiOGRjYTYwNDViNzA0YmMyZDI2MjNjZTdlOGM2NzMyOTY1NGI3NzI0MjY5ZDZmMGNjM2VkMDRhMyJ9fX0=",
+          "uuid": "e0cfae17-82d2-4a87-bec3-70bfbfe0921a",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_butcher",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "cartographer": {
+          "displayName": "Taiga Cartographer Zombie Villager",
+          "langName": "zombie_villager.taiga.cartographer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDQyNDk2OGY4MGQyMTJmODk5ZTlmYTQ1MWQ3ZjE0NDU4NjgxMjcyNjBhNzQ3ZGZiMGVmMDY2NTAwMGU3NjQ3OSJ9fX0=",
+          "uuid": "17513062-df21-4918-a413-d4b5f5d3e8dd",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_cartographer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "cleric": {
+          "displayName": "Taiga Cleric Zombie Villager",
+          "langName": "zombie_villager.taiga.cleric",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjBhNzI2Y2YzZWU5NmVkNGE3NjExMzExYzlhNTlhNTMxMjJhYjI3ZDhhYjljYmI4YmVkNjVjN2U1ZTZhMWMzIn19fQ==",
+          "uuid": "f95148c8-f398-4ef5-a0bc-0f46be744aa5",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_cleric",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "farmer": {
+          "displayName": "Taiga Farmer Zombie Villager",
+          "langName": "zombie_villager.taiga.farmer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMzc5Mjg3MGE0ZjNmMmM4MTVjZjBkMWFkZDBhNzc2Nzg4ZGQ3ZDg2MzZiNGUzN2M4NmU0Nzc4ZDZkNGUyYSJ9fX0=",
+          "uuid": "d1893e4b-b62f-49ed-8ccb-5d4f95d7c39b",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_farmer",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "fisherman": {
+          "displayName": "Taiga Fisherman Zombie Villager",
+          "langName": "zombie_villager.taiga.fisherman",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTkwYWQyY2QwNDhlZWUxMzYwNTA1MmI4YjdjZDViMjRhNDQyYThmYzVlNzdmYzQyOGZlMjdhOTY4MzgxNjg1NSJ9fX0=",
+          "uuid": "a2eb3270-fda8-bd82-9889-5e92852b0fec",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_fisherman",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "fletcher": {
+          "displayName": "Taiga Fletcher Zombie Villager",
+          "langName": "zombie_villager.taiga.fletcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGY5ZTIxNmI0NjdmNTk3MGNlYWUyMmUwZmQzMGIyNzFiZGUwNjRiOGQ4OWEyM2NmMmM2N2UzZTE1NWJiMTA4ZSJ9fX0=",
+          "uuid": "5bffb69b-616b-49bb-5fdb-4cc8543ab163",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_fletcher",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "leatherworker": {
+          "displayName": "Taiga Leatherworker Zombie Villager",
+          "langName": "zombie_villager.taiga.leatherworker",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzhjNDc1N2NhY2FmZWE2MjZlZWRhYWFjMmEyMjhlN2U3OTc5OWE3YWYwZDYyOTAwZjY5MTU1YWVkYTI4MDc3MCJ9fX0=",
+          "uuid": "e70b3715-d65e-b491-a839-93d217ea53ba",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_leatherworker",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "librarian": {
+          "displayName": "Taiga Librarian Zombie Villager",
+          "langName": "zombie_villager.taiga.librarian",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODc2NjQ5MzQ3MjU5OTRkNzI0ZTBhOWE3ODE5N2MyNTljZTM3MWRlOTkxNjgzODEyNTdhMDM2N2UyZTE4MzBjMSJ9fX0=",
+          "uuid": "f66497d9-bad3-43e2-9b31-de60e7647e90",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_librarian",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "mason": {
+          "displayName": "Taiga Mason Zombie Villager",
+          "langName": "zombie_villager.taiga.mason",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGI0MGJiYjExZTEyYTZhZDI3YmNkZDQ3NTVjMWZlOWY2MGVmODQwMmE0MWNmYzRkYzkxNTRhMjQxMjQwNGE2NiJ9fX0=",
+          "uuid": "4b262358-041a-41e0-9db9-da8d20b0b1d6",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_mason",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "nitwit": {
+          "displayName": "Taiga Nitwit Zombie Villager",
+          "langName": "zombie_villager.taiga.nitwit",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWNmZjMzY2FjMzhmOWY5NDM0MDBmM2MzODMxMWM2YTc0YmQwNjMyMDMyOGQ4NmI5NjQxYzdjNTYwZjIxZGEzYyJ9fX0=",
+          "uuid": "ffb34ac9-1218-4d7c-963b-67f35a730326",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.ambient",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "none": {
+          "displayName": "Taiga Zombie Villager",
+          "langName": "zombie_villager.taiga.none",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGMyYzQ0NjY2Y2ViZDEyZDkwMjc0NzYxZDQ5NmFkZjM4N2NkNmM5YzA1NjkwZjNhNjlkMmZmYjY4MzkyMzQ1MiJ9fX0=",
+          "uuid": "ac50985e-b019-4be1-885a-5362b6342779",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.ambient",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "sheperd": {
+          "displayName": "Taiga Sheperd Zombie Villager",
+          "langName": "zombie_villager.taiga.sheperd",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjI1M2ViZTcyZTA2ZDA1ZDFhMmMxOTNiNGMyMTI2MjIwMjg4MTFhMGJiOWQyYWE5YmYwMDc3NmYxMzliZjI3MyJ9fX0=",
+          "uuid": "779e8163-de3c-44ad-bbe1-013caacb5418",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_shepherd",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "toolsmith": {
+          "displayName": "Taiga Toolsmith Zombie Villager",
+          "langName": "zombie_villager.taiga.toolsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzU4NzAwZWM5OTRjNTAxMWU1ZTcwYzA4OGVjZWFkNzA0ZTM2MmFmYWNiNjNkMGRiNjE5NTNiMzQ0YmVkZGRhNSJ9fX0=",
+          "uuid": "a4004965-616b-49bb-a024-b338abc54e9d",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_toolsmith",
+          "quantity": 1,
+          "chance": 50.0
+        },
+        "weaponsmith": {
+          "displayName": "Taiga Weaponsmith Zombie Villager",
+          "langName": "zombie_villager.taiga.weaponsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzdiY2FlNDYwMDVhMDFiNjZmNjIyNjkwZDc4NTBhYzZhNGIyYWE5NGFjNGIwYWZiNTJhMTgwZmI0ZTE3Yzk3NyJ9fX0=",
+          "uuid": "591b7bec-53bf-4e7e-865f-2bb68ce8e61d",
+          "lore": [],
+          "noteblockSound": "entity.zombie_villager.work_weaponsmith",
+          "quantity": 1,
+          "chance": 50.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "defaultChance": 25.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Evoker",
+      "langName": "evoker",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzkwZmJkODhmNjU5ZDM5NjNjNjhjYmJjYjdjNzEyMWQ4MTk1YThiZTY1YmJkMmJmMTI1N2QxZjY5YmNjYzBjNyJ9fX0=",
+      "uuid": "3b8e7675-6d30-45b9-8a39-bde80cff58ff",
+      "lore": [],
+      "noteblockSound": "entity.evoker.ambient",
+      "quantity": 1,
+      "chance": 25.0
+    }
+  ]
+} 

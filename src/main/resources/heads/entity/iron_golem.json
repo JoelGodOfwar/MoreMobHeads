@@ -1,0 +1,16 @@
+{
+  "defaultChance": 5.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Iron Golem",
+      "langName": "iron_golem",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmU3YzA3MTlmYWJlMTE2ZGNlNjA1MTk5YmNhZGM2OWE1Mzg4NjA4NjRlZjE1NzA2OTgzZmY2NjI4MjJkOWZlMyJ9fX0=",
+      "uuid": "675bf087-86a1-48b3-b800-1f7d6042a585",
+      "lore": [],
+      "noteblockSound": "entity.iron_golem.hurt",
+      "quantity": 1,
+      "chance": 5.0
+    }
+  ]
+}  

@@ -1,0 +1,16 @@
+{
+  "defaultChance": 25.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Illusioner",
+      "langName": "illusioner",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDM4MjcwMWM2N2Q2YzU0YzkwNzU1ODg5MWRjMTc2MjI1MTEyNTE4NzcxZTA2MWM1ZDhiZDkxODQ3OWU2YmRkOCJ9fX0=",
+      "uuid": "f108e349-dced-4aa1-a8b7-708b728780ad",
+      "lore": [],
+      "noteblockSound": "entity.illusioner.ambient",
+      "quantity": 1,
+      "chance": 25.0
+    }
+  ]
+}  

@@ -1,0 +1,16 @@
+{
+  "defaultChance": 0.5,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Magma Cube",
+      "langName": "magma_cube",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjgxNzE4ZDQ5ODQ4NDdhNGFkM2VjMDgxYTRlYmZmZDE4Mzc0MzIzOWFlY2FiNjAzMjIxMzhhNzI2MDk4MTJjMyJ9fX0=",
+      "uuid": "58014cd9-af29-4ad0-ad62-2e9b16f749bb",
+      "lore": [],
+      "noteblockSound": "entity.magma_cube.squish_small",
+      "quantity": 1,
+      "chance": 0.5
+    }
+  ]
+}  

@@ -1,0 +1,88 @@
+{
+  "defaultChance": 26.0,
+  "structure": "nested",
+  "heads": {
+    "rabbit": {
+      "black": {
+        "displayName": "Black Rabbit",
+        "langName": "rabbit.black",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjJiNDI1ZmYyYTIzNmFiMTljYzkzOTcxOTVkYjQwZjhmMTg1YjE5MWM0MGJmNDRiMjZlOTVlYWM5ZmI1ZWZhMyJ9fX0=",
+        "uuid": "827f5a8f-1cd7-4148-872f-d3c7f424882f",
+        "lore": [],
+        "noteblockSound": "entity.rabbit.ambient",
+        "quantity": 1,
+        "chance": 26.0
+      },
+      "black_and_white": {
+        "displayName": "Black and White Rabbit",
+        "langName": "rabbit.black_and_white",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzVmNzJhMjE5NWViZjQxMTdjNTA1NmNmZTJiNzM1N2VjNWJmODMyZWRlMTg1NmE3NzczZWU0MmEwZDBmYjNmMCJ9fX0=",
+        "uuid": "6bafd710-5fa3-4f4d-99cf-ad47fa436e3f",
+        "lore": [],
+        "noteblockSound": "entity.rabbit.ambient",
+        "quantity": 1,
+        "chance": 26.0
+      },
+      "brown": {
+        "displayName": "Brown Rabbit",
+        "langName": "rabbit.brown",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2ZkNGY4NmNmNzQ3M2ZiYWU5M2IxZTA5MDQ4OWI2NGMwYmUxMjZjN2JiMTZmZmM4OGMwMDI0NDdkNWM3Mjc5NSJ9fX0=",
+        "uuid": "2186bdc6-55b1-4b44-8a46-3c8a11d40f3d",
+        "lore": [],
+        "noteblockSound": "entity.rabbit.ambient",
+        "quantity": 1,
+        "chance": 26.0
+      },
+      "gold": {
+        "displayName": "Gold Rabbit",
+        "langName": "rabbit.gold",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzY3YjcyMjY1NmZkZWVjMzk5NzRkMzM5NWM1ZTE4YjQ3YzVlMjM3YmNlNWJiY2VkOWI3NTUzYWExNGI1NDU4NyJ9fX0=",
+        "uuid": "dacb90db-f547-4b25-b9fd-c2aefc0b07fa",
+        "lore": [],
+        "noteblockSound": "entity.rabbit.ambient",
+        "quantity": 1,
+        "chance": 26.0
+      },
+      "salt_and_pepper": {
+        "displayName": "Salt and Pepper Rabbit",
+        "langName": "rabbit.salt_and_pepper",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTIzODUxOWZmMzk4MTViMTZjNDA2MjgyM2U0MzE2MWZmYWFjOTY4OTRmZTA4OGIwMThlNmEyNGMyNmUxODFlYyJ9fX0=",
+        "uuid": "02703b0c-573f-4042-a91b-659a3981b508",
+        "lore": [],
+        "noteblockSound": "entity.rabbit.ambient",
+        "quantity": 1,
+        "chance": 26.0
+      },
+      "the_killer_bunny": {
+        "displayName": "The Killer Bunny",
+        "langName": "rabbit.the_killer_bunny",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzFkZDc2NzkyOWVmMmZkMmQ0M2U4NmU4NzQ0YzRiMGQ4MTA4NTM0NzEyMDFmMmRmYTE4Zjk2YTY3ZGU1NmUyZiJ9fX0=",
+        "uuid": "38b35a02-6ac6-4cbc-b7d6-6a7043640695",
+        "lore": [],
+        "noteblockSound": "entity.rabbit.attack",
+        "quantity": 1,
+        "chance": 100.0
+      },
+      "white": {
+        "displayName": "White Rabbit",
+        "langName": "rabbit.white",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTU0MmQ3MTYwOTg3MTQ4YTVkOGUyMGU0NjliZDliM2MyYTM5NDZjN2ZiNTkyM2Y1NWI5YmVhZTk5MTg1ZiJ9fX0=",
+        "uuid": "1288e126-41dd-4608-b304-86d84464d5e4",
+        "lore": [],
+        "noteblockSound": "entity.rabbit.ambient",
+        "quantity": 1,
+        "chance": 26.0
+      },
+      "toast": {
+        "displayName": "Toast",
+        "langName": "rabbit.toast",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTFhNTdjM2QwYTliMTBlMTNmNjZkZjc0MjAwY2I4YTZkNDg0YzY3MjIyNjgxMmQ3NGUyNWY2YzAyNzQxMDYxNiJ9fX0=",
+        "uuid": "4e03f384-b31f-4803-8d74-801ecdf78869",
+        "lore": [],
+        "noteblockSound": "entity.rabbit.ambient",
+        "quantity": 1,
+        "chance": 26.0
+      }
+    }
+  }
+}

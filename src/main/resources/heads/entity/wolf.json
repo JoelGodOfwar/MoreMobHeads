@@ -1,0 +1,188 @@
+{
+  "defaultChance": 20.0,
+  "structure": "nested",
+  "heads": {
+    "wolf": {
+      "ashen": {
+        "displayName": "Ashen Wolf",
+        "langName": "wolf.ashen",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDQwNDVkMWM2MDI2NjE1MmVlMzg0YmU2OWMwNzI2N2ZmYTU1NzMwZGU2YTMxYThlMzkzZmNkMWEzMWEyYzAwMCJ9fX0=",
+        "uuid": "f212a44b-becd-462d-86e2-60aabd6aa269",
+        "lore": [],
+        "noteblockSound": "entity.wolf.ambient",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "angry_ashen": {
+        "displayName": "Angry Ashen Wolf",
+        "langName": "wolf.angry_ashen",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTNmYTY0ZGY5ZjJjNzE4MGFkZjUyODY3MDMyNDBkYmMyZGQ1MjExZWRjYzVmZWM2NzgyNGIyNDhmY2Q5MjE1YiJ9fX0=",
+        "uuid": "d195f54b-847b-47a6-8a43-7ec20c21f731",
+        "lore": [],
+        "noteblockSound": "entity.wolf.growl",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "black": {
+        "displayName": "Black Wolf",
+        "langName": "wolf.black",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjU3MmJmMWFlNzIyMjdiMjZlNjE3YmUwNzVlMWZlYzVhZWVhZTQ3N2I5N2MwNTIzZjVkZGE4NzMyZWQ3OWZhIn19fQ==",
+        "uuid": "c65eb64c-7df0-4107-a183-71f1f55d05c5",
+        "lore": [],
+        "noteblockSound": "entity.wolf.ambient",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "angry_black": {
+        "displayName": "Angry Black Wolf",
+        "langName": "wolf.angry_black",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWFhN2M2ZWNhNjA5NmE0NTE4N2RjZjJhZWFmYzYwYTBmYjhmNzVkMzQwN2JhY2Y5OGYxN2EzMjRmMTlkZmNkNiJ9fX0=",
+        "uuid": "d195f54b-847b-47a6-8a43-7ec20c21f731",
+        "lore": [],
+        "noteblockSound": "entity.wolf.growl",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "chestnut": {
+        "displayName": "Chestnut Wolf",
+        "langName": "wolf.chestnut",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjE3NGFjODA5MWRiZTRiOWU5ZDk2MTMxNWU5YTc0ZjhlZTEyZGM3ZThhMTM5ZWI5NjBkZTE3NGJlNjU5NjQ2YiJ9fX0=",
+        "uuid": "87284ae5-51d4-4306-991c-27af28d14ade",
+        "lore": [],
+        "noteblockSound": "entity.wolf.ambient",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "angry_chestnut": {
+        "displayName": "Angry Chestnut Wolf",
+        "langName": "wolf.angry_chestnut",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjU4ZDZhOTk1NGU3OTgyZGVlMGFhYTVjMmFkZDAyNTM1MTVhZDZiNGEwYjJhMmE5NzViZGNiODQwZjIyOGRlNCJ9fX0=",
+        "uuid": "d195f54b-847b-47a6-8a43-7ec20c21f731",
+        "lore": [],
+        "noteblockSound": "entity.wolf.growl",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "pale": {
+        "displayName": "Pale Wolf",
+        "langName": "wolf.pale",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzZhMzc2ZmMxNjdmNWQzYmQzYzhmZDhiMDE1ZDViZGVmOGYzNjgzNTgxM2RlYzYxZWJhN2QyZjQzODA5NDhkNiJ9fX0=",
+        "uuid": "d053c02c-f72a-4a86-ac18-d91a7c888d62",
+        "lore": [],
+        "noteblockSound": "entity.wolf.ambient",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "angry_pale": {
+        "displayName": "Angry Pale Wolf",
+        "langName": "wolf.angry_pale",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTlmMDhlNTg3ZjM2MTc5MTllYTM1MTJiMzhlNDk2Y2VmMTU0ZDFmNGRmYzE0ZDBhNDY3ZjlkYWVlYWI0MzAwZCJ9fX0=",
+        "uuid": "d195f54b-847b-47a6-8a43-7ec20c21f731",
+        "lore": [],
+        "noteblockSound": "entity.wolf.growl",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "rusty": {
+        "displayName": "Rusty Wolf",
+        "langName": "wolf.rusty",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjRhOWFlNzNhNWZjMTkzODdkMGI2Y2U1MmRlZWU1NDJiM2FhN2M0ZWI3OTcwYjEyMTE4MGI2MTMyNzkzYTNhMSJ9fX0=",
+        "uuid": "30d3808f-fd7d-47ce-b453-2b719df18682",
+        "lore": [],
+        "noteblockSound": "entity.wolf.ambient",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "angry_rusty": {
+        "displayName": "Angry Rusty Wolf",
+        "langName": "wolf.angry_rusty",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjZlYzBmNDQ4OWNmN2M4NmFjYjQzMDY3NjVmZWZiM2U2MWFlMzQyYmE4ZmMyY2YxMWI0N2FmMjYyYzkyZDhlZCJ9fX0=",
+        "uuid": "d195f54b-847b-47a6-8a43-7ec20c21f731",
+        "lore": [],
+        "noteblockSound": "entity.wolf.growl",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "snowy": {
+        "displayName": "Snowy Wolf",
+        "langName": "wolf.snowy",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmNjNTU2YzY2NmYwM2YxMWQ4NjAyMDk3YjEwYWZhNWNjYTViMDgxYzdhNTZlYTQyMjFiOTcxZTBmZGY4NzEyZiJ9fX0=",
+        "uuid": "8dc1054a-eb32-4c67-b3c0-96791ed9b12f",
+        "lore": [],
+        "noteblockSound": "entity.wolf.ambient",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "angry_snowy": {
+        "displayName": "Angry Snowy Wolf",
+        "langName": "wolf.angry_snowy",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTEzZDVmYmJkNGNmZDQwYTMwOGJkMDVlMTczYzMzMTA0ZTg4NThhNTcxNTgwMGJiZmIxMDUxZTA0YmM0YzUxMyJ9fX0=",
+        "uuid": "d195f54b-847b-47a6-8a43-7ec20c21f731",
+        "lore": [],
+        "noteblockSound": "entity.wolf.growl",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "spotted": {
+        "displayName": "Spotted Wolf",
+        "langName": "wolf.spotted",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmZkOTZlZDY5ZjVjYTJjYTIwOGQxNDY3MTcwZGEyY2JiYmIyODc1NWVjOTQwNmNjMTJlNjYzMDI2YjlkNzE1MiJ9fX0=",
+        "uuid": "8dc1054a-eb32-4c67-b3c0-9679e1264ed1",
+        "lore": [],
+        "noteblockSound": "entity.wolf.ambient",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "angry_spotted": {
+        "displayName": "Angry Spotted Wolf",
+        "langName": "wolf.angry_spotted",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjYwNTAxY2IwMjQ3MjhlYTM1MTQwNDc3NzBmNzIyZTM0ZDY0YTE5OWY4ZTJhZGUwYjk3ZWExNzQ3NjFkN2NjNyJ9fX0=",
+        "uuid": "d195f54b-847b-47a6-8a43-7ec20c21f731",
+        "lore": [],
+        "noteblockSound": "entity.wolf.growl",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "striped": {
+        "displayName": "Striped Wolf",
+        "langName": "wolf.striped",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWRhNmFmYTkwNzg1ZDdlMzJjZDZiZWI5OTAyZjMwYThjM2I3MmFhZGJjZGZmMTlmMDQ4YWRiNTU0NzEyODFmYiJ9fX0=",
+        "uuid": "9c86d0e8-fd07-493b-ad5a-4d25456f29c0",
+        "lore": [],
+        "noteblockSound": "entity.wolf.ambient",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "angry_striped": {
+        "displayName": "Angry Striped Wolf",
+        "langName": "wolf.angry_striped",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODRhOGI1YzZmNmI4MjdhZTM0YmMzZmJmNTQxZjcwOGU0NDM4M2RiNzkzMWM2ZjkxODUwZmYyY2ExYjEzZDQ3NyJ9fX0=",
+        "uuid": "d195f54b-847b-47a6-8a43-7ec20c21f731",
+        "lore": [],
+        "noteblockSound": "entity.wolf.growl",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "woods": {
+        "displayName": "Woods Wolf",
+        "langName": "wolf.woods",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2MzM2QyMTFkNzYzZWYwYTc3ZmQ0M2VhYTNiZTM2M2RiOGU1YzU4ZTA4YWNlZTVlYTg4ZWJjY2IxYTM3YjIwMCJ9fX0=",
+        "uuid": "022b9ef9-218a-4024-9543-e87fdb0bb9f7",
+        "lore": [],
+        "noteblockSound": "entity.wolf.ambient",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "angry_woods": {
+        "displayName": "Angry Woods Wolf",
+        "langName": "wolf.angry_woods",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjk1ODAzMjViZjM0MTEzMDJkOTIzM2ViOWFiOTY4NDA1YjExMjAxNDViZDZjZWY1MDUyYjJmNTk2NTNhOTc3MCJ9fX0=",
+        "uuid": "d195f54b-847b-47a6-8a43-7ec20c21f731",
+        "lore": [],
+        "noteblockSound": "entity.wolf.growl",
+        "quantity": 1,
+        "chance": 20.0
+      }
+    }
+  }
+}

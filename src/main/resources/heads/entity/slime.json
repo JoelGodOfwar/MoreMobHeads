@@ -1,0 +1,16 @@
+{
+  "defaultChance": 0.5,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Slime",
+      "langName": "slime",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzA2NDI0ZWM3YTE5NmIxNWY5YWQ1NzMzYTM2YTZkMWYyZTZhMGQ0MmZmY2UxZTE1MDhmOTBmMzEyYWM0Y2FlZCJ9fX0=",
+      "uuid": "625a4069-aa5d-4844-bea0-c133d6978373",
+      "lore": [],
+      "noteblockSound": "entity.slime.squish_small",
+      "quantity": 1,
+      "chance": 0.5
+    }
+  ]
+}  

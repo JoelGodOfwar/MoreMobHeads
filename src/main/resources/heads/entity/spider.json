@@ -1,0 +1,16 @@
+{
+  "defaultChance": 0.5,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Spider",
+      "langName": "spider",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTBjNDEwMDQ1Y2QzNzQ5YzNhOGVkODU2ZGY0MTFmNmMzM2U5YThhNmY5ZTU3ZTUyMTYwOGE4YWQ4ZWQ2ZWIzNyJ9fX0=",
+      "uuid": "3d461eb4-4601-4d76-b89f-e2bf0bcfc05c",
+      "lore": [],
+      "noteblockSound": "entity.spider.ambient",
+      "quantity": 1,
+      "chance": 0.5
+    }
+  ]
+} 

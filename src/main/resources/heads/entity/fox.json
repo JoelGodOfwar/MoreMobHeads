@@ -1,0 +1,28 @@
+{
+  "defaultChance": 10.0,
+  "structure": "nested",
+  "heads": {
+    "fox": {
+      "red": {
+        "displayName": "Red Fox",
+        "langName": "fox.red",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDdlMDA0MzExMWJjNTcwOTA4NTYyNTkxNTU1NzFjNzkwNmU3MDcwNDZkZjA0MWI4YjU3MjcwNGM0NTFmY2Q4MiJ9fX0=",
+        "uuid": "237a2651-7da8-457a-aaea-3714bcc196a2",
+        "lore": [],
+        "noteblockSound": "entity.fox.ambient",
+        "quantity": 1,
+        "chance": 10.0
+      },
+      "snow": {
+        "displayName": "Snow Fox",
+        "langName": "fox.snow",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDE0MzYzNzdlYjRjNGI0ZTM5ZmIwZTFlZDg4OTlmYjYxZWUxODE0YTkxNjliOGQwODcyOWVmMDFkYzg1ZDFiYSJ9fX0=",
+        "uuid": "b28c7bb1-b6a9-497b-8a2d-336876e85a9d",
+        "lore": [],
+        "noteblockSound": "entity.fox.ambient",
+        "quantity": 1,
+        "chance": 20.0
+      }
+    }
+  }
+}

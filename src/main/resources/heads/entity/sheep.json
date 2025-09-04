@@ -1,0 +1,178 @@
+{
+  "defaultChance": 1.75,
+  "structure": "nested",
+  "heads": {
+    "sheep": {
+      "black": {
+        "displayName": "Black Sheep",
+        "langName": "sheep.black",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTMzMzVlODA2NWM3YjVkZmVhNThkM2RmNzQ3NGYzOTZhZjRmYTBhMmJhNTJhM2M5YjdmYmE2ODMxOTI3MWM5MSJ9fX0=",
+        "uuid": "f6801465-fd07-47f9-92a1-3ae921c3ef05",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      },
+      "blue": {
+        "displayName": "Blue Sheep",
+        "langName": "sheep.blue",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzQwZTI3N2RhNmMzOThiNzQ5YTMyZjlkMDgwZjFjZjRjNGVmM2YxZjIwZGQ5ZTVmNDIyNTA5ZTdmZjU5M2MwIn19fQ==",
+        "uuid": "dc501290-d6f2-4fc2-a4c3-b4de68fbb395",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      },
+      "brown": {
+        "displayName": "Brown Sheep",
+        "langName": "sheep.brown",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzEyOGQwODZiYzgxNjY5ZmMyMjU1YmIyMmNhZGM2NmEwZjVlZDcwODg1ZTg0YzMyZDM3YzFiNDg0ZGIzNTkwMSJ9fX0=",
+        "uuid": "68f33306-b8e2-472b-984e-6a05ecb32d63",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      },
+      "cyan": {
+        "displayName": "Cyan Sheep",
+        "langName": "sheep.cyan",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWQ0MmZjYmNhZjlkNDhmNzNmZmIwYzNjMzZmMzRiNDY0MzI5NWY2ZGFhNmNjNzRhYjlkMjQyZWQ1YWE1NjM2In19fQ==",
+        "uuid": "6484f6d0-03c5-4c88-b121-c776dd24e6b4",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      },
+      "gray": {
+        "displayName": "Gray Sheep",
+        "langName": "sheep.gray",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2ZhZmVjZjA2MDNiMmRjZDc5ODRkMjUyNTg2MDY5ODk1ZGI5YWE3OGUxODQxYmQ1NTRiMTk1MDhkY2Y5NjdhMSJ9fX0=",
+        "uuid": "1ad6a380-fd48-43e0-a7ea-5685072f37b6",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      },
+      "green": {
+        "displayName": "Green Sheep",
+        "langName": "sheep.green",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWVhODg3ZWFlNGIwNzYzNmU5ZTJmOTA2NjA5YjAwYWI4ZDliODZiNzQ3MjhiODE5ZmY2ZjM3NjU4M2VhMTM5In19fQ==",
+        "uuid": "710d1cc5-d61c-415b-b4a6-658d1e5652e8",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      },
+      "jeb_": {
+        "displayName": "Jeb_ Sheep",
+        "langName": "sheep.jeb_",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGQxYjAxZmJlOTllOWY3MDA3OTA1YTU3OGYwYTkyMzVmNzM5NjU2NTg2Yzc5ZjFkYmQyMTExZjlhMzliZGMxZCJ9fX0=",
+        "uuid": "9bb1e075-7a09-4bac-a8a4-441ee9184303",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 10.0
+      },
+      "light_blue": {
+        "displayName": "Light Blue Sheep",
+        "langName": "sheep.light_blue",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWJmMjNhZjg3MTljNDM3YjNlZTg0MDE5YmEzYzllNjljYTg1NGQzYThhZmQ1Y2JhNmQ5Njk2YzA1M2I0ODYxNCJ9fX0=",
+        "uuid": "f6ad6acf-aabe-45ac-94bb-d67b9dfdcc63",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      },
+      "light_gray": {
+        "displayName": "Light Gray Sheep",
+        "langName": "sheep.light_gray",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWQyZTJlOTNhMTQyYmZkNDNmMjQwZDM3ZGU4ZjliMDk3NmU3NmU2NWIyMjY1MTkwODI1OWU0NmRiNzcwZSJ9fX0=",
+        "uuid": "97331797-cf17-4127-b250-4ec2e8cc0608",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      },
+      "lime": {
+        "displayName": "Lime Sheep",
+        "langName": "sheep.lime",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmJlYWQwMzQyYWU4OWI4ZGZkM2Q3MTFhNjBhZGQ2NWUyYzJiZmVhOGQwYmQyNzRhNzU4N2RlZWQ3YTMxODkyZSJ9fX0=",
+        "uuid": "2d1afbe7-9651-45f7-bf6e-fa7647ed6a42",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      },
+      "magenta": {
+        "displayName": "Magenta Sheep",
+        "langName": "sheep.magenta",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYThlMWYwNWYwZGFjY2E2M2E3MzE4NzRmOTBhNjkzZmZlMjFmZjgzMmUyYjFlMWQwN2I2NWM4NzY0NTI2ZjA4OSJ9fX0=",
+        "uuid": "df42f9f2-86ef-488e-874a-7f8438f56d56",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      },
+      "orange": {
+        "displayName": "Orange Sheep",
+        "langName": "sheep.orange",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjY4NGQwNGZhODBhYTU5ZGExNDUzNWRlYWQzODgzZDA5N2ZiYmE0MDA2MjU2NTlmNTI1OTk2NDgwNmJhNjZmMCJ9fX0=",
+        "uuid": "c1cde30f-88ad-4d05-a278-6dd2bae9a500",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      },
+      "pink": {
+        "displayName": "Pink Sheep",
+        "langName": "sheep.pink",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjM2M2U4YTkzZDI4N2E4NGU2NDAzMDlhZTgzY2ExZGUwYTBiMjU3NTA1YTIwZWM1NWIzMzQ5ZDQwYTQ0ODU0In19fQ==",
+        "uuid": "b7df2ea8-b576-4386-8026-7f2f1051f1",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      },
+      "purple": {
+        "displayName": "Purple Sheep",
+        "langName": "sheep.purple",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzQ0OWQwODI5MWRhZTQ1YTI0NjczNjE5NjAyZjQzNWI1N2Y0Y2Q0ZTllOThkMmUwZmJlYzRmMTgxNDQ3ODFkMyJ9fX0=",
+        "uuid": "ff5c1932-8096-4751-bbcf-7e0d8837b8c1",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      },
+      "red": {
+        "displayName": "Red Sheep",
+        "langName": "sheep.red",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTQ3OGUwNTcxNThkZTZmNDVlMjU0MWNkMTc3ODhlNjQwY2NiNTk3MjNkZTU5YzI1NGU4MmFiNTcxMWYzZmMyNyJ9fX0=",
+        "uuid": "b2386bba-3c78-456c-bc90-a9716cec93bd",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      },
+      "white": {
+        "displayName": "White Sheep",
+        "langName": "sheep.white",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmRmZTdjYzQ2ZDc0OWIxNTMyNjFjMWRjMTFhYmJmMmEzMTA4ZWExYmEwYjI2NTAyODBlZWQxNTkyZGNmYzc1YiJ9fX0=",
+        "uuid": "fa234925-9dbe-4b8f-a544-7c70fb6b6ac5",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      },
+      "yellow": {
+        "displayName": "Yellow Sheep",
+        "langName": "sheep.yellow",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTRiMjhmMDM1NzM1OTA2ZjgyZmZjNGRiYTk5YzlmMGI1NTI0MGU0MjZjZDFjNTI1YTlhYTc3MTgwZWVjNDkzNCJ9fX0=",
+        "uuid": "f4b4f889-4cdb-458e-8c86-50d91c4c1c89",
+        "lore": [],
+        "noteblockSound": "entity.sheep.ambient",
+        "quantity": 1,
+        "chance": 1.75
+      }
+    }
+  }
+}

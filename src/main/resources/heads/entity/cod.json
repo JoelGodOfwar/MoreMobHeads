@@ -1,0 +1,16 @@
+{
+  "defaultChance": 10.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Cod",
+      "langName": "cod",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjI0NmUxOWIzMmNmNzg0NTQ5NDQ3ZTA3Yjk2MDcyZTFmNjU2ZDc4ZTkzY2NjYTU2Mzc0ODVlNjc0OTczNDY1MiJ9fX0=",
+      "uuid": "d8645871-ea91-4742-a0a3-0f86dc49653b",
+      "lore": [],
+      "noteblockSound": "entity.cod.flop",
+      "quantity": 1,
+      "chance": 10.0
+    }
+  ]
+}  

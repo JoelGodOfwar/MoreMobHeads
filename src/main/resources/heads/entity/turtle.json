@@ -1,0 +1,16 @@
+{
+  "defaultChance": 10.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Turtle",
+      "langName": "turtle",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzA0OTMxMjAwYWQ0NjBiNjUwYTE5MGU4ZDQxMjI3YzM5OTlmYmViOTMzYjUxY2E0OWZkOWU1OTIwZDFmOGU3ZCJ9fX0=",
+      "uuid": "3283acfe-e846-42a8-a555-7e2940b58ae4",
+      "lore": [],
+      "noteblockSound": "entity.turtle.ambient_land",
+      "quantity": 1,
+      "chance": 10.0
+    }
+  ]
+}  

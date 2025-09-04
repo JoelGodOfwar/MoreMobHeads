@@ -1,0 +1,52 @@
+{
+  "defaultChance": 1.0,
+  "structure": "nested",
+  "heads": {
+    "chicken": {
+      "original": {
+        "displayName": "Chicken",
+        "langName": "chicken.normal",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDJhZjZlNTg0N2VlYTA5OWUxYjBhYjhjMjBhOWU1ZjNjNzE5MDE1OGJkYTU0ZTI4MTMzZDliMjcxZWMwY2I0YiJ9fX0=",
+        "uuid": "fadbdff9-a3e6-471a-8dc3-23e23f9c7acf",
+        "lore": [],
+        "noteblockSound": "entity.chicken.ambient",
+        "quantity": 1,
+        "chance": 1.0,
+        "max_mc_version": "1.21.4"
+      },
+      "cold": {
+        "displayName": "Cold Chicken",
+        "langName": "chicken.cold",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjdhY2Y3NzFmODIxOTU1NTI0NTEyNTg3Y2ExM2ZjMjIxYjk3NDU0MDczZDNhZWI1NzU3YjkwNGExMmEzOWRhZiJ9fX0=",
+        "uuid": "ab5b4896-5c47-4bb8-8c6d-5d8b29f6aae4",
+        "lore": [],
+        "noteblockSound": "entity.chicken.ambient",
+        "quantity": 1,
+        "chance": 1.0,
+        "min_mc_version": "1.21.5"
+      },
+      "temperate": {
+        "displayName": "Temperate Chicken",
+        "langName": "chicken.temperate",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGRlN2U4NDkyYTY1MmVhN2YzMjgzYTEzY2Y0ZjE3MWYwMDAwNzZjMjBjZGM5NzBkMzgyYWE2YmZhYjcwZWNjNiJ9fX0=",
+        "uuid": "c1f0c16a-8e02-4e8d-b0de-47eeb786f236",
+        "lore": [],
+        "noteblockSound": "entity.chicken.ambient",
+        "quantity": 1,
+        "chance": 1.0,
+        "min_mc_version": "1.21.5"
+      },
+      "warm": {
+        "displayName": "Warm Chicken",
+        "langName": "chicken.warm",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjRlYzkzY2I1OTk0NzNlZTdmNDMwYTNkYTA4Mjc0ODQ2YmY3OGExYTQ4N2JhOTc5NGVmNTIyMmYyODZkMGY2NyJ9fX0=",
+        "uuid": "1af8b18e-6ef5-4f0c-9e6f-e884c04c5ca0",
+        "lore": [],
+        "noteblockSound": "entity.chicken.ambient",
+        "quantity": 1,
+        "chance": 1.0,
+        "min_mc_version": "1.21.5"
+      }
+    }
+  }
+}

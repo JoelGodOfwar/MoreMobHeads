@@ -1,0 +1,16 @@
+{
+  "defaultChance": 5.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Glow Squid",
+      "langName": "glow_squid",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmU3ZWUwY2U5YjE3NjMwZGM1YmQ3NDc0N2VjNGFiODkwYWIxOWYxZTAzZjE4MmQzM2ZkY2Q5YThkMWI0ZTk1OSJ9fX0=",
+      "uuid": "0bbea5a5-e69e-4dce-8ce7-23c0586b6ac2",
+      "lore": [],
+      "noteblockSound": "entity.glow_squid.ambient",
+      "quantity": 1,
+      "chance": 5.0
+    }
+  ]
+}  

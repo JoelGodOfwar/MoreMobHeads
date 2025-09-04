@@ -1,0 +1,16 @@
+{
+  "defaultChance": 15.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Pufferfish",
+      "langName": "pufferfish",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTI3MzNkNWRhNTljODJlYWYzMTBiMzgyYWZmNDBiZDUxM2M0NDM1NGRiYmFiZmUxNGIwNjZhNTU2ODEwYTdmOSJ9fX0=",
+      "uuid": "c5f9816d-7415-43f6-8e40-6f3b2dab3c33",
+      "lore": [],
+      "noteblockSound": "entity.puffer_fish.blow_up",
+      "quantity": 1,
+      "chance": 15.0
+    }
+  ]
+}  

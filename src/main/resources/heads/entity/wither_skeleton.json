@@ -1,0 +1,16 @@
+{
+  "defaultChance": 2.5,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Wither Skeleton",
+      "langName": "wither_skeleton",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzk1M2I2YzY4NDQ4ZTdlNmI2YmY4ZmIyNzNkNzIwM2FjZDhlMWJlMTllODE0ODFlYWQ1MWY0NWRlNTlhOCJ9fX0=",
+      "uuid": "c5b5a5a5-8a1d-4c0b-8e9f-5dd4ac8ab9d6",
+      "lore": [],
+      "noteblockSound": "entity.wither_skeleton.ambient",
+      "quantity": 1,
+      "chance": 2.5
+    }
+  ]
+}  

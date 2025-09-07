@@ -1,0 +1,26 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "CREAKING_HEART",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Creaking Heart (Awake)",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTg1MjkzY2U4NDQ1OTg0NzYyZGM4NDYwZjJlNDYwMmY4MGI1MWM1NmNkNWNlZGU2MDJkN2FmOGRjMDZlZTI3In19fQ==",
+    "uuid": "afc1f430-e18f-4258-a317-77b5fc3b9469",
+    "lore": [],
+    "noteblockSound": "block.moss.step",
+    "quantity": 8,
+    "maxUses": 1,
+    "min_mc_version": "1.21.4"
+  }
+}

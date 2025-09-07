@@ -1,0 +1,26 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "CREAKING_HEART",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Creaking Heart (Uprooted)",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjgyZmJmYWI0ZTIxYjMyZDAwZWI3MjI0ZDk3NjkxODJlMDAzOTI2N2ZmYTkwZjBhOTJjMjNjMDY1MzY1ZjliZCJ9fX0=",
+    "uuid": "d6d0d199-5bb3-4e4f-b65a-83eb9597be36",
+    "lore": [],
+    "noteblockSound": "block.moss.step",
+    "quantity": 8,
+    "maxUses": 1,
+    "min_mc_version": "1.21.4"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "COBBLED_DEEPSLATE",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Cobbled Deepslate",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjU4YjNjMWIzNTFlODNkOWRhMTgxMzdiNmMxYjZiZGZhZGM2NjA2NWMxZWVhZDNjZmE4M2U4YTA0N2NkYzk0NSJ9fX0=",
+    "uuid": "ab293f7d-ac58-4c56-ae44-c3ec346bdec4",
+    "lore": [],
+    "noteblockSound": "block.deepslate.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+} 

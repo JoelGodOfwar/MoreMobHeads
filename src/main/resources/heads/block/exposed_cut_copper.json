@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "EXPOSED_CUT_COPPER",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Exposed Cut Copper",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWVjY2ZiMDdmNGJiMWM1YWU3NWNjNjgzNmE3ZTY0MzIxYTJkNjQ1MGMyZDdmMTA0OTg2ZjcyZTlhZTNjYmE5MyJ9fX0=",
+    "uuid": "4e0972cd-8822-4109-ba71-0f1860b71688",
+    "lore": [],
+    "noteblockSound": "item.axe.wax_off",
+    "quantity": 8,
+    "maxUses": 1
+  }
+} 

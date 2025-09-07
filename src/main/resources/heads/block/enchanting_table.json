@@ -1,0 +1,19 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {"type": "EMERALD", "amount": 1},
+      {"type": "ENCHANTING_TABLE", "amount": 1}
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Enchanting Table",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjI2NzJjODdlZWY2ODE4ODI4OTE4ZGQzY2EwMzg1NmNjYjQzNjZlN2M5YWMyNjI0YTk0MmYwZGI3ZTk2YSJ9fX0=",
+    "uuid": "4425282c-40d7-4e90-8b71-e93b1f361528",
+    "lore": [],
+    "noteblockSound": "block.enchanting_table.use",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

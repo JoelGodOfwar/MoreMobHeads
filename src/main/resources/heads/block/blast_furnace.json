@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "BLAST_FURNACE",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Blast Furnace",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2RmOWQ0ZDg4MTIyNDg0M2Q5YzI0ZGVlM2VhMTdiZWEyMTA5ZGVlYjg3YzQzMDljMDNiZmZkMGMyYjRmNjk1MyJ9fX0=",
+    "uuid": "48a49c9b-efb2-43aa-af06-da14183c171c",
+    "lore": [],
+    "noteblockSound": "block.blastfurnace.fire_crackle",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

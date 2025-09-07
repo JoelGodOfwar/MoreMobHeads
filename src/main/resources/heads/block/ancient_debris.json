@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "ANCIENT_DEBRIS",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Ancient Debris",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZlZGRjN2I4NzViM2U0MWU4YjlhMzRkYjA2ZmIzOTFlOTc1MDUzNTAwMDc0ZDRhOTY2NmVhMTRlOGZmZDBkMSJ9fX0=",
+    "uuid": "6d0326e2-fde7-4051-aab6-d120e38dea57",
+    "lore": [],
+    "noteblockSound": "block.ancient_debris.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

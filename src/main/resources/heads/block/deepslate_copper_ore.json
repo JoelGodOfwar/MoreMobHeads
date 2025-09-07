@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "DEEPSLATE_COPPER_ORE",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Deepslate Copper Ore",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDUxNmY0N2ZmZGQyMGViN2M1NjNkYjc4NGQ1NmM5NDA1OWI0NzMxNGM4MTE5ODA4NGIzNTJkMGE0MDU0ZTJlOCJ9fX0=",
+    "uuid": "2e567560-fe5a-4ef9-a84f-a691c83bd6b4",
+    "lore": [],
+    "noteblockSound": "block.deepslate.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "FLOWERING_AZALEA_LEAVES",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Flowering Azalea Leaves",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDlhMWIxNWUzMDU2MjgwYWJjZGMzYWE0OGRlOWNjNmFlYTdhN2QwYWZjMWY2NjAyMjY2NTNiYmU0ZWI4MmM1NiJ9fX0=",
+    "uuid": "15c569a9-61c2-4e35-b1b0-e05587989c21",
+    "lore": [],
+    "noteblockSound": "block.azalea_leaves.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

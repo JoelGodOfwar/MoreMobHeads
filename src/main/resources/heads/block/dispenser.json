@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "DISPENSER",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Dispenser",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2MxMWEwZDkwYzM3ZWI2OTVjOGE1MjNkODYwMWFhMWM4NWZhZDA5YTRkMjIzMmQwNGVkMjNhYzkwZTQzMjVjMiJ9fX0=",
+    "uuid": "e4678881-0b4e-4656-8d01-428cae34137a",
+    "lore": [],
+    "noteblockSound": "block.dispenser.dispense",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

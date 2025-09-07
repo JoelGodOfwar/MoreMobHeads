@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "DEEPSLATE_IRON_ORE",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Deepslate Iron Ore",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWQ2MTY0YTc1ODM3MzQzZTIxYTI0YmIxZmQ3Y2M1MGRhZDg2ODU1ZjBiOWQ4MTExMmIzOGVmMWExMjk5ZGM3MyJ9fX0=",
+    "uuid": "bf24c148-8ef0-4b9f-9ae2-f6bddbc9300e",
+    "lore": [],
+    "noteblockSound": "block.deepslate.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

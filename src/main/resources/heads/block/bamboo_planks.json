@@ -1,0 +1,26 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "BAMBOO_PLANKS",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Bamboo Planks",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2JmNDQyN2Q5YTllZTdjNmE1MmIxOTZjNGE2MGJkODUwZDUxMmZjMWJlMmE5MjAyODc3YTMyZmJmMWFkYTgzNyJ9fX0=",
+    "uuid": "413b8b7b-9f2b-4b1f-9327-09e76e4e0c08",
+    "lore": [],
+    "noteblockSound": "block.bamboo_wood.place",
+    "quantity": 8,
+    "maxUses": 1,
+	"min_mc_version": "1.20"
+  }
+}  

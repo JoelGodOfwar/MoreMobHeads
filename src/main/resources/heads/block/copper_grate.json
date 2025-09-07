@@ -1,0 +1,26 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "COPPER_GRATE",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Copper Grate",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjAxN2M3MjQyNDk3ZGM4MDRjZGZjMjc1MDZkMWQ4NzJhMjc4MzM2YTA3ODM0YzBjNDdjMGVlMDYyODgyOWI3OSJ9fX0=",
+    "uuid": "98ade2e8-3fe4-4090-b2dc-a06cda985d67",
+    "lore": [],
+    "noteblockSound": "item.axe.wax_off",
+    "quantity": 8,
+    "maxUses": 1,
+	"min_mc_version": "1.21"
+  }
+}  

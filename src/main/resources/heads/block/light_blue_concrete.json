@@ -1,0 +1,19 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {"type": "EMERALD", "amount": 1},
+      {"type": "LIGHT_BLUE_CONCRETE", "amount": 1}
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Light Blue Concrete",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjQ3N2Y0NDM4OTM2MmM0Yzc2NGM4NDdhOTczOWJjNzhjMzI0NjdlYWI0ZTM4MzBhZTRjOGJlYWMzNDQyZWY5In19fQ==",
+    "uuid": "13ca1722-1fa7-4149-a875-fceb72a60adb",
+    "lore": [],
+    "noteblockSound": "block.stone.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+} 

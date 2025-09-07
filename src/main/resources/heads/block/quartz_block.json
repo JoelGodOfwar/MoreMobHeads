@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "QUARTZ_BLOCK",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Quartz Block",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTVlMmIyZWQyOThiNTNjYzg0NzgzY2Q3ODVlYzU3ZGE0OWNlYWFiZGNmZjMxYjI1ZmU1MjU2YjM0MjliNDEyIn19fQ==",
+    "uuid": "a3431e02-f2a1-4342-948d-d1181620b1c8",
+    "lore": [],
+    "noteblockSound": "block.stone.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

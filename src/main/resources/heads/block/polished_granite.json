@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "POLISHED_GRANITE",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Polished Granite",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWFlNGNmMjJmNDViYjc3YWVmYTVhZmExZjg2NGRkM2M1ZjlkM2U5MmY0M2IzNTg4ZmQxNjJiMmFhOGMifX19",
+    "uuid": "35e5aaca-99d4-41c8-8a09-25a9f36e6710",
+    "lore": [],
+    "noteblockSound": "block.stone.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

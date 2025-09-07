@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "MOSS_BLOCK",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Moss Block",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWU3Y2ZmMmIxZmUyZWRiYjFiNjllMzBiOWQ2OGNjNDBhOTEwZTMyNjBhZjlhYzhmYTI3YWU4OTE0OWY3NWE1MyJ9fX0=",
+    "uuid": "1b5f3c8a-58ca-4b8c-940c-5457fd260ef3",
+    "lore": [],
+    "noteblockSound": "block.moss.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

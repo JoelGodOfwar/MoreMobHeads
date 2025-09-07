@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "REDSTONE_ORE",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Redstone Ore",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTU5ZThhMzZlMDdiN2QxNWMxMDRmY2NiZDY3ZWU5YmQ0MTU1MTRkODEzYzIyNzU3OTQ4YmI0ZjIyZDkzZjE3In19fQ==",
+    "uuid": "81516014-6f44-48b1-a6b5-fd7333fa24b3",
+    "lore": [],
+    "noteblockSound": "block.stone.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

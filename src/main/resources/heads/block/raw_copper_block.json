@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "RAW_COPPER_BLOCK",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Raw Copper Block",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWNmODBmYzUxNzRjMWM4MDBkNTFjZGI2ZDcyMWQ1OWYxYWRmMWM0Mzc3MDFhYWUwYTEwYTEwMWU1MmNmMTA5OSJ9fX0=",
+    "uuid": "28e840d4-7095-4a0b-89e4-6b9287707472",
+    "lore": [],
+    "noteblockSound": "block.stone.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

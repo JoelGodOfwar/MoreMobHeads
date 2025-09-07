@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "LODESTONE",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Lodestone",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDI3ZjBlZjY5MDI4Y2E5NDlkOGVmZjdlODYxMWQ1ZjFmZjI0N2EwNGI2YWFhMmMxZjJiN2RhNDE0MjkxMjEzMCJ9fX0=",
+    "uuid": "0407f65c-ce32-46b1-96e1-7d33a48371ba",
+    "lore": [],
+    "noteblockSound": "item.lodestone_compass.lock",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

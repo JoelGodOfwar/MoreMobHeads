@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "PACKED_ICE",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Packed Ice",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTZhYWI1OGZhMDFmY2U5YWY0NjllZDc0N2FlZDgxMWQ3YmExOGM0NzZmNWE3ZjkwODhlMTI5YzMxYjQ1ZjMifX19",
+    "uuid": "9397dad6-f045-40f4-9bb6-07aee97f2f21",
+    "lore": [],
+    "noteblockSound": "block.glass.break",
+    "quantity": 8,
+    "maxUses": 1
+  }
+} 

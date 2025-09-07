@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "JUNGLE_LEAVES",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Jungle Leaves",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzk1ZDcyMTAzZmM1NGY0MzQ2ODgwNTA1ODUyMzNlNzQxYWUyYzkxOTA1MDE4NDMzMzdhNmVmNzI3MDE0NzdlOCJ9fX0=",
+    "uuid": "1153cac3-e0b9-4961-8840-30664738af46",
+    "lore": [],
+    "noteblockSound": "block.azalea_leaves.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

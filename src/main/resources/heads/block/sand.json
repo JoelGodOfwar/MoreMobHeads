@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "SAND",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Sand",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTMzOThhYjNjYjY5NmIzNDQzMGJlOTQ0YjE0YWZiZDIyN2ZkODdlOTkwMjZiY2ZjOGI3Mzg3YTg2MWJkZSJ9fX0=",
+    "uuid": "525629fa-6602-4156-883b-18407382c7ec",
+    "lore": [],
+    "noteblockSound": "block.sand.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

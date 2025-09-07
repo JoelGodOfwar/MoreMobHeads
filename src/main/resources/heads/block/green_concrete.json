@@ -1,0 +1,19 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {"type": "EMERALD", "amount": 1},
+      {"type": "GREEN_CONCRETE", "amount": 1}
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Green Concrete",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGZhYjdkYWViOGYzMzNjNzg4NmE3MGVmMzBjYWY0ZGVjNGE4Y2QxMDQ5M2YyMzgwMmYxNTE2YmRkMjNmY2QifX19",
+    "uuid": "28ae183a-870d-4e71-9cfd-27023e5f2c6c",
+    "lore": [],
+    "noteblockSound": "block.stone.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+} 

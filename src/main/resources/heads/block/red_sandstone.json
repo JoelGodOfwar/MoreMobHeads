@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "RED_SANDSTONE",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Red Sandstone",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2UxZDc3ZjVjOWM5YjU1YWI2Y2I2YWZmZTNlY2Y0Zjg5YzE3NGVjODM3ZjM0NDFmOTEzMmJmZjEzZmFlNWQxIn19fQ==",
+    "uuid": "4caca84e-23d0-497e-afa0-d61c63dbe702",
+    "lore": [],
+    "noteblockSound": "block.stone.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+} 

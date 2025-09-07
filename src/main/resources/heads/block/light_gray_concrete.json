@@ -1,0 +1,19 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {"type": "EMERALD", "amount": 1},
+      {"type": "LIGHT_GRAY_CONCRETE", "amount": 1}
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Light Gray Concrete",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmJhMGM0YTBmZGNlOTIzYTkwNDgzMjhkNjY0MTQ3YzViOTI0NDkxZjRlZTVmZWE3MWYzZTllYzMxNCJ9fX0=",
+    "uuid": "d147723e-001d-4a9e-8c3f-8146f8fc8fa9",
+    "lore": [],
+    "noteblockSound": "block.stone.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+} 

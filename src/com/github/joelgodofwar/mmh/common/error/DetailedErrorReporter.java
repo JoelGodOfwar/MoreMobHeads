@@ -15,6 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import lib.github.joelgodofwar.coreutils.util.StrUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.bukkit.Bukkit;
@@ -26,7 +27,7 @@ import com.github.joelgodofwar.mmh.common.collections.ExpireHashMap;
 import com.github.joelgodofwar.mmh.common.error.Report.ReportBuilder;
 import com.github.joelgodofwar.mmh.common.reflect.PrettyPrinter;
 import com.github.joelgodofwar.mmh.util.Ansi;
-import com.github.joelgodofwar.mmh.util.StrUtils;
+
 import com.google.common.base.Preconditions;
 import com.google.common.primitives.Primitives;
 
@@ -103,7 +104,7 @@ public class DetailedErrorReporter implements ErrorReporter {
 	 * @param prefix - default line prefix.
 	 * @param supportURL - URL to report the error.
 	 * @param maxErrorCount - number of errors to print before giving up.
-	 * @param LOGGER - current logger.
+	 * @param logger - current logger.
 	 */
 	public DetailedErrorReporter(Plugin plugin, String prefix, String supportURL, int maxErrorCount, Logger logger) {
 		if (plugin == null) {
@@ -145,7 +146,7 @@ public class DetailedErrorReporter implements ErrorReporter {
 	}
 
 	/**
-	 * Set whether or not to use detailed error reporting.
+	 * Set whether to use detailed error reporting.
 	 * @param detailedReporting - TRUE to enable it, FALSE otherwise.
 	 */
 	public void setDetailedReporting(boolean detailedReporting) {
@@ -386,7 +387,7 @@ public class DetailedErrorReporter implements ErrorReporter {
 		if (Bukkit.getServer() != null) {
 			writer.println("Server:	");
 			writer.println(addPrefix("This server is running " + Bukkit.getName() + " version " + Bukkit.getVersion() + " (Implementing API version " + Bukkit.getBukkitVersion() + ")", SECOND_LEVEL_PREFIX));
-			/** add list of all plugins, and their version */
+			//** add list of all plugins, and their version */
 			writer.println(getPluginList());
 
 
@@ -659,5 +660,4 @@ public class DetailedErrorReporter implements ErrorReporter {
 
 		return "Plugins (" + plugins.length + "): " + pluginList.toString() + Ansi.RESET;
 	}
-
 }

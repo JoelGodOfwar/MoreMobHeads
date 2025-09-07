@@ -1,14 +1,14 @@
 package com.github.joelgodofwar.mmh.common;
 
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import com.github.joelgodofwar.mmh.MoreMobHeads;
+import com.github.joelgodofwar.mmh.util.Version;
+import lib.github.joelgodofwar.coreutils.CoreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
-import com.github.joelgodofwar.mmh.MoreMobHeads;
-import com.github.joelgodofwar.mmh.util.MinecraftVersion;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Custom logger for the MoreMobHeads plugin.
@@ -84,7 +84,7 @@ public class PluginLogger {
 	 * @param args Arguments to format in the debug message.
 	 */
 	public void debug(String message, Object... args) {
-		if (mmh.debug) {
+		if (CoreUtils.debug) {
 			log("[Debug] " + message, args);
 		}
 	}
@@ -95,7 +95,7 @@ public class PluginLogger {
 	 * @param ex Exception to log.
 	 */
 	public void debug(String message, Throwable ex) {
-		if (mmh.debug) {
+		if (CoreUtils.debug) {
 			log(Level.WARNING, "[Debug] " + message, ex);
 		}
 	}
@@ -123,7 +123,7 @@ public class PluginLogger {
 	 * @param message Warning message to log.
 	 * @param args Arguments to format in the warning message.
 	 */
-	public void warnAbove(MinecraftVersion version, String message, Object... args) {
+	public void warnAbove(Version version, String message, Object... args) {
 		if (version.atOrAbove()) {
 			log(Level.WARNING, message, args);
 		}

@@ -2,7 +2,8 @@ package com.github.joelgodofwar.mmh.common;
 
 import java.util.List;
 
-import org.apache.commons.lang.Validate;
+
+import lib.github.joelgodofwar.coreutils.util.Validate;
 import org.bukkit.plugin.Plugin;
 
 import com.github.joelgodofwar.mmh.common.error.BasicErrorReporter;
@@ -20,7 +21,7 @@ public class PluginLibrary {
 	/**
 	 * The maximum version MoreMobHeads has been tested with.
 	 */
-	public static final String MAXIMUM_MINECRAFT_VERSION = "1.21";
+	public static final String MAXIMUM_MINECRAFT_VERSION = "1.21.8";
 
 	/**
 	 * The date (with ISO 8601 or YYYY-MM-DD) when the most recent version (1.20.4) was released.
@@ -32,7 +33,8 @@ public class PluginLibrary {
 	 */
 	public static final List<String> INCOMPATIBLE = ImmutableList.of("");
 
-	private static Plugin plugin;
+
+    private static Plugin plugin;
 
 	private static boolean updatesDisabled;
 	private static boolean initialized;
@@ -118,12 +120,15 @@ public class PluginLibrary {
 	public static final ReportType UNHANDLED_ENTITYDEATHEVENT_ERROR = new ReportType("Unhandled EntityDeathEvent Exception.");
 	public static final ReportType UNHANDLED_ENTITYDAMAGE_EVENT_ERROR = new ReportType("Unable to parse fire damage.");
 	public static final ReportType UNHANDLED_ENTITYDAMAGEBYENTITY_EVENT_ERROR = new ReportType("Unable to get damager weapon.");
+	public static final ReportType HEAD_DROP_ERROR = new ReportType("Error firing MobHeadDropEvent.");
 
 	public static final ReportType BLOCK_PLACE_EVENT_ERROR = new ReportType("Unable to handle block place event.");
 	public static final ReportType ERROR_ENABLING_PLUGIN = new ReportType("Error during onEnable.");
 	public static final ReportType REPORT_CANNOT_LOAD_FILEVERSION = new ReportType("Error loading fileVersion checker.");
 	public static final ReportType REPORT_CANNOT_SAVE_FILEVERSION = new ReportType("Error saving fileVersion checker.");
-
+	public static final ReportType REPORT_PLAYER_JOIN_ERROR = new ReportType("Error processing JoinEvent warning.");
+	public static final ReportType UNHANDLED_PLAYERINTERACT_EVENT_ERROR = new ReportType("Error processing PlayerInteractEvent.");
+	public static final ReportType UNHANDLED_PLAYERQUIT_EVENT_ERROR = new ReportType("Error processing PlayerQuitEvent.");
 
 
 	/**

@@ -1,0 +1,38 @@
+{
+  "defaultChance": 20.0,
+  "structure": "nested",
+  "heads": {
+    "frog": {
+      "cold": {
+        "displayName": "Cold Frog",
+        "langName": "frog.cold",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2ExZmE2NjEwN2ZkYzkyZTk2ZGM3MDdhMWI5NDdmZGRjODZiYjUyMDJmODU2MzZkNTNlNzA3ZTIwYzVjZTYwZiJ9fX0=",
+        "uuid": "633dcca1-b60b-4d59-91b1-146a4a566eca",
+        "lore": [],
+        "noteblockSound": "entity.frog.ambient",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "temperate": {
+        "displayName": "Temperate Frog",
+        "langName": "frog.temperate",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzhmMmRmZDRkZDdiYWMwN2Q4MWNjNjgyODc5NDkzYTdhNDcyYTgzNmNjY2U4NmY4ODZhY2MyZjIwZmNkN2I3MCJ9fX0=",
+        "uuid": "2dcdf931-a67b-442c-a68e-6f78232b52a1",
+        "lore": [],
+        "noteblockSound": "entity.frog.ambient",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "warm": {
+        "displayName": "Warm Frog",
+        "langName": "frog.warm",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGRiMWFiYWM4YjU0YWNjZjU5YWNmM2JkY2FiNTRmMmI3YWJkYzg0Zjc4MmIzNzgzZDRlOTZlOTcwNTkzNjJhZSJ9fX0=",
+        "uuid": "d8a80665-fa41-487d-9205-4895eb34b7c4",
+        "lore": [],
+        "noteblockSound": "entity.frog.ambient",
+        "quantity": 1,
+        "chance": 20.0
+      }
+    }
+  }
+}

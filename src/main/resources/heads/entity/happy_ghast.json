@@ -1,0 +1,16 @@
+{
+  "defaultChance": 11.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Happy Ghast",
+      "langName": "happy_ghast",
+      "texture": "e3RleHR1cmVzOntTS0lOOnt1cmw6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjFiZDA1NjE5YmExZjM1NTQ3NDJjYWEwYzIyZTM4ZGIyOTFiMzgyZWVjYjIyYmU4YmUyNGE1MmVmOThkYjEifX19",
+      "uuid": "41afb99a-1b20-4c33-b7b2-bfc42040188e",
+      "lore": [],
+      "noteblockSound": "entity.happy_ghast.ambient",
+      "quantity": 1,
+      "chance": 11.0
+    }
+  ]
+}

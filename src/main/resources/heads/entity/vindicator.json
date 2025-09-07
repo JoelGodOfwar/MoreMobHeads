@@ -1,0 +1,16 @@
+{
+  "defaultChance": 5.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Vindicator",
+      "langName": "vindicator",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmRhYmFmZGUyN2VlMTJiMDk4NjUwNDdhZmY2ZjE4M2ZkYjY0ZTA0ZGFlMWMwMGNjYmRlMDRhZDkzZGNjNmM5NSJ9fX0=",
+      "uuid": "c28e1263-45f1-4e19-8af4-01015507fc94",
+      "lore": [],
+      "noteblockSound": "entity.vindicator.ambient",
+      "quantity": 1,
+      "chance": 5.0
+    }
+  ]
+}  

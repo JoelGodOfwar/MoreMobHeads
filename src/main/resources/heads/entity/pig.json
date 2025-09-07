@@ -1,0 +1,52 @@
+{
+  "defaultChance": 1.0,
+  "structure": "nested",
+  "heads": {
+    "pig": {
+      "original": {
+        "displayName": "Pig",
+        "langName": "pig.normal",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDFlZTc2ODFhZGYwMDA2N2YwNGJmNDI2MTFjOTc2NDEwNzVhNDRhZTJiMWMwMzgxZDVhYzZiMzI0NjIxMWJmZSJ9fX0=",
+        "uuid": "afb61daf-4fda-4ac4-9ddd-b2309377bcda",
+        "lore": [],
+        "noteblockSound": "entity.pig.ambient",
+        "quantity": 1,
+        "chance": 1.0,
+        "max_mc_version": "1.21.4"
+      },
+      "cold": {
+        "displayName": "Cold Pig",
+        "langName": "pig.cold",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTNmMGNhZTZjOGNjMWQwYWVlNWJlODZiOWMwYmM1MDExN2M1ZTFjNmIwMTQzOTA0MjI2NmJlYTMyYWE2Yjg2YiJ9fX0=",
+        "uuid": "e8f06eba-f23b-47b1-8c0d-cf008b228d3b",
+        "lore": [],
+        "noteblockSound": "entity.pig.ambient",
+        "quantity": 1,
+        "chance": 1.0,
+        "min_mc_version": "1.21.5"
+      },
+      "temperate": {
+        "displayName": "Temperate Pig",
+        "langName": "pig.temperate",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWZkY2IwYjY4NzI3OTM4NDAyYzAwOWQyMzAwNzhjMTU3YWY2NGQ5MTJmYzE5NmE3MTg0NWVhYTVhYjEwOWM5In19fQ==",
+        "uuid": "7e376b9a-333b-46e5-a978-f8534ec49256",
+        "lore": [],
+        "noteblockSound": "entity.pig.ambient",
+        "quantity": 1,
+        "chance": 1.0,
+        "min_mc_version": "1.21.5"
+      },
+      "warm": {
+        "displayName": "Warm Pig",
+        "langName": "pig.warm",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTFjNTg0MGM3MzhhMDhjYTRjZDcwY2QyODUzYWQ1ZTdmOTE5OTBmOGRkMDQyMTUwNjYxN2JmZmJkOTRmODQ4ZiJ9fX0=",
+        "uuid": "69306b7d-db23-416a-80d5-082238493c2c",
+        "lore": [],
+        "noteblockSound": "entity.pig.ambient",
+        "quantity": 1,
+        "chance": 1.0,
+        "min_mc_version": "1.21.5"
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "defaultChance": 1.0,
+  "structure": "nested",
+  "heads": {
+    "goat": {
+      "normal": {
+        "displayName": "Goat",
+        "langName": "goat.normal",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWY0ZWE5NjQ5YWE3YTk3MzdlMjI4YjY1MTUxZGJkOWVjNWU2OTU0M2QwODgyYzRiNWFkOTlhN2Y0YTFlZmExNiJ9fX0=",
+        "uuid": "e184fc80-6ba6-4a04-9a05-fb407abd254e",
+        "lore": [],
+        "noteblockSound": "entity.goat.ambient",
+        "quantity": 1,
+        "chance": 1.0
+      },
+      "screaming": {
+        "displayName": "Screaming Goat",
+        "langName": "goat.screaming",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzQ5YzdiZWU5MDUzMjY4NDRlNjA1OTNkYmJlZjk5Mjk3MjNkYTJhZmNhN2Q0YzNmZDcyMjgwZWI0YTVmMzMwYyJ9fX0=",
+        "uuid": "d0aa4129-8c01-46e5-ab55-9816be6ab4aa",
+        "lore": [],
+        "noteblockSound": "entity.goat.screaming.ambient",
+        "quantity": 1,
+        "chance": 100.0
+      }
+    }
+  }
+}

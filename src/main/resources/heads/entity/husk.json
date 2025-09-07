@@ -1,0 +1,16 @@
+{
+  "defaultChance": 6.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Husk",
+      "langName": "husk",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzMzODMxOGJjOTFhMzZjZDVhYjZhYTg4NWM5YTRlZTJiZGFjZGFhNWM2NmIyYTk5ZGZiMGE1NjA5ODNmMjQ4MCJ9fX0=",
+      "uuid": "9bfd4d16-7232-49d3-bfd8-c965e57ba899",
+      "lore": [],
+      "noteblockSound": "entity.husk.ambient",
+      "quantity": 1,
+      "chance": 6.0
+    }
+  ]
+}  

@@ -1,0 +1,28 @@
+{
+  "defaultChance": 1.0,
+  "structure": "nested",
+  "heads": {
+    "mooshroom": {
+      "brown": {
+        "displayName": "Brown Mooshroom",
+        "langName": "mooshroom.brown",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2U2NDY2MzAyYTVhYjQzOThiNGU0NzczNDk4MDhlNWQ5NDAyZWEzYWQ4ZmM0MmUyNDQ2ZTRiZWQwYTVlZDVlIn19fQ==",
+        "uuid": "e206ac29-ae69-475b-909a-fb523d894336",
+        "lore": [],
+        "noteblockSound": "entity.cow.ambient",
+        "quantity": 1,
+        "chance": 10.0
+      },
+      "red": {
+        "displayName": "Red Mooshroom",
+        "langName": "mooshroom.red",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGE4MDYwNmU4MmM2NDJmMTQxNTg3NzMzZTMxODBhZTU3ZjY0NjQ0MmM5ZmZmZDRlNTk5NzQ1N2UzNDMxMWEyOSJ9fX0=",
+        "uuid": "b769f2da-e5a8-4882-b15b-d68618904a63",
+        "lore": [],
+        "noteblockSound": "entity.cow.ambient",
+        "quantity": 1,
+        "chance": 1.0
+      }
+    }
+  }
+}

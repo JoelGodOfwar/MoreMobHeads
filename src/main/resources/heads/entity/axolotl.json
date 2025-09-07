@@ -1,0 +1,58 @@
+{
+  "defaultChance": 20.0,
+  "structure": "nested",
+  "heads": {
+    "axolotl": {
+      "blue": {
+        "displayName": "Blue Axolotl",
+        "langName": "axolotl.blue",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTEzZjY0NzQ1YjAzMmNhMThlMzE1NTlmNzk4MDdiZDQ5ZTI1ZDZkYjQyYTdjNGMwNjI2ZWJjNWVmM2EwOGU2MyJ9fX0=",
+        "uuid": "54f66f7f-6538-4f89-a862-e5d167f75dc3",
+        "lore": [],
+        "noteblockSound": "entity.axolotl.idle_air",
+        "quantity": 1,
+        "chance": 100.0
+      },
+      "cyan": {
+        "displayName": "Cyan Axolotl",
+        "langName": "axolotl.cyan",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDA5ODI0ODc4MDk0OGU0MjBkNzEwNDg4ZTc4NmYwNWMyMDdhYjUwY2FhMGEwZmE1YTE5NGNkYzkxMzFhNGFhZSJ9fX0=",
+        "uuid": "8f538b36-d642-4394-9d42-af17f1939610",
+        "lore": [],
+        "noteblockSound": "entity.axolotl.idle_air",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "gold": {
+        "displayName": "Gold Axolotl",
+        "langName": "axolotl.gold",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmIwMzhlYzBiYzEyNWFmNmVhYTNjZGNmODNmMjIyNmZmOWYxNzA5YTA5ZGI2Njk3NmM1OTkzMDNkZDQ0NzI3ZCJ9fX0=",
+        "uuid": "0368a97c-a7a7-4f9b-9070-961f9c590063",
+        "lore": [],
+        "noteblockSound": "entity.axolotl.idle_air",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "lucy": {
+        "displayName": "Lucy Axolotl",
+        "langName": "axolotl.lucy",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWIxNmM5ODIxMGExMGRhMGY4YTliMjVhNGUxMWQ5ZmMxNTdmZWQyOWEyOTBiNGM0NDMwZjliNmU2ZjM5NjVlYyJ9fX0=",
+        "uuid": "86b5c0db-744b-4734-9637-30b33090758d",
+        "lore": [],
+        "noteblockSound": "entity.axolotl.idle_air",
+        "quantity": 1,
+        "chance": 20.0
+      },
+      "wild": {
+        "displayName": "Wild Axolotl",
+        "langName": "axolotl.wild",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2UzN2E5YzBkOWIwYmI3ODQ3Y2Y2ZjA3NzVmMDJiNjJkNGZjZjVmNTZjYmZkZTZhOGI0ZjRlYWIxZjdkYzRkYyJ9fX0=",
+        "uuid": "9ff94036-05f4-4676-85ba-2e63204ea7fa",
+        "lore": [],
+        "noteblockSound": "entity.axolotl.idle_air",
+        "quantity": 1,
+        "chance": 20.0
+      }
+    }
+  }
+}

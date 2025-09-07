@@ -1,0 +1,53 @@
+{
+  "defaultChance": 1.0,
+  "structure": "nested",
+  "heads": {
+    "cow": {
+      "original": {
+        "displayName": "Cow",
+        "langName": "cow.normal",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjNkNjIxMTAwZmVhNTg4MzkyMmU3OGJiNDQ4MDU2NDQ4Yzk4M2UzZjk3ODQxOTQ4YTJkYTc0N2Q2YjA4YjhhYiJ9fX0=",
+        "uuid": "1208f5e1-a040-4a4f-8462-372ffb1cd83d",
+        "lore": [],
+        "noteblockSound": "entity.cow.ambient",
+        "quantity": 1,
+        "chance": 1.0,
+        "min_mc_version": "1.20",
+        "max_mc_version": "1.21.4"
+      },
+      "cold": {
+        "displayName": "Cold Cow",
+        "langName": "cow.cold",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzIyYzNlZTY4ZmYyMTEwNDRhMGQ2MWFkNWM2YzBjZjNlNjlmY2I1OTU1MDFlMTg0YjU1NzgyMTVhMTBhZjk0OSJ9fX0=",
+        "uuid": "d6ac73ec-687b-41dd-9ad3-6152059b1657",
+        "lore": [],
+        "noteblockSound": "entity.cow.ambient",
+        "quantity": 1,
+        "chance": 1.0,
+        "min_mc_version": "1.21.5"
+      },
+      "temperate": {
+        "displayName": "Temperate Cow",
+        "langName": "cow.temperate",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODIyOWZjNzc3YTVlMDZlNTMxYTRhNzk5Mzg0YTdlMjgyMWVlNzE5MjllODg1MTE4YTEyZjQ2ZDIxMjJiZGU4OCJ9fX0=",
+        "uuid": "4812f272-3f53-43ee-8d00-e785adec4084",
+        "lore": [],
+        "noteblockSound": "entity.cow.ambient",
+        "quantity": 1,
+        "chance": 1.0,
+        "min_mc_version": "1.21.5"
+      },
+      "warm": {
+        "displayName": "Warm Cow",
+        "langName": "cow.warm",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDUyZTYyNTUzZDlkMDc1NjQ3OTI5Mzc3MTZmYmJiMWE1ZDBkODg0NmZiZTg3YThjMjQwNjQzNGMzZWEyZWY1NyJ9fX0=",
+        "uuid": "c9eb14c3-a925-4f96-97b7-31f001c25a1e",
+        "lore": [],
+        "noteblockSound": "entity.cow.ambient",
+        "quantity": 1,
+        "chance": 1.0,
+        "min_mc_version": "1.21.5"
+      }
+    }
+  }
+}

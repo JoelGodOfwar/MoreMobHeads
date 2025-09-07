@@ -1,0 +1,1072 @@
+{
+  "defaultChance": 100.0,
+  "structure": "nested",
+  "heads": {
+    "villager": {
+      "plains": {
+        "armorer": {
+          "displayName": "Plains Armorer Villager",
+          "langName": "villager.plains.armorer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjAxMzExYzUxODUyOWFmNTRhMWMzZWU2M2MzNmQwM2IwNGFjMjFkZmRiNmE5MGM1N2VhOTU0NzhhYWI2MDNlNSJ9fX0=",
+          "uuid": "a576057c-02d0-4af9-ae5a-acb4458b4971",
+          "lore": [],
+          "noteblockSound": "entity.villager.work_armorer",
+          "quantity": 1,
+          "chance": 100.0
+        },
+        "butcher": {
+          "displayName": "Plains Butcher Villager",
+          "langName": "villager.plains.butcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzFhNzAzZjY0NzA0M2UwY2U5ZjAzYzQyOGQxM2EwYTZmZWY0NWUzMGE3MzMxN2ViMTIxY2ZiZjFmYjg4YzE5NyJ9fX0=",
+          "uuid": "c25bcd22-83d9-46fa-92ac-145e4681d08d",
+          "lore": [],
+          "noteblockSound": "entity.villager.work_butcher",
+          "quantity": 1,
+          "chance": 100.0
+        },
+        "cartographer": {
+          "displayName": "Plains Cartographer Villager",
+          "langName": "villager.plains.cartographer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTZhZDhiMGQ0MGIwNTRkNjlhYTI4OTQ5NzQwYmU3NmY4NWU4M2RiMzljMjcyZGU2NzIzYTQzOTJhYmUyMzA1YiJ9fX0=",
+          "uuid": "dfa9dc67-8091-4b78-9bbb-00cb4c34cb58",
+          "lore": [],
+          "noteblockSound": "entity.villager.work_cartographer",
+          "quantity": 1,
+          "chance": 100.0
+        },
+        "cleric": {
+          "displayName": "Plains Cleric Villager",
+          "langName": "villager.plains.cleric",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzViNmYxNmQ0NmQ3MmEyMTgwNTE4ZTU5ZWU3Mjc1OWQ5ODYwMmI0YmJkZTA0ZjBhNDk3MjhlYTE1ZjBlMTIifX19",
+          "uuid": "4130d8bc-7d79-498f-8ead-b9e32a86d4a6",
+          "lore": [],
+          "noteblockSound": "entity.villager.work_cleric",
+          "quantity": 1,
+          "chance": 100.0
+        },
+        "farmer": {
+          "displayName": "Plains Farmer Villager",
+          "langName": "villager.plains.farmer",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2ZkNjQwZjg1Nzg3NTU3NWI1YzhmNzlmY2E5YjM1NGMxNTgwZWJhNTViY2M4MGMzZWY1NzkxNDVhZTFlZDJmNiJ9fX0=",
+          "uuid": "1d307c7a-6e3f-4862-9503-740dd9bb92d9",
+          "lore": [],
+          "noteblockSound": "entity.villager.work_farmer",
+          "quantity": 1,
+          "chance": 100.0
+        },
+        "fisherman": {
+          "displayName": "Plains Fisherman Villager",
+          "langName": "villager.plains.fisherman",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTIxMzM4NDRiOGViMjVmODA1NmZiN2IyNWU2YTYwODM0N2Q2ZWY3YmMxYmY4NzZiMzY4ZTlkN2E2MDdhNDMxMyJ9fX0=",
+          "uuid": "49ecebb5-0a3c-4e7a-ac18-f7b7c1c6b42b",
+          "lore": [],
+          "noteblockSound": "entity.villager.work_fisherman",
+          "quantity": 1,
+          "chance": 100.0
+        },
+        "fletcher": {
+          "displayName": "Plains Fletcher Villager",
+          "langName": "villager.plains.fletcher",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODIxNTg4ODRlYzQ1YzI2YjA2ZTA0YWM4MDM1NWJjYjViNzYwYjQ2MDkzOTYzODljOTQ4MzA1ZjAzYjNkYWU5ZCJ9fX0=",
+          "uuid": "85a158e9-23a3-495c-a7cf-0bb4b924bfaf",
+          "lore": [],
+          "noteblockSound": "entity.villager.work_fletcher",
+          "quantity": 1,
+          "chance": 100.0
+        },
+        "leatherworker": {
+          "displayName": "Plains Leatherworker Villager",
+          "langName": "villager.plains.leatherworker",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWQ0NDY4YjMzYzE2Mzc1OGUzYmM3Yzk2OTRjODA0YmZmNGY4YTVmMTYwYjUxZTUyYzBlOTY3OWRhNjcwMTk4NSJ9fX0=",
+          "uuid": "641edbf6-0351-4eb8-a0f2-2ad61bfc93dc",
+          "lore": [],
+          "noteblockSound": "entity.villager.work_leatherworker",
+          "quantity": 1,
+          "chance": 100.0
+        },
+        "librarian": {
+          "displayName": "Plains Librarian Villager",
+          "langName": "villager.plains.librarian",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjBmMjQ3YjU3MDI0NmMyYWYzOTRhZDA0MGM4YWYzZjYwNWY4ZWI2YTNiYjg2OTExY2QyNDkyNDM4MjU2ZWFhOSJ9fX0=",
+          "uuid": "4df8080c-dcb8-4aee-8c1e-3e8d02aa6c4d",
+          "lore": [],
+          "noteblockSound": "entity.villager.work_librarian",
+          "quantity": 1,
+          "chance": 100.0
+        },
+        "mason": {
+          "displayName": "Plains Mason Villager",
+          "langName": "villager.plains.mason",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWUwZTk1OTFlMTFhYWVmNGMyYzUxZDlhYzY5NTE0ZTM0MDQ4NWRlZmNjMmMxMmMzOGNkMTIzODZjMmVjNmI3OCJ9fX0=",
+          "uuid": "08d93422-d0e1-4020-a38f-b38995e05e6f",
+          "lore": [],
+          "noteblockSound": "entity.villager.work_mason",
+          "quantity": 1,
+          "chance": 100.0
+        },
+        "nitwit": {
+          "displayName": "Plains Nitwit Villager",
+          "langName": "villager.plains.nitwit",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTM0NWEwY2FkZDAyZmI3NTYwNjZlMDNjNDBjYzFhYjVmZTlhZDRhZjQ5NmU4OGYyYmJhMTBmNWUxNDZmMDkyNSJ9fX0=",
+          "uuid": "ee0b1913-5636-4358-86bd-fcf48ea59462",
+          "lore": [],
+          "noteblockSound": "entity.villager.ambient",
+          "quantity": 1,
+          "chance": 100.0
+        },
+        "none": {
+          "displayName": "Plains Villager",
+          "langName": "villager.plains.none",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWEwZTNkNDFlNmViZTUzOWUwZWI0OGE2N2YyZWM1ZGEyMjRkNDA4Yjk5Y2VkOTI0ZjlkMGE4MTVlMzVjNTdhMiJ9fX0=",
+          "uuid": "58404a7e-a14d-4b48-b97c-cdb98a8e1018",
+          "lore": [],
+          "noteblockSound": "entity.villager.ambient",
+          "quantity": 1,
+          "chance": 100.0
+        },
+        "sheperd": {
+          "displayName": "Plains Shepherd Villager",
+          "langName": "villager.plains.sheperd",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmVkNmI1ZTFlOWNiNDUxYzEyMWUyZWMwZmExYjU5MDc3OThlOWZkM2E1ZWE2ZDAwY2NmYWYxZDdlMmMxMDc5ZCJ9fX0=",
+          "uuid": "1e93dceb-d8d8-45c4-88e8-890a54e80b40",
+          "lore": [],
+          "noteblockSound": "entity.villager.work_shepherd",
+          "quantity": 1,
+          "chance": 100.0
+        },
+        "toolsmith": {
+          "displayName": "Plains Toolsmith Villager",
+          "langName": "villager.plains.toolsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzU5YjYzMmEwOTI1MTZkOTYzMzk4MDY5YjFhZTI4YzFjZGJiY2NjMThkNjcyMDAzM2M2M2YzODhkODc5YzRhIn19fQ==",
+          "uuid": "75cf97b1-4d89-4ac8-94e1-f85fac14871a",
+          "lore": [],
+          "noteblockSound": "entity.villager.work_toolsmith",
+          "quantity": 1,
+          "chance": 100.0
+        },
+        "weaponsmith": {
+          "displayName": "Plains Weaponsmith Villager",
+          "langName": "villager.plains.weaponsmith",
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWIxZWE1NGI3ZmQ5M2ZlNmMzNmQwYjVkODE1YWIwZGI4OWRiODk0ZGI3NWNlMGZjZTczOGU5NGVlOGI3OWUxOSJ9fX0=",
+          "uuid": "e5d0f43c-58d7-4bf0-afc9-ed7a1ab73a8c",
+          "lore": [],
+          "noteblockSound": "entity.villager.work_weaponsmith",
+          "quantity": 1,
+          "chance": 100.0
+        }
+      },
+	  "desert": {
+	    "armorer": {
+	      "displayName": "Desert Armorer Villager",
+	      "langName": "villager.desert.armorer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWI2N2EwZmI1MGYyOGM2ODhiZTk3ZDEyN2NmZTQwNTQ3ZDE4N2U4MjliZDI5MTUwMjA1MzNjZmU5M2JhMDRhIn19fQ==",
+	      "uuid": "28af2ba5-de7d-452b-8028-8e9bdb4b231a",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_armorer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "butcher": {
+	      "displayName": "Desert Butcher Villager",
+	      "langName": "villager.desert.butcher",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzFhNzAzZjY0NzA0M2UwY2U5ZjAzYzQyOGQxM2EwYTZmZWY0NWUzMGE3MzMxN2ViMTIxY2ZiZjFmYjg4YzE5NyJ9fX0=",
+	      "uuid": "a8db08e1-4b3f-4d0c-be93-b646903032e3",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_butcher",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "cartographer": {
+	      "displayName": "Desert Cartographer Villager",
+	      "langName": "villager.desert.cartographer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmY5NDY3Y2QzNTc0ZTNiNjUwNDJiZjIxZjM2OWRhNjBmNzc3ODMyNzVkNDkzMGQzZTBkODI2MWI4YjUyOTc3MyJ9fX0=",
+	      "uuid": "df957172-1c07-48af-b3ee-252b9fa80f7f",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_cartographer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "cleric": {
+	      "displayName": "Desert Cleric Villager",
+	      "langName": "villager.desert.cleric",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTE0NWViMDM5ODljMTA0MDFhYzdhM2U0ZWE4MTY1MmFjM2MxZDg4NTM3NTA4NThiY2ZiZDhmOTQyYmU5NTI5ZiJ9fX0=",
+	      "uuid": "3f37a7fc-9881-42c9-b356-90c84cea760d",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_cleric",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "farmer": {
+	      "displayName": "Desert Farmer Villager",
+	      "langName": "villager.desert.farmer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODZmYjM4OGY3MGNkMjQ5Yzk4YWQ2MTcwZThjOWIzNzU3NjY3MWQ3NzFjZDhmNzJkOWYxNzMwYjhjOWNhMjMyNSJ9fX0=",
+	      "uuid": "c98bbc1d-5e0c-4a3e-94ec-339da6ceb6fa",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_farmer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "fisherman": {
+	      "displayName": "Desert Fisherman Villager",
+	      "langName": "villager.desert.fisherman",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmQ1NDk1NDNhMTg2NTc5NGE4N2YwMDI1YjZmOWJiZWU3ZmM3OGNiYmI0ZThhZWVmYTFjMzdmODU3MzRlNDAxOCJ9fX0=",
+	      "uuid": "7bcdbd9d-0235-4d6e-8041-90bac45318cc",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_fisherman",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "fletcher": {
+	      "displayName": "Desert Fletcher Villager",
+	      "langName": "villager.desert.fletcher",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGJiMjBmMjljY2NlZWEwNzA3M2I4NDY4NGIzOTA5NjMwZGQxMTVhNDdkMmZlYzdjM2QyZjhiY2I5OTkyZTEwZCJ9fX0=",
+	      "uuid": "bbf415db-7b53-4d9c-9e5d-06e6f81c2286",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_fletcher",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "leatherworker": {
+	      "displayName": "Desert Leatherworker Villager",
+	      "langName": "villager.desert.leatherworker",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODgzZTliYzgyN2U3MzFhYTFkODAxNDg3ZTViNmEzOTE2YWQ0NTJkZGMyMDY4ZmFiMDdlOTdlYmM5MDM2ZTA1MiJ9fX0=",
+	      "uuid": "987bf436-578e-45bd-bf49-1af0681b86f1",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_leatherworker",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "librarian": {
+	      "displayName": "Desert Librarian Villager",
+	      "langName": "villager.desert.librarian",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMzA4M2JkMjQ5MGVlNDExZTAyZTE1MDliZDRmYzhiZjU0ZjkwZTkzMmI0YzU0NGE1YzEwNzg4MzA1NzhhYyJ9fX0=",
+	      "uuid": "939fd80a-4c34-4bf4-9050-a57844a33d06",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_librarian",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "mason": {
+	      "displayName": "Desert Mason Villager",
+	      "langName": "villager.desert.mason",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGRkODUxNTJlMzk5ZDMwMGM4NmRkYjRkZWUxNDIzNGJmODM2M2ZiYTE3NjQyZGI0MjE5ZTM3ODJhZjE5OGM4ZCJ9fX0=",
+	      "uuid": "2eb4ff3b-54ec-4697-9dde-836749e3fb31",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_mason",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "nitwit": {
+	      "displayName": "Desert Nitwit Villager",
+	      "langName": "villager.desert.nitwit",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjNkZDYxZjQxODRkY2Q0Y2YxMDBiNjAyMTQxZDNjMmJiNmMyMjIxN2E3ZWQ4MjZhNzgxNWI1ODdkZWNhNTBiNyJ9fX0=",
+	      "uuid": "85085a91-b0b1-458f-93fd-2a9c7485a649",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.ambient",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "none": {
+	      "displayName": "Desert Villager",
+	      "langName": "villager.desert.none",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTMzOTM1MjdhZmE2ZjcyYmQxYjJkNTliOTU3Yzc0MDk1ZWViNDNjZjkzNzg0ZTAxZmM2NjdmMzkyNmFhNzU5ZSJ9fX0=",
+	      "uuid": "ecd82373-83bb-4232-9c31-1dc8c789a305",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.ambient",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "sheperd": {
+	      "displayName": "Desert Sheperd Villager",
+	      "langName": "villager.desert.sheperd",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzM5ZTEwNzVmNjhiZDVhYmM1ZWY5NjllMzA4NTZjODU5MjgzNTc4MGYwM2FhZjViMmY1OTYyMTZmYWIwMDI2YiJ9fX0=",
+	      "uuid": "e1cb8198-d0be-4484-b160-38533d3e0590",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_shepherd",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "toolsmith": {
+	      "displayName": "Desert Toolsmith Villager",
+	      "langName": "villager.desert.toolsmith",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTE0ZGJmNDYzMGQ0YTFmMTA5ZWE3YWYwZDAyNDc4OGVmMTQyNWJkYjg5OWMxYWUxNDA4Y2UzZjlmZTRiMmRmMyJ9fX0=",
+	      "uuid": "0a8b3bee-3867-4dac-ada5-8962741a885f",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_toolsmith",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "weaponsmith": {
+	      "displayName": "Desert Weaponsmith Villager",
+	      "langName": "villager.desert.weaponsmith",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjFiZDhlYjMwMDkzYzkxZDA2NzVmNzMyMWY5NWFkOTFkNjk1ZjRhMmNjNmIxZTk2MzcyOTk4ZGUyNGQ2NmI2OSJ9fX0=",
+	      "uuid": "5265f792-2484-4c3d-8819-bab6fc8a7046",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_weaponsmith",
+	      "quantity": 1,
+	      "chance": 100.0
+	    }
+	  },
+	  "jungle": {
+	    "armorer": {
+	      "displayName": "Jungle Armorer Villager",
+	      "langName": "villager.jungle.armorer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjFkNTk5ODM1OTQ0NDc2ODk4MzAxODI2MDkyNjU3OTJlZGYxZTM1ZTlkMzYyYWQ2MmRiOWNmNzY5ZWE3MTVhMiJ9fX0=",
+	      "uuid": "af40e80c-8d4c-4df4-8ac3-7f83fe43b438",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_armorer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "butcher": {
+	      "displayName": "Jungle Butcher Villager",
+	      "langName": "villager.jungle.butcher",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzFhNzAzZjY0NzA0M2UwY2U5ZjAzYzQyOGQxM2EwYTZmZWY0NWUzMGE3MzMxN2ViMTIxY2ZiZjFmYjg4YzE5NyJ9fX0=",
+	      "uuid": "9db68563-7fdb-4e51-8982-a8aa3079d238",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_butcher",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "cartographer": {
+	      "displayName": "Jungle Cartographer Villager",
+	      "langName": "villager.jungle.cartographer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmY5NDY3Y2QzNTc0ZTNiNjUwNDJiZjIxZjM2OWRhNjBmNzc3ODMyNzVkNDkzMGQzZTBkODI2MWI4YjUyOTc3MyJ9fX0=",
+	      "uuid": "a00a562d-b265-4937-ad95-56e1d35bf7bc",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_cartographer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "cleric": {
+	      "displayName": "Jungle Cleric Villager",
+	      "langName": "villager.jungle.cleric",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGEwZWYyYWRkMThhNDU3ZGY4YTk4ZWM1OTFiMGEwZGJkOTk0MmEyZDU4OTY1YTA0M2VhMDM5NzIwNDg3MTRmNSJ9fX0=",
+	      "uuid": "f590f4b6-665a-49a1-996c-6e6a4716bb69",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_cleric",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "farmer": {
+	      "displayName": "Jungle Farmer Villager",
+	      "langName": "villager.jungle.farmer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTQ5YmZjZTFkZTRkOWU3OGE3YTk2ODc3MzE5ZWRhOTBlOTg5YzI4YWZlMWI0YmYxZGM1NjNhNWQ0NGIxYWM3NCJ9fX0=",
+	      "uuid": "b88396a8-a5d3-4127-a2bb-dba8d420edea",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_farmer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "fisherman": {
+	      "displayName": "Jungle Fisherman Villager",
+	      "langName": "villager.jungle.fisherman",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmU0M2MwYmYyNmVlMWE0MzMyYzExZTJjMjA4N2FhZDkwM2JlNDE4YWNhNTE0ZmQ4MGE3MDI4YjM3MWY1MzI4NyJ9fX0=",
+	      "uuid": "f69bd527-6d52-4ba8-b20b-ac10ecf39fbc",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_fisherman",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "fletcher": {
+	      "displayName": "Jungle Fletcher Villager",
+	      "langName": "villager.jungle.fletcher",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjg0MjM4ZjA2YTg1YWM2NzY1MWQ5NmNmOTYzYzUyNTA1NTI5OTI5MGMzNDg4MjlhNjZjNDQ1OTdiYWY1NzQwYiJ9fX0=",
+	      "uuid": "248b07f6-41bc-4346-bbf0-38e6e0250920",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_fletcher",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "leatherworker": {
+	      "displayName": "Jungle Leatherworker Villager",
+	      "langName": "villager.jungle.leatherworker",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWEwOTU1ODdhYWZlMThjNWZlZTBiYWExNzk1ZmMyMjk0OGYyZGRjZGMzMmEzMzUwMzIzZDMzZGI1OTE4MDBlNiJ9fX0=",
+	      "uuid": "fec3382a-446a-400a-9beb-6a89cf097cf8",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_leatherworker",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "librarian": {
+	      "displayName": "Jungle Librarian Villager",
+	      "langName": "villager.jungle.librarian",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTJmYzNkMGU3Yjc0ZGY1N2NiNGJkNmM0MjZhYTM2MWY3NjIwMjk2ODUzMGU3NmNmZjU5YjM5MzQ3MTc5NTk4YiJ9fX0=",
+	      "uuid": "f7b45265-55f9-4177-8c16-f5056f4f03b5",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_librarian",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "mason": {
+	      "displayName": "Jungle Mason Villager",
+	      "langName": "villager.jungle.mason",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTk2NzU2ZWU5MDNkMThkNTFhNWQ5NTk2M2I4NWJiYzEyYmI3YmQzOTEzZTg4NzE3ZDA2ZjhmOGU5YzU0MDFhYyJ9fX0=",
+	      "uuid": "3d03efe3-3d28-4002-b7b6-c2ba565c376b",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_mason",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "nitwit": {
+	      "displayName": "Jungle Nitwit Villager",
+	      "langName": "villager.jungle.nitwit",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzFhZWY1MTNkYjdhYzJhZjViNmI4YzliOGUyYjlmNDYyMjgxNGQxNTFlNzUwNGQ5YWUyYzQ1ZjRkOTRlOTBhNiJ9fX0=",
+	      "uuid": "8fd6b95a-a26a-4688-ae35-531e4eb7b3da",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.ambient",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "none": {
+	      "displayName": "Jungle Villager",
+	      "langName": "villager.jungle.none",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTgwNmU5YTRkNzI4ZTcxNjgwM2ZjN2M3N2MxNTg2YzBkNWVkODViODZmNDA4MGI1YmRiNjQwY2M0N2YxNWI3ZCJ9fX0=",
+	      "uuid": "0a9e8efb-9191-4c81-80f5-e27ca5433156",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.ambient",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "sheperd": {
+	      "displayName": "Jungle Sheperd Villager",
+	      "langName": "villager.jungle.sheperd",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTk3NzY0MzBjZDIwYTY5YTFkODk5ZDlkMWRjZDMxZDdkMTM0MmI1NWU4MDE1YjdmMDYwZmIzYTJjMzM4YzhiYyJ9fX0=",
+	      "uuid": "ce2bdf44-297d-41ec-8fb6-63c6b6949712",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_shepherd",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "toolsmith": {
+	      "displayName": "Jungle Toolsmith Villager",
+	      "langName": "villager.jungle.toolsmith",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjg2MzVmOTFhYjhlOTU0MmQwNTAyODRmMDhkMGRjYTVkZjZjMWYzYmQ2ZDhhNzE0MjdkMTQxOWUzNzk5YzJiYyJ9fX0=",
+	      "uuid": "c2ddbfa1-fc57-4b05-b0ea-27735b2dbf2a",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_toolsmith",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "weaponsmith": {
+	      "displayName": "Jungle Weaponsmith Villager",
+	      "langName": "villager.jungle.weaponsmith",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQ1ZmFiMzAzMjk0NGQxOGIyNjYyMWFkMjliM2Y5M2M0OTI3NmVkNmViNDY5ZWUyMTNhYmVjOGU0MmIyMjZhMiJ9fX0=",
+	      "uuid": "ef636711-2d3f-4431-a075-aacd858a682c",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_weaponsmith",
+	      "quantity": 1,
+	      "chance": 100.0
+	    }
+	  },
+	  "savanna": {
+	    "armorer": {
+	      "displayName": "Savanna Armorer Villager",
+	      "langName": "villager.savanna.armorer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmU4YTBlZGQwODFmZTE3NjFhZDU0YzY3ODNjOWZjZDJkZjA2M2YzYzIyODc0MjBmYzZkMjkzOWRmY2Q3MDI0OSJ9fX0=",
+	      "uuid": "95c3984d-4d67-4b09-9267-08191c12b669",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_armorer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "butcher": {
+	      "displayName": "Savanna Butcher Villager",
+	      "langName": "villager.savanna.butcher",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTUxZTAwMzkxZjcxNGI1NTk5ZmQ4NTQ4NWE3NGZkM2MxOTkwY2VmMWJkMjgyMTBjZThmNTk2NjE4MDA4ZDVjYiJ9fX0=",
+	      "uuid": "65803c56-c6ba-4725-95ee-0ccd87071f59",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_butcher",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "cartographer": {
+	      "displayName": "Savanna Cartographer Villager",
+	      "langName": "villager.savanna.cartographer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjAxZWEzNzc2M2M4OTU5MzY3ZTNjM2FmOTM4YjU3YzU2NjI2OTMxMmM4YjBlY2VmMWY5ZjY0ZmQ4ZmE4YTkxOCJ9fX0=",
+	      "uuid": "e61975d2-8668-4244-a920-24b9986272b3",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_cartographer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "cleric": {
+	      "displayName": "Savanna Cleric Villager",
+	      "langName": "villager.savanna.cleric",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWIyY2JmZjE0ZjZiYTdmYjFjMjdkM2ZiZDYyOGI2MjM0NzUyNTMyMmJhMGY4ZWU5Y2EwZWIzNDkzYjg4Yjc2NCJ9fX0=",
+	      "uuid": "3781698f-f01e-4513-8da7-c9eb628eefea",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_cleric",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "farmer": {
+	      "displayName": "Savanna Farmer Villager",
+	      "langName": "villager.savanna.farmer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzc0OGM3Yjk5MGFkMjMzNWFjNTU5MWQ4ZWNiYzYxZGRjNjdhMzU4YTcwN2VkMWIyNmUyYmFmMjM5YTcwZGEwOSJ9fX0=",
+	      "uuid": "c27750ca-ef49-464e-b8a0-0507b7d90fe8",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_farmer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "fisherman": {
+	      "displayName": "Savanna Fisherman Villager",
+	      "langName": "villager.savanna.fisherman",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTkzZDQ5NzljMDU0NGI2ZGQxNjNhMjBjODZlM2E0NjZhN2ExMDI4NDA5M2QwZGMzMTNlOWY3ZGUyMGZlZTRlZiJ9fX0=",
+	      "uuid": "1959d4b5-4ffd-48ee-a3f8-c6a53ba9b067",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_fisherman",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "fletcher": {
+	      "displayName": "Savanna Fletcher Villager",
+	      "langName": "villager.savanna.fletcher",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzAyODEyZmU3ZTA3NTI0MTEyMDkxYTI5ZTBiOTE1MmNkMmEyZmJmOTRhYTlhN2EyMTkzYzRkOGE3M2RjNzNmMSJ9fX0=",
+	      "uuid": "80173e34-dba5-4809-a43d-320b228e567c",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_fletcher",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "leatherworker": {
+	      "displayName": "Savanna Leatherworker Villager",
+	      "langName": "villager.savanna.leatherworker",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjVhN2U2YThlZGVlZjc0ZGM1ODQzOGQ3MDZmYjJhZWQ4ZWNiZWI0ZjlhNGQ5NTY2MGY1ZmY1MDZlNGFmM2Q1In19fQ==",
+	      "uuid": "bf9ac4c7-585f-452a-82c7-16c85cfb2b3a",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_leatherworker",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "librarian": {
+	      "displayName": "Savanna Librarian Villager",
+	      "langName": "villager.savanna.librarian",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTNjNTQ3NmJmYTMxYWY4YTQ2NDliNjc5NzY1MjhiMzAxZmY5YjhiYTU3NWE4YzgxYzlmMDlmMzhiNjkyNzgxZSJ9fX0=",
+	      "uuid": "f7ed8ecf-0162-42aa-8840-5a5544873b96",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_librarian",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "mason": {
+	      "displayName": "Savanna Mason Villager",
+	      "langName": "villager.savanna.mason",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODQwNWZkMTNkNGU3ODYwNzUxMmZmNzE2OWYzZWQ1NmIzMTA0MjM5M2QzMDlhYzhlODIzNjZlMTE3OGJiYTVjMiJ9fX0=",
+	      "uuid": "82259e14-9ed7-4a92-b3eb-4d01a0864f7a",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_mason",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "nitwit": {
+	      "displayName": "Savanna Nitwit Villager",
+	      "langName": "villager.savanna.nitwit",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjE0N2MzMTVlMzg1ZmRlMWFmZjI5MmMwNGEzNzM5MGE2ODNlZGQ0NTYxMGU1OThmOTBjOWExYThhNTY3YjJmNSJ9fX0=",
+	      "uuid": "c670fbae-98e7-41f3-bfdd-321218dcb5ff",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.ambient",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "none": {
+	      "displayName": "Savanna Villager",
+	      "langName": "villager.savanna.none",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTQ3MGIyNTE2ODhiYTU4MDc3NDIwOWQ1MjY2NDAwMmYzMDk3MzRkYzljOWMyMTZmMGQ3MTY3ZjNkYmRhZGVjMCJ9fX0=",
+	      "uuid": "531fe1ca-24e1-4851-9971-acb678cdef26",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.ambient",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "sheperd": {
+	      "displayName": "Savanna Sheperd Villager",
+	      "langName": "villager.savanna.sheperd",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDczMTgxYzA0NzNiN2IxMTExYTVkYmFiMmQyNDQzNzI5ZTdiZmQ4NDk5YjEyZmZlODdhYWYxZTExM2IyYWEyOSJ9fX0=",
+	      "uuid": "83581234-bd51-4f52-ac7f-496d092e7fea",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_shepherd",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "toolsmith": {
+	      "displayName": "Savanna Toolsmith Villager",
+	      "langName": "villager.savanna.toolsmith",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGQ4YzBlZjEzMGZiNWIxZDcxNjlhY2M4NThhOGU3ZGNlMzM2NjI5YWNmN2JmODhkMzE2MmNiNDA5YjQ5NzE0MCJ9fX0=",
+	      "uuid": "8d032c47-42a8-4778-a1c0-1924ce5449b2",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_toolsmith",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "weaponsmith": {
+	      "displayName": "Savanna Weaponsmith Villager",
+	      "langName": "villager.savanna.weaponsmith",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzc0MmE0ZGJiYjgwZWRhZDk2MmM3NThmYjc0NmEyMzYzOTYzODdhMDIzNzA2NDVhYWZjOGM0NDJjOThlMjk3ZiJ9fX0=",
+	      "uuid": "c74c6dce-ce0b-4267-baee-b502b55653c9",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_weaponsmith",
+	      "quantity": 1,
+	      "chance": 100.0
+	    }
+	  },
+	  "snow": {
+	    "armorer": {
+	      "displayName": "Snow Armorer Villager",
+	      "langName": "villager.snow.armorer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmEwODUxMGI1ZjYwNjlkOTQ4OGFkY2FmMDc4OTViM2U3OWEzMTViMTlhYWYwMTM5NTQ5NDkyMmE2ZjlkYTdhZiJ9fX0=",
+	      "uuid": "1a9ae0b9-ab32-4f01-9af9-4d0b1ed9f428",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_armorer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "butcher": {
+	      "displayName": "Snow Butcher Villager",
+	      "langName": "villager.snow.butcher",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzFhNzAzZjY0NzA0M2UwY2U5ZjAzYzQyOGQxM2EwYTZmZWY0NWUzMGE3MzMxN2ViMTIxY2ZiZjFmYjg4YzE5NyJ9fX0=",
+	      "uuid": "07841184-4b23-4de9-8d86-94faa672fe86",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_butcher",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "cartographer": {
+	      "displayName": "Snow Cartographer Villager",
+	      "langName": "villager.snow.cartographer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2JkNDM5NjZmYjNmN2M3NDA2OGNmYjRjOGM4OWU4NjJhNWNkZWMzNDk5NWMxMjI4NTk2NzVlOGQ5ZjlmNGMwZiJ9fX0=",
+	      "uuid": "cbbfcde1-7dc5-4b99-ad03-e991e40b032e",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_cartographer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "cleric": {
+	      "displayName": "Snow Cleric Villager",
+	      "langName": "villager.snow.cleric",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWUwMjNkMWE5ZGVhODM0OGIxM2Y0YzFlZDI2YmM3MWNlZWQ1N2VkYmEwNTZjYjc3NTI4ODc1YzUwNDMxYmFmYSJ9fX0=",
+	      "uuid": "14c643d6-f288-4fd0-9968-5e97ba4aa4ee",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_cleric",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "farmer": {
+	      "displayName": "Snow Farmer Villager",
+	      "langName": "villager.snow.farmer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2M0OTEyYmNiOTY0NmQ5MjkyYzZhNzIwZTU0Nzc1NDE2MTVlNDg0MjQxZTE3NDU0NzcwY2I0ZGRhMzBlM2FlMyJ9fX0=",
+	      "uuid": "e2c33986-5783-4f6d-be18-c75600773ac1",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_farmer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "fisherman": {
+	      "displayName": "Snow Fisherman Villager",
+	      "langName": "villager.snow.fisherman",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTBmMWVjNzEwZmFhMzhiYWUzZTc5NTE5NjEzODkyNTQ1ZjM0ZTRlZDM4N2ZhZGEyZDdkODA0YmM5ZDg0NjUwMiJ9fX0=",
+	      "uuid": "dff05a7b-9724-4891-a0a8-ce713cbcedde",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_fisherman",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "fletcher": {
+	      "displayName": "Snow Fletcher Villager",
+	      "langName": "villager.snow.fletcher",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzY1NDcwYTM1NzU1ZTU1OGI2MzNmZDM0ZTEwOGFhNTYyMDJhYjNlZDU5NmNmNGYxOTQ3ZTk3YTEzMmU1MDNjNyJ9fX0=",
+	      "uuid": "e17a9dcb-a93f-4032-ab1b-04b0a55028f8",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_fletcher",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "leatherworker": {
+	      "displayName": "Snow Leatherworker Villager",
+	      "langName": "villager.snow.leatherworker",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDM1MjMwNDFhMjE2M2Y3MTY5NDFjZGE3MjcxMzhiOTgxMzdhZTRmNzU3ZjNlNzFlOGIwYzFiMmEyOGQ3ZTZiYSJ9fX0=",
+	      "uuid": "bac6f170-0849-4dde-b13c-535e8e8d2683",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_leatherworker",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "librarian": {
+	      "displayName": "Snow Librarian Villager",
+	      "langName": "villager.snow.librarian",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI5NmIwNmM3ODZhOTAwNjI4MTgwNDVjYzZlMTNmNWI3MTA0NjQ5MTg0MDFiYzVhMjExODZiOWZjNGM4NGYzYiJ9fX0=",
+	      "uuid": "6a374869-79d5-4b69-a74d-17b9d6a3745a",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_librarian",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "mason": {
+	      "displayName": "Snow Mason Villager",
+	      "langName": "villager.snow.mason",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGUyYThlNjRmYzBlYjIxZDNlMjNkMWQxZGU0ZThiODA2MmQ3NGI4NjY3NTliYzk2OGYxMzA5NmRmYWUzYzM4YiJ9fX0=",
+	      "uuid": "d4698632-f271-4efb-807b-0d22390d4217",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_mason",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "nitwit": {
+	      "displayName": "Snow Nitwit Villager",
+	      "langName": "villager.snow.nitwit",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzRhYTk1ODc3NDAxNWQ3N2UwM2Q5Mjg1ZDcxYTI4NzY5NDUxNWU3N2RjZmYzYjAwNjBlYjg1NjU4YWZmYzU3NiJ9fX0=",
+	      "uuid": "8c1c3dd8-7921-4cee-a843-594285e7dfda",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.ambient",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "none": {
+	      "displayName": "Snow Villager",
+	      "langName": "villager.snow.none",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzRiYWNjOTBlYTFjNGQ4ZjBiOGQ4YjkzMTY1NWY0ZWM0OTFkYmY1OGYwNTIzNzJmNDQ5MDkyZWY1YTkxNDIzNyJ9fX0=",
+	      "uuid": "b88666ac-efc7-49ef-a6bd-51db174ed605",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.ambient",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "sheperd": {
+	      "displayName": "Snow Sheperd Villager",
+	      "langName": "villager.snow.sheperd",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2U5YzI5YTJhYjkxOWE5N2Y4NGEwYjVlMGFkYjA0NTEzZWJlZmExNzRjM2IwZDcyNWI4NGNlNDgyNjkzZjdjZCJ9fX0=",
+	      "uuid": "2663f068-b88d-4a9e-b389-bac5ded550a5",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_shepherd",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "toolsmith": {
+	      "displayName": "Snow Toolsmith Villager",
+	      "langName": "villager.snow.toolsmith",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmEzZTA5MjI2ZWNkNTM2ZDZjNThiNTQ5NzkwZTFmYTdlOTMyNjAyOGE3MDM3MDUyOTIxYTAwNDI2Y2FmMTBlYSJ9fX0=",
+	      "uuid": "13dc3b0e-c95c-478d-9272-18c9a144880e",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_toolsmith",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "weaponsmith": {
+	      "displayName": "Snow Weaponsmith Villager",
+	      "langName": "villager.snow.weaponsmith",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDkyNjZhZGZjYWRiYjBiODY5YjEwZTIyNjQwOWMwODNjNmRjN2EwNzE5YTZjODA4Y2JjMjM2NzY1YWI4YzBlZSJ9fX0=",
+	      "uuid": "ae80f2f6-558f-4e14-97d8-6c818babbcca",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_weaponsmith",
+	      "quantity": 1,
+	      "chance": 100.0
+	    }
+	  },
+	  "swamp": {
+	    "armorer": {
+	      "displayName": "Swamp Armorer Villager",
+	      "langName": "villager.swamp.armorer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzE4NDBlNDA4MmY0YWVhYTY5NTM1NDg0YTdhYjdkOGY3ZTEzYzVjNTc4OWEyYTM4M2JkN2U4N2IzODc5MDZjNSJ9fX0=",
+	      "uuid": "ba517ac7-b732-45c4-a940-1fa2ef5fa864",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_armorer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "butcher": {
+	      "displayName": "Swamp Butcher Villager",
+	      "langName": "villager.swamp.butcher",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjUyNmZhYTQ2NmRkMzcxNjhhYWMxYzYwY2JjN2U1YTI0MDVjOTM1MDcxZGVhNmNjMWUzYjllYWJmODdlYmExYyJ9fX0=",
+	      "uuid": "c1470a6a-4635-4a67-9f69-231ea893e7b4",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_butcher",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "cartographer": {
+	      "displayName": "Swamp Cartographer Villager",
+	      "langName": "villager.swamp.cartographer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDIwNWVkM2Q4MmRjNTI1MDExZWMzOTIwODA5MTY1MDVmZjg2Y2E5NjE3YWQwZjJjNzI5NmI5OTA3ZmEyZmI4YiJ9fX0=",
+	      "uuid": "43860f33-abb2-462c-8b04-62b898cb7a88",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_cartographer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "cleric": {
+	      "displayName": "Swamp Cleric Villager",
+	      "langName": "villager.swamp.cleric",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGM0Mjk2NDg2Y2NlYzgxYWNkZjIxNDUxYzY5MGIyMzRiYzlmZGFjNWFiNmVmZDU0NTFhYjVjZGFmYWZiNzk3OSJ9fX0=",
+	      "uuid": "7f73a0d6-f9d5-4849-abf2-b2fd792d4991",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_cleric",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "farmer": {
+	      "displayName": "Swamp Farmer Villager",
+	      "langName": "villager.swamp.farmer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzQ4ZDVmODA4NDc4NTRlOGNkNTU2ZjE4NDdjZTM3M2E5OGJiYzdkZDAyMzJiNmUyMDY0NzQyNDQxMTk2NDg5NiJ9fX0=",
+	      "uuid": "1c26bd8c-6fea-45df-a1c7-687a48ab839e",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_farmer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "fisherman": {
+	      "displayName": "Swamp Fisherman Villager",
+	      "langName": "villager.swamp.fisherman",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODMyZTk4ZmM1ZDc3OGE0ZTM0ZDU1OTc2MWQ1YWY0YTYzYjJlMTZlZDkxZmE3N2E1NDJhZDdmNDlmZjA0MTM1MCJ9fX0=",
+	      "uuid": "324a9f09-4c86-450c-989a-421198b42249",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_fisherman",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "fletcher": {
+	      "displayName": "Swamp Fletcher Villager",
+	      "langName": "villager.swamp.fletcher",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmQ0ODQ0ZmUyZmI4N2QxNzEzMDY5MjU2MjRkYmM5ZjVjZGNmOGYyYTJjYjlkYjI1ZTJiNzdhMjc3OTAyYmFhZCJ9fX0=",
+	      "uuid": "1ea813a0-2921-4f3f-b6c1-e4783b232cc4",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_fletcher",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "leatherworker": {
+	      "displayName": "Swamp Leatherworker Villager",
+	      "langName": "villager.swamp.leatherworker",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTMzNGQ3OWY4ZmI0MjAzZDRiZmFhYWM4ZDU5NTVmZTA5NjVkY2JiMDMzNmVmMTY3NTc1NjdlMWQwODQyYjhhMyJ9fX0=",
+	      "uuid": "3542f7b3-e263-4a21-a67b-302af77a57c9",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_leatherworker",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "librarian": {
+	      "displayName": "Swamp Librarian Villager",
+	      "langName": "villager.swamp.librarian",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDI0MzU3ZWVkMGEzYTM5NGEyNmJkZjhmYzhlNjEzZTgzNjE5NmE3MmE1OTRkNWUwYWFiNmYzMDcyM2NjNDRkNCJ9fX0=",
+	      "uuid": "ad599620-65b0-4932-bd96-1307bd160942",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_librarian",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "mason": {
+	      "displayName": "Swamp Mason Villager",
+	      "langName": "villager.swamp.mason",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTMzNGQ3OWY4ZmI0MjAzZDRiZmFhYWM4ZDU5NTVmZTA5NjVkY2JiMDMzNmVmMTY3NTc1NjdlMWQwODQyYjhhMyJ9fX0=",
+	      "uuid": "f0e90655-0b2c-4281-af5f-9c76edfa8e04",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_mason",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "nitwit": {
+	      "displayName": "Swamp Nitwit Villager",
+	      "langName": "villager.swamp.nitwit",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzNmMGE2ZmRkNTkxNmRlNjhmN2Q5ZGM5ZmY5ZGQ5YWFkNWM3ZjNmMWQyYmJmNzJiOTU2YWQ0NTMzZTJkNmU1ZSJ9fX0=",
+	      "uuid": "29147086-eb71-437a-bc23-a35612119e3d",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.ambient",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "none": {
+	      "displayName": "Swamp Villager",
+	      "langName": "villager.swamp.none",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTU1MWE0OTlmN2FiMTc3YmE0M2FjYTQxZGZkOGZjNDExYjFkMWU1MDJhMzQ2ZjljNGQ2MGI3YTVlNTdmNDM2YyJ9fX0=",
+	      "uuid": "d8fcd176-507e-4eaf-9d3b-e956aac5e211",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.ambient",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "sheperd": {
+	      "displayName": "Swamp Sheperd Villager",
+	      "langName": "villager.swamp.sheperd",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDU0NWM0MWY3NGU1OThiYjE0ZDRlMTUyNGRhMzg1ZDU0YTRhZjYxMDA5YmM5MGRlYTA3MGZhY2NjZjMwYzViMiJ9fX0=",
+	      "uuid": "27461b58-8e1e-4dbc-a898-8655bb57e77a",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_shepherd",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "toolsmith": {
+	      "displayName": "Swamp Toolsmith Villager",
+	      "langName": "villager.swamp.toolsmith",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmM0YjE4Mzk4MWU0ODUxNDYxZTdiYjljNzEwY2Y4ZTViNjU3NWZiMjI0YzJhYzBjNmU1Y2FkM2MyYTVkMmY5OSJ9fX0=",
+	      "uuid": "17c01e16-ae97-4738-8536-1f2892fcf069",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_toolsmith",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "weaponsmith": {
+	      "displayName": "Swamp Weaponsmith Villager",
+	      "langName": "villager.swamp.weaponsmith",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTUwZjUxNzkxNjBmYTM1NDU0NzUyOTM1MDI2YmViY2Q5ODc1MTk5Njc1MGY1NGVjNWY5NTNhY2I4N2NiZWJjOSJ9fX0=",
+	      "uuid": "c30f8885-38c2-4933-bf3b-71e27771b61b",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_weaponsmith",
+	      "quantity": 1,
+	      "chance": 100.0
+	    }
+	  },
+	  "taiga": {
+	    "armorer": {
+	      "displayName": "Taiga Armorer Villager",
+	      "langName": "villager.taiga.armorer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2YxYmE0MTQ1NGZjNTVkZGUwNzlmYzE1YmYyMTQ2MTg5MWQ1YjVkMDNkZDQwMTZhZTdjZGViNDZhOGZjODQwNCJ9fX0=",
+	      "uuid": "451d1524-c582-4ffa-afb0-4bd8d2586dd2",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_armorer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "butcher": {
+	      "displayName": "Taiga Butcher Villager",
+	      "langName": "villager.taiga.butcher",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjI4ODdhMGZmNzg5YTdmY2FiOGU3NzhlNzEwZGJhZDBkOTYxZWJiYWFmYTVlZTA0MGUyMTM1YzVkM2E4Y2M3MiJ9fX0=",
+	      "uuid": "b2f48a4c-6b6d-4718-8a5a-257f91ec116d",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_butcher",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "cartographer": {
+	      "displayName": "Taiga Cartographer Villager",
+	      "langName": "villager.taiga.cartographer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzA4OWZiMjQ2YWEyZjNlZjI3NGQwMTQyOWQzNTM0NzE5ZTQyYjFhODE1MWNkYWMzMDM1NGQ0OTY3YjczYTc4MCJ9fX0=",
+	      "uuid": "4db86d7e-f9e2-4962-b61f-2e84d07d1653",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_cartographer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "cleric": {
+	      "displayName": "Taiga Cleric Villager",
+	      "langName": "villager.taiga.cleric",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2M1ZGVhOTljMjg2NzE4NTczOGJlMDJiNzFjYWNmMmNkYTRhMjczYzExNDliZTdhNTE2NGRhNzJmMGY5NDZmNyJ9fX0=",
+	      "uuid": "7c507bcd-766a-4c11-8724-7104cae126f3",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_cleric",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "farmer": {
+	      "displayName": "Taiga Farmer Villager",
+	      "langName": "villager.taiga.farmer",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTU3ZjM4M2IwYmRiNDU2OTU3Y2ZiY2M1MmIyODA4YTBmOGEwMGMzNTlkMTVhZWIwMTNmNTYzNGZhMDAzNzkyIn19fQ==",
+	      "uuid": "d1893e4b-b62f-49ed-8ccb-5d4f6a283c65",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_farmer",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "fisherman": {
+	      "displayName": "Taiga Fisherman Villager",
+	      "langName": "villager.taiga.fisherman",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWI5YzZlZGI1YzBiYTU0YjIwM2RiZjA0ODI3M2M0YmFkYjE1Y2VjMWQzMjI4NjUwZDJjMmZlNWIzZmFiM2NiYiJ9fX0=",
+	      "uuid": "a2eb3270-0257-427e-9889-5e92852b0fec",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_fisherman",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "fletcher": {
+	      "displayName": "Taiga Fletcher Villager",
+	      "langName": "villager.taiga.fletcher",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDllMTVmODQ4YjUwODMyMGRiZjE2NGJmMGQ0YmFjODlkNTE3MWYxODZiZWViNDFjN2JkMzQ2MDExYzg3YmQ4YiJ9fX0=",
+	      "uuid": "649921fd-8bef-4986-8386-e2590c401259",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_fletcher",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "leatherworker": {
+	      "displayName": "Taiga Leatherworker Villager",
+	      "langName": "villager.taiga.leatherworker",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2VhNTI0ZjM3ZjYyYmI1YWQyMWYyZmEzNjU1ZmE2MWZhOGQxNWRjNWE3MjYwNzEyNGFjOGU4NDkwNzUxZmYyNyJ9fX0=",
+	      "uuid": "e70b3715-29a1-4b6f-a839-93d217ea53ba",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_leatherworker",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "librarian": {
+	      "displayName": "Taiga Librarian Villager",
+	      "langName": "villager.taiga.librarian",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjcxNzYyYzg5Mzk2OWQyN2U3Njk5YjgzNWViODU5ZTIxOTk2YzM2NDUwM2Q4NzBlNTQ1MTBiY2JmOGUzOWFmYiJ9fX0=",
+	      "uuid": "099b6827-bad3-43e2-9b31-de60e7647e90",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_librarian",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "mason": {
+	      "displayName": "Taiga Mason Villager",
+	      "langName": "villager.taiga.mason",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDZkZmIwNGVjYTQ5NmU1MjQ3NjNlMjg4Y2YxY2Q1MzZmNGNjN2U5ZmY4MjJlYjI3OWVjZmU3YmU2N2JjYWMzOSJ9fX0=",
+	      "uuid": "4b262358-041a-41e0-9db9-da8d20b0b1d6",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_mason",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "nitwit": {
+	      "displayName": "Taiga Nitwit Villager",
+	      "langName": "villager.taiga.nitwit",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjhhOGMzNDk1OTA3MTVhNmZkNDFhMTc3MDI4MzNlMjdlMThhODFmNGQ2ZGM1Njk4MWUwNTEyNDU5MGUyMGUwYSJ9fX0=",
+	      "uuid": "254ad245-7348-4681-8306-e3aef9f40b0e",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.ambient",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "none": {
+	      "displayName": "Taiga Villager",
+	      "langName": "villager.taiga.none",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWE5OTZlNmZiODdkNDAzODU1ODIxODAzYjYwODc3OTRhMTEwMjA2MGIyYjA2NGY1NmQwMDg4YjliMDhmMTk4MiJ9fX0=",
+	      "uuid": "7b8fbb6c-e6aa-4b66-bf85-6e9439ea8563",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.ambient",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "sheperd": {
+	      "displayName": "Taiga Sheperd Villager",
+	      "langName": "villager.taiga.sheperd",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjRkNWI2YjQ2OTQ0MzBmNzA2OGQxMDFkNWU4YWE4OTdkM2Q2NjUwODYwNWZiY2ZjNjRkZDNkOTcyYmM0NTUyYyJ9fX0=",
+	      "uuid": "4308f5e7-591c-4f60-904b-690f445f2785",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_shepherd",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "toolsmith": {
+	      "displayName": "Taiga Toolsmith Villager",
+	      "langName": "villager.taiga.toolsmith",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDFlMmRkNzQ4ZDk2MTkyYTU4N2FjODU0M2ZiZWZjYTQ2MjgyYWQwMDgxMGZhMzM0OTdlZmZlMGM5ZDU2NzhiMCJ9fX0=",
+	      "uuid": "5bffb69b-616b-49bb-a024-b338abc54e9d",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_toolsmith",
+	      "quantity": 1,
+	      "chance": 100.0
+	    },
+	    "weaponsmith": {
+	      "displayName": "Taiga Weaponsmith Villager",
+	      "langName": "villager.taiga.weaponsmith",
+	      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTUxMzMxMzE4N2RiM2MwOWJlYzc4NzU1NzdmZmY2ZGM0YjYxZDlmZDA3NDMwZmRhOTBmNzhiOTUwYjQwOTY2OCJ9fX0=",
+	      "uuid": "1f2a4e15-4ebe-4183-84bc-181dc8e33045",
+	      "lore": [],
+	      "noteblockSound": "entity.villager.work_weaponsmith",
+	      "quantity": 1,
+	      "chance": 100.0
+	    }
+	  }
+    }
+  }
+}

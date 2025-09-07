@@ -1,0 +1,16 @@
+{
+  "defaultChance": 0.5,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Blaze",
+      "langName": "blaze",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGVlMjNkYzdhMTBjNmE4N2VmOTM3NDU0YzBlOTRlZDQyYzIzYWE2NDFhOTFlZDg0NzBhMzA0MmQwNWM1MmM1MiJ9fX0=",
+      "uuid": "ca339549-96da-4f39-8cb8-ebd5c27b83a3",
+      "lore": [],
+      "noteblockSound": "entity.blaze.ambient",
+      "quantity": 1,
+      "chance": 0.5
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "defaultChance": 10.0,
+  "structure": "nested",
+  "heads": {
+    "strider": {
+      "normal": {
+        "displayName": "Strider",
+        "langName": "strider.normal",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGQ2OWVlODMxMmNjN2IxY2ZiZDk1ZTQxZTg5NzFiMmIzNjAyY2FmYTExMDJjMWNjODhhZGQ2MTdmMjhjZmM3ZCJ9fX0=",
+        "uuid": "9fde30af-3e79-433b-b4af-ae9cc52b0c96",
+        "lore": [],
+        "noteblockSound": "entity.strider.ambient",
+        "quantity": 1,
+        "chance": 10.0
+      },
+      "shivering": {
+        "displayName": "Shivering Strider",
+        "langName": "strider.shivering",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjkwYTEyMDI4YjkwYzBkYTFkNGQxN2U2ZmUxYmY1YmNhZjMzZGNmY2Y0ZTVkNTQ5MzkxMDZiMTg2Y2UyMWQ3NiJ9fX0=",
+        "uuid": "d843d702-9a8c-419a-80d5-da6c51a2c006",
+        "lore": [],
+        "noteblockSound": "entity.strider.ambient",
+        "quantity": 1,
+        "chance": 10.0
+      }
+    }
+  }
+}

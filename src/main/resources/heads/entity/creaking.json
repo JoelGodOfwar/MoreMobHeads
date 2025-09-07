@@ -1,0 +1,17 @@
+{
+  "defaultChance": 10.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Creaking",
+      "langName": "creaking",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWUyZDc1NmJiMGU4NGZmN2E1NjQ2MTFjODRhOTk2OTJjMjBiZWIxYzE4NDJjYzgzMWNkOGFmYTBlNzFkN2E4In19fQ==",
+      "uuid": "f4e84144-5b0d-4b6f-b0b2-b59a7bc1a3db",
+      "lore": [],
+      "noteblockSound": "entity.creaking.ambient",
+      "quantity": 1,
+      "chance": 10.0,
+      "min_mc_version": "1.21.4"
+    }
+  ]
+} 

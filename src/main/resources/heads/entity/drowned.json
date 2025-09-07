@@ -1,0 +1,16 @@
+{
+  "defaultChance": 5.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Drowned",
+      "langName": "drowned",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzNmN2NjZjYxZGJjM2Y5ZmU5YTYzMzNjZGUwYzBlMTQzOTllYjJlZWE3MWQzNGNmMjIzYjNhY2UyMjA1MSJ9fX0=",
+      "uuid": "937deebb-00ac-4304-adbf-d7968421a4a2",
+      "lore": [],
+      "noteblockSound": "entity.drowned.ambient",
+      "quantity": 1,
+      "chance": 5.0
+    }
+  ]
+} 

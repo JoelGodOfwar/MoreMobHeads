@@ -1,0 +1,28 @@
+{
+  "defaultChance": 50.0,
+  "structure": "nested",
+  "heads": {
+    "creeper": {
+      "normal": {
+        "displayName": "Creeper",
+        "langName": "creeper.normal",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGVhZjg1MmMyYjczOGU5ODY0OThlZGFlYmZlMGZmZWE5ZTkxM2ZkNGJhZmIyNWJlYmZlZDVhYjNmZGFmYWY3NCJ9fX0=",
+        "uuid": "c66c91fd-6fb5-414f-b70e-39c19edf3d28",
+        "lore": [],
+        "noteblockSound": "entity.creeper.primed",
+        "quantity": 1,
+        "chance": 50.0
+      },
+      "charged": {
+        "displayName": "Charged Creeper",
+        "langName": "creeper.charged",
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTkyZmI3NTM4YWQxYWQwOTRiMDQ0MjYzNTM4OTlmMzVjYzI0OWU3MzU0MzY1ZDcwOWU5OGE5ZGNiMmM4MWU0NCJ9fX0=",
+        "uuid": "011c00c6-86da-11eb-8dcd-0242ac130003",
+        "lore": [],
+        "noteblockSound": "entity.creeper.primed",
+        "quantity": 1,
+        "chance": 100.0
+      }
+    }
+  }
+}

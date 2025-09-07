@@ -1,0 +1,16 @@
+{
+  "defaultChance": 5.0,
+  "structure": "flat",
+  "heads": [
+    {
+      "displayName": "Snow Golem",
+      "langName": "snow_golem",
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2FhM2UxN2VmMWIyOWE0Yjg3ZmE0M2RlZTFkYjEyYzQxZmQzOWFhMzg3ZmExM2FmMmEwNzliNWIzNzhmZGU4YiJ9fX0=",
+      "uuid": "82a04987-3371-41e2-ac43-91769b4461e7",
+      "lore": [],
+      "noteblockSound": "entity.snow_golem.hurt",
+      "quantity": 1,
+      "chance": 5.0
+    }
+  ]
+}  

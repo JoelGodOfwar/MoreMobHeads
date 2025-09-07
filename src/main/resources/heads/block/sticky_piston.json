@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "STICKY_PISTON",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Sticky Piston",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzNmYmVjZjNhMmZlMTQ4MGUyOWQ2NGIwNDZkYzAyNjMyODU2NjZlYjA1NzE5NDM0NDYzZDBmYjk2NjUxZDYzZiJ9fX0=",
+    "uuid": "0d5aba27-b0dc-40bf-83ed-cbd448e3e28c",
+    "lore": [],
+    "noteblockSound": "block.piston.contract",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

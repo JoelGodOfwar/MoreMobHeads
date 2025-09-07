@@ -1,0 +1,26 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "SNIFFER_EGG",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Sniffer Egg",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjk2OTE3ZDZmZDBhMjQ3M2ZhNjE4YTU5ZTcxNjQ5NzVjNmMzMTI5MDI1NDlmYzNjYzE5ZmI4ZmM3YjdhY2FkNCJ9fX0=",
+    "uuid": "029d1bf0-849a-4808-bb33-8cd4da9d7835",
+    "lore": [],
+    "noteblockSound": "block.sniffer_egg.crack",
+    "quantity": 8,
+    "maxUses": 1,
+    "min_mc_version": "1.20"
+  }
+} 

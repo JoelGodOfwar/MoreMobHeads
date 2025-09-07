@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "VERDANT_FROGLIGHT",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Verdant Froglight",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjMyOWRkNjM2ZDRjMGQ3NjQzMThlNjdiNWVlYmI2MTI2NWQyYzc2OTY0YTVmMGI1NDA3MTlmMGNkNWJjMjcxYyJ9fX0=",
+    "uuid": "f04ed9c4-3b8f-4837-8347-db0bb4235927",
+    "lore": [],
+    "noteblockSound": "block.froglight.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

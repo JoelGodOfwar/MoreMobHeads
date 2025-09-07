@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "SPRUCE_PLANKS",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Spruce Planks",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTBlYjE5NjhmZjJkYTZiY2E2OGY1OWI2MTExNzEzZTA4ZDIyNDk5MjI5ZTEwODY0NDljYmE1MGY3ZGU2NGFlIn19fQ==",
+    "uuid": "dc0540a2-e511-4e0c-b513-3020b20e8a70",
+    "lore": [],
+    "noteblockSound": "block.wood.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

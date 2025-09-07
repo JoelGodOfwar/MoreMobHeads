@@ -1,0 +1,25 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "SOUL_SOIL",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Soul Soil",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2JjMjFhMDdhZDdkYzEyNWY2YzI0YzdjMTg5N2RkYjFmMmRhZjkzNWQ5ZjZhZjZjMmViMDY5MmQ2NGFmZWMxMSJ9fX0=",
+    "uuid": "033a3949-7ae2-41b7-9224-f6ee6fa5adf4",
+    "lore": [],
+    "noteblockSound": "block.soul_soil.place",
+    "quantity": 8,
+    "maxUses": 1
+  }
+}  

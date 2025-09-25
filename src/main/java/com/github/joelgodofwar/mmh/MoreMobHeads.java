@@ -77,7 +77,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings({ "unchecked", "rawtypes", "deprecation", "unused" })
 public class MoreMobHeads extends JavaPlugin implements Listener{
 	//** Languages: čeština (cs_CZ), Deutsch (de_DE), English (en_US), Español (es_ES), Español (es_MX), Français (fr_FR), Italiano (it_IT), Magyar (hu_HU), 日本語 (ja_JP), 한국어 (ko_KR), Lolcat (lol_US), Melayu (my_MY), Nederlands (nl_NL), Polski (pl_PL), Português (pt_BR), Русский (ru_RU), Svenska (sv_SV), Türkçe (tr_TR), 中文(简体) (zh_CN), 中文(繁體) (zh_TW) */
-	public static final long DEV_BUILD_START_TIME = 1757126264L; // Placeholder for Maven replacement
+	public static final long DEV_BUILD_START_TIME = 1758762004L; // Placeholder for Maven replacement
 	public final com.github.joelgodofwar.mmh.util.BuildValidator buildValidator = new BuildValidator();
 	public static String THIS_NAME;
 	public static String THIS_VERSION;

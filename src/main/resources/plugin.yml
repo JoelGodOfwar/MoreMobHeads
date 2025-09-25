@@ -1,6 +1,6 @@
 name: MoreMobHeads
 main: com.github.joelgodofwar.mmh.MoreMobHeads
-version: 1.20_1.0.43.D9
+version: 1.20_1.0.43.D10
 author: JoelYahwehOfWar
 api-version: 1.20
 softdepend: [SilenceMobs, PlaceholderAPI, VentureChat, Essentials, EssentialsX, HexNicks, HeadBlocks, MoreMobHeadsHelper-1.21.5]

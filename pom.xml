@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>MoreMobHeads</groupId>
   <artifactId>MoreMobHeads</artifactId>
-  <version>1.20_1.0.43.D9-DEV</version>
+  <version>1.20_1.0.43.D10-DEV</version>
   <name>More Mob Heads</name>
   <description>Drops mob heads when a mob is killed.</description>
   <scm>

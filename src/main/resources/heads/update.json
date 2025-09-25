@@ -1,1 +1,13 @@
-
+{
+  "min_mc_version": "1.20",
+  "max_mc_version": "1.21.9",
+  "defaultChance": 100,
+  "files": [
+    {
+      "file": "entity/tropical_fish.json",
+      "backup/delete": true
+    }
+  ],
+  "heads": {},
+  "structure": "nested"
+}

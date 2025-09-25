@@ -21,6 +21,7 @@ public class JsonUpdateHandler {
 	private final MoreMobHeads mmh;
 	private static final String STATUS_KEY = "status";
 	private static final String STATUS_COMPLETED = "completed";
+	private static final String PROCESSED_VERSION_KEY = "processedVersion";
 
 	public JsonUpdateHandler(MoreMobHeads plugin) {
 		this.mmh = plugin;
@@ -33,21 +34,94 @@ public class JsonUpdateHandler {
 			return;
 		}
 
-		File updateFile = new File(headsDir, "update.json");
-		if (!updateFile.exists()) {
-			mmh.LOGGER.log("update.json not found in " + headsDirPath);
+		String currentVersion = mmh.getDescription().getVersion();
+		File tempUpdateFile = new File(mmh.getDataFolder(), "temp_update.json");
+		String jarUpdatePath = "heads/update.json";
+
+		// Step 0: Extract JAR's update.json to temp
+		try {
+			JarUtil.copyFileFromJar(jarUpdatePath, tempUpdateFile.getAbsolutePath());
+			if (!tempUpdateFile.exists()) {
+				mmh.LOGGER.log("No update.json found in JAR at " + jarUpdatePath + ", skipping update process");
+				return;
+			}
+		} catch (Exception e) {
+			mmh.LOGGER.warn("Failed to extract update.json from JAR: " + e.getMessage());
 			return;
 		}
 
-		try {
-			String content = new String(Files.readAllBytes(updateFile.toPath()));
-			JSONObject json = new JSONObject(content);
+		File serverUpdateFile = new File(headsDir, "update.json");
+		boolean shouldProcess = true;
+		String serverProcessedVersion = null;
 
-			// Check if the update has already been processed
-			if (json.has(STATUS_KEY) && json.getString(STATUS_KEY).equals(STATUS_COMPLETED)) {
-				mmh.LOGGER.log("update.json has already been processed for plugin version " + mmh.getDescription().getVersion() + ", skipping update process");
-				return;
+		// Check server's update.json version
+		if (serverUpdateFile.exists()) {
+			try {
+				String serverContent = new String(Files.readAllBytes(serverUpdateFile.toPath()));
+				JSONObject serverJson = new JSONObject(serverContent);
+				if (serverJson.has(PROCESSED_VERSION_KEY)) {
+					serverProcessedVersion = serverJson.getString(PROCESSED_VERSION_KEY);
+					int compareResult = compareVersions(serverProcessedVersion, currentVersion);
+					if (compareResult >= 0) {
+						mmh.LOGGER.log("Server update.json is up-to-date (processed for " + serverProcessedVersion + "), skipping for version " + currentVersion);
+						shouldProcess = false;
+					} else {
+						mmh.LOGGER.log("Server update.json is outdated (processed for " + serverProcessedVersion + " < " + currentVersion + "), overwriting and re-processing");
+					}
+				} else {
+					mmh.LOGGER.log("Server update.json lacks processedVersion (legacy), overwriting and processing for " + currentVersion);
+				}
+			} catch (Exception e) {
+				mmh.LOGGER.warn("Error reading server update.json for version check: " + e.getMessage());
+				// Fall back to processing
 			}
+		} else {
+			mmh.LOGGER.log("No server update.json found, copying from JAR for version " + currentVersion);
+		}
+
+		if (!shouldProcess) {
+			if (tempUpdateFile.exists()) {
+				tempUpdateFile.delete(); // Cleanup
+			}
+			return;
+		}
+
+		// Backup old server file if exists
+		if (serverUpdateFile.exists()) {
+			File backupBaseDir = new File(mmh.getDataFolder(), "backup");
+			if (!backupBaseDir.exists()) {
+				backupBaseDir.mkdirs();
+			}
+			String relativePath = "heads/update.json";
+			File backupFile = new File(backupBaseDir, relativePath);
+			File backupParentDir = backupFile.getParentFile();
+			if (!backupParentDir.exists()) {
+				backupParentDir.mkdirs();
+			}
+			try {
+				Files.copy(serverUpdateFile.toPath(), backupFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				mmh.LOGGER.log("Backed up old update.json to: " + backupFile.getAbsolutePath());
+			} catch (IOException e) {
+				mmh.LOGGER.warn("Failed to backup old update.json: " + e.getMessage());
+			}
+		}
+
+		// Overwrite server with JAR's temp file
+		try {
+			Files.copy(tempUpdateFile.toPath(), serverUpdateFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+			mmh.LOGGER.log("Overwritten server update.json with JAR version for " + currentVersion);
+		} catch (IOException e) {
+			mmh.LOGGER.warn("Failed to copy JAR update.json to server: " + e.getMessage());
+			if (tempUpdateFile.exists()) {
+				tempUpdateFile.delete();
+			}
+			return;
+		}
+
+		// Now process
+		try {
+			String content = new String(Files.readAllBytes(serverUpdateFile.toPath()));
+			JSONObject json = new JSONObject(content);
 
 			// Step 1: Read chance_config.yml (but don't migrate chances yet)
 			Map<String, Double> chanceMap = new HashMap<>();
@@ -439,16 +513,71 @@ public class JsonUpdateHandler {
 				}
 			}
 
-			// Step 5: Mark the update as completed
+			// Step 5: Mark as completed and add processed version
 			json.put(STATUS_KEY, STATUS_COMPLETED);
-			try (FileWriter writer = new FileWriter(updateFile)) {
+			json.put(PROCESSED_VERSION_KEY, currentVersion);
+			try (FileWriter writer = new FileWriter(serverUpdateFile)) {
 				writer.write(json.toString(4));
-				mmh.LOGGER.log("Marked update.json as completed for plugin version " + mmh.getDescription().getVersion());
+				mmh.LOGGER.log("Marked update.json as completed for plugin version " + currentVersion);
 			}
 
-		} catch (IOException e) {
+		} catch (Exception e) {  // Broader catch for processing errors
 			mmh.LOGGER.warn("Error processing update.json: " + e.getMessage());
 			e.printStackTrace();
+			// Don't set completed on error, so it can retry
+		} finally {
+			if (tempUpdateFile.exists()) {
+				tempUpdateFile.delete();
+			}
 		}
+	}
+
+	/**
+	 * Compares two version strings (e.g., "1.20_1.0.43.D9" vs "1.20_1.0.43.D10").
+	 * Returns -1 if v1 < v2, 0 if equal, 1 if v1 > v2.
+	 */
+	private int compareVersions(String v1, String v2) {
+		if (v1 == null || v2 == null) {
+			return -1; // Treat null as older
+		}
+		String[] parts1 = v1.split("[._]");
+		String[] parts2 = v2.split("[._]");
+		int minLength = Math.min(parts1.length, parts2.length);
+		for (int i = 0; i < minLength; i++) {
+			String p1 = parts1[i];
+			String p2 = parts2[i];
+			// Handle dev suffix like "D9"
+			if (p1.startsWith("D") && p2.startsWith("D")) {
+				try {
+					int n1 = Integer.parseInt(p1.substring(1));
+					int n2 = Integer.parseInt(p2.substring(1));
+					if (n1 != n2) {
+						return Integer.compare(n1, n2);
+					}
+				} catch (NumberFormatException e) {
+					// Fallback to string compare if invalid
+					if (!p1.equals(p2)) {
+						return p1.compareTo(p2) < 0 ? -1 : 1;
+					}
+				}
+			} else if (isNumeric(p1) && isNumeric(p2)) {
+				int n1 = Integer.parseInt(p1);
+				int n2 = Integer.parseInt(p2);
+				if (n1 != n2) {
+					return Integer.compare(n1, n2);
+				}
+			} else {
+				// String compare for non-numeric
+				if (!p1.equals(p2)) {
+					return p1.compareTo(p2) < 0 ? -1 : 1;
+				}
+			}
+		}
+		// If prefixes match, shorter is older
+		return Integer.compare(parts1.length, parts2.length);
+	}
+
+	private boolean isNumeric(String s) {
+		return s.matches("\\d+");
 	}
 }

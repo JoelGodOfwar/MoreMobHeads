@@ -9,7 +9,8 @@ D6	Optimized Wandering Trader trade selection to fix server hangs.
 D7	Started standardizing MMH to optimize code. Updated MMH Library to work with 1.21.8-1.21.9
 D8	Added MobHeadDropEvent for developers.
 D9	Added CoreUtils Library. Added Exploding bed damage as WeaponType for beheading messages.
-D10	.
+D10	Added new features to 1.20 eventHandler for parity. Streamlined code for quicker fixes and updates.
+D11	.
 1.20_1.0.42
 D1	Fixed Wolves, Cows, Pigs, Chickens broken by spigot and paper. added player.json to entity for player head chance.
 1.20_1.0.41

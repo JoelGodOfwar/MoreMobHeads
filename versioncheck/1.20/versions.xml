@@ -1,5 +1,5 @@
 <versions>
-  <dlcs>mmh_all_logs.zip;48;$2;heads/block/all_logs_acacia_log_horizontal.json,mmh_all_woods;22;$1;heads/block/acacia_wood.json,mmh_all_shulker_boxes;17;$1;heads/block/red_shulker_box.json</dlcs>
+  <dlcs>mmh_all_logs.zip;48;$2;heads/block/all_logs_acacia_log_horizontal.json,mmh_all_woods;22;$1;heads/block/acacia_wood.json,mmh_all_shulker_boxes;17;$1;heads/block/red_shulker_box.json,mmh_copper_golems.zip;4;$1;heads/entity/copper_golem_exposed.json</dlcs>
   <release>
     <version>1.20_1.0.42</version>
     <notes>1.20_1.0.42

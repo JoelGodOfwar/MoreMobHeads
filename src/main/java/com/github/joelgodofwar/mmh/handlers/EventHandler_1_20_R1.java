@@ -12,6 +12,7 @@ import javax.annotation.Nonnull;
 import com.github.joelgodofwar.mmh.enums.Perms;
 import com.github.joelgodofwar.mmh.events.BeheadingHandler;
 import com.github.joelgodofwar.mmh.util.heads.*;
+import lib.github.joelgodofwar.coreutils.util.ChatColorUtils;
 import lib.github.joelgodofwar.coreutils.util.StrUtils;
 import lib.github.joelgodofwar.coreutils.util.Version;
 import lib.github.joelgodofwar.coreutils.util.YmlConfiguration;
@@ -79,7 +80,7 @@ import com.github.joelgodofwar.mmh.command.ViewHeadsCommand;
 import com.github.joelgodofwar.mmh.common.PluginLibrary;
 import com.github.joelgodofwar.mmh.common.error.DetailedErrorReporter;
 import com.github.joelgodofwar.mmh.common.error.Report;
-import com.github.joelgodofwar.mmh.util.ChatColorUtils;
+
 import com.github.joelgodofwar.mmh.util.DLCInstaller;
 
 import com.github.joelgodofwar.mmh.util.VerifyConfig;

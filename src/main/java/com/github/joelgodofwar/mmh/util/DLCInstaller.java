@@ -50,8 +50,7 @@ public class DLCInstaller {
 	/**
 	 * Processes all DLC ZIP files in the update directory.
 	 *
-	 * @throws IOException if an error occurs during file processing
-	 */
+     */
 	public void processDLCs() {
 		if (!plugin.getConfig().getBoolean("enable_dlc", true)) {
 			plugin.getLogger().info("DLC processing disabled in config.");

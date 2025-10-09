@@ -14,21 +14,6 @@ import com.google.common.collect.ImmutableList;
 public class PluginLibrary {
 
 	/**
-	 * The minimum version MoreMobHeads has been tested with.
-	 */
-	public static final String MINIMUM_MINECRAFT_VERSION = "1.20";
-
-	/**
-	 * The maximum version MoreMobHeads has been tested with.
-	 */
-	public static final String MAXIMUM_MINECRAFT_VERSION = "1.21.8";
-
-	/**
-	 * The date (with ISO 8601 or YYYY-MM-DD) when the most recent version (1.20.4) was released.
-	 */
-	public static final String MINECRAFT_LAST_RELEASE_DATE = "2023-12-07";
-
-	/**
 	 * Plugins that are currently incompatible with MoreMobHeads.
 	 */
 	public static final List<String> INCOMPATIBLE = ImmutableList.of("");

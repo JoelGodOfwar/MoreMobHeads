@@ -65,7 +65,19 @@ public class DLCHeads {
 							"§9mmh_all_woods (§f22 Heads§9)",
 							"§eat §fhttps://ko-fi.com/joelgodofwar"
 							)
+					),
+			new DLCHeadInfo(
+					"§7Exposed Copper Golem",
+					"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZThmOWMyYzE2YjBmOWFjMTZjZmNhNWM5Y2JiOWUxYjM4NTdiNzk2ODA4NTMxZTU1MWI3ODZkYTdmZTYyNzliNiJ9fX0=",
+					"cbaa8714-2a84-4252-8fe3-59a4dd51d31c",
+					"mmh_copper_golems",
+					Arrays.asList(
+							"§eWant more Copper Golem heads?",
+							"§eAsk your Admin to get DLC:",
+							"§9mmh_copper_golems (§f4 Heads§9)",
+							"§eat §fhttps://ko-fi.com/joelgodofwar"
 					)
+			)
 			);
 
 	public static List<ItemStack> getDLCHeads(MoreMobHeads mmh) {

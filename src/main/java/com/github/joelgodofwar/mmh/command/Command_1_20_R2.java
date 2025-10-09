@@ -297,7 +297,7 @@ public class Command_1_20_R2 implements CommandExecutor, TabCompleter {
 											"chance_dump" + ".log");
 									PrintWriter pw = null;
 									try {
-										pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(chanceFile), "UTF-8"));
+										pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(chanceFile), StandardCharsets.UTF_8));
 										for (String s : daSet) {
 											pw.println(s);
 										}
@@ -326,7 +326,7 @@ public class Command_1_20_R2 implements CommandExecutor, TabCompleter {
 				// Reload subcommand
 				if (args[0].equalsIgnoreCase("reload")) {
 					try { // REPORT_COMMAND_RELOAD_ERROR "Error executing Reload command."
-						boolean hasPerm = Perms.RELOAD.hasPermission(sender) || !(sender instanceof Player);
+						boolean hasPerm = Perms.RELOAD.hasPermission(sender);
 						mmh.logDebug(sender.getName() + " has the permission " + Perms.RELOAD.toString() + "=" + hasPerm);
 						if (hasPerm || mmh.isDev || !(sender instanceof Player)) {
 							mmh.LOGGER.log("Reloading MoreMobHeads...");
@@ -464,7 +464,7 @@ public class Command_1_20_R2 implements CommandExecutor, TabCompleter {
 								mmh.traderCustom.set("custom_trades.trade_" + (tradeNumber + 1) + ".price_1", price1);
 								mmh.traderCustom.set("custom_trades.trade_" + (tradeNumber + 1) + ".price_2", price2);
 								mmh.traderCustom.set("custom_trades.trade_" + (tradeNumber + 1) + ".itemstack", itemstack);
-								/** Code to fix missing noteblock SkullMeta */
+								/* Code to fix missing noteblock SkullMeta */
 								boolean doIt = Version.IsSupportedVersion.SPIGOT.check("1.20.2.3936");
 								if(doIt) {
 									mmh.LOGGER.log("CT A doIt=" + doIt);

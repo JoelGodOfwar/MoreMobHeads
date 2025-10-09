@@ -1,14 +1,17 @@
 package com.github.joelgodofwar.mmh.command;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.github.joelgodofwar.mmh.MoreMobHeads;
+import com.github.joelgodofwar.mmh.common.error.DetailedErrorReporter;
+import com.github.joelgodofwar.mmh.common.error.Report;
+import com.github.joelgodofwar.mmh.common.error.ReportType;
+import com.github.joelgodofwar.mmh.util.gui.Language;
+import com.github.joelgodofwar.mmh.util.heads.HeadUtils;
+import com.github.joelgodofwar.mmh.util.heads.InventoryGUI;
 import lib.github.joelgodofwar.coreutils.util.YmlConfiguration;
-import lib.github.joelgodofwar.coreutils.util.common.PluginLogger;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -19,19 +22,8 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.github.joelgodofwar.mmh.MoreMobHeads;
-
-import com.github.joelgodofwar.mmh.common.error.DetailedErrorReporter;
-import com.github.joelgodofwar.mmh.common.error.Report;
-import com.github.joelgodofwar.mmh.common.error.ReportType;
-import com.github.joelgodofwar.mmh.util.gui.Language;
-import com.github.joelgodofwar.mmh.util.heads.HeadUtils;
-import com.github.joelgodofwar.mmh.util.heads.InventoryGUI;
-
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
+import java.io.File;
+import java.util.*;
 
 public class ConfigGuiCommand {
 	private final MoreMobHeads mmh;
@@ -39,8 +31,7 @@ public class ConfigGuiCommand {
 	private final File configFile;
 	private static final NamespacedKey MENU_KEY = new NamespacedKey(MoreMobHeads.getInstance(), "menu_action");
 	@SuppressWarnings("unused") private static final String DLC_CUTOFF_VERSION = "1.1.0"; // Version when DLC becomes required
-	private PluginLogger LOGGER;
-	private static DetailedErrorReporter reporter;
+    private static DetailedErrorReporter reporter;
 	public static final ReportType COMMAND_CONFIG_EXECUTE = new ReportType("Error executing Config Command.");
 	public static final ReportType COMMAND_CONFIG_CONFIGMAIN = new ReportType("Error processing configMain.");
 	public static final ReportType COMMAND_CONFIG_CONFIGPSETTINGS = new ReportType("Error processing configPSettings.");
@@ -55,8 +46,7 @@ public class ConfigGuiCommand {
 		this.mmh = plugin;
 		this.configFile = new File(plugin.getDataFolder(), "config.yml");
 		this.config = mmh.config;
-		this.LOGGER = mmh.LOGGER;
-		this.reporter = new DetailedErrorReporter(mmh);
+        this.reporter = new DetailedErrorReporter(mmh);
 	}
 
 	public void execute(Player player) {
@@ -74,7 +64,7 @@ public class ConfigGuiCommand {
 
 	private boolean isGuiAccessible() {
 		// Check if DLC is installed
-		/** if (mmh.isDlcInstalled()) {
+		/* if (mmh.isDlcInstalled()) {
 			return true;
 		}
 		// Check dev_mode and version
@@ -108,7 +98,7 @@ public class ConfigGuiCommand {
 			ItemMeta psMeta = pluginSettings.getItemMeta();
 			if (psMeta != null) {
 				psMeta.setDisplayName(ChatColor.YELLOW + "Plugin Settings");
-				psMeta.setLore(Arrays.asList(ChatColor.GRAY + "Click to view plugin settings"));
+				psMeta.setLore(List.of(ChatColor.GRAY + "Click to view plugin settings"));
 				psMeta.getPersistentDataContainer().set(MENU_KEY, PersistentDataType.STRING, "plugin_settings");
 				pluginSettings.setItemMeta(psMeta);
 			}
@@ -129,7 +119,7 @@ public class ConfigGuiCommand {
 			ItemMeta gsMeta = globalSettings.getItemMeta();
 			if (gsMeta != null) {
 				gsMeta.setDisplayName(ChatColor.YELLOW + "Global Settings");
-				gsMeta.setLore(Arrays.asList(ChatColor.GRAY + "Click to view global settings"));
+				gsMeta.setLore(List.of(ChatColor.GRAY + "Click to view global settings"));
 				gsMeta.getPersistentDataContainer().set(MENU_KEY, PersistentDataType.STRING, "global_settings");
 				globalSettings.setItemMeta(gsMeta);
 			}
@@ -150,7 +140,7 @@ public class ConfigGuiCommand {
 			ItemMeta hsMeta = headSettings.getItemMeta();
 			if (hsMeta != null) {
 				hsMeta.setDisplayName(ChatColor.YELLOW + "Head Settings");
-				hsMeta.setLore(Arrays.asList(ChatColor.GRAY + "Click to view head settings"));
+				hsMeta.setLore(List.of(ChatColor.GRAY + "Click to view head settings"));
 				hsMeta.getPersistentDataContainer().set(MENU_KEY, PersistentDataType.STRING, "head_settings");
 				headSettings.setItemMeta(hsMeta);
 			}
@@ -171,7 +161,7 @@ public class ConfigGuiCommand {
 			ItemMeta wtMeta = wanderingTrades.getItemMeta();
 			if (wtMeta != null) {
 				wtMeta.setDisplayName(ChatColor.YELLOW + "Wandering Trades Settings");
-				wtMeta.setLore(Arrays.asList(ChatColor.GRAY + "Click to configure wandering trader trades"));
+				wtMeta.setLore(List.of(ChatColor.GRAY + "Click to configure wandering trader trades"));
 				wtMeta.getPersistentDataContainer().set(MENU_KEY, PersistentDataType.STRING, "wandering_trades");
 				wanderingTrades.setItemMeta(wtMeta);
 			}
@@ -321,7 +311,7 @@ public class ConfigGuiCommand {
 			ItemMeta prevMeta = prevButton.getItemMeta();
 			if (prevMeta != null) {
 				prevMeta.setDisplayName(ChatColor.YELLOW + "Previous Menu");
-				prevMeta.setLore(Arrays.asList(ChatColor.GRAY + "Return to Config Settings"));
+				prevMeta.setLore(List.of(ChatColor.GRAY + "Return to Config Settings"));
 				prevMeta.getPersistentDataContainer().set(MENU_KEY, PersistentDataType.STRING, "previous_menu");
 				prevButton.setItemMeta(prevMeta);
 			}
@@ -649,7 +639,7 @@ public class ConfigGuiCommand {
 			ItemMeta prevMeta = prevButton.getItemMeta();
 			if (prevMeta != null) {
 				prevMeta.setDisplayName(ChatColor.YELLOW + "Previous Menu");
-				prevMeta.setLore(Arrays.asList(ChatColor.GRAY + "Return to Config Settings"));
+				prevMeta.setLore(List.of(ChatColor.GRAY + "Return to Config Settings"));
 				prevMeta.getPersistentDataContainer().set(MENU_KEY, PersistentDataType.STRING, "previous_menu");
 				prevButton.setItemMeta(prevMeta);
 			}
@@ -1462,7 +1452,7 @@ public class ConfigGuiCommand {
 			ItemMeta prevMeta = prevButton.getItemMeta();
 			if (prevMeta != null) {
 				prevMeta.setDisplayName(ChatColor.YELLOW + "Previous Menu");
-				prevMeta.setLore(Arrays.asList(ChatColor.GRAY + "Return to Config Settings"));
+				prevMeta.setLore(List.of(ChatColor.GRAY + "Return to Config Settings"));
 				prevMeta.getPersistentDataContainer().set(MENU_KEY, PersistentDataType.STRING, "previous_menu");
 				prevButton.setItemMeta(prevMeta);
 			}
@@ -2130,7 +2120,7 @@ public class ConfigGuiCommand {
 			ItemMeta prevMeta = prevButton.getItemMeta();
 			if (prevMeta != null) {
 				prevMeta.setDisplayName(ChatColor.YELLOW + "Previous Menu");
-				prevMeta.setLore(Arrays.asList(ChatColor.GRAY + "Return to Config Settings"));
+				prevMeta.setLore(List.of(ChatColor.GRAY + "Return to Config Settings"));
 				prevMeta.getPersistentDataContainer().set(MENU_KEY, PersistentDataType.STRING, "previous_menu");
 				prevButton.setItemMeta(prevMeta);
 			}
@@ -2207,7 +2197,7 @@ public class ConfigGuiCommand {
 			ItemMeta prevMeta = prevButton.getItemMeta();
 			if (prevMeta != null) {
 				prevMeta.setDisplayName(ChatColor.YELLOW + "Previous Menu");
-				prevMeta.setLore(Arrays.asList(ChatColor.GRAY + "Return to Plugin Settings"));
+				prevMeta.setLore(List.of(ChatColor.GRAY + "Return to Plugin Settings"));
 				prevMeta.getPersistentDataContainer().set(MENU_KEY, PersistentDataType.STRING, "previous_menu");
 				prevButton.setItemMeta(prevMeta);
 			}

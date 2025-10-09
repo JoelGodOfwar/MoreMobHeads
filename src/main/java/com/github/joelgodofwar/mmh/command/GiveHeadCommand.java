@@ -1,10 +1,6 @@
 package com.github.joelgodofwar.mmh.command;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -63,7 +59,7 @@ public class GiveHeadCommand {
 				return;
 			}
 
-			String displayName = selectedItem.getItemMeta().getDisplayName();
+			String displayName = Objects.requireNonNull(selectedItem.getItemMeta()).getDisplayName();
 			String headType = null;
 			if (displayName.equals("§ePlayer Head")) {
 				headType = "player";
@@ -105,10 +101,10 @@ public class GiveHeadCommand {
 			if ((selectedHead != null) && selectedHead.hasItemMeta()) {
 				// Find the target player based on the display name of the selected head
 				Player target = null;
-				String selectedDisplayName = selectedHead.getItemMeta().getDisplayName();
+				String selectedDisplayName = Objects.requireNonNull(selectedHead.getItemMeta()).getDisplayName();
 				for (Map.Entry<UUID, ItemStack> entry : onlinePlayerHeads.entrySet()) {
 					ItemStack head = entry.getValue();
-					if (head.hasItemMeta() && head.getItemMeta().getDisplayName().equals(selectedDisplayName)) {
+					if (head.hasItemMeta() && Objects.requireNonNull(head.getItemMeta()).getDisplayName().equals(selectedDisplayName)) {
 						target = Bukkit.getPlayer(entry.getKey());
 						break;
 					}

@@ -61,298 +61,302 @@ public class ChanceCommand {
             File updateFolder = new File(mmh.getDataFolder(), "update");
             File chanceFile = new File(updateFolder, "entity_chances.json");
 
-            if (subCommand.equals("export")) {
-                if (!updateFolder.exists() && !updateFolder.mkdirs()) {
-                    sender.sendMessage(ChatColor.DARK_RED + "Failed to create update folder.");
-                    return true;
-                }
-
-                Map<String, JSONObject> fileData = new HashMap<>();
-                Map<String, Double> fileDefaultChances = new HashMap<>();
-                for (Map.Entry<String, MobHead> entry : headManager.loadedMobHeads().entrySet()) {
-                    MobHead mobHead = entry.getValue();
-                    MobHeadData data = mobHead.getData();
-                    String filePath = data.getFilePath();
-                    if (filePath == null) {
-                        continue;
+            switch (subCommand) {
+                case "export": {
+                    if (!updateFolder.exists() && !updateFolder.mkdirs()) {
+                        sender.sendMessage(ChatColor.DARK_RED + "Failed to create update folder.");
+                        return true;
                     }
-                    String fileName = new File(filePath).getName();
-                    if (!fileName.equals("player.json") && !fileName.equals("named.json")) {
-                        fileData.computeIfAbsent(fileName, k -> new JSONObject().put("chances", new JSONObject()))
-                                .getJSONObject("chances").put(entry.getKey(), data.getChance());
-                        if (!fileDefaultChances.containsKey(fileName)) {
-                            try {
-                                String content = new String(Files.readAllBytes(new File(filePath).toPath()));
-                                JSONObject jsonObj = new JSONObject(content);
-                                fileDefaultChances.put(fileName, jsonObj.optDouble("defaultChance", 100.0));
-                            } catch (Exception e) {
-                                LOGGER.warn("Failed to read defaultChance from " + fileName + ": " + e.getMessage());
-                                fileDefaultChances.put(fileName, 100.0);
+
+                    Map<String, JSONObject> fileData = new HashMap<>();
+                    Map<String, Double> fileDefaultChances = new HashMap<>();
+                    for (Map.Entry<String, MobHead> entry : headManager.loadedMobHeads().entrySet()) {
+                        MobHead mobHead = entry.getValue();
+                        MobHeadData data = mobHead.getData();
+                        String filePath = data.getFilePath();
+                        if (filePath == null) {
+                            continue;
+                        }
+                        String fileName = new File(filePath).getName();
+                        if (!fileName.equals("player.json") && !fileName.equals("named.json")) {
+                            fileData.computeIfAbsent(fileName, k -> new JSONObject().put("chances", new JSONObject()))
+                                    .getJSONObject("chances").put(entry.getKey(), data.getChance());
+                            if (!fileDefaultChances.containsKey(fileName)) {
+                                try {
+                                    String content = new String(Files.readAllBytes(new File(filePath).toPath()));
+                                    JSONObject jsonObj = new JSONObject(content);
+                                    fileDefaultChances.put(fileName, jsonObj.optDouble("defaultChance", 100.0));
+                                } catch (Exception e) {
+                                    LOGGER.warn("Failed to read defaultChance from " + fileName + ": " + e.getMessage());
+                                    fileDefaultChances.put(fileName, 100.0);
+                                }
                             }
                         }
                     }
-                }
 
-                File playerFile = new File(mmh.getDataFolder() + "/heads/entity", "player.json");
-                if (playerFile.exists()) {
-                    JSONObject playerData = new JSONObject().put("chance", mmh.playerChance);
-                    fileData.put("player.json", playerData);
-                }
-                File namedFile = new File(mmh.getDataFolder() + "/heads/entity", "named.json");
-                if (namedFile.exists()) {
-                    JSONObject namedData = new JSONObject().put("chance", mmh.namedChance);
-                    fileData.put("named.json", namedData);
-                }
-
-                JSONObject chancesJson = new JSONObject();
-                JSONObject files = new JSONObject();
-                for (Map.Entry<String, JSONObject> entry : fileData.entrySet()) {
-                    String fileName = entry.getKey();
-                    JSONObject fileObj = entry.getValue();
-                    if (!fileName.equals("player.json") && !fileName.equals("named.json")) {
-                        fileObj.put("defaultChance", fileDefaultChances.getOrDefault(fileName, 100.0));
+                    File playerFile = new File(mmh.getDataFolder() + "/heads/entity", "player.json");
+                    if (playerFile.exists()) {
+                        JSONObject playerData = new JSONObject().put("chance", mmh.playerChance);
+                        fileData.put("player.json", playerData);
                     }
-                    files.put(fileName, fileObj);
-                }
-                chancesJson.put("files", files);
-
-                try (FileWriter writer = new FileWriter(chanceFile)) {
-                    writer.write(chancesJson.toString(4));
-                    sender.sendMessage(ChatColor.GREEN + "Exported entity head chances to " + chanceFile.getName() + ".");
-                } catch (Exception e) {
-                    reporter.reportDetailed(this, Report.newBuilder(COMMAND_CHANCE_EXECUTE).error(e));
-                    sender.sendMessage(ChatColor.DARK_RED + "Failed to export to " + chanceFile.getName() + ".");
-                    return true;
-                }
-            } else if (subCommand.equals("import")) {
-                if (!chanceFile.exists()) {
-                    sender.sendMessage(ChatColor.DARK_RED + chanceFile.getName() + " does not exist.");
-                    return true;
-                }
-
-                JSONObject files;
-                try {
-                    String content = new String(Files.readAllBytes(chanceFile.toPath()));
-                    files = new JSONObject(content).getJSONObject("files");
-                } catch (Exception e) {
-                    reporter.reportDetailed(this, Report.newBuilder(COMMAND_CHANCE_EXECUTE).error(e));
-                    sender.sendMessage(ChatColor.DARK_RED + "Failed to read " + chanceFile.getName() + ".");
-                    return true;
-                }
-
-                String headsFolder = mmh.getDataFolder() + "/heads/entity";
-                for (String fileName : files.keySet()) {
-                    JSONObject fileObj = files.getJSONObject(fileName);
-                    File jsonFile = new File(headsFolder, fileName);
-                    if (!jsonFile.exists()) {
-                        LOGGER.warn("File not found: " + fileName);
-                        continue;
+                    File namedFile = new File(mmh.getDataFolder() + "/heads/entity", "named.json");
+                    if (namedFile.exists()) {
+                        JSONObject namedData = new JSONObject().put("chance", mmh.namedChance);
+                        fileData.put("named.json", namedData);
                     }
 
-                    if (fileName.equals("player.json")) {
-                        double playerChance = fileObj.optDouble("chance", mmh.playerChance);
-                        if (playerChance < 0.0 || playerChance > 100.0) {
-                            LOGGER.warn("Invalid chance value " + playerChance + " for " + fileName + "; skipping");
+                    JSONObject chancesJson = new JSONObject();
+                    JSONObject files = new JSONObject();
+                    for (Map.Entry<String, JSONObject> entry : fileData.entrySet()) {
+                        String fileName = entry.getKey();
+                        JSONObject fileObj = entry.getValue();
+                        if (!fileName.equals("player.json") && !fileName.equals("named.json")) {
+                            fileObj.put("defaultChance", fileDefaultChances.getOrDefault(fileName, 100.0));
+                        }
+                        files.put(fileName, fileObj);
+                    }
+                    chancesJson.put("files", files);
+
+                    try (FileWriter writer = new FileWriter(chanceFile)) {
+                        writer.write(chancesJson.toString(4));
+                        sender.sendMessage(ChatColor.GREEN + "Exported entity head chances to " + chanceFile.getName() + ".");
+                    } catch (Exception e) {
+                        reporter.reportDetailed(this, Report.newBuilder(COMMAND_CHANCE_EXECUTE).error(e));
+                        sender.sendMessage(ChatColor.DARK_RED + "Failed to export to " + chanceFile.getName() + ".");
+                        return true;
+                    }
+                    break;
+                }
+                case "import": {
+                    if (!chanceFile.exists()) {
+                        sender.sendMessage(ChatColor.DARK_RED + chanceFile.getName() + " does not exist.");
+                        return true;
+                    }
+
+                    JSONObject files;
+                    try {
+                        String content = new String(Files.readAllBytes(chanceFile.toPath()));
+                        files = new JSONObject(content).getJSONObject("files");
+                    } catch (Exception e) {
+                        reporter.reportDetailed(this, Report.newBuilder(COMMAND_CHANCE_EXECUTE).error(e));
+                        sender.sendMessage(ChatColor.DARK_RED + "Failed to read " + chanceFile.getName() + ".");
+                        return true;
+                    }
+
+                    String headsFolder = mmh.getDataFolder() + "/heads/entity";
+                    for (String fileName : files.keySet()) {
+                        JSONObject fileObj = files.getJSONObject(fileName);
+                        File jsonFile = new File(headsFolder, fileName);
+                        if (!jsonFile.exists()) {
+                            LOGGER.warn("File not found: " + fileName);
                             continue;
                         }
+
+                        if (fileName.equals("player.json")) {
+                            double playerChance = fileObj.optDouble("chance", mmh.playerChance);
+                            if (playerChance < 0.0 || playerChance > 100.0) {
+                                LOGGER.warn("Invalid chance value " + playerChance + " for " + fileName + "; skipping");
+                                continue;
+                            }
+                            try {
+                                JSONObject playerJson = new JSONObject().put("chance", playerChance);
+                                try (FileWriter writer = new FileWriter(jsonFile)) {
+                                    writer.write(playerJson.toString(4));
+                                }
+                                mmh.playerChance = playerChance;
+                            } catch (Exception e) {
+                                LOGGER.warn("Failed to update " + fileName + ": " + e.getMessage());
+                            }
+                        } else if (fileName.equals("named.json")) {
+                            double namedChance = fileObj.optDouble("chance", mmh.namedChance);
+                            if (namedChance < 0.0 || namedChance > 100.0) {
+                                LOGGER.warn("Invalid chance value " + namedChance + " for " + fileName + "; skipping");
+                                continue;
+                            }
+                            try {
+                                JSONObject namedJson = new JSONObject().put("chance", namedChance);
+                                try (FileWriter writer = new FileWriter(jsonFile)) {
+                                    writer.write(namedJson.toString(4));
+                                }
+                                mmh.namedChance = namedChance;
+                            } catch (Exception e) {
+                                LOGGER.warn("Failed to update " + fileName + ": " + e.getMessage());
+                            }
+                        } else {
+                            double defaultChance = fileObj.optDouble("defaultChance", 100.0);
+                            if (defaultChance < 0.0 || defaultChance > 100.0) {
+                                LOGGER.warn("Invalid defaultChance value " + defaultChance + " for " + fileName + "; using 100.0");
+                                defaultChance = 100.0;
+                            }
+                            JSONObject chances = fileObj.getJSONObject("chances");
+                            try {
+                                String content = new String(Files.readAllBytes(jsonFile.toPath()));
+                                JSONObject jsonObj = new JSONObject(content);
+                                jsonObj.put("defaultChance", defaultChance);
+                                updateChancesInJson(jsonObj, chances, fileName);
+                                try (FileWriter writer = new FileWriter(jsonFile)) {
+                                    writer.write(jsonObj.toString(4));
+                                }
+                            } catch (Exception e) {
+                                LOGGER.warn("Failed to update " + fileName + ": " + e.getMessage());
+                            }
+                        }
+                    }
+
+                    eventHandler.loadMobHeads();
+
+                    File backupFolder = new File(mmh.getDataFolder(), "backup");
+                    if (!backupFolder.exists() && !backupFolder.mkdirs()) {
+                        sender.sendMessage(ChatColor.DARK_RED + "Failed to create backup folder.");
+                        return true;
+                    }
+                    String timestamp = new SimpleDateFormat("yyyyMMdd_HHmm").format(new Date());
+                    File backupFile = new File(backupFolder, "entity_chances_" + timestamp + ".json");
+                    try {
+                        Files.move(chanceFile.toPath(), backupFile.toPath());
+                        sender.sendMessage(ChatColor.GREEN + "Moved " + chanceFile.getName() + " to " + backupFile.getPath());
+                    } catch (Exception e) {
+                        LOGGER.warn("Failed to move " + chanceFile.getName() + " to backup: " + e.getMessage());
+                        sender.sendMessage(ChatColor.DARK_RED + "Failed to move " + chanceFile.getName() + " to backup.");
+                    }
+
+                    sender.sendMessage(ChatColor.GREEN + "Imported entity head chances, updated files, and reloaded heads.");
+                    break;
+                }
+                case "set":
+                    if (args.length != 4) {
+                        sender.sendMessage(ChatColor.AQUA + "Usage: /mmh chance set <langName> <percent>");
+                        return true;
+                    }
+
+                    String langName = args[2].toLowerCase();
+                    double chance;
+                    try {
+                        chance = Double.parseDouble(args[3]);
+                        if (chance < 0.0 || chance > 100.0) {
+                            sender.sendMessage(ChatColor.DARK_RED + "Percent must be between 0.0 and 100.0.");
+                            return true;
+                        }
+                    } catch (NumberFormatException e) {
+                        sender.sendMessage(ChatColor.DARK_RED + "Invalid percent value: " + args[3]);
+                        return true;
+                    }
+
+                    if (langName.equals("player")) {
+                        File playerFile = new File(mmh.getDataFolder() + "/heads/entity", "player.json");
+                        if (!playerFile.exists()) {
+                            sender.sendMessage(ChatColor.DARK_RED + "player.json not found.");
+                            return true;
+                        }
                         try {
-                            JSONObject playerJson = new JSONObject().put("chance", playerChance);
-                            try (FileWriter writer = new FileWriter(jsonFile)) {
+                            JSONObject playerJson = new JSONObject().put("chance", chance);
+                            try (FileWriter writer = new FileWriter(playerFile)) {
                                 writer.write(playerJson.toString(4));
                             }
-                            mmh.playerChance = playerChance;
+                            mmh.playerChance = chance;
+                            sender.sendMessage(ChatColor.GREEN + "Set player head drop chance to " + chance + "%.");
                         } catch (Exception e) {
-                            LOGGER.warn("Failed to update " + fileName + ": " + e.getMessage());
-                            continue;
+                            LOGGER.warn("Failed to update player.json for chance " + chance + ": " + e.getMessage());
+                            sender.sendMessage(ChatColor.DARK_RED + "Failed to update player head drop chance.");
+                            return true;
                         }
-                    } else if (fileName.equals("named.json")) {
-                        double namedChance = fileObj.optDouble("chance", mmh.namedChance);
-                        if (namedChance < 0.0 || namedChance > 100.0) {
-                            LOGGER.warn("Invalid chance value " + namedChance + " for " + fileName + "; skipping");
-                            continue;
+                    } else if (langName.equals("named")) {
+                        File namedFile = new File(mmh.getDataFolder() + "/heads/entity", "named.json");
+                        if (!namedFile.exists()) {
+                            sender.sendMessage(ChatColor.DARK_RED + "named.json not found.");
+                            return true;
                         }
                         try {
-                            JSONObject namedJson = new JSONObject().put("chance", namedChance);
-                            try (FileWriter writer = new FileWriter(jsonFile)) {
+                            JSONObject namedJson = new JSONObject().put("chance", chance);
+                            try (FileWriter writer = new FileWriter(namedFile)) {
                                 writer.write(namedJson.toString(4));
                             }
-                            mmh.namedChance = namedChance;
+                            mmh.namedChance = chance;
+                            sender.sendMessage(ChatColor.GREEN + "Set named mob head drop chance to " + chance + "%.");
                         } catch (Exception e) {
-                            LOGGER.warn("Failed to update " + fileName + ": " + e.getMessage());
-                            continue;
+                            LOGGER.warn("Failed to update named.json for chance " + chance + ": " + e.getMessage());
+                            sender.sendMessage(ChatColor.DARK_RED + "Failed to update named mob head drop chance.");
+                            return true;
                         }
-                    } else {
-                        double defaultChance = fileObj.optDouble("defaultChance", 100.0);
-                        if (defaultChance < 0.0 || defaultChance > 100.0) {
-                            LOGGER.warn("Invalid defaultChance value " + defaultChance + " for " + fileName + "; using 100.0");
-                            defaultChance = 100.0;
+                    } else if (langName.endsWith(".default")) {
+                        String fileName = langName.substring(0, langName.length() - ".default".length()) + ".json";
+                        File jsonFile = new File(mmh.getDataFolder() + "/heads/entity", fileName);
+                        if (!jsonFile.exists()) {
+                            sender.sendMessage(ChatColor.DARK_RED + "File not found: " + fileName);
+                            return true;
                         }
-                        JSONObject chances = fileObj.getJSONObject("chances");
                         try {
                             String content = new String(Files.readAllBytes(jsonFile.toPath()));
                             JSONObject jsonObj = new JSONObject(content);
-                            jsonObj.put("defaultChance", defaultChance);
-                            updateChancesInJson(jsonObj, chances, fileName);
+                            jsonObj.put("defaultChance", chance);
                             try (FileWriter writer = new FileWriter(jsonFile)) {
                                 writer.write(jsonObj.toString(4));
                             }
+                            sender.sendMessage(ChatColor.GREEN + "Set default drop chance for " + fileName + " to " + chance + "%.");
                         } catch (Exception e) {
-                            LOGGER.warn("Failed to update " + fileName + ": " + e.getMessage());
-                            continue;
-                        }
-                    }
-                }
-
-                eventHandler.loadMobHeads();
-
-                File backupFolder = new File(mmh.getDataFolder(), "backup");
-                if (!backupFolder.exists() && !backupFolder.mkdirs()) {
-                    sender.sendMessage(ChatColor.DARK_RED + "Failed to create backup folder.");
-                    return true;
-                }
-                String timestamp = new SimpleDateFormat("yyyyMMdd_HHmm").format(new Date());
-                File backupFile = new File(backupFolder, "entity_chances_" + timestamp + ".json");
-                try {
-                    Files.move(chanceFile.toPath(), backupFile.toPath());
-                    sender.sendMessage(ChatColor.GREEN + "Moved " + chanceFile.getName() + " to " + backupFile.getPath());
-                } catch (Exception e) {
-                    LOGGER.warn("Failed to move " + chanceFile.getName() + " to backup: " + e.getMessage());
-                    sender.sendMessage(ChatColor.DARK_RED + "Failed to move " + chanceFile.getName() + " to backup.");
-                }
-
-                sender.sendMessage(ChatColor.GREEN + "Imported entity head chances, updated files, and reloaded heads.");
-            } else if (subCommand.equals("set")) {
-                if (args.length != 4) {
-                    sender.sendMessage(ChatColor.AQUA + "Usage: /mmh chance set <langName> <percent>");
-                    return true;
-                }
-
-                String langName = args[2].toLowerCase();
-                double chance;
-                try {
-                    chance = Double.parseDouble(args[3]);
-                    if (chance < 0.0 || chance > 100.0) {
-                        sender.sendMessage(ChatColor.DARK_RED + "Percent must be between 0.0 and 100.0.");
-                        return true;
-                    }
-                } catch (NumberFormatException e) {
-                    sender.sendMessage(ChatColor.DARK_RED + "Invalid percent value: " + args[3]);
-                    return true;
-                }
-
-                if (langName.equals("player")) {
-                    File playerFile = new File(mmh.getDataFolder() + "/heads/entity", "player.json");
-                    if (!playerFile.exists()) {
-                        sender.sendMessage(ChatColor.DARK_RED + "player.json not found.");
-                        return true;
-                    }
-                    try {
-                        JSONObject playerJson = new JSONObject().put("chance", chance);
-                        try (FileWriter writer = new FileWriter(playerFile)) {
-                            writer.write(playerJson.toString(4));
-                        }
-                        mmh.playerChance = chance;
-                        sender.sendMessage(ChatColor.GREEN + "Set player head drop chance to " + chance + "%.");
-                    } catch (Exception e) {
-                        LOGGER.warn("Failed to update player.json for chance " + chance + ": " + e.getMessage());
-                        sender.sendMessage(ChatColor.DARK_RED + "Failed to update player head drop chance.");
-                        return true;
-                    }
-                } else if (langName.equals("named")) {
-                    File namedFile = new File(mmh.getDataFolder() + "/heads/entity", "named.json");
-                    if (!namedFile.exists()) {
-                        sender.sendMessage(ChatColor.DARK_RED + "named.json not found.");
-                        return true;
-                    }
-                    try {
-                        JSONObject namedJson = new JSONObject().put("chance", chance);
-                        try (FileWriter writer = new FileWriter(namedFile)) {
-                            writer.write(namedJson.toString(4));
-                        }
-                        mmh.namedChance = chance;
-                        sender.sendMessage(ChatColor.GREEN + "Set named mob head drop chance to " + chance + "%.");
-                    } catch (Exception e) {
-                        LOGGER.warn("Failed to update named.json for chance " + chance + ": " + e.getMessage());
-                        sender.sendMessage(ChatColor.DARK_RED + "Failed to update named mob head drop chance.");
-                        return true;
-                    }
-                } else if (langName.endsWith(".default")) {
-                    String fileName = langName.substring(0, langName.length() - ".default".length()) + ".json";
-                    File jsonFile = new File(mmh.getDataFolder() + "/heads/entity", fileName);
-                    if (!jsonFile.exists()) {
-                        sender.sendMessage(ChatColor.DARK_RED + "File not found: " + fileName);
-                        return true;
-                    }
-                    try {
-                        String content = new String(Files.readAllBytes(jsonFile.toPath()));
-                        JSONObject jsonObj = new JSONObject(content);
-                        jsonObj.put("defaultChance", chance);
-                        try (FileWriter writer = new FileWriter(jsonFile)) {
-                            writer.write(jsonObj.toString(4));
-                        }
-                        sender.sendMessage(ChatColor.GREEN + "Set default drop chance for " + fileName + " to " + chance + "%.");
-                    } catch (Exception e) {
-                        LOGGER.warn("Failed to update defaultChance in " + fileName + ": " + e.getMessage());
-                        sender.sendMessage(ChatColor.DARK_RED + "Failed to update default chance for " + fileName + ".");
-                        return true;
-                    }
-                } else {
-                    MobHead mobHead = headManager.loadedMobHeads().get(langName);
-                    if (mobHead == null) {
-                        sender.sendMessage(ChatColor.DARK_RED + "Invalid langName: " + langName);
-                        return true;
-                    }
-                    MobHeadData data = mobHead.getData();
-                    String filePath = data.getFilePath();
-                    if (filePath == null) {
-                        sender.sendMessage(ChatColor.DARK_RED + "No file associated with " + langName);
-                        return true;
-                    }
-                    File jsonFile = new File(filePath);
-                    if (!jsonFile.exists()) {
-                        sender.sendMessage(ChatColor.DARK_RED + "File not found: " + jsonFile.getName());
-                        return true;
-                    }
-
-                    try {
-                        String content = new String(Files.readAllBytes(jsonFile.toPath()));
-                        JSONObject jsonObj = new JSONObject(content);
-                        String structure = jsonObj.optString("structure", "flat");
-                        boolean updated = false;
-                        if ("flat".equalsIgnoreCase(structure)) {
-                            JSONArray heads = jsonObj.getJSONArray("heads");
-                            for (int i = 0; i < heads.length(); i++) {
-                                JSONObject head = heads.getJSONObject(i);
-                                if (head.optString("langName").equals(langName)) {
-                                    head.put("chance", chance);
-                                    updated = true;
-                                    break;
-                                }
-                            }
-                        } else if ("nested".equalsIgnoreCase(structure)) {
-                            JSONObject heads = jsonObj.getJSONObject("heads");
-                            mmh.logDebug("Attempting to update " + langName + " in " + jsonFile.getName());
-                            updated = updateNestedChance(heads, langName, chance);
-                        }
-                        if (!updated) {
-                            sender.sendMessage(ChatColor.DARK_RED + "Could not find " + langName + " in " + jsonFile.getName());
+                            LOGGER.warn("Failed to update defaultChance in " + fileName + ": " + e.getMessage());
+                            sender.sendMessage(ChatColor.DARK_RED + "Failed to update default chance for " + fileName + ".");
                             return true;
                         }
-                        try (FileWriter writer = new FileWriter(jsonFile)) {
-                            writer.write(jsonObj.toString(4));
+                    } else {
+                        MobHead mobHead = headManager.loadedMobHeads().get(langName);
+                        if (mobHead == null) {
+                            sender.sendMessage(ChatColor.DARK_RED + "Invalid langName: " + langName);
+                            return true;
                         }
-                        data.setChance(chance);
-                        sender.sendMessage(ChatColor.GREEN + "Set drop chance for " + langName + " to " + chance + "%.");
-                    } catch (Exception e) {
-                        LOGGER.warn("Failed to update " + jsonFile.getName() + " for " + langName + ": " + e.getMessage());
-                        sender.sendMessage(ChatColor.DARK_RED + "Failed to update chance for " + langName + ".");
-                        return true;
-                    }
-                }
+                        MobHeadData data = mobHead.getData();
+                        String filePath = data.getFilePath();
+                        if (filePath == null) {
+                            sender.sendMessage(ChatColor.DARK_RED + "No file associated with " + langName);
+                            return true;
+                        }
+                        File jsonFile = new File(filePath);
+                        if (!jsonFile.exists()) {
+                            sender.sendMessage(ChatColor.DARK_RED + "File not found: " + jsonFile.getName());
+                            return true;
+                        }
 
-                eventHandler.loadMobHeads();
-            } else {
-                sender.sendMessage(ChatColor.AQUA + "Usage: /mmh chance <export/import/set>");
+                        try {
+                            String content = new String(Files.readAllBytes(jsonFile.toPath()));
+                            JSONObject jsonObj = new JSONObject(content);
+                            String structure = jsonObj.optString("structure", "flat");
+                            boolean updated = false;
+                            if ("flat".equalsIgnoreCase(structure)) {
+                                JSONArray heads = jsonObj.getJSONArray("heads");
+                                for (int i = 0; i < heads.length(); i++) {
+                                    JSONObject head = heads.getJSONObject(i);
+                                    if (head.optString("langName").equals(langName)) {
+                                        head.put("chance", chance);
+                                        updated = true;
+                                        break;
+                                    }
+                                }
+                            } else if ("nested".equalsIgnoreCase(structure)) {
+                                JSONObject heads = jsonObj.getJSONObject("heads");
+                                mmh.logDebug("Attempting to update " + langName + " in " + jsonFile.getName());
+                                updated = updateNestedChance(heads, langName, chance);
+                            }
+                            if (!updated) {
+                                sender.sendMessage(ChatColor.DARK_RED + "Could not find " + langName + " in " + jsonFile.getName());
+                                return true;
+                            }
+                            try (FileWriter writer = new FileWriter(jsonFile)) {
+                                writer.write(jsonObj.toString(4));
+                            }
+                            data.setChance(chance);
+                            sender.sendMessage(ChatColor.GREEN + "Set drop chance for " + langName + " to " + chance + "%.");
+                        } catch (Exception e) {
+                            LOGGER.warn("Failed to update " + jsonFile.getName() + " for " + langName + ": " + e.getMessage());
+                            sender.sendMessage(ChatColor.DARK_RED + "Failed to update chance for " + langName + ".");
+                            return true;
+                        }
+                    }
+
+                    eventHandler.loadMobHeads();
+                    break;
+                default:
+                    sender.sendMessage(ChatColor.AQUA + "Usage: /mmh chance <export/import/set>");
+                    break;
             }
             return true;
         } catch (Exception e) {

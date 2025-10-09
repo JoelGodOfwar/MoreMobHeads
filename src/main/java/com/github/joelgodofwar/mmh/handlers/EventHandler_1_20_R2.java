@@ -60,7 +60,7 @@ public class EventHandler_1_20_R2 implements Listener, MMHEventHandler {
 	String nameDEF = "Name Not Found";
 	String uuidDEF = "40404040-4040-4040-4040-404040404040";
 	String textureDEF = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWY1NDljZjhiNWE1MWUwZmFkM2MyMmY5YTY3ZDg3Mjc2ZDdhMzdiZjY0Zjk1ODgwMDI2ZDlkMzE5ZTMyMjhiNSJ9fX0=";
-	ArrayList<String> loreDEF = new ArrayList<>(Arrays.asList("§cNotify an Admin§e!"));
+	ArrayList<String> loreDEF = new ArrayList<>(List.of("§cNotify an Admin§e!"));
 
 	List<MerchantRecipe> playerhead_recipes = new ArrayList<MerchantRecipe>();
 	List<MerchantRecipe> blockhead_recipes = new ArrayList<MerchantRecipe>();
@@ -397,8 +397,6 @@ public class EventHandler_1_20_R2 implements Listener, MMHEventHandler {
 
 						mmh.logDebug("EDE NM LivingEntity = " + (event.getEntity() instanceof LivingEntity));
 						MobHeadData mhd;
-						// ItemStack head;
-						// boolean dropCancelled;
 
 						try { // REPORT_PLAYER_KILL_MOB "Unable to parse Mob Kill."
 							switch (name) {
@@ -1189,6 +1187,22 @@ public class EventHandler_1_20_R2 implements Listener, MMHEventHandler {
 									}
 								}
 								break;
+							case "COPPER_GOLEM":
+								mhd = headManager.getMobOrDefault( name.toLowerCase() + "." + MoreMobHeadsLib.getName(name, entity) ).getData();
+								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
+									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
+									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
+											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
+									if(HeadUtils.containsHead(Drops)) {
+										mmh.logDebug("EDE " + mhd.getDisplayName() + " Head Dropped");
+										if (mob_announce_enabled) {
+											beheading.announceBeheading(entity, mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
+													.replace(" Head", ""), theKiller, mob_announce_display);
+										}
+									}
+								}
+								break;
 							default:
 								if(Objects.equals(name, "HAPPY_GHAST")) {
 									if( mmh.isBabyEntity( event.getEntity() ) ) {
@@ -1758,7 +1772,7 @@ public class EventHandler_1_20_R2 implements Listener, MMHEventHandler {
 			head = addPluginLore(head);
 			headManager.miniBlocksList().add(head);
 		}
-		headManager.miniBlocksList().sort(Comparator.comparing(item -> item.getItemMeta().getDisplayName().replaceAll("§[0-9a-fk-or]", "")));
+		headManager.miniBlocksList().sort(Comparator.comparing(item -> Objects.requireNonNull(item.getItemMeta()).getDisplayName().replaceAll("§[0-9a-fk-or]", "")));
 		mmh.LOGGER.log("Successfully loaded " + headManager.loadedMiniBlocks().size() + " MiniBlocks:");
 		mmh.LOGGER.log("Total MiniBlocks (not shown in GUI): " + headManager.miniBlocksList().size());
 

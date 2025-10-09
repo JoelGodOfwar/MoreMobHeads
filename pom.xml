@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>MoreMobHeads</groupId>
   <artifactId>MoreMobHeads</artifactId>
-  <version>1.20_1.0.43.D10-DEV</version>
+  <version>1.20_1.0.43.D11-DEV</version>
   <name>More Mob Heads</name>
   <description>Drops mob heads when a mob is killed.</description>
   <scm>
@@ -77,17 +77,18 @@
       <url>file://${user.home}/.m2/repository</url>
     </repository>
     <repository>
+      <id>spigot-repo</id>
+      <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+    </repository>
+    <repository>
         <id>github</id>
         <url>https://maven.pkg.github.com/JoelGodOfwar/MoreMobHeadsLib</url>
       <snapshots>
         <enabled>true</enabled>
         <updatePolicy>always</updatePolicy>
       </snapshots>
-    </repository> 
-    <repository>
-      <id>spigot-repo</id>
-      <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
     </repository>
+
     <!--  bStats -->
     <repository>
       <id>CodeMC</id>
@@ -144,7 +145,7 @@
     <dependency>
       <groupId>lib.github.joelgodofwar</groupId>
       <artifactId>MoreMobHeadsLib</artifactId>
-      <version>0.4.4-SNAPSHOT</version>
+      <version>0.4.6-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -161,7 +162,7 @@
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot</artifactId>
-      <version>1.20-R0.1-SNAPSHOT</version>
+      <version>1.21.9-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <!--  bStats -->
@@ -202,7 +203,7 @@
     <dependency>
       <groupId>dev.majek</groupId>
       <artifactId>hexnicks</artifactId>
-      <version>3.1.1</version>
+      <version>3.2.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>

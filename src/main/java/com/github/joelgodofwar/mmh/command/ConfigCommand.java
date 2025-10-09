@@ -22,8 +22,7 @@ import com.github.joelgodofwar.mmh.common.error.ReportType;
 public class ConfigCommand {
     private final YmlConfiguration config;
 	private final File configFile;
-	private final PluginLogger LOGGER;
-	private final DetailedErrorReporter reporter;
+    private final DetailedErrorReporter reporter;
 	public static final ReportType COMMAND_CONFIG_EXECUTE = new ReportType("Error executing ConfigCommand.");
 	public static final ReportType COMMAND_CONFIG_HANDLEWORLDCOMMAND = new ReportType("Error processing handleWorldCommand.");
 	public static final ReportType COMMAND_CONFIG_HANDLEPLAYERHEADSCOMMAND = new ReportType("Error processing handlePlayerHeadsCommand.");
@@ -34,7 +33,7 @@ public class ConfigCommand {
 	public ConfigCommand(MoreMobHeads plugin) {
         this.configFile = new File(plugin.getDataFolder(), "config.yml");
 		this.config = plugin.config;
-		this.LOGGER = plugin.LOGGER;
+        PluginLogger LOGGER = plugin.LOGGER;
 		this.reporter = new DetailedErrorReporter(plugin);
 		this.mmh = plugin;
 	}
@@ -268,5 +267,5 @@ public class ConfigCommand {
 			mmh.logDebug("Failed to process " + configPath + ": " + e.getMessage());
 			return true;
 		}
-	}
+    }
 }

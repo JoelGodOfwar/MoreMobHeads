@@ -1,6 +1,5 @@
 package com.github.joelgodofwar.mmh;
 
-import com.earth2me.essentials.Essentials;
 import com.github.joelgodofwar.mmh.command.Command_1_20_R2;
 import com.github.joelgodofwar.mmh.common.PluginLibrary;
 import com.github.joelgodofwar.mmh.common.error.DetailedErrorReporter;
@@ -10,27 +9,19 @@ import com.github.joelgodofwar.mmh.handlers.EventHandler_1_20_R1;
 import com.github.joelgodofwar.mmh.handlers.EventHandler_1_20_R2;
 import com.github.joelgodofwar.mmh.handlers.MMHEventHandler;
 import com.github.joelgodofwar.mmh.i18n.Translator;
-import com.github.joelgodofwar.mmh.util.*;
-import com.github.joelgodofwar.mmh.util.ChatColorUtils;
+import com.github.joelgodofwar.mmh.util.Ansi;
+import com.github.joelgodofwar.mmh.util.BuildValidator;
+
 import com.github.joelgodofwar.mmh.util.datatypes.JsonDataType;
 import com.github.joelgodofwar.mmh.util.heads.*;
 import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
 import de.tr7zw.changeme.nbtapi.NBTCompound;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import de.tr7zw.changeme.nbtapi.NBTList;
 import de.tr7zw.changeme.nbtapi.NBTListCompound;
-import dev.majek.hexnicks.HexNicks;
 import lib.github.joelgodofwar.coreutils.CoreUtils;
 import lib.github.joelgodofwar.coreutils.util.*;
-import lib.github.joelgodofwar.coreutils.util.MMHDLC;
-import lib.github.joelgodofwar.coreutils.util.Version;
-import lib.github.joelgodofwar.coreutils.util.VersionChecker;
 import lib.github.joelgodofwar.coreutils.util.common.PluginLogger;
-import mineverse.Aust1n46.chat.api.MineverseChatAPI;
-import mineverse.Aust1n46.chat.api.MineverseChatPlayer;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
 import org.apache.commons.lang.StringUtils;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.AdvancedPie;
@@ -68,16 +59,13 @@ import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 @SuppressWarnings({ "unchecked", "rawtypes", "deprecation", "unused" })
 public class MoreMobHeads extends JavaPlugin implements Listener{
 	//** Languages: čeština (cs_CZ), Deutsch (de_DE), English (en_US), Español (es_ES), Español (es_MX), Français (fr_FR), Italiano (it_IT), Magyar (hu_HU), 日本語 (ja_JP), 한국어 (ko_KR), Lolcat (lol_US), Melayu (my_MY), Nederlands (nl_NL), Polski (pl_PL), Português (pt_BR), Русский (ru_RU), Svenska (sv_SV), Türkçe (tr_TR), 中文(简体) (zh_CN), 中文(繁體) (zh_TW) */
-	public static final long DEV_BUILD_START_TIME = 1758762004L; // Placeholder for Maven replacement
+	public static final long DEV_BUILD_START_TIME = 1759989140L; // Placeholder for Maven replacement
 	public final com.github.joelgodofwar.mmh.util.BuildValidator buildValidator = new BuildValidator();
 	public static String THIS_NAME;
 	public static String THIS_VERSION;
@@ -90,6 +78,15 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	public boolean UpdateCheck;
 	public String DownloadLink = "https://dev.bukkit.org/projects/moremobheads2";
 	//** end update checker variables */
+	Version MINIMUM_MINECRAFT_VERSION = new Version("1.20");
+	Version MAXIMUM_MINECRAFT_VERSION = new Version("1.21.9");
+	Version CURRENT_MINECRAFT_VERSION = Version.getCurrentVersion();
+
+	public Version minConfigVersion = new Version("1.0.29");
+	public Version minMessagesVersion = new Version("1.0.2");
+	public Version minLangVersion = new Version("1.0.5");
+	public Version minCustomVersion = new Version("1.0.0");
+
 	public boolean isDev = false;
 	public boolean debug = false;
 	public static String daLang;
@@ -144,16 +141,11 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	public final NamespacedKey CONFIG_KEY = new NamespacedKey(this, "config_setting");
 	public final PersistentDataType<String,String[]> LORE_PDT = new JsonDataType<>(String[].class);
 
-	public Version minConfigVersion = new Version("1.0.29");
-	public Version minMessagesVersion = new Version("1.0.2");
-	public Version minLangVersion = new Version("1.0.5");
-	public Version minCustomVersion = new Version("1.0.0");
 	// Create a HashMap to store langName -> MobHead mappings
 	private PlayerHeadLoader playerHeadLoader;
 	private BlockHeadLoader blockHeadLoader;
 	private MobHeadLoader mobHeadLoader;
 	private MiniBlockLoader miniBlockLoader;
-
 	public HeadManager headManager;
 	public MMHEventHandler eventHandler;
 	public double playerChance = 50.0;
@@ -161,7 +153,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	public final Set<UUID> warnedPlayers = new HashSet<>();
 	private final Random random = new Random();
 	public CoreUtils coreUtils;
-
+	public Enchantment LOOT_BONUS_MOBS;
 
 	@Override // TODO: onEnable
 	public void onEnable(){
@@ -205,7 +197,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			}
 
 			//** Version Check */
-			if( !(checkVersion.isAtLeast(PluginLibrary.MINIMUM_MINECRAFT_VERSION)) ){
+			if( !(CURRENT_MINECRAFT_VERSION.isAtLeast(MINIMUM_MINECRAFT_VERSION)) ){
 				// !getMCVersion().startsWith("1.14")&&!getMCVersion().startsWith("1.15")&&!getMCVersion().startsWith("1.16")&&!getMCVersion().startsWith("1.17")
 				LOGGER.warn(ChatColor.RED + " *!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!" + ChatColor.RESET);
 				LOGGER.warn(ChatColor.RED + " " + get("mmh.message.server_not_version") + ChatColor.RESET);
@@ -219,6 +211,11 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				getLogger().info(ChatColor.AQUA + "Update to the latest dev-build or full release at https://dev.bukkit.org/projects/moremobheads2/files");
 				getServer().getPluginManager().disablePlugin(this);
 				return;
+			}
+			if(CURRENT_MINECRAFT_VERSION.isAtLeast("1.21.9")){
+				LOOT_BONUS_MOBS = Enchantment.getByName("LOOTING");
+			}else{
+				LOOT_BONUS_MOBS = Enchantment.getByName("LOOT_BONUS_MOBS");
 			}
 
 			// Make sure directory exists and files exist.
@@ -811,7 +808,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			logDebug(" DI itemstack=" + itemstack.getType().toString());
 			int enchantment_level = 0;
 			if(config.getBoolean("head_settings.apply_looting", true)){
-				enchantment_level = itemstack.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);
+				enchantment_level = itemstack.getEnchantmentLevel(LOOT_BONUS_MOBS);
 			}
 			if(chancePercent == 0){
 				logDebug(" DI chancePercent == 0");
@@ -902,7 +899,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		ItemStack itemstack = event.getEntity().getKiller().getInventory().getItemInMainHand();
 		if(itemstack != null){
 			logDebug("itemstack=" + itemstack.getType().toString() + " line:954");
-			int enchantmentlevel = itemstack.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);//.containsEnchantment(Enchantment.LOOT_BONUS_MOBS);
+			int enchantmentlevel = itemstack.getEnchantmentLevel(LOOT_BONUS_MOBS);//.containsEnchantment(Enchantment.LOOT_BONUS_MOBS);
 			logDebug("enchantmentlevel=" + enchantmentlevel + " line:956");
 			double enchantmentlevelpercent = ((double)enchantmentlevel / 100);
 			logDebug("enchantmentlevelpercent=" + enchantmentlevelpercent + " line:958");
@@ -950,67 +947,36 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 
 	/**
 	 * Retrieves the nickname of the specified player.
-	 * 
+	 *
 	 * @param player The player whose nickname is to be retrieved.
 	 * @return The nickname of the player, or the player's name if no nickname is found.
 	 */
-	public  String getNickname(Player player){
-		String playerName = null;
+	public String getNickname(Player player) {
 		logDebug("GN - player.getDisplayName()=" + player.getDisplayName());
 		logDebug("GN - player.getName()=" + player.getName());
 		logDebug("GN - head_settings.player_heads.announce_kill.displayname=" + getConfig().getBoolean("head_settings.player_heads.announce_kill.displayname"));
-		if(config.getBoolean("head_settings.player_heads.announce_kill.displayname", false)) {
-			playerName = ChatColorUtils.setColorsByCode(player.getDisplayName());
-			if(getServer().getPluginManager().getPlugin("VentureChat") != null){
-				MineverseChatPlayer mcp = MineverseChatAPI.getMineverseChatPlayer(player);
-				String nick = mcp.getNickname();
-				if(nick != null){
-					logDebug("GN - mcp.getNickname()=" + mcp.getNickname());
-					logDebug("GN - ChatColor.translateAlternateColorCodes('&', nick)=" + ChatColor.translateAlternateColorCodes('&', nick));
-					nick = ChatColorUtils.setColorsByCode(nick);
-					logDebug("VentureChat ChatColorUtils.setColorsByCode(nick)=" + nick);
-					return nick;
-				}
-				logDebug("GN - VentureChat Nick=null using " + playerName);
-				return Format.color(playerName);
-			}else if(getServer().getPluginManager().getPlugin("Essentials") != null){
-				Essentials ess = (Essentials) Bukkit.getServer().getPluginManager().getPlugin("Essentials");
-                assert ess != null;
-                String nick = ess.getUserMap().getUser(player.getName()).getNickname();
-				if(nick != null){
-					logDebug("GN - Essentials Nick=" + nick);
-					return ChatColor.translateAlternateColorCodes('&', nick);
-				}
-				logDebug("GN - Essentials Nick=null using: " + playerName );
-				return ChatColorUtils.setColorsByCode(playerName);
-			}else if(getServer().getPluginManager().getPlugin("HexNicks") != null){
-				CompletableFuture<Component> nickFuture = HexNicks.api().getStoredNick(player);
-				try {
-					String nick = GsonComponentSerializer.gson().serialize(nickFuture.get());
-					if(nick != null){
-						logDebug("GN - HexNick Nick=" + nick);
-						if(nick.contains("[")) {
-							nick = nick.substring(nick.indexOf("[") + 1);
-						}
-						if(nick.contains("]")) {
-							nick = nick.substring(0, nick.indexOf("]"));
-						}
-						return "\"}," + ChatColor.translateAlternateColorCodes('&', nick) + ",{\"text\": \"";
-					}
-				} catch (Exception exception) {
-					reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_GET_HEXNICK).error(exception));
-				}
-				logDebug("GN - HexNick Nick=null using " + playerName);
-				return ChatColorUtils.setColorsByCode(playerName);
-			}else{
-				logDebug("GN - No nickname found using=" + playerName);
-				return playerName;
-			}
-		}else {
-			playerName = player.getName();
-		}
 
-		return playerName;
+		boolean useDisplayName = config.getBoolean("head_settings.player_heads.announce_kill.displayname", false);
+		String fallbackName = useDisplayName ? player.getDisplayName() : player.getName();
+
+		// Wrap library's async callback in the future for sync blocking
+		CompletableFuture<String> nickFuture = new CompletableFuture<>();
+		// Library provides color-fixed nick
+		coreUtils.getNicknameAsync(this, player, useDisplayName, nickFuture::complete);
+
+		try {
+			// Block briefly; timeout prevents hangs (adjust if needed)
+			String libraryNick = nickFuture.get(1, TimeUnit.SECONDS);
+			logDebug("GN - Library fetched nick: " + libraryNick);
+			return libraryNick; // Trust library's color fixing
+		} catch (ExecutionException | InterruptedException e) {
+			logDebug("GN - Library interrupted, using fallback: " + fallbackName);
+		} catch (java.util.concurrent.TimeoutException e) {
+			logDebug("GN - Library timeout, using fallback: " + fallbackName);
+		}
+		// Fallback if no nick or error
+		logDebug("GN - No library nick found, using: " + fallbackName);
+		return coreUtils.fixColors(fallbackName); // Trust library for fallback colors
 	}
 
 	public ItemStack makeHead(String displayName, String texture, String uuid, String noteBlockSound, boolean isPlayer, Player killer) {
@@ -1123,7 +1089,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		if (lore != null) {
 			skullPDC.set(LORE_KEY, LORE_PDT, lore.toArray(new String[0]));
 		}
-		/**skullPDC.set(UUID_KEY, PersistentDataType.STRING, uuid);
+		/* skullPDC.set(UUID_KEY, PersistentDataType.STRING, uuid);
 		skullPDC.set(TEXTURE_KEY, PersistentDataType.STRING, url.toString());
 		skullPDC.set(SOUND_KEY, PersistentDataType.STRING, meta.getNoteBlockSound().toString());//*/
 
@@ -1363,14 +1329,14 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		//EntityType eType = entity.getType();
 		String name = eType.name();
 		String soundType = "ambient";
-		switch (eType) {
-		case ALLAY:
+		switch (name) {
+		case "ALLAY":
 			soundType = "ambient_without_item";
 			break;
-		case AXOLOTL:
+		case "AXOLOTL":
 			soundType = "idle_air";
 			break;
-		case BEE:
+		case "BEE":
 			String bee = (displayname.contains(" ")) ? StrUtils.Left(displayname, displayname.indexOf(" ") - 1).toUpperCase(Locale.ROOT) : "BEE";
 			switch(bee) {
 			case "ANGRY": // Angry Pollinated Bee
@@ -1384,26 +1350,28 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				break;
 			}
 			break;
-		case CAVE_SPIDER:
-		case SPIDER:
+		case "CAVE_SPIDER":
+		case "SPIDER":
 			name = "SPIDER";
 			soundType = "step";
 			break;
-		case CREEPER:
+		case "CREEPER":
 			soundType = "primed";
 			break;
-		case COD:
-		case SALMON:
-		case TROPICAL_FISH:
-		case TADPOLE:
+		case "COD":
+		case "SALMON":
+		case "TROPICAL_FISH":
+		case "TADPOLE":
 			soundType = "flop";
 			break;
-		case IRON_GOLEM:
-		case PLAYER:
-		case SNOWMAN:
+		case "COPPER_GOLEM":
+		case "IRON_GOLEM":
+		case "PLAYER":
+		case "SNOWMAN":
+		case "SNOW_GOLEM":
 			soundType = "hurt";
 			break;
-		case GOAT:
+		case "GOAT":
 			String goat = (displayname.contains(" ")) ? StrUtils.Left(displayname, displayname.indexOf(" ") - 1).toUpperCase(Locale.ROOT) : "GOAT";
 			switch (goat) {
 			case "SCREAMING":
@@ -1414,11 +1382,12 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				break;
 			}
 			break;
-		case MUSHROOM_COW:
+		case "MUSHROOM_COW":
+		case "MOOSHROOM":
 			name = "COW";
 			soundType = "ambient";
 			break;
-		case PANDA:
+		case "PANDA":
 			//				Check						If true get string left of space										Default
 			String panda = (displayname.contains(" ")) ? StrUtils.Left(displayname, displayname.indexOf(" ") - 1).toUpperCase(Locale.ROOT) : "PANDA";
 			switch (panda) {
@@ -1436,14 +1405,14 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				break;
 			}
 			break;
-		case PUFFERFISH:
+		case "PUFFERFISH":
 			soundType = "blow_up";
 			break;
-		case SLIME:
-		case MAGMA_CUBE:
+		case "SLIME":
+		case "MAGMA_CUBE":
 			soundType = "squish_small";
 			break;
-		case RABBIT:
+		case "RABBIT":
 			String rabbit = (displayname.contains(" ")) ? StrUtils.Left(displayname, displayname.indexOf(" ") - 1).toUpperCase(Locale.ROOT) : "RABBIT";
 			switch (rabbit) {
 			case "THE":
@@ -1454,17 +1423,17 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				break;
 			}
 			break;
-		case SNIFFER:
+		case "SNIFFER":
 			soundType = "scenting";
 			break;
-		case TRADER_LLAMA:
+		case "TRADER_LLAMA":
 			name = "LLAMA";
 			soundType = "ambient";
 			break;
-		case TURTLE:
+		case "TURTLE":
 			soundType = "ambient_land";
 			break;
-		case VEX:
+		case "VEX":
 			String vex = (displayname.contains(" ")) ? StrUtils.Left(displayname, displayname.indexOf(" ") - 1).toUpperCase(Locale.ROOT) : "VEX";
 			switch (vex) {
 			case "ANGRY":
@@ -1475,7 +1444,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				break;
 			}
 			break;
-		case WOLF:
+		case "WOLF":
 			//String wolf = (displayname.contains(" ")) ? StrUtils.Left(displayname, displayname.indexOf(" ") - 1).toUpperCase(Locale.ROOT) : "WOLF";
 
 			if(displayname.contains("Angry")) {
@@ -1484,7 +1453,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				soundType = "ambient";
 			}
 			break;
-		case WITHER:
+		case "WITHER":
 			if (displayname.contains("projectile")) {
 				soundType = "shoot";
 			} else {
@@ -1539,39 +1508,6 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			lore.add(ChatColor.AQUA + "MoreMobHeads");
 		}
 		return lore;
-	}
-
-	/**
-	 * Creates and returns a custom skull ItemStack with the specified texture and name, producing multiple copies.
-	 *
-	 * @param texture The base64 texture string for the skulls' appearance.
-	 * @param name The name of the custom skulls.
-	 * @param amount The number of identical skull ItemStacks to create.
-	 * @return An ItemStack of the custom skull with the provided texture and name, in the specified quantity.
-	 */
-	public ItemStack makeSkulls(String texture, String name, int amount){
-		ItemStack item = new ItemStack(Material.PLAYER_HEAD, amount);
-		if(texture == null) {
-			return item;
-		}
-		SkullMeta meta = (SkullMeta) item.getItemMeta();
-
-		GameProfile profile = new GameProfile(UUID.nameUUIDFromBytes(texture.getBytes()), texture);
-		profile.getProperties().put("textures", new Property("textures", texture));
-		profile.getProperties().put("display", new Property("Name", name));
-		setGameProfile(meta, profile);
-		ArrayList<String> lore = new ArrayList();
-
-		if(config.getBoolean("head_settings.lore.show_plugin_name", true)){
-			lore.add(ChatColor.AQUA + "MoreMobHeads");
-		}
-		meta.setLore(lore);
-		meta.setLore(lore);
-
-		//meta.setOwningPlayer(Bukkit.getOfflinePlayer(ownerUUID));
-		meta.setDisplayName(name);
-		item.setItemMeta(meta);
-		return item;
 	}
 
 	static JavaPlugin plugin = getInstance();
@@ -2231,20 +2167,6 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		return lang2.get(key, defaultValue);
 	}
 
-	public boolean isPluginRequired(String pluginName) {
-		String[] requiredPlugins = {"SinglePlayerSleep", "MoreMobHeads", "NoEndermanGrief", "ShulkerRespawner", "MoreMobHeads", "RotationalWrench", "SilenceMobs", "VillagerWorkstationHighlights"};
-		for (String requiredPlugin : requiredPlugins) {
-			if ((getServer().getPluginManager().getPlugin(requiredPlugin) != null) && getServer().getPluginManager().isPluginEnabled(requiredPlugin)) {
-				if (requiredPlugin.equals(pluginName)) {
-					return true;
-				} else {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
-
 	public void dumpConfig(FileConfiguration config) {
 		for (String key : config.getKeys(true)) {
 			Object value = config.get(key);
@@ -2437,26 +2359,19 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 
 	// Used to check the Minecraft version
 	private Version verifyMinecraftVersion() {
-		Version minimum = new Version(PluginLibrary.MINIMUM_MINECRAFT_VERSION);
-		Version maximum = new Version(PluginLibrary.MAXIMUM_MINECRAFT_VERSION);
-
 		try {
-			Version current = new Version(this.getServer());
-
 			// We'll just warn the user for now
-			if (current.compareTo(minimum) < 0) {
-				LOGGER.warn("Version " + current + " is lower than the minimum " + minimum);
+			if (CURRENT_MINECRAFT_VERSION.compareTo(MINIMUM_MINECRAFT_VERSION) < 0) {
+				LOGGER.warn("Version " + CURRENT_MINECRAFT_VERSION + " is lower than the minimum " + MINIMUM_MINECRAFT_VERSION);
 			}
-			if (current.compareTo(maximum) > 0) {
-				LOGGER.warn("Version " + current + " has not yet been tested! Proceed with caution.");
+			if (CURRENT_MINECRAFT_VERSION.compareTo(MAXIMUM_MINECRAFT_VERSION) > 0) {
+				LOGGER.warn("Version " + CURRENT_MINECRAFT_VERSION + " has not yet been tested! Proceed with caution.");
 			}
-
-			return current;
+			return CURRENT_MINECRAFT_VERSION;
 		} catch (Exception exception) {
-			reporter.reportWarning(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_PARSE_MINECRAFT_VERSION).error(exception).messageParam(maximum));
-
+			reporter.reportWarning(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_PARSE_MINECRAFT_VERSION).error(exception).messageParam(MAXIMUM_MINECRAFT_VERSION));
 			// Unknown version - just assume it is the latest
-			return maximum;
+			return MAXIMUM_MINECRAFT_VERSION;
 		}
 	}
 

@@ -16,7 +16,7 @@
       "black": {
         "displayName": "Black Horse",
         "langName": "horse.black",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjIxZjE0ZjU4ZmRmMWM0OGU0YzI4YWZiZWI0YzY4YmE4MGJhMTc1MDFlNjU0YTEyZTcyN2VmYjY1YzU1YzkwNjg1ODliOTE2MDgzNGU1ZCJ9fX0=",
+        "texture": "e3RleHR1cmVzOntTS0lOOnt1cmw6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjIxZjE0ZjU4ZmRmMWM0OGU0YzI4YWZiZWI0YzY4YmE4MGJhMTc1MDVlNTYwYjUwNTk0NTdjN2I3MWMyM2EzZiJ9fX0=",
         "uuid": "4083cd58-1325-4bfa-9efb-5b8b93a02493",
         "lore": [],
         "noteblockSound": "entity.horse.ambient",

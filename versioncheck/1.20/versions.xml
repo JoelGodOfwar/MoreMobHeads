@@ -7,7 +7,7 @@ D1    Fixed Wolves, Cows, Pigs, Chickens broken by spigot and paper. added pla
     <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
   </release>
   <developer>
-    <version>1.20_1.0.43.D10</version>
+    <version>1.20_1.0.43.D11</version>
     <notes>D1  Added new config option to disable dlc nag for OPs. also reduced chance of being nagged.
 D2  Fixed viewheads command, fixed exception with zombie_villager.
 D3  Added a default head to handle missing head files, called Head not found with a pink and black pattern.
@@ -18,7 +18,8 @@ D6  Optimized Wandering Trader trade selection to fix server hangs.
 D7  Started standardizing MMH to optimize code. Updated MMH Library to work with 1.21.8-1.21.9
 D8  Added MobHeadDropEvent for developers.
 D9  Added CoreUtils Library. Added Exploding bed damage as WeaponType for beheading messages.
-D10    Added new features to 1.20 eventHandler for parity. Streamlined code for quicker fixes and updates.</notes>
+D10    Added new features to 1.20 eventHandler for parity. Streamlined code for quicker fixes and updates.
+D11 Added copper_golem, finished streamlining code. Fixed Black Horse Head.</notes>
     <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
   </developer>
 </versions>

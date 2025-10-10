@@ -1,6 +1,7 @@
 package com.github.joelgodofwar.mmh.util;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -183,26 +184,26 @@ public class SkinUtils {
 			return null;
 		}
 		GameProfile gameProfile = (GameProfile) profile;
-		PropertyMap properties = gameProfile.getProperties();
-		if (properties == null) {
+
+		// Dynamically invoke properties() or getProperties()
+		Object properties = invokeMethod(null, gameProfile, GameProfile.class, "properties", "getProperties");
+		if (!(properties instanceof PropertyMap)) {
 			return null;
 		}
-		Collection<Property> textures = properties.get("textures");
-		if ((textures != null) && !textures.isEmpty()) {
+		PropertyMap propertyMap = (PropertyMap) properties;
+		Collection<Property> textures = propertyMap.get("textures");
+		if (textures != null && !textures.isEmpty()) {
 			Property textureProperty = textures.iterator().next();
-			//System.out.println("textureProperty = " + textureProperty);
 			String input = textureProperty.toString();
-			//System.out.println("input = " + input);
-            //System.out.println("texture = " + texture);
 			return input.substring(input.indexOf("value=") + 6, input.lastIndexOf(','));
 		}
 		return null;
 	}
 
 	/**
-	 * Extracts the Base64 texture string from an ItemStack's ItemMeta.
+	 * Extracts the UUID string from an ItemStack's ItemMeta.
 	 *
-	 * @param itemStack the ItemStack from which to extract the texture
+	 * @param itemStack the ItemStack from which to extract the UUID
 	 * @return the UUID string, or null if not found
 	 */
 	public String getHeadUUID(ItemStack itemStack) {
@@ -218,30 +219,71 @@ public class SkinUtils {
 			return null;
 		}
 		GameProfile gameProfile = (GameProfile) profile;
-		UUID uuid = gameProfile.getId();
 
-		if ((uuid != null)) {
+		// Dynamically invoke id() or getId()
+		Object uuid = invokeMethod(null, gameProfile, GameProfile.class, "id", "getId");
+		if (uuid instanceof UUID) {
 			return uuid.toString();
 		}
 		return null;
 	}
 
 	/**
-	 * Reflection to get Private field of ItemStack
-	 * */
+	 * Reflection to get private field of an object.
+	 *
+	 * @param logger the logger for error reporting, can be null
+	 * @param o the object to extract the field from
+	 * @param c the class containing the field
+	 * @param field the name of the field
+	 * @return the field value, or null if not found
+	 */
 	public static Object getPrivate(Logger logger, Object o, Class<?> c, String field) {
 		try {
 			Field access = c.getDeclaredField(field);
 			access.setAccessible(true);
 			return access.get(o);
 		} catch (Exception ex) {
-			ex.printStackTrace();
-			//logger.log(Level.SEVERE, "Error getting private member of " + o.getClass().getName() + "." + field, ex);
+			if (logger != null) {
+				ex.printStackTrace();
+				// logger.log(Level.SEVERE, "Error getting private member of " + o.getClass().getName() + "." + field, ex);
+			}
 		}
 		return null;
 	}
 
-	/**public static String getProfileURL(Object profile) {
+	/**
+	 * Reflection to invoke a method, trying the primary method name first, then fallback.
+	 *
+	 * @param logger the logger for error reporting can be null
+	 * @param o the object to invoke the method on
+	 * @param c the class containing the method
+	 * @param primaryMethod the primary method name to try (e.g., "properties")
+	 * @param fallbackMethod the fallback method name to try (e.g., "getProperties")
+	 * @return the method result, or null if not found
+	 */
+	public static Object invokeMethod(Logger logger, Object o, Class<?> c, String primaryMethod, String fallbackMethod) {
+		try {
+			// Try the primary method first (e.g., properties())
+			try {
+				Method method = c.getDeclaredMethod(primaryMethod);
+				method.setAccessible(true);
+				return method.invoke(o);
+			} catch (NoSuchMethodException e) {
+				// Fallback to older method (e.g., getProperties())
+				Method method = c.getDeclaredMethod(fallbackMethod);
+				method.setAccessible(true);
+				return method.invoke(o);
+			}
+		} catch (Exception ex) {
+			if (logger != null) {
+				ex.printStackTrace();
+				// logger.log(Level.SEVERE, "Error invoking method " + primaryMethod + " or " + fallbackMethod + " on " + o.getClass().getName(), ex);
+			}
+		}
+		return null;
+	}
+
+	/* public static String getProfileURL(Object profile) {
 		String url = null;
 		if ((profile == null) || !(profile instanceof GameProfile)) {
 			return null;

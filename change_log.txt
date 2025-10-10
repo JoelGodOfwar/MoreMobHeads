@@ -10,7 +10,8 @@ D7	Started standardizing MMH to optimize code. Updated MMH Library to work with 
 D8	Added MobHeadDropEvent for developers.
 D9	Added CoreUtils Library. Added Exploding bed damage as WeaponType for beheading messages.
 D10	Added new features to 1.20 eventHandler for parity. Streamlined code for quicker fixes and updates.
-D11	.
+D11	Added copper_golem, finished streamlining code. Fixed Black Horse Head.
+D12 .
 1.20_1.0.42
 D1	Fixed Wolves, Cows, Pigs, Chickens broken by spigot and paper. added player.json to entity for player head chance.
 1.20_1.0.41

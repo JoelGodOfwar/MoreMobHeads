@@ -178,7 +178,7 @@ public class Command_1_20_R2 implements CommandExecutor, TabCompleter {
 							mmh.LOGGER.log("" + item);
 						} else {
 							// log(Level.INFO,"You do not have a head in either hand.");
-							player.sendMessage("" + mmh.get("mmh.command.headnbt"));
+							player.sendMessage(mmh.get("mmh.command.headnbt"));
 						}
 					}catch(Exception exception) {
 						mmh.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_COMMAND_HEADNBT_ERROR).error(exception));

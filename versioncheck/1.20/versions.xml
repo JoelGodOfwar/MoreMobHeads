@@ -17,7 +17,7 @@ D11    Added copper_golem, finished streamlining code. Fixed Black Horse Head.
     <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
   </release>
   <developer>
-    <version>1.20_1.0.44.D7</version>
+    <version>1.20_1.0.44.D8</version>
     <notes>D1 Switched from disabling plugin on load of unsupported MC Version to attempt to load newest eventHandlers
     D2  Console can now use mmh config, tabs auto-fixed, added config_comments.yml guide, config.yml now clean
     D3  Fixed beheading messages (hex/gradient/rainbow), added 10 new colorful ones, now supports up to 8-color gradients,
@@ -25,7 +25,8 @@ D11    Added copper_golem, finished streamlining code. Fixed Black Horse Head.
     D4  Fixed Vex handler, Fixed Villager.json
     D5  Fixed Villager and Zombie Villager for Paper.
     D6  Fixed Cat and Frog heads.
-    D7  Fixed updatechecker message on join, via CoreUtils update.</notes>
+    D7  Fixed updatechecker message on join, via CoreUtils update.
+    D8  Fixed Copper Golem weatherstate detection.</notes>
     <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
   </developer>
 </versions>

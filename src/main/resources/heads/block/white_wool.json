@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.wool.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.white_wool",
+    "langFormat": "mmh.format.block.default"
   }
 }  

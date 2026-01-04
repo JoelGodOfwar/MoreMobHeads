@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.piston.contract",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.sticky_piston",
+    "langFormat": "mmh.format.block.default"
   }
 }  

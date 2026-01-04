@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.nether_wood.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.warped.planks",
+    "langFormat": "mmh.format.block.wood"
   }
 }  

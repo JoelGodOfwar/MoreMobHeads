@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "entity.generic.explode",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.tnt",
+    "langFormat": "mmh.format.block.default"
   }
 } 

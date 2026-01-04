@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.froglight.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.ochre_froglight",
+    "langFormat": "mmh.format.block.default"
   }
 }  

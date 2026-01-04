@@ -21,6 +21,8 @@
     "lore": [],
     "noteblockSound": "block.stone.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.magma_block",
+    "langFormat": "mmh.format.block.default"
   }
 }

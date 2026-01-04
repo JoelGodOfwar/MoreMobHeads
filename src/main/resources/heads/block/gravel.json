@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.gravel.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.gravel",
+    "langFormat": "mmh.format.block.default"
   }
 }  

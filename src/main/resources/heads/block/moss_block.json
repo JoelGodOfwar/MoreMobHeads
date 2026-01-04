@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.moss.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.moss_block",
+    "langFormat": "mmh.format.block.default"
   }
 }  

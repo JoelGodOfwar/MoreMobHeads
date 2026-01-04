@@ -21,6 +21,8 @@
     "noteblockSound": "block.moss.step",
     "quantity": 8,
     "maxUses": 1,
-    "min_mc_version": "1.21.4"
+    "min_mc_version": "1.21.4",
+    "langKey": "block.moss_block.pale",
+    "langFormat": "mmh.format.block.default"
   }
 }

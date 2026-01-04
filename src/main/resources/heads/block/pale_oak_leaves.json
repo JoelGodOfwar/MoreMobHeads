@@ -21,6 +21,8 @@
     "noteblockSound": "block.azalea_leaves.place",
     "quantity": 8,
     "maxUses": 1,
-    "min_mc_version": "1.21.2"
+    "min_mc_version": "1.21.2",
+    "langKey": "block.pale_oak.leaves",
+    "langFormat": "mmh.format.block.wood"
   }
 }  

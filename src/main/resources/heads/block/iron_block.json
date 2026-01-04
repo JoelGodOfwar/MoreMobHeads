@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.iron.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.iron_block",
+    "langFormat": "mmh.format.block.default"
   }
 }  

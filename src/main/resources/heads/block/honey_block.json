@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.honey_block.slide",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.honey_block",
+    "langFormat": "mmh.format.block.default"
   }
 }  

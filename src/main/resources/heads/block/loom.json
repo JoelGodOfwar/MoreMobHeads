@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "ui.loom.select_pattern",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.loom",
+    "langFormat": "mmh.format.block.default"
   }
 }  

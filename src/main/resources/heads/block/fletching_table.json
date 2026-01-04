@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "entity.villager.work_fletcher",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.fletching_table",
+    "langFormat": "mmh.format.block.default"
   }
 }  

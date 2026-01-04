@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.beehive.drip",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.bee_nest",
+    "langFormat": "mmh.format.block.default"
   }
 }  

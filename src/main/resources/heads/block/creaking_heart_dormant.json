@@ -18,9 +18,11 @@
     "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzcxNGRjMTNkMDgzYjlhYmU2NWU4NzIzODE4ZWNhZDFlZDU5ZmY5NTg4ODRlN2UzNTZiMWNjZTg1M2FmM2VmOCJ9fX0=",
     "uuid": "568b2bb4-5061-4a51-9c84-0a70c9358ec6",
     "lore": [],
-    "noteblockSound": "block.moss.step",
+    "noteblockSound": "block.creaking_heart.hit",
     "quantity": 8,
     "maxUses": 1,
-    "min_mc_version": "1.21.4"
+    "min_mc_version": "1.21.4",
+    "langKey": "block.creaking_heart.dormant",
+    "langFormat": "mmh.format.block.wood"
   }
 }

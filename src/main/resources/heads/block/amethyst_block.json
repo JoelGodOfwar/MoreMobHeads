@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.amethyst_block.hit",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.amethyst_block",
+    "langFormat": "mmh.format.block.default"
   }
 }  

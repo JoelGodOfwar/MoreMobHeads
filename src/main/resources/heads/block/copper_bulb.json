@@ -21,6 +21,8 @@
     "noteblockSound": "item.axe.wax_off",
     "quantity": 8,
     "maxUses": 1,
-    "min_mc_version": "1.21"
+    "min_mc_version": "1.21",
+    "langKey": "block.copper_bulb",
+    "langFormat": "mmh.format.block.default"
   }
 }  

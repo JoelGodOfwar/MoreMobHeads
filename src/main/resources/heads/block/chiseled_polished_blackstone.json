@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.stone.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.blackstone.chiseled.polished",
+    "langFormat": "mmh.format.block.default"
   }
 }  

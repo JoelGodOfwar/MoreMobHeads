@@ -14,6 +14,8 @@
     "lore": [],
     "noteblockSound": "block.enchanting_table.use",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.enchanting_table",
+    "langFormat": "mmh.format.block.default"
   }
 }  

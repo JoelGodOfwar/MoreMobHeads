@@ -14,6 +14,8 @@
     "lore": [],
     "noteblockSound": "block.stone.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.bricks",
+    "langFormat": "mmh.format.block.default"
   }
 }  

@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.ancient_debris.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.ancient_debris",
+    "langFormat": "mmh.format.block.default"
   }
 }  

@@ -17,7 +17,7 @@ D11    Added copper_golem, finished streamlining code. Fixed Black Horse Head.
     <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
   </release>
   <developer>
-    <version>1.20_1.0.44.D12</version>
+    <version>1.20_1.0.44.D13</version>
     <notes>D1 Switched from disabling plugin on load of unsupported MC Version to attempt to load newest eventHandlers
     D2  Console can now use mmh config, tabs auto-fixed, added config_comments.yml guide, config.yml now clean
     D3  Fixed beheading messages (hex/gradient/rainbow), added 10 new colorful ones, now supports up to 8-color gradients,
@@ -30,7 +30,8 @@ D11    Added copper_golem, finished streamlining code. Fixed Black Horse Head.
     D9  Fixing papers changes to weatherstate. Reset epoch time to 1764860848L.
     D10 Fixed NPE when Creaking dies without a cause.
     D11 Added 1.21.11 Mobs
-    D12 Updated translation system, and updated epoch time.</notes>
+    D12 Updated translation system, and updated epoch time.
+    D13 Added rest of translations, fixed Config GUI not reloading on close, fixed named weapons being called bare hands.</notes>
     <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
   </developer>
 </versions>

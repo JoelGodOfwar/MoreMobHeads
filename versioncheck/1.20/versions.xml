@@ -1,19 +1,24 @@
 <versions>
   <dlcs>mmh_all_logs.zip;48;$2;heads/block/all_logs_acacia_log_horizontal.json,mmh_all_woods;22;$1;heads/block/acacia_wood.json,mmh_all_shulker_boxes;17;$1;heads/block/red_shulker_box.json,mmh_copper_golems.zip;4;$1;heads/entity/copper_golem_exposed.json</dlcs>
   <release>
-    <version>1.20_1.0.43</version>
-    <notes>D1    Added new config option to disable dlc nag for OPs. also reduced chance of being nagged.
-D2    Fixed viewheads command, fixed exception with zombie_villager.
-D3    Added a default head to handle missing head files, called Head not found with a pink and black pattern.
-D4    Fixed initlization of ArrayList. Added new config sub command, and permission moremobheads.config.
-D5    Switched to IntelliJ. Added subcommand Chance with subcommands Export/Import that creates an entity_chances.json
-    for batch updating entity chances. DevBuilds now have a 60 day time limit for usage.
-D6    Optimized Wandering Trader trade selection to fix server hangs.
-D7    Started standardizing MMH to optimize code. Updated MMH Library to work with 1.21.8-1.21.9
-D8    Added MobHeadDropEvent for developers.
-D9    Added CoreUtils Library. Added Exploding bed damage as WeaponType for beheading messages.
-D10    Added new features to 1.20 eventHandler for parity. Streamlined code for quicker fixes and updates.
-D11    Added copper_golem, finished streamlining code. Fixed Black Horse Head.</notes>
+    <version>1.20_1.0.44</version>
+    <notes>D1  Switched from disabling plugin on load of unsupported MC Version to attempt to load newest eventHandlers
+D2  Console can now use mmh config, tabs auto-fixed, added config_comments.yml guide, config.yml now clean
+D3  Fixed beheading messages (hex/gradient/rainbow), added 10 new colorful ones, now supports up to 8-color gradients,
+    fixed Zombie Villager Shepherd + biome heads, updated head updater, CoreUtils sync
+D4  Fixed Vex handler, Fixed Villager.json
+D5  Fixed Villager and Zombie Villager for Paper.
+D6  Fixed Cat and Frog heads.
+D7  Fixed updatechecker message on join, via CoreUtils update.
+D8  Fixed Copper Golem weatherstate detection.
+D9  Fixing papers changes to weatherstate. Reset epoch time to 1764860848L.
+D10 Fixed NPE when Creaking dies without a cause.
+D11 Added 1.21.11 Mobs
+D12 Updated translation system, and updated epoch time.
+D13 Added rest of translations, fixed Config GUI not reloading on close, fixed named weapons being called bare hands.
+D14 Fixed beheading messages with better json parsing.
+D15 DLC merged into MMH, -DEV no longer forces debug.
+D16 Cleaned up DLC code, leaving DLCInstaller for possible future use.</notes>
     <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
   </release>
   <developer>

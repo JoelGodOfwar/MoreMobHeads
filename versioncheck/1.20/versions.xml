@@ -22,8 +22,9 @@ D16 Cleaned up DLC code, leaving DLCInstaller for possible future use.</notes>
     <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
   </release>
   <developer>
-    <version>1.20_1.0.45.D1</version>
-    <notes>D1  Fixed Nickname getter, Moved Logger to CoreUtils</notes>
+    <version>1.20_1.0.45.D2</version>
+    <notes>D1  Fixed Nickname getter, Moved Logger to CoreUtils
+    D2  Fixed Config and ViewHeads commands.</notes>
     <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
   </developer>
 </versions>

@@ -22,14 +22,15 @@ D16 Cleaned up DLC code, leaving DLCInstaller for possible future use.</notes>
     <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
   </release>
   <developer>
-    <version>1.20_1.0.45.D7</version>
+    <version>1.20_1.0.45.D8</version>
     <notes>D1  Fixed Nickname getter, Moved Logger to CoreUtils
     D2  Fixed Config and ViewHeads commands.
     D3  Fixed Wolf, Cat, Bee, Also Wither will respect the chances for all 3 heads.
     D4  Removed MoreMobHeadsLib and the nbtapi library, added update.json to fix files from D3.
     D5  Fixed head translator sometimes double spacing. Fixed All_Black and Tuxedo cat heads.
     D6  Added Baby Mobs(100+ new heads), Major overhaul of the JsonUpdateHandler to properly support deep nesting and automatic migration.
-    D7  Fixed some baby heads with issues. Updated language files.</notes>
+    D7  Fixed some baby heads with issues. Updated language files.
+    D8  Fixed Creaking head. Fixed some settings not being reloaded with command.</notes>
     <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
   </developer>
 </versions>

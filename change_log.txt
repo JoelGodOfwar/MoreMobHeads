@@ -1,3 +1,5 @@
+1.20_1.0.46
+D1  .
 1.20_1.0.45
 D1  Fixed Nickname getter, Moved Logger to CoreUtils
 D2  Fixed Config and ViewHeads commands.
@@ -7,7 +9,6 @@ D5  Fixed head translator sometimes double spacing. Fixed All_Black and Tuxedo c
 D6  Added Baby Mobs(100+ new heads), Major overhaul of the JsonUpdateHandler to properly support deep nesting and automatic migration.
 D7  Fixed some baby heads with issues. Updated language files.
 D8  Fixed Creaking head. Fixed some settings not being reloaded with command.
-D9  .
 1.20_1.0.44
 D1  Switched from disabling plugin on load of unsupported MC Version to attempt to load newest eventHandlers
 D2  Console can now use mmh config, tabs auto-fixed, added config_comments.yml guide, config.yml now clean

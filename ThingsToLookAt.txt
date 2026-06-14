@@ -1,0 +1,4 @@
+Is there a way to delete player heads from heads/player without them re-populating on reload/start?
+
+Angry wolves heads not dropping?
+

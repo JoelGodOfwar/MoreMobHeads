@@ -5,7 +5,8 @@ import java.util.List;
 
 public class MobHeadData {
 	private final String displayName;
-	private final String langName;
+	private final String langKey;
+	private final String langFormat;
 	private final String texture;
 	private final String uuid;
 	private final List<String> lore;
@@ -16,10 +17,11 @@ public class MobHeadData {
 	private final String maxMCVersion;
 	private final String filePath;
 
-	public MobHeadData(String displayName, String langName, String texture, String uuid, List<String> lore,
+	public MobHeadData(String displayName, String langKey, String langFormat, String texture, String uuid, List<String> lore,
 			String noteblockSound, int quantity, double chance, String minMCVersion, String maxMCVersion, String filePath) {
 		this.displayName = displayName;
-		this.langName = langName;
+		this.langKey = langKey;
+		this.langFormat = langFormat;
 		this.texture = texture;
 		this.uuid = uuid;
 		this.lore = lore != null ? new ArrayList<>(lore) : new ArrayList<>();
@@ -35,8 +37,11 @@ public class MobHeadData {
 		return displayName;
 	}
 
-	public String getLangName() {
-		return langName;
+	public String getLangKey() {
+		return langKey;
+	}
+	public String getLangFormat(){
+		return langFormat;
 	}
 
 	public String getTexture() {

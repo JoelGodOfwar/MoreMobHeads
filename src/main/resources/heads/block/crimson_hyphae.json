@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.stem.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.crimson.hyphae",
+    "langFormat": "mmh.format.block.wood"
   }
 }  

@@ -15,12 +15,13 @@
   },
   "head": {
     "displayName": "§eMini Bamboo Block",
-    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjZkMzg5ZmE4ZDZmMDQzNWRmZTlhNTFkNGY2ZjhjMGEyNWYwNTIyYzkwMmJjNTg1NWY2ZTNmNjIwMTM0NTNkOSJ9fX0=",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTdlZTA1MjI3NDMwZTAzZmZjM2E4OTk3NTA0YjU2MmZhY2Q2Y2ZkMTVmMGU1ZTIyMjE0MzY2ZGI0ZjE4MDM3OCJ9fX0=",
     "uuid": "252618c2-a083-40f2-ba0e-ea4f7a9803f0",
     "lore": [],
-    "noteblockSound": "block.bamboo_wood.place",
+    "noteblockSound": "block.wood.place",
     "quantity": 8,
     "maxUses": 1,
-    "min_mc_version": "1.20"
+    "langKey": "block.bamboo_block",
+    "langFormat": "mmh.format.block.default"
   }
-} 
+}

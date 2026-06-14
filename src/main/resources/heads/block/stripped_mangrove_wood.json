@@ -1,0 +1,27 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "STRIPPED_MANGROVE_WOOD",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Stripped Mangrove Wood",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWNiZGQ4ZjdjMjhjMWU0YTkxNjYwYTVmNjEzY2RkMzNiMGI0OTY5ZTBiZTRiOTM4ZDg4YmJkZTliZmFkMDE5NSJ9fX0=",
+    "uuid": "050d7cf5-9792-4abb-a83d-ae72a3b297ce",
+    "lore": [],
+    "noteblockSound": "block.wood.place",
+    "quantity": 8,
+    "maxUses": 1,
+    "langKey": "block.mangrove.stripped.wood",
+    "langFormat": "mmh.format.block.azalea"
+  }
+}  

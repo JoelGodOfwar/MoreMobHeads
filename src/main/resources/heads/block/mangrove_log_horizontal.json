@@ -1,0 +1,27 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "MANGROVE_LOG",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Mangrove Log (Horizontal)",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGVjYTE3MDE1ZDdiMzE0NjczMWM1NzA2OThlYjUwZDI5MjJkYzA5MjAxN2U1ZWE1NDFlMjBjMGFkMTZiZjg3ZCJ9fX0=",
+    "uuid": "65982bf7-9f21-41a7-a62e-658f9ee99b82",
+    "lore": [],
+    "noteblockSound": "block.wood.place",
+    "quantity": 8,
+    "maxUses": 1,
+    "langKey": "block.mangrove.log.horizontal",
+    "langFormat": "mmh.format.block.wood"
+  }
+}

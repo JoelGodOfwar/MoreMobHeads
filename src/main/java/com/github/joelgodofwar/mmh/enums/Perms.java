@@ -25,7 +25,12 @@ public enum Perms {
         this.permission = PREFIX + permission;
     }
 
-    public String getPermission() {
+    /**
+     * Returns the full permission string (e.g., "moremobheads.blockheads").
+     * @return the permission string.
+     */
+    @Override
+    public String toString() {
         return permission;
     }
 

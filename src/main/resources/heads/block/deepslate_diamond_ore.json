@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.deepslate.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.deepslate,block.diamond_ore",
+    "langFormat": "Mini %block1% %block2%"
   }
 }  

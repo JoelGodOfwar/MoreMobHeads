@@ -1,16 +1,20 @@
 {
   "defaultChance": 2.5,
-  "structure": "flat",
   "heads": [
     {
+      "chance": 2.5,
       "displayName": "Pillager",
+      "langFormat": "mmh.format.entity.default",
+      "langKey": "entity.pillager",
       "langName": "pillager",
-      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzIyNWYwYjQ5YzUyOTUwNDhhNDA5YzljNjAxY2NhNzlhYThlYjUyYWZmNWUyMDMzZWJiODY1ZjQzNjdlZjQzZSJ9fX0=",
-      "uuid": "c64b8af5-b547-4a15-abf9-12d3eb052f37",
-      "lore": [],
+      "lore": [
+
+      ],
       "noteblockSound": "entity.pillager.ambient",
       "quantity": 1,
-      "chance": 2.5
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzIyNWYwYjQ5YzUyOTUwNDhhNDA5YzljNjAxY2NhNzlhYThlYjUyYWZmNWUyMDMzZWJiODY1ZjQzNjdlZjQzZSJ9fX0=",
+      "uuid": "c64b8af5-b547-4a15-abf9-12d3eb052f37"
     }
-  ]
-}  
+  ],
+  "structure": "flat"
+}

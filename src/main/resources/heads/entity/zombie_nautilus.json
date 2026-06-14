@@ -1,0 +1,36 @@
+{
+  "defaultChance": 10.0,
+  "heads": {
+    "nautilus": {
+      "coral": {
+        "chance": 10.0,
+        "displayName": "Coral Zombie Nautilus Shell",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.zombie_nautilus.coral",
+        "lore": [
+
+        ],
+        "min_mc_version": "1.21.11",
+        "noteblockSound": "entity.zombie_nautilus.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODg3ZmZiOWE4OTVlMWMyYTA4ZGMyYjZlNmI5YTZkZGM0Y2NjYTEzNzczMDYyNjZkNDdmYTdjNzNiZDAxMGJjOCJ9fX0=",
+        "uuid": "5225024e-8a64-4c81-8a3c-d3befa65e4ae"
+      },
+      "normal": {
+        "chance": 10.0,
+        "displayName": "Temperate Zombie Nautilus Shell",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.zombie_nautilus.temperate",
+        "lore": [
+
+        ],
+        "min_mc_version": "1.21.11",
+        "noteblockSound": "entity.zombie_nautilus.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjYyY2UzMDRiZmNkYWFjOTVmZTg0NzNkNjYwZTZmZjJjMGE5NzkxN2FlMjhiMzNlZTE1NTkwY2FjMDljMDczZiJ9fX0=",
+        "uuid": "834e409d-f3cd-49c3-b35a-7b816d24b009"
+      }
+    }
+  },
+  "structure": "nested"
+}

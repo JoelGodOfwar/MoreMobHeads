@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.soul_soil.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.soul_soil",
+    "langFormat": "mmh.format.block.default"
   }
 }  

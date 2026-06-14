@@ -1,48 +1,106 @@
 {
   "defaultChance": 24.0,
-  "structure": "nested",
   "heads": {
     "llama": {
       "brown": {
+        "chance": 24.0,
         "displayName": "Brown Llama",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.llama.brown",
         "langName": "llama.brown",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjgxNmVmOWRiNzUzNDg4ODNhZTgwMWI5Mzg2YzhlZDM2N2YzYjhkMGMzYmEwMTY3NjYyZGNhZjliMGU4MzkxMiJ9fX0=",
-        "uuid": "75fb08e5-2419-46fa-bf09-57362138f234",
         "lore": [],
         "noteblockSound": "entity.llama.ambient",
         "quantity": 1,
-        "chance": 24.0
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjgxNmVmOWRiNzUzNDg4ODNhZTgwMWI5Mzg2YzhlZDM2N2YzYjhkMGMzYmEwMTY3NjYyZGNhZjliMGU4MzkxMiJ9fX0=",
+        "uuid": "75fb08e5-2419-46fa-bf09-57362138f234"
       },
       "creamy": {
+        "chance": 24.0,
         "displayName": "Creamy Llama",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.llama.creamy",
         "langName": "llama.creamy",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTA3ZDAyYjgyNWQ0YTQ3NmQ3OGFmNjA3ODU0MWJkZDBmY2I2ODJiMGI0MDk4YjkxYTMxNGUxYjFjNGUzYzRlMSJ9fX0=",
-        "uuid": "dd0a3919-e919-428c-9298-6dc416fec9d",
         "lore": [],
         "noteblockSound": "entity.llama.ambient",
         "quantity": 1,
-        "chance": 24.0
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTA3ZDAyYjgyNWQ0YTQ3NmQ3OGFmNjA3ODU0MWJkZDBmY2I2ODJiMGI0MDk4YjkxYTMxNGUxYjFjNGUzYzRlMSJ9fX0=",
+        "uuid": "dd0a3919-e919-428c-9298-6dc416fec9d"
       },
       "gray": {
+        "chance": 24.0,
         "displayName": "Gray Llama",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.llama.gray",
         "langName": "llama.gray",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTYxMjNiMzA0NzE0ZDIzZDExNGRmZTY3Nzk0NmRjYmU0ZmVlODYzNWMwZDAyMTdiODg0NmQxOTM3ODM1ZTZjYiJ9fX0=",
-        "uuid": "edca7a0d-770f-43d6-8ffc-f6a00e94e477",
         "lore": [],
         "noteblockSound": "entity.llama.ambient",
         "quantity": 1,
-        "chance": 24.0
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTYxMjNiMzA0NzE0ZDIzZDExNGRmZTY3Nzk0NmRjYmU0ZmVlODYzNWMwZDAyMTdiODg0NmQxOTM3ODM1ZTZjYiJ9fX0=",
+        "uuid": "edca7a0d-770f-43d6-8ffc-f6a00e94e477"
       },
       "white": {
+        "chance": 24.0,
         "displayName": "White Llama",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.llama.white",
         "langName": "llama.white",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWZhNTgzNmQ5MTk3YTQwNGJiNzJkN2ZiYmVlY2NmOWE0MTQzYzQ1MWVjODQ0NTUzNTUyMTU5ZWQzNjdhNTYxMCJ9fX0=",
-        "uuid": "60d7893f-b634-48b8-8d6e-f07fa14f5115",
         "lore": [],
         "noteblockSound": "entity.llama.ambient",
         "quantity": 1,
-        "chance": 24.0
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWZhNTgzNmQ5MTk3YTQwNGJiNzJkN2ZiYmVlY2NmOWE0MTQzYzQ1MWVjODQ0NTUzNTUyMTU5ZWQzNjdhNTYxMCJ9fX0=",
+        "uuid": "60d7893f-b634-48b8-8d6e-f07fa14f5115"
+      },
+      "baby": {
+        "brown": {
+          "chance": 28.0,
+          "displayName": "Baby Brown Llama",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.llama.baby.brown",
+          "langName": "llama.baby.brown",
+          "lore": [],
+          "noteblockSound": "entity.llama.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDY5YmZhODIzNmE1YjBlOWY1ZGZkZmQ5ZWZiZWVkYzY3ZmI2YzYxNWQxY2RjMTU5NzEyOTFiNWEzMTM3NmMzYSJ9fX0=",
+          "uuid": "b66968ac-e6a2-4aaf-a5a2-bdf91a78c263"
+        },
+        "creamy": {
+          "chance": 28.0,
+          "displayName": "Baby Creamy Llama",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.llama.baby.creamy",
+          "langName": "llama.baby.creamy",
+          "lore": [],
+          "noteblockSound": "entity.llama.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDk5ZDE1Yjc4OWIyNTE4ZGFkZTUxZWQ2NzViYmZiZTYxMzA1ZmE2OGRlOTQwYWM0Zjc5MTVkN2M3Y2Y5YWQxZCJ9fX0=",
+          "uuid": "53924044-20ff-4e67-b2b4-9dcfa63d5270"
+        },
+        "gray": {
+          "chance": 28.0,
+          "displayName": "Baby Gray Llama",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.llama.baby.gray",
+          "langName": "llama.baby.gray",
+          "lore": [],
+          "noteblockSound": "entity.llama.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGIxYzk2ZGVlYzY5Y2M5MmZkODgwNWE0MDMwNmE1YTI2OGRkZDFhNTFkYjkwZmJiNGRlZWM5YzI0ZTNjMDUwMyJ9fX0=",
+          "uuid": "1ce0f569-d98c-47e2-8d71-b114e7ee12af"
+        },
+        "white": {
+          "chance": 28.0,
+          "displayName": "Baby White Llama",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.llama.baby.white",
+          "langName": "llama.baby.white",
+          "lore": [],
+          "noteblockSound": "entity.llama.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWM4OWJmY2UxYmNhZTNmMTI1MGU4N2YyNWMyMThmZWVlMGZmNTMxZjdlYTUzMWY3Zjg2ODFhMjdmNGJhYzYyMiJ9fX0=",
+          "uuid": "83ed5599-e910-4579-88f2-2c8ff08f51ee"
+        }
       }
     }
-  }
+  },
+  "structure": "nested"
 }

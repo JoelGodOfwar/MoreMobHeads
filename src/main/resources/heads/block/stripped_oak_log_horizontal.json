@@ -1,0 +1,27 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "STRIPPED_OAK_LOG",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Stripped Oak Log (Horizontal)",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODEzNjQ3MDAyZTY1MGNjNWU0NjUyMWNlMjg0YTYxNmU1YTEzNjIwOWM4ZDY5M2UyNWY2ODNjOGUwOTAyNTk0OSJ9fX0=",
+    "uuid": "924e0899-3903-47a4-a6e7-f419fce9f0cc",
+    "lore": [],
+    "noteblockSound": "block.wood.place",
+    "quantity": 8,
+    "maxUses": 1,
+    "langKey": "block.oak.stripped.log.horizontal",
+    "langFormat": "mmh.format.block.wood2"
+  }
+}

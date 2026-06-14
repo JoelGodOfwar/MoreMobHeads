@@ -1,16 +1,32 @@
 {
   "defaultChance": 33.0,
-  "structure": "flat",
-  "heads": [
-    {
-      "displayName": "Dolphin",
-      "langName": "dolphin",
-      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGU5Njg4Yjk1MGQ4ODBiNTViN2FhMmNmY2Q3NmU1YTBmYTk0YWFjNmQxNmY3OGU4MzNmNzQ0M2VhMjlmZWQzIn19fQ==",
-      "uuid": "9cd54916-35e6-4728-aac8-1850cb91d051",
-      "lore": [],
-      "noteblockSound": "entity.dolphin.ambient",
-      "quantity": 1,
-      "chance": 33.0
+  "heads": {
+    "dolphin": {
+      "default": {
+        "chance": 33.0,
+        "displayName": "Dolphin",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.dolphin",
+        "langName": "dolphin",
+        "lore": [],
+        "noteblockSound": "entity.dolphin.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGU5Njg4Yjk1MGQ4ODBiNTViN2FhMmNmY2Q3NmU1YTBmYTk0YWFjNmQxNmY3OGU4MzNmNzQ0M2VhMjlmZWQzIn19fQ==",
+        "uuid": "9cd54916-35e6-4728-aac8-1850cb91d051"
+      },
+      "baby": {
+        "chance": 40.0,
+        "displayName": "Baby Dolphin",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.dolphin.baby",
+        "langName": "dolphin.baby",
+        "lore": [],
+        "noteblockSound": "entity.dolphin.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTkzMGQxMjY3NDFlMzM1YTRiNzBjNTU2YzE5YmVhMTRiZjJiOTg3ZGQxNjBiNTIzMWI2NGM2NmUyNTQzOTQxYSJ9fX0=",
+        "uuid": "5d41e18d-490c-459a-a4f4-a4469e8ce4ff"
+      }
     }
-  ]
-}  
+  },
+  "structure": "nested"
+}

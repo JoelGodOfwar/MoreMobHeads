@@ -6,7 +6,7 @@ import java.util.List;
 import org.bukkit.inventory.ItemStack;
 
 public class BlockHeadData {
-	private final String langName;
+	private final String langKey;
 	private final String displayName;
 	private final String noteblockSound;
 	private final List<String> lore;
@@ -20,10 +20,10 @@ public class BlockHeadData {
 	private final int maxUses;
 	private final String minMCVersion;
 
-	public BlockHeadData(String langName, String displayName, String noteblockSound, List<String> lore,
+	public BlockHeadData(String langKeu, String displayName, String noteblockSound, List<String> lore,
 			double chance, double defaultChance, String texture, String uuid, int quantity,
 			ItemStack price1, ItemStack price2, int maxUses, String minMCVersion) {
-		this.langName = langName;
+		this.langKey = langKeu;
 		this.displayName = displayName;
 		this.noteblockSound = noteblockSound;
 		this.lore = lore != null ? new ArrayList<>(lore) : new ArrayList<>();
@@ -38,8 +38,8 @@ public class BlockHeadData {
 		this.minMCVersion = minMCVersion;
 	}
 
-	public String getLangName() {
-		return langName;
+	public String getLangKey() {
+		return langKey;
 	}
 
 	public String getDisplayName() {

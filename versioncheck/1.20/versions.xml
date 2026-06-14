@@ -1,23 +1,27 @@
 <versions>
-  <dlcs>mmh_all_logs.zip;48;$2;heads/block/all_logs_acacia_log_horizontal.json,mmh_all_woods;22;$1;heads/block/acacia_wood.json,mmh_all_shulker_boxes;17;$1;heads/block/red_shulker_box.json</dlcs>
-  <release>
-    <version>1.20_1.0.42</version>
-    <notes>1.20_1.0.42
-D1    Fixed Wolves, Cows, Pigs, Chickens broken by spigot and paper. added player.json to entity for player head chance.</notes>
-    <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
-  </release>
-  <developer>
-    <version>1.20_1.0.43.D9</version>
-    <notes>D1  Added new config option to disable dlc nag for OPs. also reduced chance of being nagged.
-D2  Fixed viewheads command, fixed exception with zombie_villager.
-D3  Added a default head to handle missing head files, called Head not found with a pink and black pattern.
-D4  Fixed initlization of ArrayList. Added new config sub command, and permission moremobheads.config.
-D5  Switched to IntelliJ. Added subcommand Chance with subcommands Export/Import that creates an entity_chances.json
-    for batch updating entity chances. DevBuilds now have a 60 day time limit for usage.
-D6  Optimized Wandering Trader trade selection to fix server hangs.
-D7  Started standardizing MMH to optimize code. Updated MMH Library to work with 1.21.8-1.21.9
-D8  Added MobHeadDropEvent for developers.
-D9  Added CoreUtils Library. Added Exploding bed damage as WeaponType for beheading messages.</notes>
-    <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
-  </developer>
+    <dlcs>mmh_all_logs.zip;48;$2;heads/block/all_logs_acacia_log_horizontal.json,mmh_all_woods;22;$1;heads/block/acacia_wood.json,mmh_all_shulker_boxes;17;$1;heads/block/red_shulker_box.json,mmh_copper_golems.zip;4;$1;heads/entity/copper_golem_exposed.json</dlcs>
+    <release>
+        <version>1.20_1.0.45</version>
+        <notes>D1  Fixed Nickname getter, Moved Logger to CoreUtils
+            D2  Fixed Config and ViewHeads commands.
+            D3 Fixed Wolf, Cat, Bee, Also Wither will respect the chances for all 3 heads.
+            D4 Removed MoreMobHeadsLib and the nbtapi library, added update.json to fix files from D3.
+            D5  Fixed head translator sometimes double spacing. Fixed All_Black and Tuxedo cat heads.
+            D6 Added Baby Mobs(100+ new heads), Major overhaul of the JsonUpdateHandler to properly support deep nesting and automatic migration.
+            D7 Fixed some baby heads with issues. Updated language files.
+            D8 Fixed Creaking head. Fixed some settings not being reloaded with command.</notes>
+        <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
+    </release>
+    <developer>
+        <version>1.20_1.0.45.D8</version>
+        <notes>D1  Fixed Nickname getter, Moved Logger to CoreUtils
+            D2  Fixed Config and ViewHeads commands.
+            D3 Fixed Wolf, Cat, Bee, Also Wither will respect the chances for all 3 heads.
+            D4 Removed MoreMobHeadsLib and the nbtapi library, added update.json to fix files from D3.
+            D5  Fixed head translator sometimes double spacing. Fixed All_Black and Tuxedo cat heads.
+            D6 Added Baby Mobs(100+ new heads), Major overhaul of the JsonUpdateHandler to properly support deep nesting and automatic migration.
+            D7 Fixed some baby heads with issues. Updated language files.
+            D8 Fixed Creaking head. Fixed some settings not being reloaded with command.</notes>
+        <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
+    </developer>
 </versions>

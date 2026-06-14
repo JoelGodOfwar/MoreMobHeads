@@ -1,0 +1,34 @@
+{
+  "defaultChance": 10.0,
+  "heads": {
+    "nautilus": {
+      "baby": {
+        "chance": 10.0,
+        "displayName": "%name% Shell",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.nautilus.baby",
+        "langName": "nautilus_baby",
+        "lore": [],
+        "min_mc_version": "1.21.11",
+        "noteblockSound": "entity.baby_nautilus.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWFhNDU0ODNhNmNkNDM4NmM5ZjI0ODA3ODRiOWFjMzgzYWFkMzYzN2EyYzZlOTEzNTVhN2MzNTgzYmEzYzBjNCJ9fX0=",
+        "uuid": "30389e0b-38a1-4be5-ad58-9721127f6ed6"
+      },
+      "normal": {
+        "chance": 10.0,
+        "displayName": "%name% Shell",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.nautilus",
+        "langName": "nautilus",
+        "lore": [],
+        "min_mc_version": "1.21.11",
+        "noteblockSound": "entity.nautilus.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWFkYTg5NDc4MzEzYjc1YmQ1OTRmNzZlY2YxYTlkNjVjY2MxZGE1YWQzNzU1NDNiMzU2MDAzNWViMTA0Yjc3MSJ9fX0=",
+        "uuid": "c82b1407-60ed-4dab-9299-99497e6e7652"
+      }
+    }
+  },
+  "structure": "nested"
+}

@@ -15,11 +15,13 @@
   },
   "head": {
     "displayName": "§eMini Birch Log",
-    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTk5MWYzYjczZWJiOWRlYzkxZWRkYzgzNjFjYTJmZWNmNTI4MGQyYzczM2VkYTllY2I2OTVmODNkMTU4MCJ9fX0=",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWI5YWEwMDQ1NTUzNGI0MmQ4MDBjMjNkNTMyODYwMTNhNDJhYWYyZTk3Y2NjN2JlZGM5N2ViYmM4MTI4ODgyYiJ9fX0=",
     "uuid": "1521f126-bbaf-4d15-9dfe-aeb504e9657a",
     "lore": [],
     "noteblockSound": "block.wood.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.birch.log",
+    "langFormat": "mmh.format.block.wood"
   }
 }  

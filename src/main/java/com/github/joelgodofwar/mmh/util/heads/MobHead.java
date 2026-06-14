@@ -45,7 +45,7 @@ public class MobHead {
 		return data;
 	}
 
-	public String getLangName() {
-		return data.getLangName();
+	public String getLangKey() {
+		return data.getLangKey();
 	}
 }

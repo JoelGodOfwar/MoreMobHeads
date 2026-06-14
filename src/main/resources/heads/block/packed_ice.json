@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.glass.break",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.packed_ice",
+    "langFormat": "mmh.format.block.default"
   }
 } 

@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.calcite.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.calcite",
+    "langFormat": "mmh.format.block.default"
   }
 }  

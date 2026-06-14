@@ -1,11 +1,210 @@
 {
-  "min_mc_version": "1.20",
-  "max_mc_version": "1.21.9",
+  "min_mc_version": "26.1",
+  "max_mc_version": "26.2",
   "defaultChance": 100,
   "files": [
     {
-      "file": "entity/tropical_fish.json",
-      "backup/delete": true
+      "file": "entity/creaking.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["texture", "uuid"]
+    },{
+      "file": "entity/armadillo.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/axolotl.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/bee.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/camel.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/cat.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/cow.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/dolphin.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/donkey.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/fox.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/horse.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/glow_squid.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/goat.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/llama.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/trader_llama.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/mooshroom.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/mule.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/ocelot.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/panda.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/pig.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/polar_bear.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/rabbit.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/sheep.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/squid.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/strider.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/turtle.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/hoglin.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/husk.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/piglin.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/zoglin.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/zombified_piglin.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/zombie.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/zombie_villager.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
+    },
+    {
+      "file": "entity/villager.json",
+      "backup": true,
+      "compare": true,
+      "forced": ["langKey", "langFormat"]
     }
   ],
   "heads": {},

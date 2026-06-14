@@ -28,7 +28,13 @@ public class Translator {
 	}
 	public String get(String lang, String key, String... defaultValue) {
 		String value = Arrays.stream(defaultValue).findFirst().orElse(null);
-		ResourceBundle bundle = ResourceBundle.getBundle("lang/lang", new Locale(lang));
+		ResourceBundle bundle;
+		try {
+			bundle = ResourceBundle.getBundle("lang/lang_" + lang, Locale.ROOT);
+		} catch (MissingResourceException e) {
+			// Fallback to English defaults if specific language not found in JAR
+			bundle = ResourceBundle.getBundle("lang/lang_en_US", Locale.ROOT);
+		}
 		//ResourceBundle bundle = ResourceBundle.getBundle("lang/" + lang);
 		
 		try {
@@ -36,7 +42,7 @@ public class Translator {
 		} catch (MissingResourceException e) {
 			// Key not found in bundle
 		}
-		File langFile = new File(dataFolder + File.separatorChar + "lang" + File.separatorChar + "" + lang + ".properties");
+		File langFile = new File(dataFolder + File.separatorChar + "lang_" + File.separatorChar + "" + lang + ".properties");
 		Properties props = new Properties();
 		try {
 			if (langFile.exists()) {
@@ -80,5 +86,4 @@ public class Translator {
 	    String[] parts = lang.split("_");
 	    return parts[0].toLowerCase() + "_" + parts[1].toUpperCase();
 	}
-
 }

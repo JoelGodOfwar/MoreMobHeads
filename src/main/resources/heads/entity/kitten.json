@@ -1,0 +1,173 @@
+{
+  "defaultChance": 33.0,
+  "heads": {
+    "cat": {
+      "all_black": {
+        "chance": 33.0,
+        "displayName": "Black Kitten",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.kitten.black",
+        "langName": "kitten.black",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_cat.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzA4MzdiOWFmYzUzOTkyZGFkYTdkNTYyZTk4MDkwMTk1MGFjYjY3ODkzZTJjZGU2MjA4ZTMzMzE4OGU4MmNkNyJ9fX0=",
+        "uuid": "40253f63-a6b8-4673-92b0-1af3a889d491"
+      },
+      "black": {
+        "chance": 33.0,
+        "displayName": "Tuxedo Kitten",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.kitten.tuxedo",
+        "langName": "kitten.tuxedo",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_cat.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmUxNGYwYmNlNzE2YTBkZDFjYjU1M2Q0NzJjMzMxNjZlOGU1ZTk3ZGNiOTViNGFkYzRmMmI4ZmUwNTJkMDMzNCJ9fX0=",
+        "uuid": "b2607dfc-1d37-4951-a1ed-f2c3a6c54636"
+      },
+      "british_shorthair": {
+        "chance": 33.0,
+        "displayName": "British Shorthair Kitten",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.kitten.british_shorthair",
+        "langName": "kitten.british_shorthair",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_cat.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODg4NGUzYmY3OWJlNTc5YjBlODMxZTYxNGY5ODVkZGEyYmNmZjM2MDU5ZmEwYjAxYzgzZDc4MTYwNWRkNWUzNiJ9fX0=",
+        "uuid": "9c4b97c2-df4c-42b2-b7c1-3e015aefc11c"
+      },
+      "calico": {
+        "chance": 33.0,
+        "displayName": "Calico Kitten",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.kitten.calico",
+        "langName": "kitten.calico",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_cat.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmMwYzFjNDc3NjBjOTdlMzM4YjQ1MjVlMTE2MjI5NDczMThhY2Q4OWU0ZGFlZThhZDEzNDQ2YTEwYjg0OWNlOSJ9fX0=",
+        "uuid": "6ef013bb-673d-4103-b3c6-aa1b95fbaf6f"
+      },
+      "jellie": {
+        "chance": 33.0,
+        "displayName": "Jellie Kitten",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.kitten.jellie",
+        "langName": "kitten.jellie",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_cat.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmI4MzYwZjc0OWUwYWNkYjRhM2IzZDNhMTBmOTQwMWI2YzllOGNmZDgyZjJiNGQ0N2FhZDlhN2JkMTY5ZDJmNyJ9fX0=",
+        "uuid": "8e0861f3-b32b-4ca1-a25b-243180bc125d"
+      },
+      "persian": {
+        "chance": 33.0,
+        "displayName": "Persian Kitten",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.kitten.persian",
+        "langName": "kitten.persian",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_cat.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzYwNjk4ZGE5ZTMzYWY0MzFjNjVlMDhmZmIxMzM3MDg0ZGJhODZlMzhlNDg0NTJlZTllMzY2Yjg5YWQ3NDdlIn19fQ==",
+        "uuid": "6f6e98d7-dd42-4d2e-bcf8-6feda7836d84"
+      },
+      "ragdoll": {
+        "chance": 33.0,
+        "displayName": "Ragdoll Kitten",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.kitten.ragdoll",
+        "langName": "kitten.ragdoll",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_cat.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2JlOTY2ZGRkYzlkOGFlNjViM2E0ODI0ZmZhMzk3ODNmOGJiY2QwNzMwOTIwMmVhZjA2ZTg2ZTNhODg1Y2E0MCJ9fX0=",
+        "uuid": "b1c115e5-1544-48d7-a644-fc2538356365"
+      },
+      "red": {
+        "chance": 33.0,
+        "displayName": "Red Kitten",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.kitten.red",
+        "langName": "kitten.red",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_cat.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmEyYWQ3MjA0OGM3YTI3M2RkNjljOGY1Njc4ZTY5NDY3NTk1OTAxYjlmYWNlYTMwMTMwNDRmY2NlOGJjNmE0ZiJ9fX0=",
+        "uuid": "171c6fff-08cc-4a9f-8021-df5fad8e7ca6"
+      },
+      "siamese": {
+        "chance": 33.0,
+        "displayName": "Siamese Kitten",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.kitten.siamese",
+        "langName": "kitten.siamese",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_cat.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDdiMmY5NzJjMzZlNWQ1ZmMyNGM3YmQ0MjdjNDVjMGEyMmYwMTQyYmExMDZmNDFiNDA2NTQ2ZTNkZmQ2MDAyNSJ9fX0=",
+        "uuid": "7b9546a3-76da-4b0c-a9d4-aa80ceae04fa"
+      },
+      "tabby": {
+        "chance": 33.0,
+        "displayName": "Tabby Kitten",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.kitten.tabby",
+        "langName": "kitten.tabby",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_cat.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWZiOTZhYjhkNWZkZjM4Mzc1ODAxNmYxZDQyNmNjZDRhNTA4MTY3YWY2NDJlNTZjOWFiNzVhMDUyMDg2MDViMyJ9fX0=",
+        "uuid": "b3152f99-875b-4021-90cc-dffb96495614"
+      },
+      "white": {
+        "chance": 33.0,
+        "displayName": "White Kitten",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.kitten.white",
+        "langName": "kitten.white",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_cat.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTU5YmRmYWRhYjEzMjQxNDM1MzJkMjdhZmRmMGFjNGQ1MThlNTIyZWFjZWM1MGQyNTkxZDQ4NGQyNGM1YzEyMiJ9fX0=",
+        "uuid": "3e4f3464-18f0-4a03-b128-d0e174bb0f2f"
+      }
+    }
+  },
+  "structure": "nested"
+}

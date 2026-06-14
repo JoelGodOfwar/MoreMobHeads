@@ -1,16 +1,33 @@
 {
   "defaultChance": 20.0,
-  "structure": "flat",
-  "heads": [
-    {
-      "displayName": "Zoglin",
-      "langName": "zoglin",
-      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzY0Y2ZjNjFhYzUyOTUzMzhkZDJmNGZlNjdmYWI2MjhjZWZkOTQ5MjY5OTIzZjE5YTBjNzcxNjRmOGYwMzRiZiJ9fX0=",
-      "uuid": "746fe686-6785-4584-9fdb-c76ae015af4e",
-      "lore": [],
-      "noteblockSound": "entity.zoglin.ambient",
-      "quantity": 1,
-      "chance": 20.0
+  "heads": {
+    "zoglin": {
+      "default": {
+        "chance": 20.0,
+        "displayName": "Zoglin",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.zoglin",
+        "langName": "zoglin",
+        "lore": [],
+        "noteblockSound": "entity.zoglin.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzY0Y2ZjNjFhYzUyOTUzMzhkZDJmNGZlNjdmYWI2MjhjZWZkOTQ5MjY5OTIzZjE5YTBjNzcxNjRmOGYwMzRiZiJ9fX0=",
+        "uuid": "746fe686-6785-4584-9fdb-c76ae015af4e"
+      },
+      "baby": {
+        "chance": 25.0,
+        "displayName": "Baby Zoglin",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.zoglin.baby",
+        "langName": "zoglin.baby",
+        "lore": [],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.zoglin.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDNhY2RhMzdhZjc5OThlNGM3MjM3ZDNiN2UwMDZjN2YyN2FjMzBkNzI5OTM2ZDNjZmFlOGI5OWUxMzljNmRiOSJ9fX0=",
+        "uuid": "92104ee5-e543-4d82-bf26-141ed8c4fc3a"
+      }
     }
-  ]
-}  
+  },
+  "structure": "nested"
+}

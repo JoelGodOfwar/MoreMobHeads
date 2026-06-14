@@ -15,12 +15,13 @@
   },
   "head": {
     "displayName": "§eMini Pale Oak Log",
-    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2FiM2IxOTkzY2RkMzgwYzllNzMxMTA0YmRhN2YzOWRmM2I1MTA3M2U1NmEyNjlhNTg4ZmNmOGM5NDhjNzA4YyJ9fX0=",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTJmMzk5ZTU2MmRiYTk4MmI0NjIwYjg0MDNkMWY2Mzk0YTkwMWRlYjNkOTE1ZmU1Y2YyMzJmY2FjZTA4NGE4NiJ9fX0=",
     "uuid": "781b4098-506b-46b1-815d-2474db4bca03",
     "lore": [],
     "noteblockSound": "block.wood.step",
     "quantity": 8,
     "maxUses": 1,
-    "min_mc_version": "1.21.4"
+    "langKey": "block.pale_oak.log",
+    "langFormat": "mmh.format.block.wood"
   }
 }

@@ -1,0 +1,278 @@
+{
+  "defaultChance": 20.0,
+  "heads": {
+    "wolf": {
+      "angry_ashen": {
+        "chance": 20.0,
+        "displayName": "Angry Ashen Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.angry.ashen",
+        "langName": "puppy.angry_ashen",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.growl",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjE0ODAyM2I3MWUyNTBmMmRhMmQyYTM2NWYwZmY4NmVlM2Y1NjhjOWUyMDI1N2EyMjhkZjk4MGNhYWU0N2E1ZSJ9fX0=",
+        "uuid": "4b61d32f-5120-4140-a3a9-bee98d95b399"
+      },
+      "angry_black": {
+        "chance": 20.0,
+        "displayName": "Angry Black Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.angry.black",
+        "langName": "puppy.angry_black",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.growl",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTM2MTBlZGJkYjViYjE1YmU0ODJmMTMxZTRkOGUzNzdjMjBmMTFjZmYwZWRkMjdmODFjNDVhZWY4M2NiYWExMSJ9fX0=",
+        "uuid": "02cfdd8f-e366-431a-a9a7-7957ebe390ae"
+      },
+      "angry_chestnut": {
+        "chance": 20.0,
+        "displayName": "Angry Chestnut Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.angry.chestnut",
+        "langName": "puppy.angry_chestnut",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.growl",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzFmY2I2Njc5YzVhMTZjMzFiMTVkZDY5Y2UyZGZkOWI5MzgwNzA2YjI1NGQ1NDhjYmM3YmMwMWEwYjgwMTcwMCJ9fX0=",
+        "uuid": "dd48bab9-3c28-4055-9232-abf277a30ce9"
+      },
+      "angry_pale": {
+        "chance": 20.0,
+        "displayName": "Angry Pale Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.angry.pale",
+        "langName": "puppy.angry_pale",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.growl",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAwZjFiMTNiZGZlYmVhMDgzOWJkZWYwNmE5YjAzYmRlMGMxYmY4M2U4OTIwMWI5ZTM2ZjUyMzFhMzEwNGUwMiJ9fX0=",
+        "uuid": "4f2f5d69-02cd-4134-9da8-1bdf10d9d148"
+      },
+      "angry_rusty": {
+        "chance": 20.0,
+        "displayName": "Angry Rusty Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.angry.rusty",
+        "langName": "puppy.angry_rusty",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.growl",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjJjMmQyNmM1YmMwNGU2ZDgwM2ZlYzNiYTMwZDY3NGQ3M2MxZThjMzI4ZDk5NzRmNDEzOGMxNGUwNjg5MDgzNSJ9fX0=",
+        "uuid": "9641cd88-e235-44d8-9c25-d59b22dda2d7"
+      },
+      "angry_snowy": {
+        "chance": 20.0,
+        "displayName": "Angry Snowy Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.angry.snowy",
+        "langName": "puppy.angry_snowy",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.growl",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWY3ZjRkZjlmZmY5NDJhZTU2YzY1M2NkN2EzMTVmMTFkNjAwYTNiOThiODVlYTE3MTRlNzRjNzAxYWFhNDhmZiJ9fX0=",
+        "uuid": "5fc8b050-52d8-4b39-93e5-be6aaeb6a0b8"
+      },
+      "angry_spotted": {
+        "chance": 20.0,
+        "displayName": "Angry Spotted Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.angry.spotted",
+        "langName": "puppy.angry_spotted",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.growl",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTMyZjE5OGUwZTNiNTBmZWJmYzViNDJlNmQzNWExZWJhMjViYmE5YjdhNWQyNzZjNTYxY2ZmMjM0MWUzMGUzNCJ9fX0=",
+        "uuid": "274d8550-38fe-47d7-ba38-c8a2f0b423cf"
+      },
+      "angry_striped": {
+        "chance": 20.0,
+        "displayName": "Angry Striped Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.angry.striped",
+        "langName": "puppy.angry_striped",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.growl",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjZkMDViZjU5Y2NlYzkwMDZlZDg0YTFlZTkxYzdmYWIyNzJiMjM1YTJjODFjZGU0NTM0NmNiMjA2ZDJiYTJlZiJ9fX0=",
+        "uuid": "e2b528d2-a2b8-44af-b2ba-abac7ddabfca"
+      },
+      "angry_woods": {
+        "chance": 20.0,
+        "displayName": "Angry Woods Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.angry.woods",
+        "langName": "puppy.angry_woods",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.growl",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDNmODhmNjA1ZTljZmJjYzI2NGE1MmY0ZjU4YTI5OTVkODI4MDFlNTNjNzZjYWIyZGJiNzI5MDRkZjVkMWQ0OCJ9fX0=",
+        "uuid": "ee04c395-3fa3-4990-99ce-0750ca600358"
+      },
+      "ashen": {
+        "chance": 20.0,
+        "displayName": "Ashen Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.ashen",
+        "langName": "puppy.ashen",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGI2MGJjNzkzMGRmNGFkMjU5NGUwZDU0Y2Y4OTUzZmMxZGIyZmNiY2UzNDM0NDI5ZWVjM2NiYTk2N2Q3OWIxZiJ9fX0=",
+        "uuid": "2eb43982-9a50-452d-ad5e-400fff96e9fb"
+      },
+      "black": {
+        "chance": 20.0,
+        "displayName": "Black Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.black",
+        "langName": "puppy.black",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzc3MTJmOTUzNzYwZjNmY2RkOGQ4YWFmMGI4MDZmYjY5ZWE1NDI1Y2E0MjVmMDYzM2NmNzUyYTQ0YWFkYjY5MiJ9fX0=",
+        "uuid": "342fa2cc-c2cb-4cf6-8588-5445b7c4e211"
+      },
+      "chestnut": {
+        "chance": 20.0,
+        "displayName": "Chestnut Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.chestnut",
+        "langName": "puppy.chestnut",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODJmOTcxNzdiMDgzOTZkYThhMzMxMzU4NjNiNTU1MmJmYTk3OTA4OTI1YmI0MzE5ODg3ODAxMTBiYzE2MWMwMSJ9fX0=",
+        "uuid": "ba0d395e-6ba1-4d71-959b-a7a21bb6187b"
+      },
+      "pale": {
+        "chance": 20.0,
+        "displayName": "Pale Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.pale",
+        "langName": "puppy.pale",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjQ5ZGY3NjUyZDMxYzc5MDA5M2JjMzc5ZDI2NmViMDI3MzhkNGMyMjk2MTcxYmU0NzFlZDdkOGUwMjlkZmU3NiJ9fX0=",
+        "uuid": "0c9321d6-3b73-4b85-8368-24cdaa87e237"
+      },
+      "rusty": {
+        "chance": 20.0,
+        "displayName": "Rusty Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.rusty",
+        "langName": "puppy.rusty",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2VlMzE3NThjZDAwOTc4MmNjMTI2ODAxNTU0NTg4NzdjOGI4YmQyYTlkZDY3NjYyMzI0ZjQxMzcwYjliZjFkZiJ9fX0=",
+        "uuid": "0157bf81-a65a-459d-ab16-52b02e23de82"
+      },
+      "snowy": {
+        "chance": 20.0,
+        "displayName": "Snowy Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.snowy",
+        "langName": "puppy.snowy",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWEzYTc4MmU1ZTg4Nzk2OThhOWNlYmUyZGEyZmVhYzVhYTk2MjZiYzA2MDMwNGJhYjIyNGRkOTNjNWVkNTI0YSJ9fX0=",
+        "uuid": "fae40437-8dae-431d-a120-8c3efb1b9abc"
+      },
+      "spotted": {
+        "chance": 20.0,
+        "displayName": "Spotted Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.spotted",
+        "langName": "puppy.spotted",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjY1NGFhY2ViOGRiMDE0MmQ5YzE0NjE3OGJjMDVmMzlmOTBkNjAzNDIxY2ZlOTQwMjQ2MDJlOWYyYWQ4ZjkxZiJ9fX0=",
+        "uuid": "62d543bf-ab3e-41a9-87f0-ec88ff97a0d2"
+      },
+      "striped": {
+        "chance": 20.0,
+        "displayName": "Striped Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.striped",
+        "langName": "puppy.striped",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODg0ODRmMjhjOGNkMGQ4ODMyZjFjMTdmMDU2YmQ5Nzg1ZWYxNWVkNGY2ZDM3ZTBhNzcxYzhhNjE2YjMyODM0NyJ9fX0=",
+        "uuid": "3536819e-af72-41d4-9396-bc7d6a0fb4e5"
+      },
+      "woods": {
+        "chance": 20.0,
+        "displayName": "Woods Puppy",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.puppy.woods",
+        "langName": "puppy.woods",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_wolf.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGIwZDEzMDliYzAyOTkwODRmMzg1OWQ4NmEwN2MwNjVhYWUyZTg0OTYzZGZlNDlmOGNiOTYwMTdiNGFmNTU1MSJ9fX0=",
+        "uuid": "80938cba-4d3e-484f-baa1-b16bdfcfcd38"
+      }
+    }
+  },
+  "structure": "nested"
+}

@@ -1,6 +1,6 @@
 package com.github.joelgodofwar.mmh;
 
-import com.github.joelgodofwar.mmh.command.Command_1_20_R2;
+import com.github.joelgodofwar.mmh.commands.Command_1_20_R2;
 import com.github.joelgodofwar.mmh.common.PluginLibrary;
 import com.github.joelgodofwar.mmh.common.error.DetailedErrorReporter;
 import com.github.joelgodofwar.mmh.common.error.Report;
@@ -11,18 +11,12 @@ import com.github.joelgodofwar.mmh.handlers.MMHEventHandler;
 import com.github.joelgodofwar.mmh.i18n.Translator;
 import com.github.joelgodofwar.mmh.util.Ansi;
 import com.github.joelgodofwar.mmh.util.BuildValidator;
-
 import com.github.joelgodofwar.mmh.util.datatypes.JsonDataType;
 import com.github.joelgodofwar.mmh.util.heads.*;
 import com.mojang.authlib.GameProfile;
-import de.tr7zw.changeme.nbtapi.NBTCompound;
-import de.tr7zw.changeme.nbtapi.NBTItem;
-import de.tr7zw.changeme.nbtapi.NBTList;
-import de.tr7zw.changeme.nbtapi.NBTListCompound;
 import lib.github.joelgodofwar.coreutils.CoreUtils;
 import lib.github.joelgodofwar.coreutils.util.*;
 import lib.github.joelgodofwar.coreutils.util.common.PluginLogger;
-import org.apache.commons.lang.StringUtils;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.AdvancedPie;
 import org.bstats.charts.SimplePie;
@@ -30,7 +24,6 @@ import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.entity.TropicalFish.Pattern;
 import org.bukkit.event.EventHandler;
@@ -60,12 +53,14 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.stream.Collectors;
 
 @SuppressWarnings({ "unchecked", "rawtypes", "deprecation", "unused" })
 public class MoreMobHeads extends JavaPlugin implements Listener{
-	//** Languages: čeština (cs_CZ), Deutsch (de_DE), English (en_US), Español (es_ES), Español (es_MX), Français (fr_FR), Italiano (it_IT), Magyar (hu_HU), 日本語 (ja_JP), 한국어 (ko_KR), Lolcat (lol_US), Melayu (my_MY), Nederlands (nl_NL), Polski (pl_PL), Português (pt_BR), Русский (ru_RU), Svenska (sv_SV), Türkçe (tr_TR), 中文(简体) (zh_CN), 中文(繁體) (zh_TW) */
-	public static final long DEV_BUILD_START_TIME = 1759989140L; // Placeholder for Maven replacement
+	//** Languages: čeština (cs_CZ), Deutsch (de_DE), English (en_US), Español (es_ES), Español (es_MX), Français (fr_FR),
+	// Italiano (it_IT), Magyar (hu_HU), 日本語 (ja_JP), 한국어 (ko_KR), Lolcat (lol_US), Melayu (my_MY), Nederlands (nl_NL),
+	// Polski (pl_PL), Português (pt_BR), Русский (ru_RU), Svenska (sv_SV), Türkçe (tr_TR), 中文(简体) (zh_CN), 中文(繁體) (zh_TW) */
+	public static final long DEV_BUILD_START_TIME = 1768709679000L;
+	public static final long DEV_BUILD_END_TIME = 1800230400000L; // Jan 18 2027
 	public final com.github.joelgodofwar.mmh.util.BuildValidator buildValidator = new BuildValidator();
 	public static String THIS_NAME;
 	public static String THIS_VERSION;
@@ -79,22 +74,20 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	public String DownloadLink = "https://dev.bukkit.org/projects/moremobheads2";
 	//** end update checker variables */
 	Version MINIMUM_MINECRAFT_VERSION = new Version("1.20");
-	Version MAXIMUM_MINECRAFT_VERSION = new Version("1.21.9");
+	Version MAXIMUM_MINECRAFT_VERSION = new Version("26.1.2");
 	Version CURRENT_MINECRAFT_VERSION = Version.getCurrentVersion();
 
-	public Version minConfigVersion = new Version("1.0.29");
-	public Version minMessagesVersion = new Version("1.0.2");
+	public Version minConfigVersion = new Version("1.0.30");
+	public Version minMessagesVersion = new Version("1.0.3");
 	public Version minLangVersion = new Version("1.0.5");
 	public Version minCustomVersion = new Version("1.0.0");
 
 	public boolean isDev = false;
 	public boolean debug = false;
 	public static String daLang;
-	File langNameFile;
-	public FileConfiguration langName;
 	public File playerFile;
 	public FileConfiguration playerHeads;
-	public List<MMHDLC> mmhDLC;
+
 	public FileConfiguration fileVersions  = new YamlConfiguration();
 	public File fileVersionsFile;
 	public File customFile;
@@ -104,16 +97,12 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	public YmlConfiguration old_chanceConfig;
 	public YamlConfiguration beheadingMessages = new YamlConfiguration();
 	public YamlConfiguration oldMessages;
-	File mobnameFile;
 	FileConfiguration mob_name;
 	double def_percent = 0.013;
-	public YmlConfiguration config = new YmlConfiguration(this);
+	public YmlConfiguration config = new YmlConfiguration();
 	YamlConfiguration old_config = new YamlConfiguration();
 	static String data_folder;
-	public String world_whitelist;
-	public String world_blacklist;
-	public String mob_whitelist;
-	public String mob_blacklist;
+
 	boolean colorful_console;
 	boolean silent_console;
 	public final NamespacedKey NAMETAG_KEY = new NamespacedKey(this, "name_tag");
@@ -130,8 +119,6 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	public List<ItemStack> blockhead_list = new ArrayList<ItemStack>();
 	public static DetailedErrorReporter reporter;
 	public String jar_file_name = this.getFile().getAbsoluteFile().toString();
-	public PluginLogger LOGGER;
-
 	// Persistent Heads
 	public final NamespacedKey NAME_KEY = new NamespacedKey(this, "head_name");
 	public final NamespacedKey LORE_KEY = new NamespacedKey(this, "head_lore");
@@ -140,7 +127,15 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	public final NamespacedKey SOUND_KEY = new NamespacedKey(this, "head_sound");
 	public final NamespacedKey CONFIG_KEY = new NamespacedKey(this, "config_setting");
 	public final PersistentDataType<String,String[]> LORE_PDT = new JsonDataType<>(String[].class);
-
+	// Handler variables
+	public String world_whitelist;
+	public String world_blacklist;
+	public String mob_whitelist;
+	public String mob_blacklist;
+	public boolean player_announce_enabled;
+	public boolean player_announce_display;
+	public boolean mob_announce_enabled;
+	public boolean mob_announce_display;
 	// Create a HashMap to store langName -> MobHead mappings
 	private PlayerHeadLoader playerHeadLoader;
 	private BlockHeadLoader blockHeadLoader;
@@ -153,36 +148,46 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	public final Set<UUID> warnedPlayers = new HashSet<>();
 	private final Random random = new Random();
 	public CoreUtils coreUtils;
-	public Enchantment LOOT_BONUS_MOBS;
+	public JsonConverter messageConverter;
+	public final Set<UUID> inConfigGuiSession = Collections.newSetFromMap(new ConcurrentHashMap<>());
+	public ConfigGuiCloseListener closeListener;
+	public final Map<UUID, Long> lastGuiClickTime = new ConcurrentHashMap<>();
+	public static final long GUI_CLICK_COOLDOWN_MS = 200;
+	private PluginLogger logger;
+
+	@Override
+	public void onLoad() {
+		reporter = new DetailedErrorReporter(this);  // ← only thing that truly needs to be early
+	}
 
 	@Override // TODO: onEnable
 	public void onEnable(){
-
 		long startTime = System.currentTimeMillis();
-		LOGGER = new PluginLogger(this);
-		reporter = new DetailedErrorReporter(this);
-		UpdateCheck = getConfig().getBoolean("plugin_settings.auto_update_check", true);
 		CoreUtils.debug = getConfig().getBoolean("plugin_settings.debug", false);
+		UpdateCheck = getConfig().getBoolean("plugin_settings.auto_update_check", true);
 		daLang = getConfig().getString("plugin_settings.lang", "en_US");
+		THIS_NAME = this.getDescription().getName();
+		THIS_VERSION = this.getDescription().getVersion();
+		String pluginName = getConfig().getBoolean("global_settings.console.longpluginname", true)
+				? THIS_NAME
+				: "SPS";
+		this.logger = new PluginLogger(pluginName, () -> CoreUtils.debug);
+		CoreUtils.initLogger(logger);
+
+		messageConverter = new JsonConverter(this);
 		old_config = new YamlConfiguration();
 		oldMessages = new YamlConfiguration();
 		lang2 = new Translator(daLang, getDataFolder().toString());
-		THIS_NAME = this.getDescription().getName();
-		THIS_VERSION = this.getDescription().getVersion();
-		if(!getConfig().getBoolean("global_settings.console.longpluginname", true)) {
-			pluginName = "MMH";
-		}else {
-			pluginName = THIS_NAME;
-		}
 
 		data_folder = this.getDataFolder().toString();
 		colorful_console = getConfig().getBoolean("global_settings.console.colorful_console", true);
 		silent_console = getConfig().getBoolean("global_settings.console.silent_console", false);
 
 		try{
-			LOGGER.log(ChatColor.YELLOW + "**************************************" + ChatColor.RESET);
-			LOGGER.log(ChatColor.GREEN + " v" + THIS_VERSION + ChatColor.RESET + " Loading...");
-			LOGGER.log("Server Version: " + getServer().getVersion());
+			CoreUtils.log(ChatColor.YELLOW + "**************************************" + ChatColor.RESET);
+			CoreUtils.log(ChatColor.GREEN + " v" + THIS_VERSION + ChatColor.RESET + " Loading...");
+			CoreUtils.log( "This server is running " + ChatColor.RED + Bukkit.getName() + ChatColor.RESET + " version " + ChatColor.RED + Bukkit.getVersion() + ChatColor.RESET +
+					" (Implementing API version " + ChatColor.RED + Bukkit.getBukkitVersion() + ChatColor.RESET + ")" );
 
 			// Handle unexpected Minecraft versions
 			Version checkVersion = this.verifyMinecraftVersion();
@@ -190,19 +195,18 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			//** DEV check **/
 			File jarfile = this.getFile().getAbsoluteFile();
 			if(jarfile.toString().contains("-DEV")){
-				CoreUtils.debug = true;
-				LOGGER.warn(ChatColor.RED + "Jar file contains -DEV, debug set to true" + ChatColor.RESET);
-				LOGGER.warn(ChatColor.RED + "jarfilename = " + StrUtils.Right(jar_file_name, jar_file_name.length() - jar_file_name.lastIndexOf(File.separatorChar)) + ChatColor.RESET);
+				CoreUtils.warn(ChatColor.RED + "YOU ARE USING A DEV=BUILD, PLEASE REPORT ANY ISSUES." + ChatColor.RESET);
+				CoreUtils.warn(ChatColor.RED + "jarfilename = " + StrUtils.Right(jar_file_name, jar_file_name.length() - jar_file_name.lastIndexOf(File.separatorChar)) + ChatColor.RESET);
 				//log("jarfile contains dev, debug set to true.");
 			}
 
 			//** Version Check */
 			if( !(CURRENT_MINECRAFT_VERSION.isAtLeast(MINIMUM_MINECRAFT_VERSION)) ){
 				// !getMCVersion().startsWith("1.14")&&!getMCVersion().startsWith("1.15")&&!getMCVersion().startsWith("1.16")&&!getMCVersion().startsWith("1.17")
-				LOGGER.warn(ChatColor.RED + " *!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!" + ChatColor.RESET);
-				LOGGER.warn(ChatColor.RED + " " + get("mmh.message.server_not_version") + ChatColor.RESET);
-				LOGGER.warn(ChatColor.RED + "  v" + THIS_VERSION + " disabling." + ChatColor.RESET);
-				LOGGER.warn(ChatColor.RED + " *!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!" + ChatColor.RESET);
+				CoreUtils.warn(ChatColor.RED + " *!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!" + ChatColor.RESET);
+				CoreUtils.warn(ChatColor.RED + " " + get("mmh.message.server_not_version") + ChatColor.RESET);
+				CoreUtils.warn(ChatColor.RED + "  v" + THIS_VERSION + " disabling." + ChatColor.RESET);
+				CoreUtils.warn(ChatColor.RED + " *!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!" + ChatColor.RESET);
 				Bukkit.getPluginManager().disablePlugin(this);
 				return;
 			}
@@ -212,15 +216,10 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				getServer().getPluginManager().disablePlugin(this);
 				return;
 			}
-			if(CURRENT_MINECRAFT_VERSION.isAtLeast("1.21.9")){
-				LOOT_BONUS_MOBS = Enchantment.getByName("LOOTING");
-			}else{
-				LOOT_BONUS_MOBS = Enchantment.getByName("LOOT_BONUS_MOBS");
-			}
 
 			// Make sure directory exists and files exist.
 			checkDirectories();
-			LOGGER.log("Loading file version checker...");
+			CoreUtils.log("Loading file version checker...");
 			fileVersionsFile = new File(getDataFolder() + "" + File.separatorChar + "fileVersions.yml");
 			try {
 				fileVersions.load(fileVersionsFile);
@@ -235,13 +234,9 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			checkMiniBlocks();
 			// Check if Chance needs update.
 			//checkChance();
-			// Check if Lang needs update.
-			checkLang();
 
-			world_whitelist = config.getString("global_settings.world.whitelist", "");
-			world_blacklist = config.getString("global_settings.world.blacklist", "");
-			mob_whitelist = config.getString("head_settings.mob_heads.whitelist", "");
-			mob_blacklist = config.getString("head_settings.mob_heads.blacklist", "");
+			loadConfigValues();
+
 
 			getServer().getPluginManager().registerEvents(this, this);
 
@@ -279,20 +274,10 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 
 			//** Update Checker */
 			if(UpdateCheck){
-				LOGGER.log("Checking for updates...");
+				CoreUtils.log("Checking for updates...");
 				try {
 					VersionChecker updater = new VersionChecker(this, projectID, githubURL);
 					boolean isCurrent = updater.checkForUpdates();
-					mmhDLC = updater.getDLCList();
-					String availableDLCs = ((mmhDLC != null) && !mmhDLC.isEmpty()) ?
-							mmhDLC.stream()
-							.filter(dlc -> !new File(getDataFolder(), dlc.getMarkerFile()).exists())
-							.map(dlc -> String.format("%s (%d heads, $%.2f)",
-									StrUtils.toProperTitleCase(dlc.getFilename().replace("mmh_", "").replace("_", " ").replaceAll("\\.[^\\.]+$", "")),
-									dlc.getNumberOfFiles(), dlc.getPrice()))
-							.collect(Collectors.joining(", ")) : "";
-					availableDLCs = ChatColor.YELLOW + (availableDLCs.isEmpty() ?
-							"All available DLCs installed." : "Available DLCs: " + availableDLCs);
 
 					if(isCurrent) {
 						//** Update available */
@@ -300,30 +285,22 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 						UC_oldVersion = updater.oldVersion();
 						UC_newVersion = updater.newVersion();
 
-						LOGGER.log("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*");
-						LOGGER.log("* " + get("mmh.version.message").replace("<MyPlugin>", THIS_NAME) );
-						LOGGER.log("* " + get("mmh.version.old_vers") + ChatColor.RED + UC_oldVersion);
-						LOGGER.log("* " + get("mmh.version.new_vers") + ChatColor.GREEN + UC_newVersion);
-						LOGGER.log("*");
-						LOGGER.log("* " + get("mmh.version.please_update") );
-						LOGGER.log("*");
-						LOGGER.log("* " + get("mmh.version.download") + ": " + DownloadLink + "/files");
-						if(!StringUtils.contains(availableDLCs, "installed")) {
-							LOGGER.log("* " + ChatColor.YELLOW + get("mmh.version.dlc.message"));
-							LOGGER.log("* " + availableDLCs);
-						}
-						LOGGER.log("* " + get("mmh.version.donate") + ": https://ko-fi.com/joelgodofwar");
-						LOGGER.log("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*");
+						CoreUtils.log("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*");
+						CoreUtils.log("* " + get("mmh.version.message").replace("<MyPlugin>", THIS_NAME) );
+						CoreUtils.log("* " + get("mmh.version.old_vers") + ChatColor.RED + UC_oldVersion);
+						CoreUtils.log("* " + get("mmh.version.new_vers") + ChatColor.GREEN + UC_newVersion);
+						CoreUtils.log("*");
+						CoreUtils.log("* " + get("mmh.version.please_update") );
+						CoreUtils.log("*");
+						CoreUtils.log("* " + get("mmh.version.download") + ": " + DownloadLink + "/files");
+						CoreUtils.log("* " + get("mmh.version.donate") + ": https://ko-fi.com/joelgodofwar");
+						CoreUtils.log("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*");
 					}else{
 						//** Up to date */
-						LOGGER.log("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*");
-						LOGGER.log("* " + get("mmh.version.curvers"));
-						if(!StringUtils.contains(availableDLCs, "installed")) {
-							LOGGER.log("* " + ChatColor.YELLOW + get("mmh.version.dlc.message"));
-							LOGGER.log("* " + availableDLCs);
-						}
-						LOGGER.log("* " + get("mmh.version.donate") + ": https://ko-fi.com/joelgodofwar");
-						LOGGER.log("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*");
+						CoreUtils.log("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*");
+						CoreUtils.log("* " + get("mmh.version.curvers"));
+						CoreUtils.log("* " + get("mmh.version.donate") + ": https://ko-fi.com/joelgodofwar");
+						CoreUtils.log("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*");
 						UpdateAvailable = false;
 					}
 				}catch(Exception exception) {
@@ -332,10 +309,9 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				}
 			}else {
 				//** auto_update_check is false so nag. */
-				LOGGER.log("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*");
-				LOGGER.log("* " + ChatColor.YELLOW + get("mmh.version.dlc.message"));
-				LOGGER.log("* " + get("mmh.version.donate.message") + ": https://ko-fi.com/joelgodofwar");
-				LOGGER.log("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*");
+				CoreUtils.log("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*");
+				CoreUtils.log("* " + get("mmh.version.donate.message") + ": https://ko-fi.com/joelgodofwar");
+				CoreUtils.log("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*");
 			}
 			//** end update checker */
 
@@ -351,32 +327,36 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			getServer().getPluginManager().registerEvents( new PersistentHeads(this), this);
 			getServer().getPluginManager().registerEvents(new BeheadingHandler(this), this);
 			coreUtils = new CoreUtils(this);
+			closeListener = new ConfigGuiCloseListener(this);
+			getServer().getPluginManager().registerEvents(closeListener, this);
 
 
 			// Other initialization code...
 			headManager = new HeadManager();
 
 			//** Register EventHandler */
-			String packageName = this.getServer().getClass().getPackage().getName();
 			Version version = new Version(Bukkit.getServer());
-			logDebug("version=" + version);
-			Version min = new Version("1.21");
-			logDebug("version.atOrAbove(min) = " + version.atOrAbove(min));
+			logDebug("version.atOrAbove(min) = " + version.atOrAbove(MINIMUM_MINECRAFT_VERSION));
 			if( version.isBetween("1.20", "1.20.4") ){
 				eventHandler = new EventHandler_1_20_R1(this, headManager);
 				getServer().getPluginManager().registerEvents((EventHandler_1_20_R1) eventHandler, this);
 				Command_1_20_R2 commandHandler = new Command_1_20_R2(this, headManager, eventHandler.getGiveHeadCommand(), eventHandler.getViewHeadsCommand(), eventHandler);
 				Objects.requireNonNull(getCommand("mmh")).setExecutor(commandHandler);
 				Objects.requireNonNull(getCommand("mmh")).setTabCompleter(commandHandler);
-			}else if( version.isBetween("1.20.5","1.21.9") ){
+			}else if( version.isBetween("1.20.5","26.1.2") ){
 				eventHandler = new EventHandler_1_20_R2(this, headManager);
 				getServer().getPluginManager().registerEvents((EventHandler_1_20_R2) eventHandler, this);
 				Command_1_20_R2 commandHandler = new Command_1_20_R2(this, headManager, eventHandler.getGiveHeadCommand(), eventHandler.getViewHeadsCommand(), eventHandler);
 				Objects.requireNonNull(getCommand("mmh")).setExecutor(commandHandler);
 				Objects.requireNonNull(getCommand("mmh")).setTabCompleter(commandHandler);
 			}else{
-				LOGGER.warn("Not compatible with this version of Minecraft:" + version);
-				getServer().getPluginManager().disablePlugin(this);
+				CoreUtils.warn("Not compatible with this version of Minecraft:" + CURRENT_MINECRAFT_VERSION);
+				CoreUtils.warn(ChatColor.RED + "ATTEMPTING TO LOAD NEWEST EVENT HANDLER..." + ChatColor.RESET);
+				eventHandler = new EventHandler_1_20_R2(this, headManager);
+				getServer().getPluginManager().registerEvents((EventHandler_1_20_R2) eventHandler, this);
+				Command_1_20_R2 commandHandler = new Command_1_20_R2(this, headManager, eventHandler.getGiveHeadCommand(), eventHandler.getViewHeadsCommand(), eventHandler);
+				Objects.requireNonNull(getCommand("mmh")).setExecutor(commandHandler);
+				Objects.requireNonNull(getCommand("mmh")).setTabCompleter(commandHandler);
 			}
 
 			consoleInfo("Enabled - Loading took " + LoadTime(startTime));
@@ -510,23 +490,14 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		}
 	}
 
-
-	public boolean isDLCInstalled(String dlcName){
-		if ((mmhDLC == null) || mmhDLC.isEmpty()) {
-			return false;
-		}
-		return mmhDLC.stream()
-				.filter(dlc -> dlc.getFilename().replaceAll("\\.[^\\.]+$", "").equalsIgnoreCase(dlcName))
-				.anyMatch(dlc -> new File(getDataFolder(), dlc.getMarkerFile()).exists());
-	}
-
 	@Override // TODO: onDisable
 	public void onDisable(){
 		String defVer = "0.1.0";
 		fileVersions.set("config", config.getString("version", defVer));
 		fileVersions.set("messages", beheadingMessages.getString("version", defVer));
-		fileVersions.set("custom_trades", traderCustom.getString("custom_trades.version", defVer));
-		fileVersions.set("lang", langName.getString("version", defVer));
+		if(traderCustom != null) {
+			fileVersions.set("custom_trades", traderCustom.getString("custom_trades.version", defVer));
+		}
 		fileVersionsFile = new File(getDataFolder() + "" + File.separatorChar + "fileVersions.yml");
 		try {
 			fileVersions.save(fileVersionsFile);
@@ -547,7 +518,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			string = Ansi.stripAnsi(string);
 			string = ChatColor.stripColor(string);
 		}
-		LOGGER.log(string);
+		CoreUtils.log(string);
 	}
 
 	public static String getMCVersion() {
@@ -569,7 +540,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			uuid = UUID.fromString(getPlayerUUID(name));
 		}
 		if(uuid == null) {
-			LOGGER.warn("gPH User doesn't exist or invalid UUID");
+			CoreUtils.warn("gPH User doesn't exist or invalid UUID");
 			return;
 		}
 		PlayerProfile profile = Bukkit.createPlayerProfile(uuid, name);
@@ -708,7 +679,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			uuid = UUID.fromString(getPlayerUUID(name));
 		}
 		if(uuid == null) {
-			LOGGER.warn("gPH User doesn't exist or invalid UUID");
+			CoreUtils.warn("gPH User doesn't exist or invalid UUID");
 			return;
 		}
 		PlayerProfile profile = Bukkit.createPlayerProfile(uuid, name);
@@ -808,7 +779,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			logDebug(" DI itemstack=" + itemstack.getType().toString());
 			int enchantment_level = 0;
 			if(config.getBoolean("head_settings.apply_looting", true)){
-				enchantment_level = itemstack.getEnchantmentLevel(LOOT_BONUS_MOBS);
+				enchantment_level = itemstack.getEnchantmentLevel(CoreUtils.LOOTING);
 			}
 			if(chancePercent == 0){
 				logDebug(" DI chancePercent == 0");
@@ -896,10 +867,10 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	}
 
 	public void makeHead(EntityDeathEvent event, Material material){// TODO: makeHead
-		ItemStack itemstack = event.getEntity().getKiller().getInventory().getItemInMainHand();
+		ItemStack itemstack = Objects.requireNonNull(event.getEntity().getKiller()).getInventory().getItemInMainHand();
 		if(itemstack != null){
 			logDebug("itemstack=" + itemstack.getType().toString() + " line:954");
-			int enchantmentlevel = itemstack.getEnchantmentLevel(LOOT_BONUS_MOBS);//.containsEnchantment(Enchantment.LOOT_BONUS_MOBS);
+			int enchantmentlevel = itemstack.getEnchantmentLevel(CoreUtils.LOOTING);
 			logDebug("enchantmentlevel=" + enchantmentlevel + " line:956");
 			double enchantmentlevelpercent = ((double)enchantmentlevel / 100);
 			logDebug("enchantmentlevelpercent=" + enchantmentlevelpercent + " line:958");
@@ -954,11 +925,13 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	public String getNickname(Player player) {
 		logDebug("GN - player.getDisplayName()=" + player.getDisplayName());
 		logDebug("GN - player.getName()=" + player.getName());
-		logDebug("GN - head_settings.player_heads.announce_kill.displayname=" + getConfig().getBoolean("head_settings.player_heads.announce_kill.displayname"));
+		logDebug("GN - head_settings.player_heads.announce_kill.displayname=" +
+				getConfig().getBoolean("head_settings.player_heads.announce_kill.displayname"));
 
 		boolean useDisplayName = config.getBoolean("head_settings.player_heads.announce_kill.displayname", false);
 		String fallbackName = useDisplayName ? player.getDisplayName() : player.getName();
-
+		logDebug("GN - useDisplayName: " + useDisplayName);
+		logDebug("GN - fallbackName: " + fallbackName);
 		// Wrap library's async callback in the future for sync blocking
 		CompletableFuture<String> nickFuture = new CompletableFuture<>();
 		// Library provides color-fixed nick
@@ -974,9 +947,10 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		} catch (java.util.concurrent.TimeoutException e) {
 			logDebug("GN - Library timeout, using fallback: " + fallbackName);
 		}
+
 		// Fallback if no nick or error
 		logDebug("GN - No library nick found, using: " + fallbackName);
-		return coreUtils.fixColors(fallbackName); // Trust library for fallback colors
+		return fallbackName; // Trust library for fallback colors
 	}
 
 	public ItemStack makeHead(String displayName, String texture, String uuid, String noteBlockSound, boolean isPlayer, Player killer) {
@@ -996,7 +970,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		meta.setNoteBlockSound(NamespacedKey.minecraft( noteBlockSound ));
 		ArrayList<String> lore = new ArrayList();
 		if(config.getBoolean("head_settings.lore.show_killer", true)){
-			lore.add(ChatColor.RESET + ChatColorUtils.setColors( langName.getString("killedby", "<RED>Killed <RESET>By <YELLOW><player>").replace("<player>", getName(isPlayer, killer)) ) );
+			lore.add(ChatColor.RESET + ChatColorUtils.setColors( get("killedby", "<RED>Killed <RESET>By <YELLOW><player>").replace("<player>", getName(isPlayer, killer)) ) );
 		}
 		if(config.getBoolean("head_settings.lore.show_plugin_name", true)){
 			lore.add(ChatColor.AQUA + "MoreMobHeads");
@@ -1076,7 +1050,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		meta.setNoteBlockSound(NamespacedKey.minecraft( getSoundString(ChatColor.stripColor(displayName), eType) ));
 		ArrayList<String> lore = new ArrayList();
 		if(config.getBoolean("head_settings.lore.show_killer", true)){
-			lore.add(ChatColor.RESET + ChatColorUtils.setColors( langName.getString("killedby", "<RED>Killed <RESET>By <YELLOW><player>").replace("<player>", getName(eType, killer)) ) );
+			lore.add(ChatColor.RESET + ChatColorUtils.setColors( get("killedby", "<RED>Killed <RESET>By <YELLOW><player>").replace("<player>", getName(eType, killer)) ) );
 		}
 		if(config.getBoolean("head_settings.lore.show_plugin_name", true)){
 			lore.add(ChatColor.AQUA + "MoreMobHeads");
@@ -1130,7 +1104,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		ArrayList<String> lore = new ArrayList();
 		lore.add(ChatColor.WHITE + "Type: " + type);
 		if(config.getBoolean("head_settings.lore.show_killer", true)){
-			lore.add(ChatColor.RESET + ChatColorUtils.setColors( langName.getString("killedby", "<RED>Killed <RESET>By <YELLOW><player>").replace("<player>", getName(eType, killer)) ) );
+			lore.add(ChatColor.RESET + ChatColorUtils.setColors( get("killedby", "<RED>Killed <RESET>By <YELLOW><player>").replace("<player>", getName(eType, killer)) ) );
 		}
 		if(config.getBoolean("head_settings.lore.show_plugin_name", true)){
 			lore.add(ChatColor.AQUA + "MoreMobHeads");
@@ -1227,7 +1201,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		if( (lore == null) || lore.isEmpty() ) {
 			lore = new ArrayList();
 		}
-		//LOGGER.debug("lore = " + lore);
+		//CoreUtils.debug("lore = " + lore);
 		lore = StrUtils.removeBlanks(lore);
 		if(config.getBoolean("head_settings.lore.show_plugin_name", true)){
 			headLore.addAll(lore);
@@ -1500,7 +1474,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		// Proceed with normal lore modification
 		if (config.getBoolean("head_settings.lore.show_killer", true) && (killer != null)) {
 			String killerName = getName(victimIsPlayer, killer); // Use mob head context
-			String killedByFormat = langName.getString("killedby", "<RED>Killed <RESET>By <YELLOW><player>")
+			String killedByFormat = get("killedby", "<RED>Killed <RESET>By <YELLOW><player>")
 					.replace("<player>", killerName);
 			lore.add(ChatColor.RESET + ChatColorUtils.setColors(killedByFormat));
 		}
@@ -1586,19 +1560,19 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	}
 
 	public void copyConfig(String from, String to){
-		LOGGER.log("Loading new config.yml...");
+		CoreUtils.log("Loading new config.yml...");
 		try {
 			config.load(new File(to));
 		} catch (Exception exception) {
 			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_CHECK_CONFIG).error(exception));
 		}
-		LOGGER.log("Loading old config.yml...");
+		CoreUtils.log("Loading old config.yml...");
 		try {
 			old_config.load(new File(from));
 		} catch (Exception exception) {
 			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_CHECK_CONFIG).error(exception));
 		}
-		LOGGER.log("Copying values from backup" + File.separatorChar + "config.yml...");
+		CoreUtils.log("Copying values from backup" + File.separatorChar + "config.yml...");
 		config.set("plugin_settings.auto_update_check"							, old_config.get("plugin_settings.auto_update_check", true));
 		config.set("plugin_settings.debug"										, old_config.get("plugin_settings.debug", false));
 		config.set("plugin_settings.lang"										, old_config.get("plugin_settings.lang", "en_US"));
@@ -1609,9 +1583,6 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		config.set("global_settings.world.whitelist"							, old_config.get("global_settings.world.whitelist", ""));
 		config.set("global_settings.world.blacklist"							, old_config.get("global_settings.world.blacklist", ""));
 		config.set("global_settings.event.piston_extend"						, old_config.get("global_settings.event.piston_extend", true));
-		config.set("global_settings.disable_dlc_nag_for_players"				, old_config.get("global_settings.disable_dlc_nag_for_players", false));
-		config.set("global_settings.disable_dlc_nag_for_ops"					, old_config.get("global_settings.disable_dlc_nag_for_ops", false));
-		config.set("global_settings.disable_dlc_display"						, old_config.get("global_settings.disable_dlc_display", false));
 
 		config.set("head_settings.apply_looting"								, old_config.get("head_settings.apply_looting", true));
 		config.set("head_settings.lore.show_killer"								, old_config.get("head_settings.lore.show_killer", true));
@@ -1663,27 +1634,27 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		config.set("wandering_trades.custom_trades.enabled"						, old_config.get("wandering_trades.custom_trades.enabled", false));
 		config.set("wandering_trades.custom_trades.min"							, old_config.get("wandering_trades.custom_trades.min", 0));
 		config.set("wandering_trades.custom_trades.max"							, old_config.get("wandering_trades.custom_trades.max", 5));
-		LOGGER.log("Saving config.yml...");
+		CoreUtils.log("Saving config.yml...");
 		try {
 			config.save(new File(getDataFolder(), "config.yml"));
 		} catch (Exception exception) {
 			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_SAVE_CONFIG).error(exception));
 		}
-		config = new YmlConfiguration(this);
+		config = new YmlConfiguration();
 		old_config = null;
-		LOGGER.log("Update complete config.yml...");
+		CoreUtils.log("Update complete config.yml...");
 	}
 
 	public void copyChance(String from, String to){
-		chanceConfig = new YmlConfiguration(this);
-		old_chanceConfig = new YmlConfiguration(this);
+		chanceConfig = new YmlConfiguration();
+		old_chanceConfig = new YmlConfiguration();
 		try {
 			chanceConfig.load(new File(to));
 			old_chanceConfig.load(new File(from));
 		} catch (Exception exception) {
 			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CHANCE_LOAD_ERROR).error(exception));
         }
-		LOGGER.log("Copying values frome backup/chance_config.yml to chance_config.yml");
+		CoreUtils.log("Copying values frome backup/chance_config.yml to chance_config.yml");
 		chanceConfig.set("chance_percent.player"								, normalize(old_chanceConfig.getDouble("chance_percent.player", 50.0) ) );
 		chanceConfig.set("chance_percent.named_mob"								, normalize(old_chanceConfig.getDouble("chance_percent.named_mob", 10.0) ) );
 		chanceConfig.set("chance_percent.allay"									, normalize(old_chanceConfig.getDouble("chance_percent.allay", 20.0) ) );
@@ -1985,14 +1956,14 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		} catch (Exception exception) {
 			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CHANCE_SAVE_ERROR).error(exception));
 		}
-		LOGGER.log("chance_config.yml has been updated!");
+		CoreUtils.log("chance_config.yml has been updated!");
 		old_chanceConfig = null;
 	}
 
 	public void copyConfigValues(String currentFilePath, String oldFilePath) {
 		// Load configurations
-		YmlConfiguration currentConfig = new YmlConfiguration(this);
-		YmlConfiguration oldConfig = new YmlConfiguration(this);
+		YmlConfiguration currentConfig = new YmlConfiguration();
+		YmlConfiguration oldConfig = new YmlConfiguration();
 
 		try {
 			currentConfig.load(new File(currentFilePath));
@@ -2021,12 +1992,8 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		}
 	}
 
-
 	//@SuppressWarnings("unused")
-
-
-
-
+	/**
 	public ItemStack fixHeadStack(ItemStack offHand, ItemStack mainHand){
 		NBTItem nbti = new NBTItem(offHand);
 		Set<String> SkullKeys = nbti.getKeys();
@@ -2065,7 +2032,8 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			return mainHand;
 		}
 		return null;
-	}
+	}//*/
+	/**
 	public ItemStack fixHeadNBT(String textureValue, String displayName, ArrayList<String> lore) {
 		//String textureValue = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWY1MjQxNjZmN2NlODhhNTM3MTU4NzY2YTFjNTExZTMyMmE5M2E1ZTExZGJmMzBmYTZlODVlNzhkYTg2MWQ4In19fQ=="; // Pulled from the head link, scroll to the bottom and the "Other Value" field has this texture id.
 
@@ -2095,8 +2063,8 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 
 		head = nbti.getItem(); // Refresh the ItemStack
 		return head;
-	}
-
+	}//*/
+	/**
 	public ItemStack makeHead(String textureValue, String displayName, String uuid, @Nullable ArrayList<String> lore) {
 		ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1); // Creating the ItemStack, your input may vary.
 		NBTItem nbti = new NBTItem(head); // Creating the wrapper.
@@ -2124,7 +2092,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 
 		head = nbti.getItem(); // Refresh the ItemStack
 		return head;
-	}
+	}//*/
 
 
 
@@ -2161,6 +2129,9 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		}
 	}
 
+	public String getLangName(String langKey, String langFormat){
+		return HeadTranslationUtils.buildTranslatedDisplayName(langFormat, langKey);
+	}
 
 	@SuppressWarnings("static-access")
 	public String get(String key, String... defaultValue) {
@@ -2173,14 +2144,14 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			if ((value != null) && value.getClass().isArray()) {
 				value = Arrays.asList((Object[]) value);
 			}
-			LOGGER.log(key + " = '" + value + "'");
+			CoreUtils.log(key + " = '" + value + "'");
 		}
 	}
 
 	public String getNamedTropicalFishName(Pattern pattern, DyeColor color1, DyeColor color2) {
 		String key = pattern.name() + "-" + color1.name() + "-" + color2.name();
-		LOGGER.log("key=" + key);
-		LOGGER.log("namedTropicalFish=" +  namedTropicalFish.isEmpty());
+		CoreUtils.log("key=" + key);
+		CoreUtils.log("namedTropicalFish=" +  namedTropicalFish.isEmpty());
 		return namedTropicalFish.getOrDefault(key, "TROPICAL_FISH");
 	}
 
@@ -2188,31 +2159,28 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		//**	Check for config */
 		try{
 			if(!getDataFolder().exists()){
-				LOGGER.log("Data Folder doesn't exist");
-				LOGGER.log("Creating Data Folder");
+				CoreUtils.log("Data Folder doesn't exist");
+				CoreUtils.log("Creating Data Folder");
 				getDataFolder().mkdirs();
-				LOGGER.log("Data Folder Created at " + getDataFolder());
+				CoreUtils.log("Data Folder Created at " + getDataFolder());
 			}
 			File file = new File(getDataFolder(), "config.yml");
 			if(!file.exists()){
-				LOGGER.log("config.yml not found, creating!");
+				CoreUtils.log("config.yml not found, creating!");
 				saveResource("config.yml", true);
+				saveResource("config_comments.yml", true);
 			}
             file = new File(getDataFolder(), "messages.yml");
 			if(!file.exists()){
-				LOGGER.log("messages.yml not found, creating!");
+				CoreUtils.log("messages.yml not found, creating!");
 				saveResource("messages.yml", true);
 			}
 			file = new File(getDataFolder(), "fileVersions.yml");
 			if(!file.exists()){
-				LOGGER.log("fileVersions.yml not found, creating!");
+				CoreUtils.log("fileVersions.yml not found, creating!");
 				saveResource("fileVersions.yml", true);
 			}
-			file = new File(getDataFolder() + "" + File.separatorChar + "lang" + File.separatorChar, daLang + "_mobnames.yml");
-			if(!file.exists()){
-				LOGGER.log("lang" + File.separatorChar, daLang + "_mobnames.yml not found, creating!");
-				saveResource("lang" + File.separatorChar + daLang + "_mobnames.yml", true);
-			}
+
 		}catch(Exception exception){
 			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_CHECK_CONFIG).error(exception));
 		}
@@ -2222,18 +2190,19 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		// Config file check
 		Version curConfigVersion = new Version(fileVersions.getString("config", "0.0.1"));
 		if(curConfigVersion.compareTo(minConfigVersion) < 0) {
-			LOGGER.log("config.yml is outdated backing up...");
+			CoreUtils.log("config.yml is outdated backing up...");
 			try {
 				copyFile(getDataFolder() + "" + File.separatorChar + "config.yml",getDataFolder() + "" + File.separatorChar + "backup" + File.separatorChar + "config.yml");
 			} catch (Exception exception) {
 				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_COPY_FILE).error(exception));
 			}
-			LOGGER.log("Saving new config.yml...");
+			CoreUtils.log("Saving new config.yml...");
 			saveResource("config.yml", true);
+			saveResource("config_comments.yml", true);
 			// from new File(getDataFolder() + "" + File.separatorChar + "backup", "config.yml")
 			copyConfig("" + getDataFolder() + File.separatorChar + "backup" + File.separatorChar + "config.yml", "" + getDataFolder() + File.separatorChar + "config.yml");
 		}
-		LOGGER.log("Loading config file...");
+		CoreUtils.log("Loading config file...");
 		try {
 			config.load(new File(getDataFolder() + "" + File.separatorChar + "config.yml"));
 		} catch (Exception exception) {
@@ -2245,27 +2214,27 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		// Message file check
 		Version curMessagesVersion = new Version(fileVersions.getString("messages", "0.0.1"));
 		if(curMessagesVersion.compareTo(minMessagesVersion) < 0) {
-			LOGGER.log("messages.yml is outdated backing up...");
+			CoreUtils.log("messages.yml is outdated backing up...");
 			try {
 				copyFile(getDataFolder() + "" + File.separatorChar + "messages.yml", getDataFolder() + "" + File.separatorChar + "backup" + File.separatorChar + "messages.yml");
 			} catch (Exception exception) {
 				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_MESSAGES_COPY_ERROR).error(exception));
 			}
-			LOGGER.log("Saving new messages.yml...");
+			CoreUtils.log("Saving new messages.yml...");
 			saveResource("messages.yml", true);
-			LOGGER.log("Loading new messages.yml...");
+			CoreUtils.log("Loading new messages.yml...");
 			try {
 				beheadingMessages.load(new File(getDataFolder() + "" + File.separatorChar + "messages.yml"));
 			} catch (Exception exception) {
 				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_MESSAGES_LOAD_ERROR).error(exception));
 			}
-			LOGGER.log("Loading old messages.yml...");
+			CoreUtils.log("Loading old messages.yml...");
 			try {
-				oldMessages.load(new File(getDataFolder() + "" + File.separatorChar + "messages.yml"));
+				oldMessages.load(new File(getDataFolder() + "" + File.separatorChar + "backup" + File.separatorChar + "messages.yml"));
 			} catch (Exception exception) {
 				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_OLDMESSAGES_LOAD_ERROR).error(exception));
 			}
-			LOGGER.log("Copying values from backup" + File.separatorChar + "messages.yml...");
+			CoreUtils.log("Copying values from backup" + File.separatorChar + "messages.yml...");
 			ConfigurationSection oldMessagesSection = oldMessages.getConfigurationSection("messages");
 
             assert oldMessagesSection != null;
@@ -2276,17 +2245,17 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 						.replace("<entityName>", "%entityName%")
 						.replace("<weaponName>", "%weaponName%"));
 			}
-			LOGGER.log("Saving messages.yml...");
+			CoreUtils.log("Saving messages.yml...");
 			try {
 				beheadingMessages.save(new File(getDataFolder(), "messages.yml"));
 			} catch (Exception exception) {
 				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_OLDMESSAGES_SAVE_ERROR).error(exception));
 			}
-			beheadingMessages = new YmlConfiguration(this);
+			beheadingMessages = new YmlConfiguration();
 			oldMessages = null;
-			LOGGER.log("Update complete config.yml...");
+			CoreUtils.log("Update complete config.yml...");
 		}
-		LOGGER.log("Loading messages file...");
+		CoreUtils.log("Loading messages file...");
 		try {
 			beheadingMessages.load(new File(getDataFolder() + "" + File.separatorChar + "messages.yml"));
 		} catch (Exception exception) {
@@ -2299,7 +2268,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		if( config.getBoolean("wandering_trades.custom_wandering_trader", true) || config.getBoolean("head_settings.mini_blocks.stonecutter", true) ){
 			File file = new File(getDataFolder(), "custom_trades.yml");
 			if(!file.exists()){
-				LOGGER.log("custom_trades.yml not found, creating!");
+				CoreUtils.log("custom_trades.yml not found, creating!");
 				saveResource("custom_trades.yml", true);
 			}
 
@@ -2308,16 +2277,16 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 			Version curCustomVersion = new Version(fileVersions.getString("custom_trades", "0.0.1"));
 			customFile = new File(getDataFolder() + "" + File.separatorChar + "custom_trades.yml");
 			if(curCustomVersion.compareTo(minCustomVersion) < 0) {
-				LOGGER.log("custom_trades.yml is outdated backing up...");
+				CoreUtils.log("custom_trades.yml is outdated backing up...");
 				try {
 					copyFile(customFile.getAbsolutePath(),getDataFolder() + "" + File.separatorChar + "backup" + File.separatorChar + "custom_trades.yml");
 				} catch (Exception exception) {
 					reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_COPY_FILE).error(exception));
 				}
-				LOGGER.log("Saving new custom_trades.yml...");
+				CoreUtils.log("Saving new custom_trades.yml...");
 				saveResource("custom_trades.yml", true);
 			}
-			LOGGER.log("Loading custom_trades file...");
+			CoreUtils.log("Loading custom_trades file...");
 			traderCustom = new YamlConfiguration();
 			try {
 				traderCustom.load(customFile);
@@ -2329,32 +2298,45 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	}
 
 	public boolean isBabyEntity(LivingEntity entity) {
-		return (entity instanceof Ageable) && !((Ageable) entity).isAdult();
-	}
+		if (entity == null) return false;
 
-	public void checkLang() {
-		Version curLangVersion = new Version(fileVersions.getString("lang", "0.0.1"));
-		langNameFile = new File(getDataFolder() + "" + File.separatorChar + "lang" + File.separatorChar, daLang + "_mobnames.yml");
-		if(curLangVersion.compareTo(minLangVersion) < 0) {
-			LOGGER.log(daLang + "_mobnames.yml is outdated backing up...");
-			try {
-				copyFile(langNameFile.getAbsolutePath(),getDataFolder() + "" + File.separatorChar + "backup" + File.separatorChar + daLang + "_mobnames.yml");
-			} catch (Exception exception) {
-				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_COPY_FILE).error(exception));
-			}
-			LOGGER.log("Saving new " + daLang + "_mobnames.yml...");
-			saveResource("lang" + File.separatorChar + daLang + "_mobnames.yml", true);
-			LOGGER.log("Copying values from backup" + File.separatorChar + daLang + "_mobnames.yml...");
-			copyConfigValues(getDataFolder() + "" + File.separatorChar + "lang" + File.separatorChar + daLang + "_mobnames.yml",
-					getDataFolder() + "" + File.separatorChar + "backup" + File.separatorChar + daLang + "_mobnames.yml");
+		// 1. Standard modern check (works for most mobs)
+		if (entity instanceof Ageable ageable) {
+			return !ageable.isAdult();
 		}
-		LOGGER.log("Loading language based mobname file...");
-		langName = new YamlConfiguration();
+
+		// 2. Reflection fallback (isAdult / isBaby)
 		try {
-			langName.load(langNameFile);
-		} catch (Exception exception) {
-			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_MOBNAMES_LOAD_ERROR).error(exception));
+			java.lang.reflect.Method method = entity.getClass().getMethod("isAdult");
+			return !(boolean) method.invoke(entity);
+		} catch (Exception ignored) {
+			try {
+				java.lang.reflect.Method method = entity.getClass().getMethod("isBaby");
+				return (boolean) method.invoke(entity);
+			} catch (Exception ignored2) {}
 		}
+
+		// 3. NBT Age fallback - Very reliable for Sniffers and edge cases
+		try {
+			// Try to read the raw Age NBT value
+			Object nmsEntity = entity.getClass().getMethod("getHandle").invoke(entity);
+			java.lang.reflect.Field ageField = nmsEntity.getClass().getDeclaredField("age");
+			ageField.setAccessible(true);
+			int age = ageField.getInt(nmsEntity);
+			return age < 0;                    // Negative age = baby
+		} catch (Exception ignored) {}
+
+		// 4. Last resort: Entity type + name check
+		String typeName = entity.getType().name().toLowerCase(Locale.ROOT);
+		if (typeName.equals("sniffer")) {
+			// Only consider it a baby if it has "Snifflet" or "Baby" in custom name
+			if (entity.getCustomName() != null) {
+				String name = entity.getCustomName().toLowerCase(Locale.ROOT);
+				return name.contains("snifflet") || name.contains("baby");
+			}
+		}
+
+		return false;
 	}
 
 	// Used to check the Minecraft version
@@ -2362,10 +2344,10 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		try {
 			// We'll just warn the user for now
 			if (CURRENT_MINECRAFT_VERSION.compareTo(MINIMUM_MINECRAFT_VERSION) < 0) {
-				LOGGER.warn("Version " + CURRENT_MINECRAFT_VERSION + " is lower than the minimum " + MINIMUM_MINECRAFT_VERSION);
+				CoreUtils.warn("Version " + CURRENT_MINECRAFT_VERSION + " is lower than the minimum " + MINIMUM_MINECRAFT_VERSION);
 			}
 			if (CURRENT_MINECRAFT_VERSION.compareTo(MAXIMUM_MINECRAFT_VERSION) > 0) {
-				LOGGER.warn("Version " + CURRENT_MINECRAFT_VERSION + " has not yet been tested! Proceed with caution.");
+				CoreUtils.warn("Version " + CURRENT_MINECRAFT_VERSION + " has not yet been tested! Proceed with caution.");
 			}
 			return CURRENT_MINECRAFT_VERSION;
 		} catch (Exception exception) {
@@ -2475,7 +2457,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		String lore = event.getLore() != null ? event.getLore().toString() : "None";
 		String noteblockSound = event.getNoteblockSound() != null ? event.getNoteblockSound() : "None";
 		String url = event.getSkinURL();
-		LOGGER.log("MobHeadDropEvent fired: " +
+		CoreUtils.debug("MobHeadDropEvent fired: " +
 				"Entity=" + event.getEntity().getType() +
 				", Player=" + playerName +
 				", Head=" + event.getHead().getType() +
@@ -2490,11 +2472,105 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 		//event.setCancelled(true);
 	}
 
+	public void reloadPlugin(){
+		CoreUtils.log("Reloading MoreMobHeads...");
+		long startTime = System.currentTimeMillis();
+
+		// Save file versions
+		saveFileVersions();
+
+		// Reload file versions
+		CoreUtils.log("Loading file version checker...");
+		fileVersionsFile = new File(getDataFolder() + "" + File.separatorChar + "fileVersions.yml");
+		try {
+			fileVersions.load(fileVersionsFile);
+		} catch (Exception exception) {
+			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_LOAD_FILEVERSION).error(exception));
+		}
+
+		// Reload configs
+		config = new YmlConfiguration();
+		beheadingMessages = new YamlConfiguration();
+		try {
+			beheadingMessages.load(new File(getDataFolder() + "" + File.separatorChar + "messages.yml"));
+		} catch (Exception exception) {
+			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_MESSAGES_LOAD_ERROR).error(exception));
+		}
+
+		// Check directories and update configs
+		checkDirectories();
+		checkConfig();
+		checkMessages();
+
+		// Update settings
+		world_whitelist = config.getString("global_settings.world.whitelist", "");
+		world_blacklist = config.getString("global_settings.world.blacklist", "");
+		mob_whitelist = config.getString("head_settings.mob_heads.whitelist", "");
+		mob_blacklist = config.getString("head_settings.mob_heads.blacklist", "");
+		CoreUtils.debug = config.getBoolean("debug", false); // Update debug from config
+		daLang = config.getString("plugin_settings.lang", "en_US");
+
+		// Reload heads and recipes (including DLCs and stonecutter recipes)
+		eventHandler.loadHeadsAndRecipes();
+
+		lang2 = null;
+		lang2 = new Translator(daLang, getDataFolder().toString());
+		CoreUtils.log("Reloaded translator with: " + daLang);
+
+		CoreUtils.log("MoreMobHeads reload took " + LoadTime(startTime) + " to complete");
+	}
+
+	public void saveFileVersions() {
+		String defVer = "0.1.0";
+		fileVersions.set("config", config.getString("version", defVer));
+		if(beheadingMessages != null) {
+			fileVersions.set("messages", beheadingMessages.getString("version", defVer));
+		}
+		if(playerHeads != null) {
+			fileVersions.set("player_heads", playerHeads.getString("version", defVer));
+		}
+		if(traderCustom != null) {
+			fileVersions.set("custom_trades", traderCustom.getString("custom_trades.version", defVer));
+		}
+
+		fileVersionsFile = new File(getDataFolder() + "" + File.separatorChar + "fileVersions.yml");
+		try {
+			fileVersions.save(fileVersionsFile);
+		} catch (Exception exception) {
+			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_SAVE_FILEVERSION).error(exception));
+		}
+		fileVersions  = new YamlConfiguration();
+	}
+
+	public boolean isInConfigGuiSession(UUID uuid) {
+		return inConfigGuiSession.contains(uuid);
+	}
+
+	public void startConfigGuiSession(Player player) {
+		inConfigGuiSession.add(player.getUniqueId());
+		logDebug("Started config GUI session for " + player.getName());
+	}
+
+	public void endConfigGuiSession(Player player) {
+		if (inConfigGuiSession.remove(player.getUniqueId())) {
+			logDebug("Ended config GUI session for " + player.getName());
+		}
+	}
 
 	public void logDebug(String message){
-		LOGGER.debug(message, CoreUtils.debug);
+		CoreUtils.debug(message, CoreUtils.debug);
 	}
 	public void logDebug(String message, Object... args) {
-		LOGGER.debug(message, args);
+		CoreUtils.debug(message, args);
+	}
+	public void loadConfigValues() {
+		world_whitelist = config.getString("global_settings.world.whitelist", "");
+		world_blacklist = config.getString("global_settings.world.blacklist", "");
+		mob_whitelist = config.getString("head_settings.mob_heads.whitelist", "");
+		mob_blacklist = config.getString("head_settings.mob_heads.blacklist", "");
+		player_announce_enabled = config.getBoolean("head_settings.player_heads.announce_kill.enabled", true);
+		player_announce_display = config.getBoolean("head_settings.player_heads.announce_kill.displayname", true);
+		mob_announce_enabled = config.getBoolean("head_settings.mob_heads.announce_kill.enabled", true);
+		mob_announce_display = config.getBoolean("head_settings.mob_heads.announce_kill.displayname", true);
 	}
 }

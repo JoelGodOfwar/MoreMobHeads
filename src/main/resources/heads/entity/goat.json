@@ -1,28 +1,58 @@
 {
   "defaultChance": 1.0,
-  "structure": "nested",
   "heads": {
     "goat": {
       "normal": {
+        "chance": 1.0,
         "displayName": "Goat",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.goat.normal",
         "langName": "goat.normal",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWY0ZWE5NjQ5YWE3YTk3MzdlMjI4YjY1MTUxZGJkOWVjNWU2OTU0M2QwODgyYzRiNWFkOTlhN2Y0YTFlZmExNiJ9fX0=",
-        "uuid": "e184fc80-6ba6-4a04-9a05-fb407abd254e",
         "lore": [],
         "noteblockSound": "entity.goat.ambient",
         "quantity": 1,
-        "chance": 1.0
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWY0ZWE5NjQ5YWE3YTk3MzdlMjI4YjY1MTUxZGJkOWVjNWU2OTU0M2QwODgyYzRiNWFkOTlhN2Y0YTFlZmExNiJ9fX0=",
+        "uuid": "e184fc80-6ba6-4a04-9a05-fb407abd254e"
       },
       "screaming": {
+        "chance": 100.0,
         "displayName": "Screaming Goat",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.goat.screaming",
         "langName": "goat.screaming",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzQ5YzdiZWU5MDUzMjY4NDRlNjA1OTNkYmJlZjk5Mjk3MjNkYTJhZmNhN2Q0YzNmZDcyMjgwZWI0YTVmMzMwYyJ9fX0=",
-        "uuid": "d0aa4129-8c01-46e5-ab55-9816be6ab4aa",
         "lore": [],
         "noteblockSound": "entity.goat.screaming.ambient",
         "quantity": 1,
-        "chance": 100.0
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzQ5YzdiZWU5MDUzMjY4NDRlNjA1OTNkYmJlZjk5Mjk3MjNkYTJhZmNhN2Q0YzNmZDcyMjgwZWI0YTVmMzMwYyJ9fX0=",
+        "uuid": "d0aa4129-8c01-46e5-ab55-9816be6ab4aa"
+      },
+      "baby": {
+        "normal": {
+          "chance": 8.0,
+          "displayName": "Baby Goat",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.goat.baby.normal",
+          "langName": "goat.baby.normal",
+          "lore": [],
+          "noteblockSound": "entity.goat.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDYyYTE1NzIyNzA0M2IwNmJkMTY3OWYyNjc1ZmVkZWY3NWVmNDFlNTEyOTY2NTc5NmJkNmE2NzI3NDYyZTc5NiJ9fX0=",
+          "uuid": "c9667a89-88b6-4cdf-b69c-43f192170b42"
+        },
+        "screaming": {
+          "chance": 100.0,
+          "displayName": "Baby Screaming Goat",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.goat.baby.screaming",
+          "langName": "goat.baby.screaming",
+          "lore": [],
+          "noteblockSound": "entity.goat.screaming.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjM3OWFlNWMxNTdiNmE5MzE3OGNhNGVjMjE3M2RjNGJmOTVkZTEyZTljZTI1NWJjOWIwMDgwNGExZTM1NjQ0ZCJ9fX0=",
+          "uuid": "01525a35-4c25-4aab-9fd3-f95c94d7376a"
+        }
       }
     }
-  }
+  },
+  "structure": "nested"
 }

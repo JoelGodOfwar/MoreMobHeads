@@ -22,13 +22,11 @@ import java.util.Objects;
 
 public class PlayerInteractEventHandler implements Listener {
     private final MoreMobHeads plugin;
-    private final PluginLogger LOGGER;
     private final DetailedErrorReporter reporter;
     private final NamespacedKey NAMETAG_KEY;
 
     public PlayerInteractEventHandler(MoreMobHeads plugin) {
         this.plugin = plugin;
-        this.LOGGER = plugin.LOGGER;
         this.reporter = MoreMobHeads.reporter;
         this.NAMETAG_KEY = plugin.NAMETAG_KEY;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

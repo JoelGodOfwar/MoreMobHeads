@@ -79,7 +79,7 @@ public class DLCHeads {
 					)
 			)
 			);
-
+/**
 	public static List<ItemStack> getDLCHeads(MoreMobHeads mmh) {
 		List<ItemStack> heads = new ArrayList<>();
 		for (DLCHeadInfo info : DLC_HEADS) {
@@ -115,7 +115,7 @@ public class DLCHeads {
 			}
 		}
 		return trades;
-	}
+	}//*/
 
 	// Getter for DLC names (for later DLC installation check)
 	public static List<String> getDLCNames() {

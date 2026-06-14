@@ -1,0 +1,27 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "STRIPPED_BIRCH_WOOD",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Stripped Birch Wood",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDVhMTFhYmU1NzM2ZDYyYzYyOWRmYzg5YjY4YzUxNjVlZjNkNTk0OGYzNzFkM2UwNjU1YzVhN2JlMmNkMjI1YyJ9fX0=",
+    "uuid": "06ce2c4e-de60-4b05-b228-b225787f3018",
+    "lore": [],
+    "noteblockSound": "block.wood.place",
+    "quantity": 8,
+    "maxUses": 1,
+    "langKey": "block.birch.stripped.wood",
+    "langFormat": "mmh.format.block.azalea"
+  }
+}  

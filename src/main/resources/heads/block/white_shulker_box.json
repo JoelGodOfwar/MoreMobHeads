@@ -1,0 +1,27 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "WHITE_SHULKER_BOX",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini White Shulker Box",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDU4YjFhZjE4MzZhYTVlY2FkMmU1NjdiODFhN2RiZmQwYmNjNTlkNjg4MDMxNGUxMDdjMTg2MWZjNTRjMjg2MSJ9fX0=",
+    "uuid": "89d730b7-c8e8-4c40-aa89-4ab06e983ac4",
+    "lore": [],
+    "noteblockSound": "block.wood.place",
+    "quantity": 8,
+    "maxUses": 1,
+    "langKey": "block.shulker_box.white",
+    "langFormat": "mmh.format.block.default"
+  }
+}  

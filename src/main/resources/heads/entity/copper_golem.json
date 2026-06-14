@@ -1,61 +1,65 @@
 {
     "defaultChance": 10.0,
-    "structure": "nested",
     "heads": {
         "copper_golem": {
-            "unaffected": {
-                "quantity": 1,
-                "chance": 10,
-                "lore": [],
-                "displayName": "Copper Golem",
-                "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTMzM2ViZTJiYTBiYzMzOTQ2NDFkZDJkNGRmN2RjYjdiYTY4YmEyMDdmN2UwYmFmOGYwOGQ3ZmJmZGQ5NTk5OCJ9fX0=",
-                "langName": "copper_golem.unaffected",
-                "min_mc_version": "1.21.9",
-                "uuid": "c993dbae-9d74-421b-b6a2-08416e2bc241",
-                "noteblockSound": "entity.copper_golem.hurt"
-            },
             "exposed": {
-                "quantity": 1,
                 "chance": 10,
-                "lore": [
-                    "Get the Exposed Copper Golem in the DLC!",
-                    "&7ko-fi.com/joelgodofwar"
-                ],
-                "displayName": "Copper Golem",
-                "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTMzM2ViZTJiYTBiYzMzOTQ2NDFkZDJkNGRmN2RjYjdiYTY4YmEyMDdmN2UwYmFmOGYwOGQ3ZmJmZGQ5NTk5OCJ9fX0=",
+                "displayName": "Exposed Copper Golem",
+                "langFormat": "mmh.format.entity.default",
+                "langKey": "entity.copper_golem.exposed",
                 "langName": "copper_golem.exposed",
-                "min_mc_version": "1.21.9",
-                "uuid": "c993dbae-9d74-421b-b6a2-08416e2bc241",
-                "noteblockSound": "entity.copper_golem.hurt"
-            },
-            "weathered": {
-                "quantity": 1,
-                "chance": 10,
                 "lore": [
-                    "Get the Weathered Copper Golem in the DLC!",
-                    "&7ko-fi.com/joelgodofwar"
                 ],
-                "displayName": "Copper Golem",
-                "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTMzM2ViZTJiYTBiYzMzOTQ2NDFkZDJkNGRmN2RjYjdiYTY4YmEyMDdmN2UwYmFmOGYwOGQ3ZmJmZGQ5NTk5OCJ9fX0=",
-                "langName": "copper_golem.weathered",
                 "min_mc_version": "1.21.9",
-                "uuid": "c993dbae-9d74-421b-b6a2-08416e2bc241",
-                "noteblockSound": "entity.copper_golem.hurt"
+                "noteblockSound": "entity.copper_golem.hurt",
+                "quantity": 1,
+                "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZThmOWMyYzE2YjBmOWFjMTZjZmNhNWM5Y2JiOWUxYjM4NTdiNzk2ODA4NTMxZTU1MWI3ODZkYTdmZTYyNzliNiJ9fX0=",
+                "uuid": "cbaa8714-2a84-4252-8fe3-59a4dd51d31c"
             },
             "oxidized": {
-                "quantity": 1,
                 "chance": 10,
-                "lore": [
-                    "Get the Oxidized Copper Golem in the DLC!",
-                    "&7ko-fi.com/joelgodofwar"
-                ],
-                "displayName": "Copper Golem",
-                "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTMzM2ViZTJiYTBiYzMzOTQ2NDFkZDJkNGRmN2RjYjdiYTY4YmEyMDdmN2UwYmFmOGYwOGQ3ZmJmZGQ5NTk5OCJ9fX0=",
+                "displayName": "Oxidized Copper Golem",
+                "langFormat": "mmh.format.entity.default",
+                "langKey": "entity.copper_golem.oxidized",
                 "langName": "copper_golem.oxidized",
+                "lore": [
+                ],
                 "min_mc_version": "1.21.9",
-                "uuid": "c993dbae-9d74-421b-b6a2-08416e2bc241",
-                "noteblockSound": "entity.copper_golem.hurt"
+                "noteblockSound": "entity.copper_golem.hurt",
+                "quantity": 1,
+                "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjFiMDAwNWZlODA1Yjg4NTgwZTExNDAyMzNhYTgzM2FlYmQzOWYyYjBjNjk3Y2I0ZmNmNzRjMjcyYWZmNTEwYSJ9fX0=",
+                "uuid": "2dfaa91e-b8c0-4e9a-b010-86bf4d37192c"
+            },
+            "unaffected": {
+                "chance": 10,
+                "displayName": "Copper Golem",
+                "langFormat": "mmh.format.entity.default",
+                "langKey": "entity.copper_golem.unaffected",
+                "langName": "copper_golem.unaffected",
+                "lore": [
+
+                ],
+                "min_mc_version": "1.21.9",
+                "noteblockSound": "entity.copper_golem.hurt",
+                "quantity": 1,
+                "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTMzM2ViZTJiYTBiYzMzOTQ2NDFkZDJkNGRmN2RjYjdiYTY4YmEyMDdmN2UwYmFmOGYwOGQ3ZmJmZGQ5NTk5OCJ9fX0=",
+                "uuid": "c993dbae-9d74-421b-b6a2-08416e2bc241"
+            },
+            "weathered": {
+                "chance": 10,
+                "displayName": "Weathered Copper Golem",
+                "langFormat": "mmh.format.entity.default",
+                "langKey": "entity.copper_golem.weathered",
+                "langName": "copper_golem.weathered",
+                "lore": [
+                ],
+                "min_mc_version": "1.21.9",
+                "noteblockSound": "entity.copper_golem.hurt",
+                "quantity": 1,
+                "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmQwZjE1ZGEyMmIzYmVjZjE1NTQ2NTRkYjE1YmMyZWZiMmE4NzVkODQzYjY4MGZmN2U2NGRjMGEyNGFjZDM0OCJ9fX0=",
+                "uuid": "839ca814-077f-4aca-9d6b-c9475bdebf85"
             }
         }
-    }
+    },
+    "structure": "nested"
 }

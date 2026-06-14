@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.wart_block.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.warped_wart_block",
+    "langFormat": "mmh.format.block.default"
   }
 }  

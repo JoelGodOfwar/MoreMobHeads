@@ -1,12 +1,9 @@
 package com.github.joelgodofwar.mmh.util;
 
-import org.apache.commons.lang.math.NumberUtils;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import me.clip.placeholderapi.PlaceholderAPI;
 
 public class Utils {
 

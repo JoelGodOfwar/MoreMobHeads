@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import lib.github.joelgodofwar.coreutils.CoreUtils;
 import lib.github.joelgodofwar.coreutils.util.Version;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -25,7 +26,7 @@ public class MiniBlockLoader {
 	public void loadAllMiniBlocks(String directoryPath) {
 		File directory = new File(directoryPath);
 		if (!directory.exists()) {
-			plugin.getLogger().warning("MiniBlock directory does not exist: " + directoryPath);
+			CoreUtils.warn("MiniBlock directory does not exist: " + directoryPath);
 			return;
 		}
 		Version currentVersion = new Version(plugin.getServer());
@@ -37,7 +38,7 @@ public class MiniBlockLoader {
 					miniBlocks.add(miniBlock);
 				}
 			} catch (Exception e) {
-				plugin.getLogger().warning("Error loading mini block from " + file.getName() + ": " + e.getMessage());
+				CoreUtils.warn("Error loading mini block from " + file.getName() + ": " + e.getMessage());
 				e.printStackTrace();
 			}
 		}
@@ -57,8 +58,19 @@ public class MiniBlockLoader {
 				return null;
 			}
 
-			String langName = json.optString("lang_name", file.getName().replace(".json", ""));
-			String displayName = headJson.getString("displayName");
+			String fileNameNoExt = file.getName().replace(".json", "");
+			String generatedLangKey = "block." + fileNameNoExt;  // Simple flat key
+
+			String langKey = headJson.optString("langKey", generatedLangKey);
+			String langFormat = headJson.optString("langFormat", "mmh.format.block.default");
+
+			String translatedDisplayName = HeadTranslationUtils.buildTranslatedDisplayName(langFormat, langKey);
+
+			if (translatedDisplayName.isEmpty()) {
+				translatedDisplayName = headJson.getString("displayName"); // English fallback
+			}
+			String langName = generatedLangKey; //json.optString("lang_name", file.getName().replace(".json", ""));
+			String displayName = translatedDisplayName; //headJson.getString("displayName");
 			String noteblockSound = headJson.optString("noteblockSound", null);
 			List<String> lore = new ArrayList<>();
 			if (headJson.has("lore")) {
@@ -101,7 +113,7 @@ public class MiniBlockLoader {
 			head.setAmount(1);
 
 			if (price2 == null) {
-				plugin.LOGGER.warn("No price2 found for mini block " + langName + " - skipping");
+				CoreUtils.warn("No price2 found for mini block " + langName + " - skipping");
 				return null;
 			}
 			return new MiniBlock(data, head, price2);
@@ -114,7 +126,7 @@ public class MiniBlockLoader {
 			int amount = json.optInt("amount", 1);
 			return new ItemStack(material, amount);
 		} catch (IllegalArgumentException e) {
-			plugin.getLogger().warning("Invalid material in price: " + json.toString());
+			CoreUtils.warn("Invalid material in price: " + json.toString());
 			return null;
 		}
 	}

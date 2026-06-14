@@ -1,5 +1,5 @@
 # Tracks versions of key files.
-config: 1.0.25
-messages: 1.0.2
+config: 1.0.29
+messages: 1.0.3
 custom_trades: 1.0.1
-lang: 1.0.3
+lang: 1.0.6

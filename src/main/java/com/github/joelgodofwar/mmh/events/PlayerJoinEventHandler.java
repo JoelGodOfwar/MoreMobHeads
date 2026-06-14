@@ -31,7 +31,6 @@ public class PlayerJoinEventHandler implements Listener {
 
     public PlayerJoinEventHandler(MoreMobHeads plugin) {
         this.plugin = plugin;
-        PluginLogger LOGGER = plugin.LOGGER;
         this.reporter = MoreMobHeads.reporter;
         this.warnedPlayers = plugin.warnedPlayers;
         this.THIS_NAME = MoreMobHeads.THIS_NAME;
@@ -59,23 +58,6 @@ public class PlayerJoinEventHandler implements Listener {
             player.sendMessage(ChatColor.GRAY + plugin.get("mmh.version.message").replace("<MyPlugin>", ChatColor.GOLD + THIS_NAME + ChatColor.GRAY));
             plugin.coreUtils.sendJsonMessage(player, links);
             player.sendMessage(versions.replace("{nVers}", UC_newVersion).replace("{oVers}", UC_oldVersion));
-        }
-
-        boolean disableDLCNagPlayers = plugin.config.getBoolean("disable-dlc-nag-for-players", false);
-        boolean disableDLCNagOPs = plugin.config.getBoolean("disable-dlc-nag-for-ops", false);
-        if ((plugin.mmhDLC != null) && !plugin.mmhDLC.isEmpty()) {
-            String availableDLCs = plugin.mmhDLC.stream()
-                    .filter(dlc -> !new java.io.File(plugin.getDataFolder(), dlc.getMarkerFile()).exists())
-                    .map(dlc -> String.format("%s (%d heads, $%.2f)",
-                            StrUtils.toProperTitleCase(dlc.getFilename().replace("mmh_", "").replace("_", " ").replaceAll("\\.[^.]+$", "")),
-                            dlc.getNumberOfFiles(), dlc.getPrice()))
-                    .collect(Collectors.joining(", "));
-            if (!availableDLCs.isEmpty()) {
-                double chance = player.isOp() ? (disableDLCNagOPs ? 0.0 : 0.13) : (disableDLCNagPlayers ? 0.0 : 0.05);
-                if (new Random().nextDouble() < chance) {
-                    player.sendMessage(ChatColor.YELLOW + "Available DLCs: " + availableDLCs);
-                }
-            }
         }
 
         long daysRemaining = plugin.buildValidator.getDaysRemaining();

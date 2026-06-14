@@ -1,7 +1,7 @@
 package com.github.joelgodofwar.mmh.handlers;
 
-import com.github.joelgodofwar.mmh.command.GiveHeadCommand;
-import com.github.joelgodofwar.mmh.command.ViewHeadsCommand;
+import com.github.joelgodofwar.mmh.commands.GiveHeadCommand;
+import com.github.joelgodofwar.mmh.commands.ViewHeadsCommand;
 
 public interface MMHEventHandler {
 	void loadHeadsAndRecipes();

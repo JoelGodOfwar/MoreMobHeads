@@ -1,0 +1,27 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "MANGROVE_WOOD",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Mangrove Wood",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGQ5Mzg2ZTVkNGY2ZDNkNmI3MjlkZjMyZWY4OTI3M2Y5NzdhNzhhOGZjNzQwOGU0ZjNkNmM0NzdjZGZiMjc0ZCJ9fX0=",
+    "uuid": "edb8a191-77d9-4634-9540-37af61461526",
+    "lore": [],
+    "noteblockSound": "block.wood.place",
+    "quantity": 8,
+    "maxUses": 1,
+    "langKey": "block.mangrove.wood",
+    "langFormat": "mmh.format.block.wood"
+  }
+}  

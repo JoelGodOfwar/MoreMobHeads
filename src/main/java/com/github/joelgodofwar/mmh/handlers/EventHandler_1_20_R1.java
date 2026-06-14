@@ -12,6 +12,8 @@ import javax.annotation.Nonnull;
 import com.github.joelgodofwar.mmh.enums.Perms;
 import com.github.joelgodofwar.mmh.events.BeheadingHandler;
 import com.github.joelgodofwar.mmh.util.heads.*;
+import com.github.joelgodofwar.mmh.util.mob.MobNameUtils;
+import lib.github.joelgodofwar.coreutils.CoreUtils;
 import lib.github.joelgodofwar.coreutils.util.ChatColorUtils;
 import lib.github.joelgodofwar.coreutils.util.StrUtils;
 import lib.github.joelgodofwar.coreutils.util.Version;
@@ -46,11 +48,9 @@ import org.bukkit.entity.Strider;
 import org.bukkit.entity.TraderLlama;
 import org.bukkit.entity.TropicalFish;
 import org.bukkit.entity.TropicalFish.Pattern;
-import org.bukkit.entity.Villager;
 import org.bukkit.entity.WanderingTrader;
 import org.bukkit.entity.Wolf;
 import org.bukkit.entity.Zombie;
-import org.bukkit.entity.ZombieVillager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -72,11 +72,10 @@ import org.bukkit.profile.PlayerTextures;
 import org.json.JSONObject;
 
 import com.github.joelgodofwar.mmh.MoreMobHeads;
-import com.github.joelgodofwar.mmh.MoreMobHeadsLib;
-import com.github.joelgodofwar.mmh.command.Command_1_20_R2;
-import com.github.joelgodofwar.mmh.command.ConfigGuiCommand;
-import com.github.joelgodofwar.mmh.command.GiveHeadCommand;
-import com.github.joelgodofwar.mmh.command.ViewHeadsCommand;
+import com.github.joelgodofwar.mmh.commands.Command_1_20_R2;
+import com.github.joelgodofwar.mmh.commands.ConfigGuiCommand;
+import com.github.joelgodofwar.mmh.commands.GiveHeadCommand;
+import com.github.joelgodofwar.mmh.commands.ViewHeadsCommand;
 import com.github.joelgodofwar.mmh.common.PluginLibrary;
 import com.github.joelgodofwar.mmh.common.error.DetailedErrorReporter;
 import com.github.joelgodofwar.mmh.common.error.Report;
@@ -92,10 +91,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 	/** Variables */
 	MoreMobHeads mmh;
 	double defpercent = 13.0;
-	String world_whitelist;
-	String world_blacklist;
-	String mob_whitelist;
-	String mob_blacklist;
+	
 	boolean debug;
 	YmlConfiguration chanceConfig;
 
@@ -124,11 +120,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 	private HeadManager headManager;
 	Double player_Chance;
 	Double named_Chance;
-	private boolean dlcAdvertisingEnabled;
-	boolean player_announce_enabled;
-	boolean player_announce_display;
-	boolean mob_announce_enabled;
-	boolean mob_announce_display;
+	
 	Player playerBedKiller;
 	public BeheadingHandler beheading;
 
@@ -158,19 +150,10 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 			this.headManager = headManager;
 			reporter = new DetailedErrorReporter(mmh);
 			verify = new VerifyConfig(mmh);
-			mmh.LOGGER.log("Loading 1.20 EventHandler...");
+			CoreUtils.log("Loading 1.20 EventHandler...");
 			long startTime = System.currentTimeMillis();
 			//mmh.getCommand("mmh").setExecutor(this);
-			world_whitelist = mmh.config.getString("world.whitelist", "");
-			world_blacklist = mmh.config.getString("world.blacklist", "");
-			mob_whitelist = mmh.config.getString("mob.whitelist", "");
-			mob_blacklist = mmh.config.getString("mob.blacklist", "");
 			debug = plugin.debug;
-			dlcAdvertisingEnabled = mmh.getConfig().getBoolean("global_settings.disable_dlc_display", false);
-			player_announce_enabled = mmh.config.getBoolean("head_settings.player_heads.announce_kill.enabled", true);
-			player_announce_display = mmh.config.getBoolean("head_settings.player_heads.announce_kill.displayname", true);
-			mob_announce_enabled = mmh.config.getBoolean("head_settings.mob_heads.announce_kill.enabled", true);
-			mob_announce_display = mmh.config.getBoolean("head_settings.mob_heads.announce_kill.displayname", true);
 			beheading = new BeheadingHandler(mmh);
 
 			try {
@@ -196,7 +179,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 				giveHeadCommand.loadPlayerHead(onlinePlayer);
 			}
 
-			mmh.LOGGER.log("EventHandler_1_20_R1 took " + mmh.LoadTime(startTime) + " to load");
+			CoreUtils.log("EventHandler_1_20_R1 took " + mmh.LoadTime(startTime) + " to load");
 
 		}catch(Exception exception) {
 			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_EVENT_HANDLER_LOAD).error(exception));
@@ -212,28 +195,30 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 		try {
 			LivingEntity entity = event.getEntity();
 			// Verify that the killer is a player
-			if (!(entity.getKiller() instanceof Player) && !(entity.getKiller() instanceof Creeper)) {
-				return;
+			EntityDamageEvent lastDamage = entity.getLastDamageCause();
+			boolean killedByPlayer  = entity.getKiller() instanceof Player;
+			boolean killedByCreeper = entity.getKiller() instanceof Creeper;
+			boolean killedByExplosion = lastDamage != null
+					&& lastDamage.getCause() == DamageCause.BLOCK_EXPLOSION;
+			if (!killedByPlayer && !killedByCreeper && !killedByExplosion) {
+				return; // no head drop
+			}else if (killedByExplosion) {
+				mmh.logDebug("EDE - killer=" + entity.getKiller());
 			}
-
 			World world = event.getEntity().getWorld();
 			List<ItemStack> Drops = event.getDrops();
-			world_whitelist = mmh.config.getString("global_settings.world.whitelist", "");
-			world_blacklist = mmh.config.getString("global_settings.world.blacklist", "");
-			mob_whitelist = mmh.config.getString("head_settings.mob_heads.whitelist", "");
-			mob_blacklist = mmh.config.getString("head_settings.mob_heads.blacklist", "");
 
-			mmh.logDebug("EDE - world_whitelist=" + world_whitelist);
-			mmh.logDebug("EDE - world_blacklist=" + world_blacklist);
-			mmh.logDebug("EDE - mob_whitelist=" + mob_whitelist);
-			mmh.logDebug("EDE - mob_blacklist=" + mob_blacklist);
+			mmh.logDebug("EDE - mmh.world_whitelist=" + mmh.world_whitelist);
+			mmh.logDebug("EDE - mmh.world_blacklist=" + mmh.world_blacklist);
+			mmh.logDebug("EDE - mmh.mob_whitelist=" + mmh.mob_whitelist);
+			mmh.logDebug("EDE - mmh.mob_blacklist=" + mmh.mob_blacklist);
 
 			String worldName = world.getName(); // Cache for readability/perf
 			try { // REPORT_WHITE_BLACK_LIST "Unable to parse global whitelist/blacklist"
-				boolean hasWhitelist = (world_whitelist != null) && !world_whitelist.isEmpty();
-				boolean hasBlacklist = (world_blacklist != null) && !world_blacklist.isEmpty();
-				boolean onWhitelist = StrUtils.stringContains(world_whitelist, worldName);
-				boolean onBlacklist = StrUtils.stringContains(world_blacklist, worldName);
+				boolean hasWhitelist = (mmh.world_whitelist != null) && !mmh.world_whitelist.isEmpty();
+				boolean hasBlacklist = (mmh.world_blacklist != null) && !mmh.world_blacklist.isEmpty();
+				boolean onWhitelist = StrUtils.stringContains(mmh.world_whitelist, worldName);
+				boolean onBlacklist = StrUtils.stringContains(mmh.world_blacklist, worldName);
 
 				if (hasWhitelist) {
 					// Whitelist present: must be on it (overrides blacklist if present)
@@ -302,8 +287,8 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 							if (!isCanceled) {
 								mmh.playerGiveOrDropHead(theKiller, head);
 								mmh.logDebug("EDE " + ((Player) entity).getDisplayName() + " Player Head Dropped");
-								if (player_announce_enabled) {
-									beheading.announceBeheading(entity, entityName, theKiller, player_announce_display);
+								if (mmh.player_announce_enabled) {
+									beheading.announceBeheading(entity, entityName, theKiller, mmh.player_announce_display);
 								}
 							}
 						}
@@ -338,7 +323,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								EntityDamageEvent ede = entity.getLastDamageCause();
 								if(ede != null) {
 									DamageCause dc = ede.getCause();
-									mmh.LOGGER.log("EDEE - dc=" + dc);
+									CoreUtils.log("EDEE - dc=" + dc);
 									if(dc.equals(DamageCause.FIRE_TICK)) {
 
 									}
@@ -388,7 +373,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 												meta.setNoteBlockSound(NamespacedKey.minecraft( "entity.player.hurt" ));
 												ArrayList<String> lore = new ArrayList();
 												if(mmh.config.getBoolean("head_settings.lore.show_killer", true)){
-													lore.add(ChatColor.RESET + ChatColorUtils.setColors( mmh.langName.getString("killedby", "<RED>Killed <RESET>By <YELLOW><player>").replace("<player>"
+													lore.add(ChatColor.RESET + ChatColorUtils.setColors( mmh.get("killedby", "<RED>Killed <RESET>By <YELLOW><player>").replace("<player>"
 															, mmh.getName(entity.getType(), theKiller) ) ) );
 												}
 												if(mmh.config.getBoolean("head_settings.lore.show_plugin_name", true)){
@@ -404,9 +389,9 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 														Drops.add(head);
 														mmh.logDebug(" EDE " + entity.getCustomName() + " Head Dropped");
 													}
-													if (mob_announce_enabled) {
+													if (mmh.mob_announce_enabled) {
 														beheading.announceBeheading(entity, entity.getCustomName(),
-																theKiller, mob_announce_display);
+																theKiller, mmh.mob_announce_display);
 													}
 												} else if(!entity.getEquipment().getHelmet().isSimilar(head)) {
 													mmh.logDebug(" EDE NamedMob is not waering PlayerHead drop canceled.");
@@ -415,28 +400,28 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 											}
 										}
 										// General mob whitelist/blacklist check (post-named logic, if no drop)
-										if ((mob_whitelist != null) && !mob_whitelist.isEmpty()) {
-											boolean hasMobBlacklist = (mob_blacklist != null) && !mob_blacklist.isEmpty();
-											boolean onMobWhitelist = StrUtils.stringContains(mob_whitelist, name);
-											boolean onMobBlacklist = hasMobBlacklist && StrUtils.stringContains(mob_blacklist, name);
+										if ((mmh.mob_whitelist != null) && !mmh.mob_whitelist.isEmpty()) {
+											boolean hasMobBlacklist = (mmh.mob_blacklist != null) && !mmh.mob_blacklist.isEmpty();
+											boolean onMobWhitelist = StrUtils.stringContains(mmh.mob_whitelist, name);
+											boolean onMobBlacklist = hasMobBlacklist && StrUtils.stringContains(mmh.mob_blacklist, name);
 
 											if (hasMobBlacklist) {
 												// Both present: whitelist overrides (proceed only if on WL)
 												if (!onMobWhitelist) {
-													mmh.LOGGER.log("EDE - Mob - Not on whitelist (with blacklist). Mob=" + name);
+													CoreUtils.log("EDE - Mob - Not on whitelist (with blacklist). Mob=" + name);
 													return;
 												}
 											} else {
 												// Only whitelist: block if not on it
 												if (!onMobWhitelist) {
-													mmh.LOGGER.log("EDE - Mob - Not on whitelist. Mob=" + name);
+													CoreUtils.log("EDE - Mob - Not on whitelist. Mob=" + name);
 													return;
 												}
 											}
-										} else if ((mob_blacklist != null) && !mob_blacklist.isEmpty()) {
+										} else if ((mmh.mob_blacklist != null) && !mmh.mob_blacklist.isEmpty()) {
 											// Only blacklist: block if on it
-											if (StrUtils.stringContains(mob_blacklist, name)) {
-												mmh.LOGGER.log("EDE - Mob - On blacklist. Mob=" + name);
+											if (StrUtils.stringContains(mmh.mob_blacklist, name)) {
+												CoreUtils.log("EDE - Mob - On blacklist. Mob=" + name);
 												return;
 											}
 										}
@@ -450,6 +435,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 						mmh.logDebug("EDE NM LivingEntity = " + (event.getEntity() instanceof LivingEntity));
 						MobHeadData mhd;
 						try { // REPORT_PLAYER_KILL_MOB "Unable to parse Mob Kill."
+							String daName;
 							switch (name) {
 							case "CREEPER":
 								// ConfigHelper.Double(chanceConfig,
@@ -472,14 +458,14 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 									} else {
 										ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 										Drops = mmh.addHeadToDrops(entity, theKiller,
-												HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+												HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 												, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 										//Drops.add(MoreMobHeadsLib.addSound(mmh.makeSkull(MobHeads.valueOf(name).getTexture().toString(), mmh.langName.getString(name.toLowerCase(),MobHeads.valueOf(name).getName() + " Head"), theKiller), entity));
 									} // MobHeads.valueOf(name).getName() + " Head"
 									mmh.logDebug("EDE Creeper Head Dropped");
-									if (mob_announce_enabled) {
-										beheading.announceBeheading(entity, mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ).replace(" Head", ""),
-												theKiller, mob_announce_display);
+									if (mmh.mob_announce_enabled) {
+										beheading.announceBeheading(entity, mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ).replace(" Head", ""),
+												theKiller, mmh.mob_announce_display);
 									}
 								}
 								break;
@@ -493,12 +479,12 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 									} else {
 										ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 										Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-												HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+												HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 												, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									}
 									mmh.logDebug("EDE Ender Dragon Head Dropped");
-									if (mob_announce_enabled) {
-										beheading.announceBeheading(entity,mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ).replace(" Head", "")
+									if (mmh.mob_announce_enabled) {
+										beheading.announceBeheading(entity,mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ).replace(" Head", "")
 												,theKiller,mmh.config.getBoolean("head_settings.mob_heads.announce_kill.displayname",true));
 									}
 								}
@@ -512,13 +498,13 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 									} else {
 										ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 										Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-												HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+												HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 												, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									}
 									mmh.logDebug("EDE Ender Dragon Head Dropped");
-									if (mob_announce_enabled) {
-										beheading.announceBeheading(entity,mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() )
-												.replace(" Head", ""),theKiller,mob_announce_display);
+									if (mmh.mob_announce_enabled) {
+										beheading.announceBeheading(entity,mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() )
+												.replace(" Head", ""),theKiller,mmh.mob_announce_display);
 									}
 								}
 								break;
@@ -531,15 +517,15 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 									} else {
 										ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 										Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-												HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+												HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 												, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									}
 									mmh.logDebug("EDE Skeleton vanilla="
 											+ mmh.config.getBoolean("head_settings.mob_heads.vanilla_heads.skeleton", false));
 									mmh.logDebug("EDE Skeleton Head Dropped");
-									if (mob_announce_enabled) {
-										beheading.announceBeheading(entity,mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() )
-												.replace(" Head", ""),theKiller,mob_announce_display);
+									if (mmh.mob_announce_enabled) {
+										beheading.announceBeheading(entity,mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() )
+												.replace(" Head", ""),theKiller,mmh.mob_announce_display);
 									}
 								}
 								break;
@@ -553,13 +539,13 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 									} else {
 										ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 										Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-												HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+												HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 												, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									}
 									mmh.logDebug("EDE Wither Skeleton Head Dropped");
-									if (mob_announce_enabled) {
-										beheading.announceBeheading(entity, mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() )
-												.replace(" Head", ""), theKiller, mob_announce_display);
+									if (mmh.mob_announce_enabled) {
+										beheading.announceBeheading(entity, mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() )
+												.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 									}
 								}
 								break;
@@ -572,14 +558,14 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 									} else {
 										ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 										Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-												HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+												HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 												, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									}
 									mmh.logDebug("EDE Zombie vanilla="+ mmh.config.getBoolean("head_settings.mob_heads.vanilla_heads.zombie", false));
 									mmh.logDebug("EDE Zombie Head Dropped");
-									if (mob_announce_enabled) {
-										beheading.announceBeheading(entity,mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() )
-												.replace(" Head", ""),theKiller,mob_announce_display);
+									if (mmh.mob_announce_enabled) {
+										beheading.announceBeheading(entity,mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() )
+												.replace(" Head", ""),theKiller,mmh.mob_announce_display);
 									}
 								}
 								break;
@@ -597,13 +583,13 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE TROPICAL_FISH:" + daFishName + " head dropped");
-										if (mob_announce_enabled) {
-											beheading.announceBeheading(entity, mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-													.replace(" Head", ""), theKiller, mob_announce_display);
+										if (mmh.mob_announce_enabled) {
+											beheading.announceBeheading(entity, mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+													.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
@@ -614,32 +600,32 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE " + name2 + " Head Dropped");
-										if (mob_announce_enabled) {
-											beheading.announceBeheading(entity, mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-													.replace(" Head", ""), theKiller, mob_announce_display);
+										if (mmh.mob_announce_enabled) {
+											beheading.announceBeheading(entity, mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+													.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
-									if (coinFlip()) {
-										name2 = name + "_PROJECTILE";
-										mhd = headManager.getMobOrDefault( name2.toLowerCase() ).getData();
-										lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
+									name2 = name + "_PROJECTILE";
+									mhd = headManager.getMobOrDefault( name2.toLowerCase() ).getData();
+									if (mmh.DropIt(event, mhd.getChance(), theKiller)) {
+										lore = mmh.modifyLore(mhd.getLore(), false, theKiller);
 										Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-												HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+												HeadUtils.makeHead(mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat()), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound())
 												, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
-										if(HeadUtils.containsHead(Drops)) {
+										if (HeadUtils.containsHead(Drops)) {
 											mmh.logDebug("EDE " + name2 + " Head Dropped");
 										}
 									}
-									if (coinFlip()) {
-										name2 = name + "_BLUE_PROJECTILE";
-										mhd = headManager.getMobOrDefault( name2.toLowerCase() ).getData();
+									name2 = name + "_BLUE_PROJECTILE";
+									mhd = headManager.getMobOrDefault( name2.toLowerCase() ).getData();
+									if (mmh.DropIt(event, mhd.getChance(), theKiller)) {
 										lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 										Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-												HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+												HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 												, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 										if(HeadUtils.containsHead(Drops)) {
 											mmh.logDebug("EDE " + name2 + " Head Dropped");
@@ -657,14 +643,14 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE Fox Head Dropped");
-										if (mob_announce_enabled) {
+										if (mmh.mob_announce_enabled) {
 											beheading.announceBeheading(entity,
-													mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-															.replace(" Head", ""), theKiller, mob_announce_display);
+													mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+															.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
@@ -679,13 +665,13 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE Cat Head Dropped");
-										if (mob_announce_enabled) {
-											beheading.announceBeheading(entity, mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-													.replace(" Head", ""), theKiller, mob_announce_display);
+										if (mmh.mob_announce_enabled) {
+											beheading.announceBeheading(entity, mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+													.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
@@ -697,14 +683,14 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE " + name + " Head Dropped");
-										if (mob_announce_enabled) {
-											beheading.announceBeheading(entity, mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
+										if (mmh.mob_announce_enabled) {
+											beheading.announceBeheading(entity, mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
 															.replace(" Head", ""), theKiller,
-													mob_announce_display);
+													mmh.mob_announce_display);
 										}
 									}
 								}
@@ -723,14 +709,14 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 									if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 										ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 										Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-												HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+												HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 												, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 										if(HeadUtils.containsHead(Drops)) {
 											mmh.logDebug("EDE Angry Pollinated Bee Head Dropped");
-											if (mob_announce_enabled) {
+											if (mmh.mob_announce_enabled) {
 												beheading.announceBeheading(entity,
-														mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-																.replace(" Head", ""), theKiller, mob_announce_display);
+														mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+																.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 											}
 										}
 									}
@@ -740,14 +726,14 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 									if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 										ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 										Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-												HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+												HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 												, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 										if(HeadUtils.containsHead(Drops)) {
 											mmh.logDebug("EDE Angry Bee Head Dropped");
-											if (mob_announce_enabled) {
+											if (mmh.mob_announce_enabled) {
 												beheading.announceBeheading(entity,
-														mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-																.replace(" Head", ""), theKiller, mob_announce_display);
+														mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+																.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 											}
 										}
 									}
@@ -758,14 +744,14 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 									if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 										ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 										Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-												HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+												HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 												, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 										if(HeadUtils.containsHead(Drops)) {
 											mmh.logDebug("EDE Pollinated Bee Head Dropped");
-											if (mob_announce_enabled) {
+											if (mmh.mob_announce_enabled) {
 												beheading.announceBeheading(entity,
-														mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-																.replace(" Head", ""), theKiller, mob_announce_display);
+														mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+																.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 											}
 										}
 									}
@@ -776,14 +762,14 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 									if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 										ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 										Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-												HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+												HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 												, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 										if(HeadUtils.containsHead(Drops)) {
 											mmh.logDebug("EDE Bee Head Dropped");
-											if (mob_announce_enabled) {
+											if (mmh.mob_announce_enabled) {
 												beheading.announceBeheading(entity,
-														mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-																.replace(" Head", ""), theKiller, mob_announce_display);
+														mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+																.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 											}
 										}
 									}
@@ -797,14 +783,14 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE Llama Head Dropped");
-										if (mob_announce_enabled) {
+										if (mmh.mob_announce_enabled) {
 											beheading.announceBeheading(entity,
-													mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-															.replace(" Head", ""), theKiller, mob_announce_display);
+													mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+															.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
@@ -817,14 +803,14 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE Horse Head Dropped");
-										if (mob_announce_enabled) {
+										if (mmh.mob_announce_enabled) {
 											beheading.announceBeheading(entity,
-													mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-															.replace(" Head", ""), theKiller, mob_announce_display);
+													mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+															.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
@@ -842,14 +828,14 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 									if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 										ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 										Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-												HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+												HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 												, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 										if(HeadUtils.containsHead(Drops)) {
 											mmh.logDebug("EDE " + name + " Head Dropped");
-											if (mob_announce_enabled) {
+											if (mmh.mob_announce_enabled) {
 												beheading.announceBeheading(entity,
-														mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-																.replace(" Head", ""), theKiller, mob_announce_display);
+														mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+																.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 											}
 										}
 									}
@@ -864,14 +850,14 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE Panda Head Dropped");
-										if (mob_announce_enabled) {
+										if (mmh.mob_announce_enabled) {
 											beheading.announceBeheading(entity,
-													mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-															.replace(" Head", ""), theKiller, mob_announce_display);
+													mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+															.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
@@ -884,14 +870,14 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE Parrot Head Dropped");
-										if (mob_announce_enabled) {
+										if (mmh.mob_announce_enabled) {
 											beheading.announceBeheading(entity,
-													mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-															.replace(" Head", ""), theKiller, mob_announce_display);
+													mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+															.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
@@ -910,64 +896,53 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE Rabbit Head Dropped");
-										if (mob_announce_enabled) {
+										if (mmh.mob_announce_enabled) {
 											beheading.announceBeheading(entity,
-													mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-															.replace(" Head", ""), theKiller, mob_announce_display);
+													mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+															.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
 								break;
 							case "VILLAGER":
-								Villager daVillager = (Villager) entity; // Location jobsite =
-								String daVillagerType = daVillager.getVillagerType().toString();
-								String daVillagerProfession = daVillager.getProfession().toString();
-
-								mmh.logDebug("EDE name=" + name);
-								mmh.logDebug("EDE profession=" + daVillagerProfession);
-								mmh.logDebug("EDE type=" + daVillagerType);
-								//String daName = name + "_" + daVillagerProfession + "_" + daVillagerType;
-								String daName = name + "." + daVillagerType + "." + daVillagerProfession;
-								mmh.logDebug("EDE " + daName + "		 " + name + "_" + daVillagerProfession + "_"
-										+ daVillagerType);
+								daName = MobNameUtils.getName(name, entity);
+								mmh.logDebug("EDE daName=" + daName );
 
 								mhd = headManager.getMobOrDefault( daName.toLowerCase() ).getData();
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE Villager Head Dropped");
-										if (mob_announce_enabled) {
+										if (mmh.mob_announce_enabled) {
 											beheading.announceBeheading(entity,
-													mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-															.replace(" Head", ""), theKiller, mob_announce_display);
+													mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+															.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
 								break;
 							case "ZOMBIE_VILLAGER":
-								ZombieVillager daZombieVillager = (ZombieVillager) entity;
-								String daZombieVillagerType = daZombieVillager.getVillagerType().toString();
-								String daZombieVillagerProfession = daZombieVillager.getVillagerProfession().toString();
-								mmh.logDebug("EDE " + name + "_" + daZombieVillagerType + "_" + daZombieVillagerProfession);
+								daName = MobNameUtils.getName(name, entity);
+								mmh.logDebug("EDE daName=" + daName );
 
-								mhd = headManager.getMobOrDefault( (name + "." + daZombieVillagerType + "." + daZombieVillagerProfession).toLowerCase() ).getData();
+								mhd = headManager.getMobOrDefault( daName.toLowerCase() ).getData();
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE Zombie Villager Head Dropped");
-										if (mob_announce_enabled) {
-											beheading.announceBeheading(entity, mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-													.replace(" Head", ""), theKiller, mob_announce_display);
+										if (mmh.mob_announce_enabled) {
+											beheading.announceBeheading(entity, mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+													.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
@@ -989,13 +964,13 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE Sheep Head Dropped");
-										if (mob_announce_enabled) {
-											beheading.announceBeheading(entity, mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-													.replace(" Head", ""), theKiller, mob_announce_display);
+										if (mmh.mob_announce_enabled) {
+											beheading.announceBeheading(entity, mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+													.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
@@ -1009,13 +984,13 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE Trader Llama Head Dropped");
-										if (mob_announce_enabled) {
-											beheading.announceBeheading(entity, mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-													.replace(" Head", ""), theKiller, mob_announce_display);
+										if (mmh.mob_announce_enabled) {
+											beheading.announceBeheading(entity, mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+													.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
@@ -1028,13 +1003,13 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE Axolotl Head Dropped");
-										if (mob_announce_enabled) {
-											beheading.announceBeheading(entity, mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-													.replace(" Head", ""), theKiller, mob_announce_display);
+										if (mmh.mob_announce_enabled) {
+											beheading.announceBeheading(entity, mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+													.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
@@ -1054,13 +1029,13 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE Goat Head Dropped");
-										if (mob_announce_enabled) {
-											beheading.announceBeheading(entity, mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-													.replace(" Head", ""), theKiller, mob_announce_display);
+										if (mmh.mob_announce_enabled) {
+											beheading.announceBeheading(entity, mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+													.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
@@ -1078,13 +1053,13 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE " + name + " Head Dropped");
-										if (mob_announce_enabled) {
-											beheading.announceBeheading(entity, mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName()).replace(" Head", ""),
-													theKiller, mob_announce_display);
+										if (mmh.mob_announce_enabled) {
+											beheading.announceBeheading(entity, mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat()).replace(" Head", ""),
+													theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
@@ -1098,19 +1073,20 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE Frog Head Dropped");
-										if (mob_announce_enabled) {
-											beheading.announceBeheading(entity, mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName()).replace(" Head", ""),
-													theKiller, mob_announce_display);
+										if (mmh.mob_announce_enabled) {
+											beheading.announceBeheading(entity, mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat()).replace(" Head", ""),
+													theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
 
 								break;
 							case "VEX":
+								name = name + ".normal";
 								mhd = headManager.getMobOrDefault( name.toLowerCase() ).getData();
 								mmh.logDebug("EDE name=" + name);
 								mmh.logDebug("EDE texture=" + mhd.getTexture());
@@ -1121,21 +1097,21 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE " + name + " Head Dropped");
-										if (mob_announce_enabled) {
-											beheading.announceBeheading(entity, mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName()).replace(" Head", ""),
-													theKiller, mob_announce_display);
+										if (mmh.mob_announce_enabled) {
+											beheading.announceBeheading(entity, mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat()).replace(" Head", ""),
+													theKiller, mmh.mob_announce_display);
 										}
 									}
 									if (coinFlip()) {
-										name = name.concat("_ANGRY");
+										name = "VEX.ANGRY";
 										mhd = headManager.getMobOrDefault( name.toLowerCase() ).getData();
 										lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 										Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-												HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+												HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 												, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 										if(HeadUtils.containsHead(Drops)) {
 											mmh.logDebug("EDE " + name + " Head Dropped");
@@ -1146,19 +1122,19 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								break;
 							case "WOLF":
 								Wolf wolf = (Wolf) event.getEntity();
-								name2 = MoreMobHeadsLib.getName(name, wolf);
+								name2 = MobNameUtils.getName(name, wolf);
 								mmh.logDebug("EDE name2 = " + name2);
-								mhd = headManager.getMobOrDefault( name.toLowerCase() + "." + name2.toLowerCase() ).getData();
+								mhd = headManager.getMobOrDefault( name2.toLowerCase() ).getData();
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE " + name2 + " Head Dropped");
-										if (mob_announce_enabled) {
-											beheading.announceBeheading(entity, mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName())
-													.replace(" Head", ""), theKiller, mob_announce_display);
+										if (mmh.mob_announce_enabled) {
+											beheading.announceBeheading(entity, mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat())
+													.replace(" Head", ""), theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
@@ -1183,14 +1159,14 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 								if ( mmh.DropIt( event, mhd.getChance(), theKiller ) ) {
 									ArrayList<String> lore = mmh.modifyLore( mhd.getLore(), false, theKiller );
 									Drops = mmh.addHeadToDrops(event.getEntity(), theKiller,
-											HeadUtils.makeHead( mmh.langName.getString( mhd.getLangName(), mhd.getDisplayName() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
+											HeadUtils.makeHead( mmh.getLangName( mhd.getLangKey(), mhd.getLangFormat() ), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound() )
 											, mhd.getDisplayName(), mhd.getTexture(), mhd.getUuid(), lore, mhd.getNoteblockSound(), Drops);
 									if(HeadUtils.containsHead(Drops)) {
 										mmh.logDebug("EDE " + name + " Head Dropped");
-										if (mob_announce_enabled) {
+										if (mmh.mob_announce_enabled) {
 											beheading.announceBeheading(entity,
-													mmh.langName.getString(mhd.getLangName(), mhd.getDisplayName()).replace(" Head", "")
-													, theKiller, mob_announce_display);
+													mmh.getLangName(mhd.getLangKey(), mhd.getLangFormat()).replace(" Head", "")
+													, theKiller, mmh.mob_announce_display);
 										}
 									}
 								}
@@ -1224,7 +1200,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 						// Check if default max heads is larger than number of playerheads
 						if ((playerhead_recipes == null) || playerhead_recipes.isEmpty()) {
 							mmh.logDebug("CSE.PH playerhead_recipes is null or empty - detailed check: null=" + (playerhead_recipes == null) + ", size=" + (playerhead_recipes != null ? playerhead_recipes.size() : 0));
-							mmh.LOGGER.warn("CSE.PH playerhead_recipes is null or empty - skipping player head trades");
+							CoreUtils.warn("CSE.PH playerhead_recipes is null or empty - skipping player head trades");
 						} else {
 							int numOfplayerheads = playerhead_recipes.size() > 0 ? playerhead_recipes.size() - 1 : 0;
 							int phMaxDef = Math.max(3, numOfplayerheads); // Simplified from ternary
@@ -1258,7 +1234,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 
 						if ((blockhead_recipes == null) || blockhead_recipes.isEmpty()) {
 							mmh.logDebug("CSE.BH blockhead_recipes is null or empty - detailed check: null=" + (blockhead_recipes == null) + ", size=" + (blockhead_recipes != null ? blockhead_recipes.size() : 0));
-							mmh.LOGGER.warn("CSE.BH blockhead_recipes is null or empty - skipping block head trades");
+							CoreUtils.warn("CSE.BH blockhead_recipes is null or empty - skipping block head trades");
 						} else {
 							// Filter block heads by min_mc_version
 							List<MerchantRecipe> compatibleBlockRecipes = new ArrayList<>();
@@ -1303,7 +1279,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 					//** Custom Trades */
 					if (mmh.config.getBoolean("wandering_trades.custom_trades.enabled", false)) {
 						if ((custometrade_recipes == null) || custometrade_recipes.isEmpty()) {
-							mmh.LOGGER.warn("CSE.CT custometrade_recipes is null or empty - skipping custom trades");
+							CoreUtils.warn("CSE.CT custometrade_recipes is null or empty - skipping custom trades");
 						} else {
 							int numOfCustomTrades = custometrade_recipes.size(); // Simplified, assuming size >= 0
 							int ctMaxDef = Math.max(5, numOfCustomTrades); // Simplified from ternary
@@ -1335,17 +1311,6 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 									}
 								}
 							}
-						}
-					}
-
-					//** DLC Advertisement Trades */
-					if (!dlcAdvertisingEnabled) {
-						List<MerchantRecipe> dlcTrades = DLCHeads.getDLCAdvertisementTrades(mmh);
-						if (!dlcTrades.isEmpty()) {
-							mmh.logDebug("CSE DLC Adding " + dlcTrades.size() + " DLC advertisement trades");
-							recipes.addAll(dlcTrades);
-						} else {
-							mmh.logDebug("CSE DLC No DLC advertisement trades available (all DLCs installed or none available)");
 						}
 					}
 
@@ -1390,7 +1355,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 	public void checkMiniBlocks() {
 		if ( mmh.config.getBoolean("wandering_trades.custom_wandering_trader", true) || mmh.config.getBoolean("head_settings.mini_blocks.stonecutter", true) ) {
 
-			mmh.LOGGER.log("Loading PlayerHead Recipes...");
+			CoreUtils.log("Loading PlayerHead Recipes...");
 			playerhead_recipes.clear(); // Clear existing recipes
 			for (PlayerHead playerHead : headManager.loadedPlayerHeads.values()) {
 				ItemStack head = playerHead.getHead().clone();
@@ -1408,10 +1373,10 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 				}
 				playerhead_recipes.add(recipe);
 			}
-			mmh.LOGGER.log(playerhead_recipes.size() + " PlayerHead Recipes ADDED...");
+			CoreUtils.log(playerhead_recipes.size() + " PlayerHead Recipes ADDED...");
 
 			// Load BlockHead Recipes using loadedBlockHeads
-			mmh.LOGGER.log("Loading BlockHead Recipes...");
+			CoreUtils.log("Loading BlockHead Recipes...");
 			blockhead_recipes.clear(); // Clear existing recipes
 			mmh.blockhead_list.clear(); // Clear existing blockhead list for /mmh give
 			for (BlockHead blockHead : headManager.loadedBlockHeads.values()) {
@@ -1432,15 +1397,15 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 				}
 				blockhead_recipes.add(recipe);
 			}
-			mmh.LOGGER.log(blockhead_recipes.size() + " BlockHead Recipes ADDED...");
+			CoreUtils.log(blockhead_recipes.size() + " BlockHead Recipes ADDED...");
 
-			mmh.LOGGER.log("Loading CustomTrades Recipes...");
+			CoreUtils.log("Loading CustomTrades Recipes...");
 			for (int i = 1; i < (mmh.traderCustom.getInt("custom_trades.number") + 1); i++) {
 				ItemStack price1 = mmh.traderCustom.getItemStack("custom_trades.trade_" + i + ".price_1", new ItemStack(Material.AIR));
 				ItemStack price2 = mmh.traderCustom.getItemStack("custom_trades.trade_" + i + ".price_2", new ItemStack(Material.AIR));
 				ItemStack itemstack = mmh.traderCustom.getItemStack("custom_trades.trade_" + i + ".itemstack", new ItemStack(Material.AIR));
 
-				mmh.LOGGER.log("i=" + i);
+				CoreUtils.log("i=" + i);
 
 				if(itemstack.getType().equals(Material.AIR)) {continue;}
 				MerchantRecipe recipe = new MerchantRecipe(itemstack,
@@ -1449,7 +1414,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 				if(!price2.getType().equals(Material.AIR)) {recipe.addIngredient(price2);}
 				custometrade_recipes.add(recipe);
 			}
-			mmh.LOGGER.log(custometrade_recipes.size() + " CustomTrades Recipes ADDED...");//*/
+			CoreUtils.log(custometrade_recipes.size() + " CustomTrades Recipes ADDED...");//*/
 
 		}
 	}
@@ -1461,7 +1426,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 			playerHeadsDir.mkdirs();
 		}
 		if (playerHeadsYml.exists()) {
-			mmh.LOGGER.log("Found player_heads.yml, processing custom player heads...");
+			CoreUtils.log("Found player_heads.yml, processing custom player heads...");
 			File backupDir = new File(mmh.getDataFolder(), "backup");
 			if (!backupDir.exists()) {
 				backupDir.mkdirs();
@@ -1469,9 +1434,9 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 			File backupFile = new File(backupDir, "player_heads.yml");
 			try {
 				Files.copy(playerHeadsYml.toPath(), backupFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-				mmh.LOGGER.log("Backed up player_heads.yml to " + backupFile.getAbsolutePath());
+				CoreUtils.log("Backed up player_heads.yml to " + backupFile.getAbsolutePath());
 			} catch (IOException e) {
-				mmh.LOGGER.warn("Failed to back up player_heads.yml: " + e.getMessage());
+				CoreUtils.warn("Failed to back up player_heads.yml: " + e.getMessage());
 				e.printStackTrace();
 				return; // Skip conversion if backup fails
 			}
@@ -1510,7 +1475,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 
 						// Validate required fields
 						if (texture.equals(textureDEF) || name.equals("Unknown")) {
-							mmh.LOGGER.warn("Skipping invalid player head player_" + i + ": missing name or texture");
+							CoreUtils.warn("Skipping invalid player head player_" + i + ": missing name or texture");
 							continue;
 						}
 
@@ -1558,36 +1523,36 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 						// Save JSON file
 						File jsonFile = new File(playerHeadsDir, name + ".json");
 						if (jsonFile.exists()) {
-							mmh.LOGGER.log("Overwriting existing custom player head JSON: " + jsonFile.getName());
+							CoreUtils.log("Overwriting existing custom player head JSON: " + jsonFile.getName());
 						}
 						try (FileWriter writer = new FileWriter(jsonFile)) {
 							writer.write(json.toString(2));
-							mmh.LOGGER.log("Created custom player head JSON: " + jsonFile.getName());
+							CoreUtils.log("Created custom player head JSON: " + jsonFile.getName());
 							customCount++;
 						}
 					}
-					mmh.LOGGER.log("Processed " + customCount + " custom player heads from player_heads.yml.");
+					CoreUtils.log("Processed " + customCount + " custom player heads from player_heads.yml.");
 
 				} else {
-					mmh.LOGGER.log("No players section found in player_heads.yml.");
+					CoreUtils.log("No players section found in player_heads.yml.");
 				}
 				// Delete player_heads.yml after successful processing
 				if (playerHeadsYml.delete()) {
-					mmh.LOGGER.log("Deleted player_heads.yml after successful conversion.");
+					CoreUtils.log("Deleted player_heads.yml after successful conversion.");
 				} else {
-					mmh.LOGGER.warn("Failed to delete player_heads.yml.");
+					CoreUtils.warn("Failed to delete player_heads.yml.");
 				}
 			} catch (Exception exception) {
-				mmh.LOGGER.log("Failed to process player_heads.yml: " + exception.getMessage());
+				CoreUtils.log("Failed to process player_heads.yml: " + exception.getMessage());
 				exception.printStackTrace();
 				return;
 			}
 		} else {
-			mmh.LOGGER.log("No player_heads.yml found, skipping custom player head conversion.");
+			CoreUtils.log("No player_heads.yml found, skipping custom player head conversion.");
 		}
 		File[] jsonFiles = playerHeadsDir.listFiles((dir, name) -> name.endsWith(".json"));
 		if (!useDefaultPlayerHeads && ((jsonFiles == null) || (jsonFiles.length == 0))) {
-			mmh.LOGGER.warn("No player heads available: default heads disabled and no custom heads defined in player_heads.yml.");
+			CoreUtils.warn("No player heads available: default heads disabled and no custom heads defined in player_heads.yml.");
 		}
 	}
 
@@ -1622,7 +1587,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 			// Load recipes
 			loadRecipes();
 		} catch (Exception e) {
-			mmh.LOGGER.warn("Error loading heads and recipes: " + e.getMessage());
+			CoreUtils.warn("Error loading heads and recipes: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -1634,46 +1599,46 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 		// First copy
 		if (useDefaultPlayerHeads) {
 			JarUtil.copyFolderFromJar("heads", mmh.getDataFolder(), JarUtil.CopyOption.COPY_IF_NOT_EXIST);
-			mmh.LOGGER.log("Successfully copied heads directory (new files only, first copy) to " + headsDir.getAbsolutePath());
+			CoreUtils.log("Successfully copied heads directory (new files only, first copy) to " + headsDir.getAbsolutePath());
 		} else {
 			JarUtil.copyFolderFromJar("heads/entity", new File(mmh.getDataFolder(), "heads/entity"), JarUtil.CopyOption.COPY_IF_NOT_EXIST);
 			JarUtil.copyFolderFromJar("heads/block", new File(mmh.getDataFolder(), "heads/block"), JarUtil.CopyOption.COPY_IF_NOT_EXIST);
-			mmh.LOGGER.log("Skipped copying default player heads (first copy); copied entity and block heads to " + headsDir.getAbsolutePath());
+			CoreUtils.log("Skipped copying default player heads (first copy); copied entity and block heads to " + headsDir.getAbsolutePath());
 		}
 
 		// Second copy
 		if (useDefaultPlayerHeads) {
 			JarUtil.copyFolderFromJar("heads", mmh.getDataFolder(), JarUtil.CopyOption.COPY_IF_NOT_EXIST);
-			mmh.LOGGER.log("Successfully copied heads directory (new files only, second copy) to " + headsDir.getAbsolutePath());
+			CoreUtils.log("Successfully copied heads directory (new files only, second copy) to " + headsDir.getAbsolutePath());
 		} else {
 			JarUtil.copyFolderFromJar("heads/entity", new File(mmh.getDataFolder(), "heads/entity"), JarUtil.CopyOption.COPY_IF_NOT_EXIST);
 			JarUtil.copyFolderFromJar("heads/block", new File(mmh.getDataFolder(), "heads/block"), JarUtil.CopyOption.COPY_IF_NOT_EXIST);
-			mmh.LOGGER.log("Skipped copying default player heads (second copy); copied entity and block heads to " + headsDir.getAbsolutePath());
+			CoreUtils.log("Skipped copying default player heads (second copy); copied entity and block heads to " + headsDir.getAbsolutePath());
 		}
 	}
 
 	public void loadMobHeads() {
 		String directoryPath = mmh.getDataFolder() + "/heads/entity";
-		mmh.LOGGER.log("Loading mob heads from: " + directoryPath);
+		CoreUtils.log("Loading mob heads from: " + directoryPath);
 		mobHeadLoader = new MobHeadLoader(mmh);
 		mobHeadLoader.loadAllMobHeads(directoryPath);
 		headManager.loadedMobHeads().clear();
 		for (MobHeadData data : mobHeadLoader.getMobHeadDataList()) {
 			MobHead mobHead = mobHeadLoader.createMobHead(data);
-			String key = mobHead.getLangName();
+			String key = mobHead.getLangKey();
 			if (headManager.loadedMobHeads().containsKey(key)) {
-				mmh.LOGGER.warn("Duplicate mob head key found: " + key + " (display name: " + mobHead.getDisplayName() + ")");
+				CoreUtils.warn("Duplicate mob head key found: " + key + " (display name: " + mobHead.getDisplayName() + ")");
 				continue;
 			}
 			headManager.loadedMobHeads().put(key, mobHead);
 			headManager.mobHeadsNameList().add(key);
 		}
-		mmh.LOGGER.log(headManager.loadedMobHeads().isEmpty() ? "No mob heads were loaded." : "Successfully loaded " + headManager.loadedMobHeads().size() + " mob heads:");
+		CoreUtils.log(headManager.loadedMobHeads().isEmpty() ? "No mob heads were loaded." : "Successfully loaded " + headManager.loadedMobHeads().size() + " mob heads:");
 	}
 
 	private void loadPlayerHeads() {
 		String directoryPath = mmh.getDataFolder() + "/heads/player";
-		mmh.LOGGER.log("Loading player heads from: " + directoryPath);
+		CoreUtils.log("Loading player heads from: " + directoryPath);
 		playerHeadLoader = new PlayerHeadLoader(mmh);
 		playerHeadLoader.loadAllPlayerHeads(directoryPath);
 		headManager.getJsonPlayerHeads().clear();
@@ -1687,12 +1652,12 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 			headManager.loadedPlayerHeads().put(key, playerHead);
 			headManager.getJsonPlayerHeads().add(playerHead.getHead());
 		}
-		mmh.LOGGER.log(headManager.loadedPlayerHeads().isEmpty() ? "No player heads were loaded." : "Successfully loaded " + headManager.loadedPlayerHeads().size() + " player heads:");
+		CoreUtils.log(headManager.loadedPlayerHeads().isEmpty() ? "No player heads were loaded." : "Successfully loaded " + headManager.loadedPlayerHeads().size() + " player heads:");
 	}
 
 	private void loadBlockHeads() {
 		String directoryPath = mmh.getDataFolder() + "/heads/block"; // Corrected path
-		mmh.LOGGER.log("Loading block heads from: " + directoryPath);
+		CoreUtils.log("Loading block heads from: " + directoryPath);
 		blockHeadLoader = new BlockHeadLoader(mmh);
 		blockHeadLoader.loadAllBlockHeads(directoryPath);
 		headManager.loadedBlockHeads().clear();
@@ -1702,17 +1667,17 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 			headManager.loadedBlockHeads().put(key, blockHead);
 			headManager.blockHeadsNameList().add(key);
 		}
-		mmh.LOGGER.log(headManager.loadedBlockHeads().isEmpty() ? "No block heads were loaded." : "Successfully loaded " + headManager.loadedBlockHeads().size() + " block heads:");
+		CoreUtils.log(headManager.loadedBlockHeads().isEmpty() ? "No block heads were loaded." : "Successfully loaded " + headManager.loadedBlockHeads().size() + " block heads:");
 	}
 
 	private void loadMiniBlocks() {
 		if (!mmh.config.getBoolean("head_settings.mini_blocks.stonecutter", false)) {
-			mmh.LOGGER.log("MiniBlock Stonecutter recipes are disabled - skipping MiniBlock loading.");
+			CoreUtils.log("MiniBlock Stonecutter recipes are disabled - skipping MiniBlock loading.");
 			return;
 		}
 
 		String directoryPath = mmh.getDataFolder() + "/heads/block";
-		mmh.LOGGER.log("Loading mini blocks from: " + directoryPath);
+		CoreUtils.log("Loading mini blocks from: " + directoryPath);
 		miniBlockLoader = new MiniBlockLoader(mmh);
 		miniBlockLoader.loadAllMiniBlocks(new File(directoryPath).getAbsolutePath());
 		mmh.logDebug("Loaded " + miniBlockLoader.getMiniBlocks().size() + " MiniBlocks");
@@ -1720,7 +1685,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 		headManager.loadedMiniBlocks().clear();
 		headManager.miniBlocksList().clear();
 		if (miniBlockLoader.getMiniBlocks().isEmpty()) {
-			mmh.LOGGER.warn("No mini blocks loaded - skipping Stonecutter recipe registration");
+			CoreUtils.warn("No mini blocks loaded - skipping Stonecutter recipe registration");
 			return;
 		}
 
@@ -1732,8 +1697,8 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 			headManager.miniBlocksList().add(head);
 		}
 		headManager.miniBlocksList().sort(Comparator.comparing(item -> item.getItemMeta().getDisplayName().replaceAll("§[0-9a-fk-or]", "")));
-		mmh.LOGGER.log("Successfully loaded " + headManager.loadedMiniBlocks().size() + " MiniBlocks:");
-		mmh.LOGGER.log("Total MiniBlocks (not shown in GUI): " + headManager.miniBlocksList().size());
+		CoreUtils.log("Successfully loaded " + headManager.loadedMiniBlocks().size() + " MiniBlocks:");
+		CoreUtils.log("Total MiniBlocks (not shown in GUI): " + headManager.miniBlocksList().size());
 
 		int quantity = mmh.config.getInt("head_settings.mini_blocks.perblock", 1);
 		MiniBlockRecipes miniblockrecipes = new MiniBlockRecipes(mmh, miniBlockLoader.getMiniBlocks(), quantity);
@@ -1753,8 +1718,8 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 		headManager.mobHeadsList().sort((head1, head2) -> {
 			MobHead mobHead1 = mobHeadMap.get(head1);
 			MobHead mobHead2 = mobHeadMap.get(head2);
-			String langName1 = mobHead1.getLangName();
-			String langName2 = mobHead2.getLangName();
+			String langName1 = mobHead1.getLangKey();
+			String langName2 = mobHead2.getLangKey();
 			return langName1.compareTo(langName2);
 		});
 
@@ -1769,8 +1734,8 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 		headManager.playerHeadsList().sort((head1, head2) -> {
 			PlayerHead playerHead1 = playerHeadMap.get(head1);
 			PlayerHead playerHead2 = playerHeadMap.get(head2);
-			String langName1 = playerHead1.getLangName();
-			String langName2 = playerHead2.getLangName();
+			String langName1 = playerHead1.getLangKey();
+			String langName2 = playerHead2.getLangKey();
 			return langName1.compareTo(langName2);
 		});
 
@@ -1788,8 +1753,8 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 		headManager.blockHeadsList().sort((head1, head2) -> {
 			BlockHead blockHead1 = blockHeadMap.get(head1);
 			BlockHead blockHead2 = blockHeadMap.get(head2);
-			String langName1 = blockHead1.getLangName();
-			String langName2 = blockHead2.getLangName();
+			String langName1 = blockHead1.getLangKey();
+			String langName2 = blockHead2.getLangKey();
 			return langName1.compareTo(langName2);
 		});
 	}
@@ -1814,7 +1779,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 			playerhead_recipes.add(recipe);
 
 		}
-		mmh.LOGGER.log(playerhead_recipes.size() + " PlayerHead Recipes ADDED...");
+		CoreUtils.log(playerhead_recipes.size() + " PlayerHead Recipes ADDED...");
 
 		// Block head recipes
 		blockhead_recipes.clear();
@@ -1833,7 +1798,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 			}
 			blockhead_recipes.add(recipe);
 		}
-		mmh.LOGGER.log(blockhead_recipes.size() + " BlockHead Recipes ADDED...");
+		CoreUtils.log(blockhead_recipes.size() + " BlockHead Recipes ADDED...");
 
 		// Custom trades recipes
 		custometrade_recipes.clear();
@@ -1853,7 +1818,7 @@ public class EventHandler_1_20_R1 implements Listener, MMHEventHandler {
 			}
 			custometrade_recipes.add(recipe);
 		}
-		mmh.LOGGER.log(custometrade_recipes.size() + " CustomTrades Recipes ADDED...");
+		CoreUtils.log(custometrade_recipes.size() + " CustomTrades Recipes ADDED...");
 	}
 
 	private ItemStack addPluginLore(ItemStack item) {

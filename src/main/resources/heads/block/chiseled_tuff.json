@@ -21,6 +21,8 @@
     "noteblockSound": "block.tuff.place",
     "quantity": 8,
     "maxUses": 1,
-	"min_mc_version": "1.21"
+	"min_mc_version": "1.21",
+    "langKey": "block.tuff.chiseled",
+    "langFormat": "mmh.format.block.default"
   }
 }  

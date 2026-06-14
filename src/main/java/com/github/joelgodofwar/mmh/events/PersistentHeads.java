@@ -6,7 +6,6 @@ import com.github.joelgodofwar.mmh.common.PluginLibrary;
 import com.github.joelgodofwar.mmh.common.error.DetailedErrorReporter;
 import com.github.joelgodofwar.mmh.common.error.Report;
 import com.github.joelgodofwar.mmh.util.SkinUtils;
-import lib.github.joelgodofwar.coreutils.util.common.PluginLogger;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
@@ -45,7 +44,6 @@ import java.util.function.Supplier;
  */
 public class PersistentHeads implements Listener {
     private final MoreMobHeads plugin;
-    private final PluginLogger LOGGER;
     private final DetailedErrorReporter reporter;
 
     /**
@@ -56,7 +54,6 @@ public class PersistentHeads implements Listener {
      */
     public PersistentHeads(MoreMobHeads plugin) {
         this.plugin = plugin;
-        this.LOGGER = plugin.LOGGER;
         this.reporter = MoreMobHeads.reporter;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

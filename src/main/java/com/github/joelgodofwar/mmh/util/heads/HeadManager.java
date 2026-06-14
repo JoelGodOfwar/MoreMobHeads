@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.github.joelgodofwar.mmh.MoreMobHeads;
+import lib.github.joelgodofwar.coreutils.CoreUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
@@ -42,19 +43,22 @@ public class HeadManager {
 		String uuidDEF = "40404040-4040-4040-4040-404040404040";
 		String textureDEF = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWY1NDljZjhiNWE1MWUwZmFkM2MyMmY5YTY3ZDg3Mjc2ZDdhMzdiZjY0Zjk1ODgwMDI2ZDlkMzE5ZTMyMjhiNSJ9fX0=";
 		ArrayList<String> loreDEF = new ArrayList<String>(Arrays.asList("§cNotify an Admin§e!"));
-		MobHeadData data = new MobHeadData(nameDEF, "not_found", textureDEF, uuidDEF, loreDEF, "entity.player.hurt", 1, 100.0, null, null, null);
+		MobHeadData data = new MobHeadData(nameDEF, "entity.not_found", "%name%", textureDEF, uuidDEF, loreDEF, "entity.player.hurt", 1, 100.0, null, null, null);
 		ItemStack head = HeadUtils.makeHead(nameDEF, textureDEF, uuidDEF, loreDEF, "entity.player.hurt");
 		return new MobHead(data, head);
 	}
 
 	public MobHead getMobOrDefault(String key) {
 		if ((key == null) || key.isEmpty()) {
-			MoreMobHeads.getInstance().LOGGER.warn("Invalid MobHead key: " + key);
+			CoreUtils.warn("Invalid MobHead key: " + key);
 			return NOT_FOUND_HEAD;
+		}
+		if(!key.contains("entity.")){
+			key = "entity." + key;
 		}
 		MobHead mobHead = loadedMobHeads.get(key);
 		if (mobHead == null) {
-			MoreMobHeads.getInstance().LOGGER.warn("No MobHead found for key: " + key);
+			CoreUtils.warn("No MobHead found for key: " + key);
 			return NOT_FOUND_HEAD;
 		}
 		return mobHead;

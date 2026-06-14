@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "item.axe.wax_off",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.copper_block.weathered.cut",
+    "langFormat": "mmh.format.block.default"
   }
 }  

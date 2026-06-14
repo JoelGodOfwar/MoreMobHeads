@@ -1,0 +1,27 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "BIRCH_WOOD",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Birch Wood",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDU1ZjhlMDBiOTE2ODc1OTYyNmY4OTg1Njc4MDlhNWZlNzBlM2Y0Nzk5YjFiODdkNDVhYmNmYWM4N2M4YThjNiJ9fX0=",
+    "uuid": "aefb8fbc-87a0-4276-bbeb-62e69b7a7173",
+    "lore": [],
+    "noteblockSound": "block.wood.place",
+    "quantity": 8,
+    "maxUses": 1,
+    "langKey": "block.birch.wood",
+    "langFormat": "mmh.format.block.wood"
+  }
+}  

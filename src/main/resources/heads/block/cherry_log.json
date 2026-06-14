@@ -15,12 +15,14 @@
   },
   "head": {
     "displayName": "§eMini Cherry Log",
-    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWEwYzI4Yzg3MmZlOTViMmU3MDA0MjAzNTVlNzJkN2ViNGM4ZDQ0ZmNjZjM5OTg1MzRkNjE1MzQwMWY1MmNkMiJ9fX0=",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjdhMGY5ZjBlODUzZjNlMDdkYmE5YmZlMTM5OWIwZDEyM2FmNDY5YmIwMWIwOWVkYzMzOGQ4NDhmNTM2YjY0OCJ9fX0=",
     "uuid": "902a4cb2-9f8f-49e1-adfc-7b2ac2eae0e8",
     "lore": [],
     "noteblockSound": "block.wood.place",
     "quantity": 8,
     "maxUses": 1,
-    "min_mc_version": "1.20"
+    "min_mc_version": "1.20",
+    "langKey": "block.cherry.log",
+    "langFormat": "mmh.format.block.wood"
   }
 }  

@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.joelgodofwar.mmh.i18n.Translator;
+import lib.github.joelgodofwar.coreutils.CoreUtils;
 import lib.github.joelgodofwar.coreutils.util.Version;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
@@ -57,12 +59,12 @@ public class MobHeadLoader {
 			// Check if the file is player.json
 			if (filePath.endsWith("player.json")) {
 				mmh.playerChance = jsonObj.optDouble("chance", 50.0);
-				mmh.LOGGER.log("Loaded player chance: " + playerChance + " from " + filePath);
+				CoreUtils.log("Loaded player chance: " + playerChance + " from " + filePath);
 				return; // Skip further processing for player.json
 			}
 			if (filePath.endsWith("named.json")) {
 				mmh.namedChance = jsonObj.optDouble("chance", 10.0);
-				mmh.LOGGER.log("Loaded named chance: " + playerChance + " from " + filePath);
+				CoreUtils.log("Loaded named chance: " + playerChance + " from " + filePath);
 				return; // Skip further processing for player.json
 			}
 			double defaultChance = jsonObj.optDouble("defaultChance", 100.0);
@@ -76,12 +78,12 @@ public class MobHeadLoader {
 				mmh.logDebug("Processing nested structure for " + filePath + " (ignoring structure value: " + structure + ")");
 				loadNestedHeads((JSONObject) headsData, defaultChance, "", filePath);
 			} else {
-				mmh.LOGGER.warn("Invalid heads data type in " + filePath + ": " + headsData.getClass().getSimpleName());
+				CoreUtils.warn("Invalid heads data type in " + filePath + ": " + headsData.getClass().getSimpleName());
 			}
 
-			//mmh.LOGGER.log("Loaded " + mobHeadDataList.size() + " mob head data from " + filePath);
+			//CoreUtils.log("Loaded " + mobHeadDataList.size() + " mob head data from " + filePath);
 		} catch (Exception e) {
-			mmh.LOGGER.warn("Error loading mob heads from " + filePath + ": " + e.getMessage());
+			CoreUtils.warn("Error loading mob heads from " + filePath + ": " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -103,7 +105,7 @@ public class MobHeadLoader {
 			if ((headData != null) && isVersionCompatible(headData.getMinMCVersion(), headData.getMaxMCVersion())) {
 				mobHeadDataList.add(headData);
 			} else {
-				mmh.LOGGER.log("Skipping head '" + headJson.optString("displayName", "unknown") + "' from "
+				CoreUtils.log("Skipping head '" + headJson.optString("displayName", "unknown") + "' from "
 						+ filePath + " due to version incompatibility (server version: " + serverVersion + ")");
 			}
 		}
@@ -132,7 +134,7 @@ public class MobHeadLoader {
 					if ((headData != null) && isVersionCompatible(headData.getMinMCVersion(), headData.getMaxMCVersion())) {
 						mobHeadDataList.add(headData);
 					} else {
-						mmh.LOGGER.log("Skipping head '" + jsonObject.optString("displayName", "unknown")
+						CoreUtils.log("Skipping head '" + jsonObject.optString("displayName", "unknown")
 								+ "' from " + filePath + " due to version incompatibility (server version: " + serverVersion + ")");
 					}
 				} else {
@@ -145,41 +147,59 @@ public class MobHeadLoader {
 	}
 
 	/**
-	 * Creates a {@link MobHeadData} object from a JSON object.
+	 * Creates a MobHeadData instance from a JSON object representing a single head.
 	 * <p>
-	 * Extracts mob head properties (displayName, langName, texture, etc.) and
-	 * constructs a {@link MobHeadData} instance, including the file path.
-	 *
-	 * @param headJson      The JSON object containing mob head data.
-	 * @param defaultChance The default drop chance to use if not specified.
-	 * @param filePath      The path to the JSON file being processed.
-	 * @return A {@link MobHeadData} object, or null if creation fails.
+	 * Now supports:
+	 * <ul>
+	 *   <li><code>displayName</code> – English fallback name</li>
+	 *   <li><code>langKey</code> – dotted key for looking up translation parts (e.g. "zombie_nautilus.coral")</li>
+	 *   <li><code>langFormat</code> – template with placeholders (e.g. "%Variant%%name% Shell")</li>
+	 * </ul>
+	 * The final translated name is built using {@link #buildTranslatedDisplayName(String, String)}.
+	 * </p>
 	 */
 	private MobHeadData createMobHeadData(JSONObject headJson, double defaultChance, String filePath) {
-		ArrayList<String> lore = new ArrayList<>();
-		if (headJson.has("lore")) {
-			JSONArray loreArray = headJson.getJSONArray("lore");
-			for (int i = 0; i < loreArray.length(); i++) {
-				lore.add(loreArray.getString(i));
-			}
+		String englishDisplayName = headJson.optString("displayName", "Name Not Found");
+		String langKey = headJson.optString("langKey", headJson.optString("langName", ""));
+		String langFormat = headJson.optString("langFormat", "mmh.format.entity.default");
+
+		// Build the translated name using the template and langKey
+		String translatedDisplayName = HeadTranslationUtils.buildTranslatedDisplayName(langFormat, langKey);
+
+		// Fallback to English if translation failed or was empty
+		if (translatedDisplayName == null || translatedDisplayName.isEmpty()) {
+			translatedDisplayName = englishDisplayName;
 		}
 
+		String texture = headJson.getString("texture");
+		String uuid = headJson.getString("uuid");
+		JSONArray loreJson = headJson.optJSONArray("lore");
+		ArrayList<String> lore = new ArrayList<>();
+		if (loreJson != null) {
+			for (int i = 0; i < loreJson.length(); i++) {
+				lore.add(loreJson.getString(i));
+			}
+		}
+		String noteblockSound = headJson.optString("noteblockSound", null);
+		int quantity = headJson.optInt("quantity", 1);
+		double chance = headJson.optDouble("chance", defaultChance);
 		String minMCVersion = headJson.optString("min_mc_version", null);
-		String maxMCVersion = headJson.optString("max_mc_version", null); // Added
+		String maxMCVersion = headJson.optString("max_mc_version", null);
 
 		return new MobHeadData(
-				headJson.getString("displayName"),
-				headJson.optString("langName", ""),
-				headJson.getString("texture"),
-				headJson.getString("uuid"),
+				translatedDisplayName,
+				langKey,
+				langFormat,
+				texture,
+				uuid,
 				lore,
-				headJson.getString("noteblockSound"),
-				headJson.optInt("quantity", 1),
-				headJson.optDouble("chance", defaultChance),
+				noteblockSound,
+				quantity,
+				chance,
 				minMCVersion,
 				maxMCVersion,
 				filePath
-				);
+		);
 	}
 
 	/**
@@ -199,37 +219,37 @@ public class MobHeadLoader {
 		}
 
 		// Check max_mc_version
-		//mmh.LOGGER.log("Checking max_mc_version: " + maxMcVersion);
+		//CoreUtils.log("Checking max_mc_version: " + maxMcVersion);
 		if (maxMcVersion != null) {
 			try {
 				Version maxVersion = new Version(maxMcVersion);
-				//mmh.LOGGER.log("Parsed maxVersion: " + maxVersion);
+				//CoreUtils.log("Parsed maxVersion: " + maxVersion);
 				boolean isAtMost = serverVersion.isAtMost(maxVersion);
-				//mmh.LOGGER.log("serverVersion.isAtMost(maxVersion): " + isAtMost + " (compareTo result: " + serverVersion.compareTo(maxVersion) + ")");
+				//CoreUtils.log("serverVersion.isAtMost(maxVersion): " + isAtMost + " (compareTo result: " + serverVersion.compareTo(maxVersion) + ")");
 				if (!isAtMost) {
-					mmh.LOGGER.log("Server version " + serverVersion + " is greater than max_mc_version " + maxMcVersion + ", skipping head");
+					CoreUtils.log("Server version " + serverVersion + " is greater than max_mc_version " + maxMcVersion + ", skipping head");
 					return false;
 				}
 			} catch (Exception e) {
-				mmh.LOGGER.warn("Failed to parse max_mc_version '" + maxMcVersion + "': " + e.getMessage() + ", assuming compatibility");
+				CoreUtils.warn("Failed to parse max_mc_version '" + maxMcVersion + "': " + e.getMessage() + ", assuming compatibility");
 				return true;
 			}
 		}
 
 		// Check min_mc_version
-		//mmh.LOGGER.log("Checking min_mc_version: " + minMcVersion);
+		//CoreUtils.log("Checking min_mc_version: " + minMcVersion);
 		if (minMcVersion != null) {
 			try {
 				Version minVersion = new Version(minMcVersion);
-				//mmh.LOGGER.log("Parsed minVersion: " + minVersion);
+				//CoreUtils.log("Parsed minVersion: " + minVersion);
 				boolean isAtLeast = serverVersion.isAtLeast(minVersion);
-				//mmh.LOGGER.log("serverVersion.isAtLeast(minVersion): " + isAtLeast + " (compareTo result: " + serverVersion.compareTo(minVersion) + ")");
+				//CoreUtils.log("serverVersion.isAtLeast(minVersion): " + isAtLeast + " (compareTo result: " + serverVersion.compareTo(minVersion) + ")");
 				if (!isAtLeast) {
-					mmh.LOGGER.log("Server version " + serverVersion + " is less than min_mc_version " + minMcVersion + ", skipping head");
+					CoreUtils.log("Server version " + serverVersion + " is less than min_mc_version " + minMcVersion + ", skipping head");
 					return false;
 				}
 			} catch (Exception e) {
-				mmh.LOGGER.warn("Failed to parse min_mc_version '" + minMcVersion + "': " + e.getMessage() + ", assuming compatibility");
+				CoreUtils.warn("Failed to parse min_mc_version '" + minMcVersion + "': " + e.getMessage() + ", assuming compatibility");
 				return true;
 			}
 		}
@@ -270,13 +290,13 @@ public class MobHeadLoader {
 					loadFromJsonFile(file.getAbsolutePath());
 					mmh.logDebug("Successfully loaded heads from " + file.getAbsolutePath());
 				} catch (Exception e) {
-					mmh.LOGGER.warn("Failed to load heads from " + file.getAbsolutePath() + ": " + e.getMessage());
+					CoreUtils.warn("Failed to load heads from " + file.getAbsolutePath() + ": " + e.getMessage());
 					e.printStackTrace();
 				}
 			}
-			mmh.LOGGER.log("Loaded " + mobHeadDataList.size() + " mob heads from " + directoryPath);
+			CoreUtils.log("Loaded " + mobHeadDataList.size() + " mob heads from " + directoryPath);
 		} else {
-			mmh.LOGGER.warn("No JSON files found in directory: " + directoryPath);
+			CoreUtils.warn("No JSON files found in directory: " + directoryPath);
 		}
 	}
 
@@ -298,5 +318,70 @@ public class MobHeadLoader {
 				data.getNoteblockSound()
 				);
 		return new MobHead(data, head);
+	}
+
+	/**
+	 * Builds the final translated display name for a mob head using a format template and a dotted langKey.
+	 * <p>
+	 * Supported placeholders:
+	 * <ul>
+	 *   <li>%name% / %Name% – base mob name (e.g., "Zombie Nautilus")</li>
+	 *   <li>%variant% – full variant string (all parts joined with spaces)</li>
+	 *   <li>%Variant% – same as %variant% but with trailing space if non-empty</li>
+	 *   <li>%1%, %2%, %3% – individual variant parts for precise control</li>
+	 * </ul>
+	 * </p>
+	 * Example:
+	 * <ul>
+	 *   <li>langKey = "villager.snow.toolsmith", langFormat = "%Variant%%name% Head" → "Snow Toolsmith Villager Head"</li>
+	 *   <li>langKey = "zombie_nautilus.coral", langFormat = "%variant%%name% Shell" → "Coral Zombie Nautilus Shell"</li>
+	 * </ul>
+	 *
+	 * @param langFormat the template string with placeholders
+	 * @param langKey    the dotted key used to look up translation parts
+	 * @return the fully translated and formatted name, or empty string on failure
+	 */
+	private String buildTranslatedDisplayName(String langFormat, String langKey) {
+		if (langFormat == null || langFormat.isEmpty()) {
+			langFormat = "%Variant%%name% Head";
+		}
+		if (langKey == null || langKey.isEmpty()) {
+			return "";
+		}
+
+		String[] parts = langKey.split("\\.");
+		String baseKey = "entity." + parts[0];
+		String baseName = getLang(baseKey, parts[0]);
+
+		String var1 = parts.length > 1 ? getLang("variant." + parts[1], "") : "";
+		String var2 = parts.length > 2 ? getLang("variant." + parts[2], "") : "";
+		String var3 = parts.length > 3 ? getLang("variant." + parts[3], "") : "";
+
+		StringBuilder fullVariant = new StringBuilder();
+		for (int i = 1; i < parts.length; i++) {
+			String v = getLang("variant." + parts[i], "");
+			if (!v.isEmpty()) {
+				if (fullVariant.length() > 0) fullVariant.append(" ");
+				fullVariant.append(v);
+			}
+		}
+		String fullVariantStr = fullVariant.toString();
+		String fullVariantCapital = fullVariantStr.isEmpty() ? "" : fullVariantStr + " ";
+
+		return langFormat
+				.replace("%name%", baseName)
+				.replace("%Name%", baseName)
+				.replace("%variant%", fullVariantStr)
+				.replace("%Variant%", fullVariantCapital)
+				.replace("%1%", var1)
+				.replace("%2%", var2)
+				.replace("%3%", var3);
+	}
+
+	/**
+	 * Shortcut for mmh.getLang() to keep code clean.
+	 */
+	private String getLang(String key, String... defaultValue) {
+		return mmh.get(key, defaultValue);
 	}
 }

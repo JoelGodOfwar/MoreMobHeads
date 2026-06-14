@@ -3,7 +3,9 @@ package com.github.joelgodofwar.mmh.util.heads;
 import java.util.*;
 import java.util.function.BiConsumer;
 
+import lib.github.joelgodofwar.coreutils.CoreUtils;
 import lib.github.joelgodofwar.coreutils.util.common.PluginLogger;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -17,6 +19,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.github.joelgodofwar.mmh.MoreMobHeads;
+import org.bukkit.scheduler.BukkitRunnable;
 
 
 public class InventoryGUI implements Listener {
@@ -33,7 +36,6 @@ public class InventoryGUI implements Listener {
 	private boolean forcePreviousButton = false;
 	private Map<ItemStack, Integer> slotAssignments = new HashMap<>();
 	private final MoreMobHeads mmh = MoreMobHeads.getInstance();
-	private final PluginLogger LOGGER = mmh.LOGGER;
 
 	public InventoryGUI(String title, List<ItemStack> items, BiConsumer<Player, ItemStack> callback) {
 		this.title = title;
@@ -114,20 +116,20 @@ public class InventoryGUI implements Listener {
 		isNavigating.put(player, true);
 
 		Inventory inventory = Bukkit.createInventory(player, 54, title + " - Page " + (page + 1) + "/" + totalPages);
-		/**
+		/*
 		 * Added to define startIndex and endIndex outside the conditional block.
 		 * Ensures these variables are available for the log message at the end.
 		 */
 		int startIndex = page * ITEMS_PER_PAGE;
 		int endIndex = Math.min(startIndex + ITEMS_PER_PAGE, items.size());
-		/**
+		/*
 		 * Modified to clear the inventory with null before placing items.
 		 * Applies to both open and openWithSlots cases for consistency.
 		 */
 		for (int i = 0; i < 54; i++) {
 			inventory.setItem(i, null);
 		}
-		/**
+		/*
 		 * Modified to handle slot assignments when available, falling back to sequential placement.
 		 * Moved startIndex and endIndex definition outside to fix the unresolved variable error.
 		 */
@@ -194,13 +196,30 @@ public class InventoryGUI implements Listener {
 		}
 		Player player = (Player) event.getWhoClicked();
 		String viewTitle = event.getView().getTitle();
+		// ──────────────────────────────────────────────── NEW
+		mmh.logDebug("[CLICK] Raw event for player " + player.getName() +
+				" | Title = '" + viewTitle + "'" +
+				" | Top inventory size = " + event.getView().getTopInventory().getSize());
+		// ────────────────────────────────────────────────
 		mmh.logDebug(String.format("Click event received, title: %s, slot: %d", viewTitle, event.getSlot()));
 		if (!viewTitle.startsWith(title + " - Page ") || !isManagedInventory(player, viewTitle)) {
 			mmh.logDebug(String.format("Click ignored, not managed by this instance: %s", viewTitle));
 			return;
 		}
 
+		// ──────────────────────────────────────────────── NEW
+		mmh.logDebug("[CLICK] Prefix matched for title '" + viewTitle + "'" +
+				" | This GUI's base title = '" + title + "'");
+		// ────────────────────────────────────────────────
+
 		event.setCancelled(true);
+		long now = System.currentTimeMillis();
+		Long last = mmh.lastGuiClickTime.getOrDefault(player.getUniqueId(), 0L);
+		if (now - last < mmh.GUI_CLICK_COOLDOWN_MS) {
+			mmh.logDebug("Ignoring duplicate/fast click for " + player.getName() + " (cooldown active)");
+			return;
+		}
+		mmh.lastGuiClickTime.put(player.getUniqueId(), now);
 		ItemStack clickedItem = event.getCurrentItem();
 		if ((clickedItem == null) || !clickedItem.hasItemMeta()) {
 			mmh.logDebug(String.format("Click on null or meta-less item, slot: %d", event.getSlot()));
@@ -219,6 +238,30 @@ public class InventoryGUI implements Listener {
 		} else if (displayName.equals("§cClose")) {
 			player.closeInventory();
 			mmh.logDebug(String.format("Close clicked for player: %s, title: %s", player.getName(), viewTitle));
+			// Added below line in attempt to make sure the plugin reloaded the config when changes are made to config using the GUI
+			// Delay 1 tick to allow "Previous Menu" reopen to happen
+			new BukkitRunnable() {
+				@Override
+				public void run() {
+					if (!player.isOnline()) return;
+
+					// Spigot-safe check: use getOpenInventory().getTitle()
+					String currentTitle = player.getOpenInventory().getTitle();
+					boolean noInventoryOpen = currentTitle == null || currentTitle.isEmpty() || currentTitle.equals("Crafting");
+
+					if ( noInventoryOpen) {
+						MoreMobHeads mmh = MoreMobHeads.getInstance();
+						mmh.reloadPlugin();  // Full reload (future-proof)
+						// or mmh.reloadConfigsAndLang() for lighter version
+
+						player.sendMessage(ChatColor.GREEN + "Configuration changes applied!");
+
+						// Optional debug log (remove later if not needed)
+						CoreUtils.log("Reload triggered on real close for " + player.getName() +
+								", no inv: " + noInventoryOpen + ")");
+					}
+				}
+			}.runTaskLater(mmh, 1L);
 		} else if (choices != null) {
 			// Try finding the item in the choices map
 			boolean found = false;
@@ -257,25 +300,31 @@ public class InventoryGUI implements Listener {
 
 	@EventHandler
 	public void onInventoryClose(InventoryCloseEvent event) {
-		if (!(event.getPlayer() instanceof Player)) {
-			mmh.logDebug("Close event from non-player, ignoring");
-			return;
+		if (!(event.getPlayer() instanceof Player player)) return;
+
+		String closedTitle = event.getView().getTitle();
+		if (!closedTitle.startsWith(title + " - Page ")) {
+			return; // Not one of our GUIs
 		}
-		Player player = (Player) event.getPlayer();
-		String viewTitle = event.getView().getTitle();
-		if (!viewTitle.startsWith(title + " - Page ")) {
-			mmh.logDebug(String.format("Close event ignored, title: %s", viewTitle));
+
+		// During page changes we force-open a new inventory → we get a close event
+		// → only clean up if this is NOT part of navigation
+		Boolean wasNavigating = isNavigating.get(player);
+		if (wasNavigating != null && wasNavigating) {
+			mmh.logDebug("[CLOSE] Navigation close ignored (title: " + closedTitle + ") for " + player.getName());
+			// Do NOT remove data or unregister here — we want the same listener alive
 			return;
 		}
 
-		if (!isNavigating.getOrDefault(player, false)) {
-			playerPages.remove(player);
-			playerCallbacks.remove(player);
-			isNavigating.remove(player);
-			HandlerList.unregisterAll(this);
-			mmh.logDebug(String.format("Inventory closed and unregistered for player: %s, title: %s", player.getName(), viewTitle));
-		} else {
-			mmh.logDebug(String.format("Inventory close during navigation, skipping unregister for player: %s", player.getName()));
-		}
+		// If we reach here → real close (player clicked close button, or closed via ESC, etc.)
+		mmh.logDebug("[CLOSE] Real close detected (title: " + closedTitle + ") → full cleanup for " + player.getName());
+
+		playerPages.remove(player);
+		playerCallbacks.remove(player);
+		isNavigating.remove(player);
+
+		// Safe to unregister now — no more pages will open under this instance
+		mmh.logDebug("[UNREGISTER] Unregistering InventoryGUI listener for title: " + title + " by " + player.getName());
+		HandlerList.unregisterAll(this);
 	}
 }

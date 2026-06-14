@@ -1,17 +1,21 @@
 {
   "defaultChance": 10.0,
-  "structure": "flat",
   "heads": [
     {
+      "chance": 10.0,
       "displayName": "Creaking",
+      "langFormat": "mmh.format.entity.default",
+      "langKey": "entity.creaking",
       "langName": "creaking",
-      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWUyZDc1NmJiMGU4NGZmN2E1NjQ2MTFjODRhOTk2OTJjMjBiZWIxYzE4NDJjYzgzMWNkOGFmYTBlNzFkN2E4In19fQ==",
-      "uuid": "f4e84144-5b0d-4b6f-b0b2-b59a7bc1a3db",
-      "lore": [],
+      "lore": [
+
+      ],
+      "min_mc_version": "1.21.4",
       "noteblockSound": "entity.creaking.ambient",
       "quantity": 1,
-      "chance": 10.0,
-      "min_mc_version": "1.21.4"
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTJmZmNlNDU2MWYzYjA3NjkwZjU4Y2Q2MmM2ZjJiNWY4Y2NjMjc2ZjQ0M2MyZDFkN2NmZGU0ODcwYTJiYWYwMyJ9fX0=",
+      "uuid": "33d05769-3e95-48ef-8e3a-17dc7e40be34"
     }
-  ]
-} 
+  ],
+  "structure": "flat"
+}

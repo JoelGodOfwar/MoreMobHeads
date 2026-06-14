@@ -6,7 +6,7 @@ import java.util.List;
 import org.bukkit.inventory.ItemStack;
 
 public class PlayerHeadData {
-	private final String langName;
+	private final String langKey;
 	private final String displayName;
 	private final String noteblockSound;
 	private final List<String> lore;
@@ -18,9 +18,9 @@ public class PlayerHeadData {
 	private final int maxUses;
 	//private final String minMCVersion;
 
-	public PlayerHeadData(String langName, String displayName, String noteblockSound, List<String> lore,
+	public PlayerHeadData(String langKey, String displayName, String noteblockSound, List<String> lore,
 			String texture, String uuid, int quantity, ItemStack price1, ItemStack price2, int maxUses) {
-		this.langName = langName;
+		this.langKey = langKey;
 		this.displayName = displayName;
 		this.noteblockSound = noteblockSound;
 		this.lore = lore != null ? new ArrayList<>(lore) : new ArrayList<>();
@@ -32,8 +32,8 @@ public class PlayerHeadData {
 		this.maxUses = maxUses;
 	}
 
-	public String getLangName() {
-		return langName;
+	public String getLangKey() {
+		return langKey;
 	}
 
 	public String getDisplayName() {

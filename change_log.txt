@@ -1,3 +1,31 @@
+1.20_1.0.45
+D1  Fixed Nickname getter, Moved Logger to CoreUtils
+D2  Fixed Config and ViewHeads commands.
+D3  Fixed Wolf, Cat, Bee, Also Wither will respect the chances for all 3 heads.
+D4  Removed MoreMobHeadsLib and the nbtapi library, added update.json to fix files from D3.
+D5  Fixed head translator sometimes double spacing. Fixed All_Black and Tuxedo cat heads.
+D6  Added Baby Mobs(100+ new heads), Major overhaul of the JsonUpdateHandler to properly support deep nesting and automatic migration.
+D7  Fixed some baby heads with issues. Updated language files.
+D8  Fixed Creaking head. Fixed some settings not being reloaded with command.
+D9  .
+1.20_1.0.44
+D1  Switched from disabling plugin on load of unsupported MC Version to attempt to load newest eventHandlers
+D2  Console can now use mmh config, tabs auto-fixed, added config_comments.yml guide, config.yml now clean
+D3  Fixed beheading messages (hex/gradient/rainbow), added 10 new colorful ones, now supports up to 8-color gradients,
+    fixed Zombie Villager Shepherd + biome heads, updated head updater, CoreUtils sync
+D4  Fixed Vex handler, Fixed Villager.json
+D5  Fixed Villager and Zombie Villager for Paper.
+D6  Fixed Cat and Frog heads.
+D7  Fixed updatechecker message on join, via CoreUtils update.
+D8  Fixed Copper Golem weatherstate detection.
+D9  Fixing papers changes to weatherstate. Reset epoch time to 1764860848L.
+D10 Fixed NPE when Creaking dies without a cause.
+D11 Added 1.21.11 Mobs
+D12 Updated translation system, and updated epoch time.
+D13 Added rest of translations, fixed Config GUI not reloading on close, fixed named weapons being called bare hands.
+D14 Fixed beheading messages with better json parsing.
+D15 DLC merged into MMH, -DEV no longer forces debug.
+D16 Cleaned up DLC code, leaving DLCInstaller for possible future use.
 1.20_1.0.43
 D1	Added new config option to disable dlc nag for OPs. also reduced chance of being nagged.
 D2	Fixed viewheads command, fixed exception with zombie_villager.
@@ -11,7 +39,6 @@ D8	Added MobHeadDropEvent for developers.
 D9	Added CoreUtils Library. Added Exploding bed damage as WeaponType for beheading messages.
 D10	Added new features to 1.20 eventHandler for parity. Streamlined code for quicker fixes and updates.
 D11	Added copper_golem, finished streamlining code. Fixed Black Horse Head.
-D12 .
 1.20_1.0.42
 D1	Fixed Wolves, Cows, Pigs, Chickens broken by spigot and paper. added player.json to entity for player head chance.
 1.20_1.0.41

@@ -1,0 +1,68 @@
+{
+  "defaultChance": 1.0,
+  "heads": {
+    "chicken": {
+      "cold": {
+        "chance": 1.0,
+        "displayName": "Cold Chick",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.chick.cold",
+        "langName": "chick.cold",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.chicken.baby.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTEwNTQ4OTNjNjVmZjUxZTVlODljYTFkYTgyZGIwMGU1YWJjNDI3ZmQyNDMwYWRlYTQ5Y2EyMGFlYjYwODNlZSJ9fX0=",
+        "uuid": "782d1330-341f-4745-be32-ef10ee463bda"
+      },
+      "original": {
+        "chance": 1.0,
+        "displayName": "Chick",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.chick.normal",
+        "langName": "chick.normal",
+        "lore": [
+
+        ],
+        "max_mc_version": "1.21.4",
+        "noteblockSound": "entity.chicken.baby.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDJhZjZlNTg0N2VlYTA5OWUxYjBhYjhjMjBhOWU1ZjNjNzE5MDE1OGJkYTU0ZTI4MTMzZDliMjcxZWMwY2I0YiJ9fX0=",
+        "uuid": "fadbdff9-a3e6-471a-8dc3-23e23f9c7acf"
+      },
+      "temperate": {
+        "chance": 1.0,
+        "displayName": "Temperate Chick",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.chick.temperate",
+        "langName": "chick.temperate",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.chicken.baby.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTEyODAxNTE4YzcyOGEzYTk0ZmNjN2ExZDhjODQ4ZjNjY2MzZTJiNDNkODFhMDk5MWZhY2YxY2Q3MWYyN2VhOSJ9fX0=",
+        "uuid": "36319a34-ffa8-4a59-b676-309311c15f86"
+      },
+      "warm": {
+        "chance": 1.0,
+        "displayName": "Warm Chick",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.chick.warm",
+        "langName": "chick.warm",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.chicken.baby.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2E3MGE2NzAxMzM5NjNkOGUxMmIyZjUzMzc4Mjk4ZDE1MTVkMDRkYzlhYzMwNzY4ODgyYjdlNjAxMjU2NDc4YyJ9fX0=",
+        "uuid": "b8666cb0-d272-44c4-b024-194f7caa803f"
+      }
+    }
+  },
+  "structure": "nested"
+}

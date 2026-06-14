@@ -1,0 +1,27 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "STRIPPED_PALE_OAK_LOG",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Stripped Pale Oak Log",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTQ4ODgzY2RjMDE0MWU0OTRmOTg5OTA2Y2FjNmQ1YWYyNzZjY2FlYzQ2ZDkxMTQwNDVmYzIwMTNkZWIzMzM3NCJ9fX0=",
+    "uuid": "492ec3bf-130c-416d-aff5-49fe0ff31169",
+    "lore": [],
+    "noteblockSound": "block.wood.place",
+    "quantity": 8,
+    "maxUses": 1,
+    "langKey": "block.pale_oak.stripped.log",
+    "langFormat": "mmh.format.block.azalea"
+  }
+}

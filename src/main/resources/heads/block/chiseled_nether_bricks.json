@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.nether_bricks.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.nether_bricks.chiseled",
+    "langFormat": "mmh.format.block.default"
   }
 }  

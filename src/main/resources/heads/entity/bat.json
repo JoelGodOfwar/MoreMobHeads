@@ -1,16 +1,20 @@
 {
   "defaultChance": 10.0,
-  "structure": "flat",
   "heads": [
     {
+      "chance": 10.0,
       "displayName": "Bat",
+      "langFormat": "mmh.format.entity.default",
+      "langKey": "entity.bat",
       "langName": "bat",
-      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTczNjU1MzZmOTc4MzIzYjUyYzVkZTQ1ZDhmMjhlMTY0NjgxNWQ1OTA3OGY1MjdhNzMyODM5YTM4OGJlYjQ5YyJ9fX0=",
-      "uuid": "19e2f141-789d-4d5e-9cdd-8fbf54af2611",
-      "lore": [],
+      "lore": [
+
+      ],
       "noteblockSound": "entity.bat.ambient",
       "quantity": 1,
-      "chance": 10.0
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTczNjU1MzZmOTc4MzIzYjUyYzVkZTQ1ZDhmMjhlMTY0NjgxNWQ1OTA3OGY1MjdhNzMyODM5YTM4OGJlYjQ5YyJ9fX0=",
+      "uuid": "19e2f141-789d-4d5e-9cdd-8fbf54af2611"
     }
-  ]
+  ],
+  "structure": "flat"
 }

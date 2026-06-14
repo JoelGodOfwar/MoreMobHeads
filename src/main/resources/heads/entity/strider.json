@@ -1,28 +1,64 @@
 {
   "defaultChance": 10.0,
-  "structure": "nested",
   "heads": {
     "strider": {
       "normal": {
+        "chance": 10.0,
         "displayName": "Strider",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.strider.normal",
         "langName": "strider.normal",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGQ2OWVlODMxMmNjN2IxY2ZiZDk1ZTQxZTg5NzFiMmIzNjAyY2FmYTExMDJjMWNjODhhZGQ2MTdmMjhjZmM3ZCJ9fX0=",
-        "uuid": "9fde30af-3e79-433b-b4af-ae9cc52b0c96",
-        "lore": [],
+        "lore": [
+
+        ],
         "noteblockSound": "entity.strider.ambient",
         "quantity": 1,
-        "chance": 10.0
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGQ2OWVlODMxMmNjN2IxY2ZiZDk1ZTQxZTg5NzFiMmIzNjAyY2FmYTExMDJjMWNjODhhZGQ2MTdmMjhjZmM3ZCJ9fX0=",
+        "uuid": "9fde30af-3e79-433b-b4af-ae9cc52b0c96"
       },
       "shivering": {
+        "chance": 10.0,
         "displayName": "Shivering Strider",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.strider.shivering",
         "langName": "strider.shivering",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjkwYTEyMDI4YjkwYzBkYTFkNGQxN2U2ZmUxYmY1YmNhZjMzZGNmY2Y0ZTVkNTQ5MzkxMDZiMTg2Y2UyMWQ3NiJ9fX0=",
-        "uuid": "d843d702-9a8c-419a-80d5-da6c51a2c006",
-        "lore": [],
+        "lore": [
+
+        ],
         "noteblockSound": "entity.strider.ambient",
         "quantity": 1,
-        "chance": 10.0
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjkwYTEyMDI4YjkwYzBkYTFkNGQxN2U2ZmUxYmY1YmNhZjMzZGNmY2Y0ZTVkNTQ5MzkxMDZiMTg2Y2UyMWQ3NiJ9fX0=",
+        "uuid": "d843d702-9a8c-419a-80d5-da6c51a2c006"
+      },
+      "baby": {
+        "normal": {
+          "chance": 25.0,
+          "displayName": "Baby Strider",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.strider.baby.normal",
+          "langName": "strider.baby.normal",
+          "lore": [],
+          "min_mc_version": "26.1",
+          "noteblockSound": "entity.strider.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDI0NjNlNTY4NjA5ZjYxZGQ1MjUyNDFlZmE0MDZiNzQzMWY1ZDI5OTAyMzA3OTQ3OGIwNzYyMzhmZjRhOTE3OCJ9fX0=",
+          "uuid": "6df38817-be81-4e1d-9bc1-87e5007f2d18"
+        },
+        "shivering": {
+          "chance": 25.0,
+          "displayName": "Baby Shivering Strider",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.strider.baby.shivering",
+          "langName": "strider.baby.shivering",
+          "lore": [],
+          "min_mc_version": "26.1",
+          "noteblockSound": "entity.strider.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjMzNGM1ZjAzYmE4MWJjMzExNmQ3NjA5NDI2MDcxNjQyYTI1Nzc2NDQ3MGFhMjFiY2VjZjQxMDg1ZDc4NDkwIn19fQ==",
+          "uuid": "c47c1add-2c0d-4fc2-b056-c74e493f0e2c"
+        }
       }
     }
-  }
+  },
+  "structure": "nested"
 }

@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.smithing_table.use",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.smithing_table",
+    "langFormat": "mmh.format.block.default"
   }
 } 

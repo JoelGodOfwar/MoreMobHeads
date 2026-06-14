@@ -1,52 +1,101 @@
 {
   "defaultChance": 1.0,
-  "structure": "nested",
   "heads": {
     "pig": {
-      "original": {
-        "displayName": "Pig",
-        "langName": "pig.normal",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDFlZTc2ODFhZGYwMDA2N2YwNGJmNDI2MTFjOTc2NDEwNzVhNDRhZTJiMWMwMzgxZDVhYzZiMzI0NjIxMWJmZSJ9fX0=",
-        "uuid": "afb61daf-4fda-4ac4-9ddd-b2309377bcda",
-        "lore": [],
-        "noteblockSound": "entity.pig.ambient",
-        "quantity": 1,
-        "chance": 1.0,
-        "max_mc_version": "1.21.4"
-      },
       "cold": {
+        "chance": 1.0,
         "displayName": "Cold Pig",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.pig.cold",
         "langName": "pig.cold",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTNmMGNhZTZjOGNjMWQwYWVlNWJlODZiOWMwYmM1MDExN2M1ZTFjNmIwMTQzOTA0MjI2NmJlYTMyYWE2Yjg2YiJ9fX0=",
-        "uuid": "e8f06eba-f23b-47b1-8c0d-cf008b228d3b",
         "lore": [],
+        "min_mc_version": "1.21.5",
         "noteblockSound": "entity.pig.ambient",
         "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTNmMGNhZTZjOGNjMWQwYWVlNWJlODZiOWMwYmM1MDExN2M1ZTFjNmIwMTQzOTA0MjI2NmJlYTMyYWE2Yjg2YiJ9fX0=",
+        "uuid": "e8f06eba-f23b-47b1-8c0d-cf008b228d3b"
+      },
+      "original": {
         "chance": 1.0,
-        "min_mc_version": "1.21.5"
+        "displayName": "Pig",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.pig.normal",
+        "langName": "pig.normal",
+        "lore": [],
+        "max_mc_version": "1.21.4",
+        "noteblockSound": "entity.pig.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDFlZTc2ODFhZGYwMDA2N2YwNGJmNDI2MTFjOTc2NDEwNzVhNDRhZTJiMWMwMzgxZDVhYzZiMzI0NjIxMWJmZSJ9fX0=",
+        "uuid": "afb61daf-4fda-4ac4-9ddd-b2309377bcda"
       },
       "temperate": {
+        "chance": 1.0,
         "displayName": "Temperate Pig",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.pig.temperate",
         "langName": "pig.temperate",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWZkY2IwYjY4NzI3OTM4NDAyYzAwOWQyMzAwNzhjMTU3YWY2NGQ5MTJmYzE5NmE3MTg0NWVhYTVhYjEwOWM5In19fQ==",
-        "uuid": "7e376b9a-333b-46e5-a978-f8534ec49256",
         "lore": [],
+        "min_mc_version": "1.21.5",
         "noteblockSound": "entity.pig.ambient",
         "quantity": 1,
-        "chance": 1.0,
-        "min_mc_version": "1.21.5"
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWZkY2IwYjY4NzI3OTM4NDAyYzAwOWQyMzAwNzhjMTU3YWY2NGQ5MTJmYzE5NmE3MTg0NWVhYTVhYjEwOWM5In19fQ==",
+        "uuid": "7e376b9a-333b-46e5-a978-f8534ec49256"
       },
       "warm": {
+        "chance": 1.0,
         "displayName": "Warm Pig",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.pig.warm",
         "langName": "pig.warm",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTFjNTg0MGM3MzhhMDhjYTRjZDcwY2QyODUzYWQ1ZTdmOTE5OTBmOGRkMDQyMTUwNjYxN2JmZmJkOTRmODQ4ZiJ9fX0=",
-        "uuid": "69306b7d-db23-416a-80d5-082238493c2c",
         "lore": [],
+        "min_mc_version": "1.21.5",
         "noteblockSound": "entity.pig.ambient",
         "quantity": 1,
-        "chance": 1.0,
-        "min_mc_version": "1.21.5"
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTFjNTg0MGM3MzhhMDhjYTRjZDcwY2QyODUzYWQ1ZTdmOTE5OTBmOGRkMDQyMTUwNjYxN2JmZmJkOTRmODQ4ZiJ9fX0=",
+        "uuid": "69306b7d-db23-416a-80d5-082238493c2c"
+      },
+      "baby": {
+        "cold": {
+          "chance": 1.5,
+          "displayName": "Baby Cold Pig",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.pig.baby.cold",
+          "langName": "pig.baby.cold",
+          "lore": [],
+          "min_mc_version": "26.1",
+          "noteblockSound": "entity.pig.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGI0YjY0MDI3MTUxYzA1N2ZiN2I0MDY2MWY2YmYwYWJiYjJhNTE2Njg1ZjMwOGQyMmM2ZjA1ZGZkMWY3ZDc5MSJ9fX0=",
+          "uuid": "0fb076dc-fa5a-40f1-8bf1-db1a70f52e3c"
+        },
+        "temperate": {
+          "chance": 1.5,
+          "displayName": "Baby Temperate Pig",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.pig.baby.temperate",
+          "langName": "pig.baby.temperate",
+          "lore": [],
+          "min_mc_version": "26.1",
+          "noteblockSound": "entity.pig.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmE3NDFhZDE4NGU3ZDQyYTY3YmJkY2Y4ZDIwMmE2NGZkNWU1YWY4YjViMmVkNTAwMzQ1YzM4N2EwOTE0ZTM0MiJ9fX0=",
+          "uuid": "5d073718-5de8-40de-8ce2-48b68bc0bc1a"
+        },
+        "warm": {
+          "chance": 1.5,
+          "displayName": "Baby Warm Pig",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.pig.baby.warm",
+          "langName": "pig.baby.warm",
+          "lore": [],
+          "min_mc_version": "26.1",
+          "noteblockSound": "entity.pig.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGExYzRjYTE4Nzg2MzZlMzA4MDU4MDY5N2YyNWM1NDg2NzEzMWNkM2E2MzcyZjEzZTkwNzM0NGE5NTE5YzkzZiJ9fX0=",
+          "uuid": "d95c4fb7-5afe-48be-b20c-ca86b0a0e02d"
+        }
       }
     }
-  }
+  },
+  "structure": "nested"
 }

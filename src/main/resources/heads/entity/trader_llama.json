@@ -1,48 +1,106 @@
 {
   "defaultChance": 24.0,
-  "structure": "nested",
   "heads": {
     "trader_llama": {
       "brown": {
+        "chance": 24.0,
         "displayName": "Brown Trader Llama",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.trader_llama.brown",
         "langName": "trader_llama.brown",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODQyNDc4MGIzYzVjNTM1MWNmNDlmYjViZjQxZmNiMjg5NDkxZGY2YzQzMDY4M2M4NGQ3ODQ2MTg4ZGI0Zjg0ZCJ9fX0=",
-        "uuid": "a957be18-324a-4984-a81b-f556a793a64a",
         "lore": [],
         "noteblockSound": "entity.llama.ambient",
         "quantity": 1,
-        "chance": 24.0
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODQyNDc4MGIzYzVjNTM1MWNmNDlmYjViZjQxZmNiMjg5NDkxZGY2YzQzMDY4M2M4NGQ3ODQ2MTg4ZGI0Zjg0ZCJ9fX0=",
+        "uuid": "a957be18-324a-4984-a81b-f556a793a64a"
       },
       "creamy": {
+        "chance": 24.0,
         "displayName": "Creamy Trader Llama",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.trader_llama.creamy",
         "langName": "trader_llama.creamy",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTg5YTJlYjE3NzA1ZmU3MTU0YWIwNDFlNWM3NmEwOGQ0MTU0NmEzMWJhMjBlYTMwNjBlM2VjOGVkYzEwNDEyYyJ9fX0=",
-        "uuid": "b8e21edd-c25b-4673-9602-6671007f5088",
         "lore": [],
         "noteblockSound": "entity.llama.ambient",
         "quantity": 1,
-        "chance": 24.0
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTg5YTJlYjE3NzA1ZmU3MTU0YWIwNDFlNWM3NmEwOGQ0MTU0NmEzMWJhMjBlYTMwNjBlM2VjOGVkYzEwNDEyYyJ9fX0=",
+        "uuid": "b8e21edd-c25b-4673-9602-6671007f5088"
       },
       "gray": {
+        "chance": 24.0,
         "displayName": "Gray Trader Llama",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.trader_llama.gray",
         "langName": "trader_llama.gray",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmU0ZDhhMGJjMTVmMjM5OTIxZWZkOGJlMzQ4MGJhNzdhOThlZTdkOWNlMDA3MjhjMGQ3MzNmMGEyZDYxNGQxNiJ9fX0=",
-        "uuid": "34bfbc2b-6c59-47df-8cf6-7457ad15165a",
         "lore": [],
         "noteblockSound": "entity.llama.ambient",
         "quantity": 1,
-        "chance": 24.0
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmU0ZDhhMGJjMTVmMjM5OTIxZWZkOGJlMzQ4MGJhNzdhOThlZTdkOWNlMDA3MjhjMGQ3MzNmMGEyZDYxNGQxNiJ9fX0=",
+        "uuid": "34bfbc2b-6c59-47df-8cf6-7457ad15165a"
       },
       "white": {
+        "chance": 24.0,
         "displayName": "White Trader Llama",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.trader_llama.white",
         "langName": "trader_llama.white",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzA4N2E1NTZkNGZmYTk1ZWNkMjg0NGYzNTBkYzQzZTI1NGU1ZDUzNWZhNTk2ZjU0MGQ3ZTc3ZmE2N2RmNDY5NiJ9fX0=",
-        "uuid": "47dbdab5-105f-42bc-9580-c61cee9231f3",
         "lore": [],
         "noteblockSound": "entity.llama.ambient",
         "quantity": 1,
-        "chance": 24.0
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzA4N2E1NTZkNGZmYTk1ZWNkMjg0NGYzNTBkYzQzZTI1NGU1ZDUzNWZhNTk2ZjU0MGQ3ZTc3ZmE2N2RmNDY5NiJ9fX0=",
+        "uuid": "47dbdab5-105f-42bc-9580-c61cee9231f3"
+      },
+      "baby": {
+        "brown": {
+          "chance": 28.0,
+          "displayName": "Baby Brown Trader Llama",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.trader_llama.baby.brown",
+          "langName": "trader_llama.baby.brown",
+          "lore": [],
+          "noteblockSound": "entity.llama.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmIzZWVkNjA2M2I1MzBjOGMwNzY4YTMwOTYxMzc0YTdlMDE1Y2VhMGVhOThhNzgzNDE2ZTI0MmFmOWNlZDI5In19fQ==",
+          "uuid": "57aa4b1f-b02e-421d-91bd-180f6a101541"
+        },
+        "creamy": {
+          "chance": 28.0,
+          "displayName": "Baby Creamy Trader Llama",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.trader_llama.baby.creamy",
+          "langName": "trader_llama.baby.creamy",
+          "lore": [],
+          "noteblockSound": "entity.llama.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjMwYjVlZDkyODIxZjllOWZjZGFjNDY4ZTAzMGIzMTI0NzQ3MGUxZjRmMDQ3ZWM3Mjk4MzFhOTk3M2VjODg0MSJ9fX0=",
+          "uuid": "fc7b787c-8c74-4387-acb6-d3348c7b1584"
+        },
+        "gray": {
+          "chance": 28.0,
+          "displayName": "Baby Gray Trader Llama",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.trader_llama.baby.gray",
+          "langName": "trader_llama.baby.gray",
+          "lore": [],
+          "noteblockSound": "entity.llama.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmJlOTNmMjIwOWVmMmNlNjUwN2M1ZWFhMTZlYjI1Y2MyZDY4MzBiNDQ3NjQ4YzAzNDkzOTllYWMwOTFkZGU1YiJ9fX0=",
+          "uuid": "3240d15f-1cfd-4e94-8420-324891fb62a4"
+        },
+        "white": {
+          "chance": 28.0,
+          "displayName": "Baby White Trader Llama",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.trader_llama.baby.white",
+          "langName": "trader_llama.baby.white",
+          "lore": [],
+          "noteblockSound": "entity.llama.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTQyNWU4ODgzZmFkYTY2NTdhMzNkNTNjMjA2ZWU5YzJhNTczOWExMDgwNTU5NzlhNThjZjdlYWFmOGU0ODk5In19fQ==",
+          "uuid": "8ceeb864-8105-4975-a411-80b12734f499"
+        }
       }
     }
-  }
+  },
+  "structure": "nested"
 }

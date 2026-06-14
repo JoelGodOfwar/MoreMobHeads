@@ -1,0 +1,21 @@
+{
+  "defaultChance": 6.0,
+  "heads": [
+    {
+      "chance": 6.0,
+      "displayName": "%name%",
+      "langFormat": "mmh.format.entity.default",
+      "langKey": "entity.parched",
+      "langName": "parched",
+      "lore": [
+
+      ],
+      "min_mc_version": "1.21.11",
+      "noteblockSound": "entity.parched.ambient",
+      "quantity": 1,
+      "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGI0N2YyNmQzNzlkOTY2OTg0MjZmMzc4MzY1OTk3MzRhNzgwODZiMGU3ZWEwMDRmZjU5ZDRhNzQ1OGQ1NzM0MCJ9fX0=",
+      "uuid": "1aa85342-de2d-4288-904b-548842f00bb8"
+    }
+  ],
+  "structure": "flat"
+}

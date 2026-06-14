@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.nether_gold_ore.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.nether_gold_ore",
+    "langFormat": "mmh.format.block.default"
   }
 } 

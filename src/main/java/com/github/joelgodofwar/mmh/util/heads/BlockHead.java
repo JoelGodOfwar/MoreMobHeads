@@ -55,7 +55,7 @@ public class BlockHead {
 		return data.getMinMCVersion();
 	}
 
-	public String getLangName() {
-		return data.getLangName();
+	public String getLangKey() {
+		return data.getLangKey();
 	}
 }

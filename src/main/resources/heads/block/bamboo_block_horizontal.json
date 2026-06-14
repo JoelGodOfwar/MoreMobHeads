@@ -1,0 +1,27 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "BAMBOO_BLOCK",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Bamboo Block (Horizontal)",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjNmNTE2ZDNhMTEwNmFlYWViOWRjZjIyZjVjYzI4YzhjODY0MDA5ZTA3YjM3YTQzNmE2ZDE5NzBkM2M2OWM5ZSJ9fX0=",
+    "uuid": "0916fa4a-ab98-4eec-aa68-c14ddbcb93e3",
+    "lore": [],
+    "noteblockSound": "block.wood.place",
+    "quantity": 8,
+    "maxUses": 1,
+    "langKey": "block.bamboo_block.horizontal",
+    "langFormat": "mmh.format.block.wood"
+  }
+}

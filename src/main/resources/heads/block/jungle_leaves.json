@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.azalea_leaves.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.jungle.leaves",
+    "langFormat": "mmh.format.block.wood"
   }
 }  

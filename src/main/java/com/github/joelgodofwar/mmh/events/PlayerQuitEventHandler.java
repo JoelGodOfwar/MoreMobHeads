@@ -6,14 +6,15 @@ import com.github.joelgodofwar.mmh.common.PluginLibrary;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.UUID;
 
 public class PlayerQuitEventHandler implements Listener {
-    private final MoreMobHeads plugin;
+    private final MoreMobHeads mmh;
 
     public PlayerQuitEventHandler(MoreMobHeads plugin) {
-        this.plugin = plugin;
+        this.mmh = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -23,13 +24,19 @@ public class PlayerQuitEventHandler implements Listener {
     @EventHandler
     public void onPlayerQuitEvent(PlayerQuitEvent event) {
         try {
-            plugin.chanceRandoms.remove(event.getPlayer());
+            mmh.closeListener.cleanup(event.getPlayer().getUniqueId());
+            BukkitTask pendingTask = mmh.closeListener.pendingReloadTasks.remove(event.getPlayer().getUniqueId());
+            if (pendingTask != null && !pendingTask.isCancelled()) {
+                pendingTask.cancel();
+                mmh.logDebug("Cancelled pending config reload task on quit for " + event.getPlayer().getName());
+            }
+            mmh.chanceRandoms.remove(event.getPlayer());
 
             UUID playerUUID = event.getPlayer().getUniqueId();
             // Remove player from bedInteractions on logout
-            if (plugin.bedInteractions.containsKey(playerUUID)) {
-                plugin.bedInteractions.remove(playerUUID);
-                plugin.logDebug("PQ - Removed " + event.getPlayer().getName() + " from bedInteractions (logout)");
+            if (mmh.bedInteractions.containsKey(playerUUID)) {
+                mmh.bedInteractions.remove(playerUUID);
+                mmh.logDebug("PQ - Removed " + event.getPlayer().getName() + " from bedInteractions (logout)");
             }
         } catch (Exception exception) {
             MoreMobHeads.reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.UNHANDLED_PLAYERQUIT_EVENT_ERROR).error(exception));

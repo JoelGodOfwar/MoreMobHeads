@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import lib.github.joelgodofwar.coreutils.CoreUtils;
 import lib.github.joelgodofwar.coreutils.util.Version;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -17,6 +19,13 @@ import com.github.joelgodofwar.mmh.MoreMobHeads;
 public class BlockHeadLoader {
 	private final MoreMobHeads plugin;
 	private List<BlockHeadData> blockHeadDataList = new ArrayList<>();
+	private static final Set<String> VARIANT_KEYWORDS = Set.of(
+			"chiseled", "polished", "cracked", "bricks", "tiles", "carved", "cut", "smooth", "mossy", "gilded",
+			"black", "blue", "brown", "cyan", "gray", "green", "light",
+			"lime", "magenta", "orange", "pink", "purple", "red", "white", "yellow",
+			"weathered", "exposed", "oxidized"
+			// Add more as needed — common Minecraft variant suffixes
+	);
 
 	public BlockHeadLoader(MoreMobHeads plugin) {
 		this.plugin = plugin;
@@ -25,7 +34,7 @@ public class BlockHeadLoader {
 	public void loadAllBlockHeads(String directoryPath) {
 		File directory = new File(directoryPath);
 		if (!directory.exists()) {
-			plugin.getLogger().warning("Directory does not exist: " + directoryPath);
+			CoreUtils.warn("Directory does not exist: " + directoryPath);
 			return;
 		}
 		Version currentVersion = new Version(plugin.getServer());
@@ -37,7 +46,7 @@ public class BlockHeadLoader {
 					blockHeadDataList.add(data);
 				}
 			} catch (Exception e) {
-				plugin.getLogger().warning("Error loading block head from " + file.getName() + ": " + e.getMessage());
+				CoreUtils.warn("Error loading block head from " + file.getName() + ": " + e.getMessage());
 				e.printStackTrace();
 			}
 		}
@@ -56,8 +65,19 @@ public class BlockHeadLoader {
 				return null;
 			}
 
-			String langName = json.optString("lang_name", file.getName().replace(".json", ""));
-			String displayName = headJson.getString("displayName");
+			String fileNameNoExt = file.getName().replace(".json", "");
+			String generatedLangKey = "block." + fileNameNoExt;  // Simple flat key
+
+			String langKey = headJson.optString("langKey", generatedLangKey);
+			String langFormat = headJson.optString("langFormat", "mmh.format.block.default");
+
+			String translatedDisplayName = HeadTranslationUtils.buildTranslatedDisplayName(langFormat, langKey);
+
+			if (translatedDisplayName.isEmpty()) {
+				translatedDisplayName = headJson.getString("displayName"); // English fallback
+			}
+			String langName = generatedLangKey; //json.optString("lang_name", file.getName().replace(".json", ""));
+			String displayName = translatedDisplayName; //headJson.getString("displayName");
 			String noteblockSound = headJson.optString("noteblockSound", null);
 			List<String> lore = new ArrayList<>();
 			if (headJson.has("lore")) {
@@ -109,7 +129,7 @@ public class BlockHeadLoader {
 			int amount = json.optInt("amount", 1);
 			return new ItemStack(material, amount);
 		} catch (IllegalArgumentException e) {
-			plugin.getLogger().warning("Invalid material in price: " + json.toString());
+			CoreUtils.warn("Invalid material in price: " + json.toString());
 			return null;
 		}
 	}

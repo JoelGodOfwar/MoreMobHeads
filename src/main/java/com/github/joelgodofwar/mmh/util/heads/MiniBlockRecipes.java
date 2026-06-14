@@ -2,6 +2,7 @@ package com.github.joelgodofwar.mmh.util.heads;
 
 import java.util.List;
 
+import lib.github.joelgodofwar.coreutils.CoreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -30,7 +31,7 @@ public class MiniBlockRecipes {
 			Material material = miniBlock.getPrice2().getType();
 
 			// Register the Stonecutter recipe
-			NamespacedKey recipeKey = new NamespacedKey(plugin, "mini_" + miniBlock.getData().getLangName().toLowerCase());
+			NamespacedKey recipeKey = new NamespacedKey(plugin, "mini_" + miniBlock.getData().getLangKey().toLowerCase());
 			StonecuttingRecipe recipe = new StonecuttingRecipe(recipeKey, head, material);
 			recipe.setGroup("mini_blocks");
 
@@ -38,9 +39,9 @@ public class MiniBlockRecipes {
 			if (existingRecipe == null) {
 				try {
 					Bukkit.addRecipe(recipe);
-					//plugin.LOGGER.debug("Registered Stonecutter recipe for " + miniBlock.getDisplayName());
+					//CoreUtils.debug("Registered Stonecutter recipe for " + miniBlock.getDisplayName());
 				} catch (IllegalStateException e) {
-					plugin.LOGGER.warn("Failed to register Stonecutter recipe for " + miniBlock.getDisplayName() + ": " + e.getMessage());
+					CoreUtils.warn("Failed to register Stonecutter recipe for " + miniBlock.getDisplayName() + ": " + e.getMessage());
 				}
 			}
 		}

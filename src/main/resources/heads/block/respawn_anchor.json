@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.respawn_anchor.charge",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.respawn_anchor",
+    "langFormat": "mmh.format.block.default"
   }
 } 

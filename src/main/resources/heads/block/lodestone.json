@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "item.lodestone_compass.lock",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.lodestone",
+    "langFormat": "mmh.format.block.default"
   }
 }  

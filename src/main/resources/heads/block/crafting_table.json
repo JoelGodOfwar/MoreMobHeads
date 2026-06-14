@@ -14,6 +14,8 @@
     "lore": [],
     "noteblockSound": "block.wood.step",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.crafting_table",
+    "langFormat": "mmh.format.block.default"
   }
 }  

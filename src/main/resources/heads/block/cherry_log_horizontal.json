@@ -1,0 +1,27 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "CHERRY_LOG",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Cherry Log (Horizontal)",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDMzNTRmYjZmMDMwYmY3MWI2MGQ0NTdkYzViMWQ5OTc0Y2U1ZmUyYWViMzQ4MDFmNTYzNGJlYTJjMjc1OWFmYyJ9fX0=",
+    "uuid": "ff6b8fd5-b3e9-432e-bbf3-39eb25476776",
+    "lore": [],
+    "noteblockSound": "block.wood.place",
+    "quantity": 8,
+    "maxUses": 1,
+    "langKey": "block.cherry.log.horizontal",
+    "langFormat": "mmh.format.block.wood"
+  }
+}

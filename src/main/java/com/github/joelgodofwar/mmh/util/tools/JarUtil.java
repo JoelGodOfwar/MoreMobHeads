@@ -1,11 +1,16 @@
 package com.github.joelgodofwar.mmh.util.tools;
 
+import com.github.joelgodofwar.mmh.MoreMobHeads;
+import lib.github.joelgodofwar.coreutils.CoreUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -89,8 +94,6 @@ public class JarUtil {
 	 * @throws IOException If an I/O error occurs during the copy process.
 	 */
 	public static void copyFileFromJar(String jarFilePath, String destPath) throws IOException {
-		byte[] buffer = new byte[1024];
-
 		// Get the path to the JAR file
 		File fullPath = null;
 		String path = JarUtil.class.getProtectionDomain().getCodeSource().getLocation().getPath();
@@ -107,33 +110,36 @@ public class JarUtil {
 		ZipInputStream zis = new ZipInputStream(new FileInputStream(fullPath));
 		ZipEntry entry;
 
-		// Look for the specified file in the JAR
+		boolean found = false;
 		while ((entry = zis.getNextEntry()) != null) {
 			if (!entry.getName().equals(jarFilePath)) {
 				continue;
 			}
 
-			// Found the file, copy it to the destination
+			found = true;
+
+			// Found the file, copy it with REPLACE_EXISTING
 			File destFile = new File(destPath);
 			if (!destFile.getParentFile().exists()) {
 				destFile.getParentFile().mkdirs();
 			}
 
-			try (FileOutputStream fos = new FileOutputStream(destFile)) {
-				int len;
-				while ((len = zis.read(buffer)) > 0) {
-					fos.write(buffer, 0, len);
-				}
+			try {
+				Files.copy(zis, destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				CoreUtils.debug("Successfully copied file from JAR: " + jarFilePath + " to " + destPath + " (size: " + destFile.length() + " bytes)");
+			} catch (IOException e) {
+				throw new IOException("Failed to copy file from JAR: " + jarFilePath + " to " + destPath + ": " + e.getMessage(), e);
 			}
 
 			zis.closeEntry();
-			zis.close();
-			return; // File found and copied, exit the method
+			break; // File found and copied
 		}
 
-		zis.closeEntry();
 		zis.close();
-		throw new IOException("File not found in JAR: " + jarFilePath);
+
+		if (!found) {
+			throw new IOException("File not found in JAR: " + jarFilePath);
+		}
 	}
 
 	public enum CopyOption {

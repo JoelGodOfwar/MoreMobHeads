@@ -51,8 +51,8 @@ public class PlayerHead {
 		return maxUses;
 	}
 
-	public String getLangName() {
-		return data.getLangName();
+	public String getLangKey() {
+		return data.getLangKey();
 	}
 
 }

@@ -10,6 +10,7 @@ import java.util.UUID;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -46,6 +47,7 @@ public class HeadUtils {
 		ItemStack head = new ItemStack(Material.PLAYER_HEAD);
 		SkullMeta meta = (SkullMeta) head.getItemMeta();
 		PlayerTextures textures = profile.getTextures();
+		// System.err.println("Error for displayName: " + displayName);
 		URL url = null;
 		try {
 			url = convertBase64ToURL(texture);
@@ -148,5 +150,69 @@ public class HeadUtils {
 			}
 		}
 		return false;
+	}
+
+	private void normalizeHead(ItemStack item) {
+		// Must be a player head
+		if (item == null || item.getType() != Material.PLAYER_HEAD) {
+			return;
+		}
+
+		// Fast check: does it have ItemMeta?
+		if (!item.hasItemMeta()) {
+			return;
+		}
+
+		ItemMeta meta = item.getItemMeta();
+
+		// THIS IS THE KEY: All MoreMobHeads heads have a custom display name
+		// If no display name → definitely not one of ours → skip entirely
+		if (!meta.hasDisplayName()) {
+			return;
+		}
+
+		boolean changed = false;
+		String originalName = meta.getDisplayName();
+
+		// Remove Paper's garbage formatting codes
+		String cleanName = originalName
+				.replace("§o", "")  // italic off
+				.replace("§n", "")  // underline off
+				.replace("§k", "")  // obfuscated off
+				.replace("§m", ""); // strikethrough off
+
+		if (!originalName.equals(cleanName)) {
+			meta.setDisplayName(cleanName);
+			changed = true;
+		}
+
+		// Only touch lore if the head is confirmed to be ours (has display name)
+		if (meta.hasLore()) {
+			List<String> oldLore = meta.getLore();
+			List<String> newLore = new ArrayList<>(oldLore.size());
+			boolean loreChanged = false;
+
+			for (String line : oldLore) {
+				String cleanLine = line
+						.replace("§o", "")
+						.replace("§n", "")
+						.replace("§k", "")
+						.replace("§m", "");
+				newLore.add(cleanLine);
+				if (!line.equals(cleanLine)) {
+					loreChanged = true;
+				}
+			}
+
+			if (loreChanged) {
+				meta.setLore(newLore);
+				changed = true;
+			}
+		}
+
+		// Only apply if something actually changed
+		if (changed) {
+			item.setItemMeta(meta);
+		}
 	}
 }

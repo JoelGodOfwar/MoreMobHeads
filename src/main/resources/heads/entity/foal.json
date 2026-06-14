@@ -1,0 +1,128 @@
+{
+  "defaultChance": 27.0,
+  "heads": {
+    "horse": {
+      "black": {
+        "chance": 27.0,
+        "displayName": "Black Foal",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.foal.black",
+        "langName": "foal.black",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_horse.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQ2MTA0ZWRkZjYzNDA3MGEyYmUyY2ZjNmI3YWRmZmRmM2U4NTFmNzRlMGIwNzgxYTIxN2VkZDdhYmE0NWI4NSJ9fX0=",
+        "uuid": "dcf79e52-c01d-4ad0-a513-7e7d5b0a938f"
+      },
+      "brown": {
+        "chance": 27.0,
+        "displayName": "Brown Foal",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.foal.brown",
+        "langName": "foal.brown",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_horse.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2Q1MTUwNjkzNzMwYTIzNDZhNDYwMTNmODY2Nzk1YWEwYTBiYjc2NzQ5ZjI4MTYxZWJjNTBkZjZiNjI4OGYyZSJ9fX0=",
+        "uuid": "be7ed03d-978d-4c78-a83d-b9cb3d408765"
+      },
+      "chestnut": {
+        "chance": 27.0,
+        "displayName": "Chestnut Foal",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.foal.chestnut",
+        "langName": "foal.chestnut",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_horse.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2QxY2M4N2UyYWQ3YTk5M2RmMzQxOWQyOTU1YmJjZjkzYTVlNTE4Yzg0Y2IxMDIzMjQ4YmNkNjkzNDgwYjA4NyJ9fX0=",
+        "uuid": "904818f1-aa69-4ad6-94fe-321e7ba5ea9b"
+      },
+      "creamy": {
+        "chance": 27.0,
+        "displayName": "Creamy Foal",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.foal.creamy",
+        "langName": "foal.creamy",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_horse.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTA5NTdhYWE3NjljYTUwYjMwNTQ3MzMzZGVkZTYwY2Y5NWRjNGIxODJmM2Q2YjU3M2RiM2NiOWM2ZmY0MjJlZiJ9fX0=",
+        "uuid": "67caae7f-c833-4ee7-a3b2-9e8c329e1d97"
+      },
+      "dark_brown": {
+        "chance": 27.0,
+        "displayName": "Dark Brown Foal",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.foal.dark_brown",
+        "langName": "foal.dark_brown",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_horse.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjk0OWM3YTJjNThhYzgyN2UxMGRiNmMxMjQzOWY3N2U2OWE3YWQ1NDJlN2IxZjQ2MGVmNTAzYjVkMTljMjJmMSJ9fX0=",
+        "uuid": "53b3b5aa-d61b-4e67-8447-c13361f67748"
+      },
+      "gray": {
+        "chance": 27.0,
+        "displayName": "Gray Foal",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.foal.gray",
+        "langName": "foal.gray",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_horse.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQyMWEzYjM0NzQxZjgwMjRhYmM5ZTJhNWRiMzNmZDEwYWRkOWQwZWNjOWQwYjUyZDNhYWM5NTNjNjBjMzI0YSJ9fX0=",
+        "uuid": "a5a8ffa2-4fde-4612-81f4-9e57ba228ba2"
+      },
+      "horse": {
+        "chance": 27.0,
+        "displayName": "Foal",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.foal",
+        "langName": "foal",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_horse.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWRlMTYwNDQ0ODVkMzQwOWE2ZTg4MmJjOWM5MDRjNDQyNWI5Mjg4YWFjZTYwMzg4NWQ1NGM1YWRjNWM3ZWVjYyJ9fX0=",
+        "uuid": "dc1293f0-c0cb-4a1e-973f-bd36d70a3de9"
+      },
+      "white": {
+        "chance": 27.0,
+        "displayName": "White Foal",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.foal.white",
+        "langName": "foal.white",
+        "lore": [
+
+        ],
+        "min_mc_version": "26.1",
+        "noteblockSound": "entity.baby_horse.ambient",
+        "quantity": 1,
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDljYjljOGIzNjI3M2I1YjQ5NDdmNjAwMjkwN2RjNmQ0Zjc1ZDQyOWE2OTZiOGY3OTk2Y2JiY2I2YjU2Zjg1ZiJ9fX0=",
+        "uuid": "2a07978a-457c-4055-9b55-941def3054c9"
+      }
+    }
+  },
+  "structure": "nested"
+}

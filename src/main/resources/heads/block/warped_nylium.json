@@ -20,6 +20,8 @@
     "lore": [],
     "noteblockSound": "block.nylium.place",
     "quantity": 8,
-    "maxUses": 1
+    "maxUses": 1,
+    "langKey": "block.warped.nylium",
+    "langFormat": "mmh.format.block.wood"
   }
 }  

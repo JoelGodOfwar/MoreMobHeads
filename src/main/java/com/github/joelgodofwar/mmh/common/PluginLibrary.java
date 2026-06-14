@@ -116,6 +116,7 @@ public class PluginLibrary {
 	public static final ReportType UNHANDLED_PLAYERINTERACTATENTITY_EVENT_ERROR = new ReportType("Error processing PlayerInteractAtEntityEvent.");
 	public static final ReportType UNHANDLED_PLAYERQUIT_EVENT_ERROR = new ReportType("Error processing PlayerQuitEvent.");
 
+	public static final ReportType ERROR_GETTING_MOB_NAME = new ReportType("Error getting Mob Name.");
 
 	/**
 	 * Gets the MoreMobHeads plugin instance.

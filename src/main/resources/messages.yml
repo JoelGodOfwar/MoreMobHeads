@@ -1,9 +1,22 @@
 # DO NOT CHANGE VERSION
-version: 1.0.2
+version: 1.0.3
 # Configuration file for announcement messages
 messages:
-  message_1: "Using %weaponName%, %killerName% beheaded %entityName%."
-  message_2: "%killerName% struck down %entityName% using %weaponName%."
-  message_3: "%killerName% <RED>delivered<RESET> <WHITE>a<RESET> <BLUE>fatal<RESET> <YELLOW>blow<RESET> <GREEN>to<RESET> %entityName% <LIGHT_PURPLE>with<RESET> %weaponName%."
-  message_4: "%entityName% was beheaded by %killerName% using %weaponName%."
-  message_5: "%killerName% took down %entityName% with %weaponName%."
+  message_1: §r%killerName% §x§F§F§A§A§0§0beheaded §x§F§F§F§F§0§0%entityName% <RED>with <RESET>%weaponName%.
+  message_2: §r%killerName% <RED>struck down <RESET>%entityName% §x§F§F§5§5§5§5using %weaponName%.
+  message_3: §r%killerName% <RED>delivered<RESET> <WHITE>a<RESET> <BLUE>fatal<RESET> <YELLOW>blow<RESET> <GREEN>to<RESET> %entityName% <LIGHT_PURPLE>with<RESET> §x§F§F§A§A§0§0%weaponName%.
+  message_4: §r%entityName% §x§F§F§A§A§0§0was beheaded by %killerName% <RED>using <RESET>%weaponName% <gradient:#FF0000:#00FF00>Swiftly</gradient>.
+  message_5: §r%killerName% <rainbow>took down</rainbow> %entityName% §x§F§F§5§5§5§5with %weaponName% <gradient:#FF0000:#00FF00:#0000FF:#FFFF00>Powerfully</gradient>.
+  message_6: "<#ff5555>Blood sprays as<#aa0000> %killerName% <#ff5555>beheads<#aa0000> %entityName% <#ff5555>with %weaponName%!"
+  message_7: "<#ffaa00>%killerName% <#ffff55>executed<#ffaa00> %entityName% <#ffff55>in one clean strike<#ffaa00> using %weaponName%!"
+  message_8: "<#ff5555>%killerName% <RED>delivered<RESET> <WHITE>a<RESET> <BLUE>fatal<RESET> <YELLOW>blow<RESET> <GREEN>to<RESET> %entityName% <LIGHT_PURPLE>with<RESET> %weaponName%."
+  message_9: "<gradient:#ff0000:#aa0000>☠ %entityName% was mercilessly beheaded by %killerName% using %weaponName% ☠</gradient>"
+  message_10: "<gradient:#ffff55:#ffaa00>%killerName%</gradient> <gradient:#ffaa00:#ffff55>claimed the head of</gradient> %entityName% <rainbow>with %weaponName%!</rainbow>"
+  message_11: "<#ff5555>Head removed! <#aa0000>%killerName% <#ff5555>decapitated<#aa0000> %entityName% <#ff5555>using %weaponName%!"
+  message_12: "<#aa00aa>⚔ %killerName% <#ff55ff>ended<#aa00aa> %entityName%'s existence<#ff55ff> with a single swing of %weaponName% ⚔"
+  message_13: "<gradient:#00ff00:#ffff00>Perfect cut! </gradient><#ffaa00>%killerName% <#ffff55>severs<#ffaa00> %entityName%'s head<#ffff55> with %weaponName%!"
+  message_14: "<#5555ff>%entityName% never saw it coming… <#0000ff>%killerName% <#5555ff>took their head clean off using %weaponName%!"
+  message_15: "<rainbow>TROPHY UNLOCKED!</rainbow> <#ffaa00>%killerName% <#ffff55>has claimed<#ffaa00> %entityName%'s head<#ffff55> with %weaponName%!"
+  message_16: "<gradient:#ff0000:#ff5500:#ffaa00:#ffff00:#aaff00:#55ff00>✨ DIVINE EXECUTION ✨</gradient>\n<#ff5555>%killerName% has performed a legendary beheading on %entityName% with %weaponName%!"
+  message_17: "<gradient:#ff0000:#ff5500:#ffaa00:#ffff55:#ffaa00:#ff5500>☠ CRITICAL STRIKE ☠</gradient>\n<#ffaa00>%killerName% has claimed %entityName%'s head in a flawless execution using %weaponName%!"
+  message_18: "<gradient:#ff0000:#ff8800:#ffff00:#88ff00:#00ff88:#0088ff:#8800ff:#ff00ff>E T E R N A L   S U F F E R I N G</gradient>\n%killerName% has ascended beyond mortality by beheading %entityName%."

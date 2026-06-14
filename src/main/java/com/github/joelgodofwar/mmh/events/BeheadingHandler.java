@@ -4,6 +4,8 @@ import com.github.joelgodofwar.mmh.MoreMobHeads;
 import com.github.joelgodofwar.mmh.common.PluginLibrary;
 import com.github.joelgodofwar.mmh.common.error.DetailedErrorReporter;
 import com.github.joelgodofwar.mmh.common.error.Report;
+import lib.github.joelgodofwar.coreutils.util.JsonConverter;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -33,6 +35,7 @@ public class BeheadingHandler implements Listener {
     private final Map<UUID, List<Pair<UUID, Long>>> killedEntities = new ConcurrentHashMap<>();
     private final Map<UUID, Pair<UUID, Long>> ignitedCreepers = new ConcurrentHashMap<>();
     public YamlConfiguration beheadingMessages = new YamlConfiguration();
+    private final JsonConverter messageConverter;
 
     public BeheadingHandler(MoreMobHeads plugin) {
         this.mmh = plugin;
@@ -44,6 +47,7 @@ public class BeheadingHandler implements Listener {
         } catch (Exception exception) {
             reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_MESSAGES_LOAD_ERROR).error(exception));
         }
+        this.messageConverter = mmh.messageConverter;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -352,13 +356,52 @@ public class BeheadingHandler implements Listener {
             }
             // Announce for all kills
             if (damagingPlayerUUID != null) {
-                String weaponName = damagingWeapon != null && damagingWeapon.getItemMeta() != null
-                        ? (damagingWeapon.getItemMeta().hasDisplayName() ? damagingWeapon.getItemMeta().getDisplayName() : damagingWeapon.getType().name())
-                        : (player == playerBedKiller ? "ORANGE_BED" : "Bare Hands");
+                String weaponName = "Bare Hands";
+                if (player == playerBedKiller) {
+                    if (damagingWeapon != null) {
+                        Material bedType = damagingWeapon.getType();
+                        if (isBed(bedType)) {
+                            ItemMeta meta = damagingWeapon.getItemMeta();
+                            if (meta != null && meta.hasDisplayName()) {
+                                weaponName = meta.getDisplayName();  // Custom name if present
+                            } else {
+                                String color = bedType.name().replace("_BED", "").toLowerCase();
+                                weaponName = color.substring(0, 1).toUpperCase() + color.substring(1) + " Bed";
+                            }
+                        } else {
+                            weaponName = "Bed Explosion";  // Rare fallback
+                        }
+                    } else {
+                        weaponName = "Bed Explosion";  // No item detected
+                    }
+                } else if (damagingWeapon != null) {
+                    ItemMeta meta = damagingWeapon.getItemMeta();
+                    if (meta != null) {
+                        if (meta.hasDisplayName()) {
+                            weaponName = meta.getDisplayName();
+                        } else {
+                            weaponName = damagingWeapon.getType().name().replace("_", " ");  // e.g. DIAMOND_SWORD → "DIAMOND SWORD"
+                        }
+                    } else {
+                        weaponName = damagingWeapon.getType().name();
+                    }
+                }
                 int randomIndex = (int) (Math.random() * Objects.requireNonNull(beheadingMessages.getConfigurationSection("messages")).getKeys(false).size()) + 1;
+                if(mmh.isDev){
+                    ItemStack slot9 = player.getInventory().getItem(8);
+                    if (slot9 != null && slot9.getAmount() > 0) {  // <-- safer check
+                        randomIndex = slot9.getAmount();
+                    }
+                }
                 String announcement = beheadingMessages.getString("messages.message_" + randomIndex, "%killerName% beheaded %entityName% with %weaponName%.")
                         .replace("%killerName%", killerName).replace("%entityName%", entityName2).replace("%weaponName%", weaponName);
-                mmh.coreUtils.broadcast(announcement); // Use direct broadcast
+                //mmh.coreUtils.broadcast(announcement); // Use direct broadcast
+                String jsonAnnouncement = messageConverter.convert(announcement, "");
+                // mmh.logDebug("AB announcement=" + announcement);
+                // mmh.logDebug("AB jsonAnnouncement=" + jsonAnnouncement);
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    mmh.coreUtils.jsonMessageUtils.sendJsonMessage(p, jsonAnnouncement);
+                }
                 mmh.logDebug("Announced beheading: " + announcement);
 
                 // Schedule cleanup only once per explosion
@@ -463,14 +506,17 @@ public class BeheadingHandler implements Listener {
                 case ENTITY_EXPLOSION:
                     return Optional.of(new ItemStack(Material.TNT));
                 case BLOCK_EXPLOSION:
-                    Optional<ItemStack> bedItem = getWeaponItem(playerInventory, Material.RED_BED);
-                    if (bedItem.isPresent()) return bedItem;
-                    bedItem = getWeaponItem(playerInventory, Material.ORANGE_BED);
-                    if (bedItem.isPresent()) return bedItem;
-                    bedItem = getWeaponItem(playerInventory, Material.YELLOW_BED);
-                    if (bedItem.isPresent()) return bedItem;
-                    bedItem = getWeaponItem(playerInventory, Material.WHITE_BED);
-                    if (bedItem.isPresent()) return bedItem;
+                    // Try main hand first
+                    ItemStack main = playerInventory.getItemInMainHand();
+                    if (main != null && isBed(main.getType())) {
+                        return Optional.of(main);
+                    }
+                    // Then off hand
+                    ItemStack off = playerInventory.getItemInOffHand();
+                    if (off != null && isBed(off.getType())) {
+                        return Optional.of(off);
+                    }
+                    // Fallback if no bed held (rare but possible in explosions)
                     return Optional.of(new ItemStack(Material.RED_BED));
                 default:
                     break;
@@ -479,6 +525,10 @@ public class BeheadingHandler implements Listener {
             reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_RESOLVE_DAMAGE_WEAPON).error(exception));
         }
         return Optional.empty();
+    }
+
+    private boolean isBed(Material m) {
+        return m != null && m.name().endsWith("_BED");
     }
 
     private Optional<ItemStack> getWeaponItem(PlayerInventory playerInventory, Material material) {

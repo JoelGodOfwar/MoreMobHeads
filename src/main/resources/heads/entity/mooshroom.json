@@ -1,28 +1,58 @@
 {
   "defaultChance": 1.0,
-  "structure": "nested",
   "heads": {
     "mooshroom": {
       "brown": {
+        "chance": 10.0,
         "displayName": "Brown Mooshroom",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.mooshroom.brown",
         "langName": "mooshroom.brown",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2U2NDY2MzAyYTVhYjQzOThiNGU0NzczNDk4MDhlNWQ5NDAyZWEzYWQ4ZmM0MmUyNDQ2ZTRiZWQwYTVlZDVlIn19fQ==",
-        "uuid": "e206ac29-ae69-475b-909a-fb523d894336",
         "lore": [],
         "noteblockSound": "entity.cow.ambient",
         "quantity": 1,
-        "chance": 10.0
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2U2NDY2MzAyYTVhYjQzOThiNGU0NzczNDk4MDhlNWQ5NDAyZWEzYWQ4ZmM0MmUyNDQ2ZTRiZWQwYTVlZDVlIn19fQ==",
+        "uuid": "e206ac29-ae69-475b-909a-fb523d894336"
       },
       "red": {
+        "chance": 1.0,
         "displayName": "Red Mooshroom",
+        "langFormat": "mmh.format.entity.default",
+        "langKey": "entity.mooshroom.red",
         "langName": "mooshroom.red",
-        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGE4MDYwNmU4MmM2NDJmMTQxNTg3NzMzZTMxODBhZTU3ZjY0NjQ0MmM5ZmZmZDRlNTk5NzQ1N2UzNDMxMWEyOSJ9fX0=",
-        "uuid": "b769f2da-e5a8-4882-b15b-d68618904a63",
         "lore": [],
         "noteblockSound": "entity.cow.ambient",
         "quantity": 1,
-        "chance": 1.0
+        "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGE4MDYwNmU4MmM2NDJmMTQxNTg3NzMzZTMxODBhZTU3ZjY0NjQ0MmM5ZmZmZDRlNTk5NzQ1N2UzNDMxMWEyOSJ9fX0=",
+        "uuid": "b769f2da-e5a8-4882-b15b-d68618904a63"
+      },
+      "baby": {
+        "brown": {
+          "chance": 15.0,
+          "displayName": "Baby Brown Mooshroom",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.mooshroom.baby.brown",
+          "langName": "mooshroom.baby.brown",
+          "lore": [],
+          "noteblockSound": "entity.cow.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTVhODQ1MjQ5NjI1MGMxMmUyMjdiNWI2Nzk1MzE4OTNmYTUzZWVmYjQ3Zjc1MGYwYTFiMTNiMGJjMjI1YTFhYyJ9fX0=",
+          "uuid": "c29b8c4b-424e-4ea9-b39d-9b737f65e28f"
+        },
+        "red": {
+          "chance": 3.0,
+          "displayName": "Baby Red Mooshroom",
+          "langFormat": "mmh.format.entity.default",
+          "langKey": "entity.mooshroom.baby.red",
+          "langName": "mooshroom.baby.red",
+          "lore": [],
+          "noteblockSound": "entity.cow.ambient",
+          "quantity": 1,
+          "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmU0ZjYwMDc5YTVlNWNjMzdmMjg1NDI2ODFlZjc5MGE5NzRlZDlhMWI1MGY2MThmNDAwMTk0NTJjMTk2MTk5YiJ9fX0=",
+          "uuid": "8be3e1d2-9e4f-475c-a12b-e5cadb7ed0c4"
+        }
       }
     }
-  }
+  },
+  "structure": "nested"
 }

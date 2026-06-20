@@ -13,9 +13,10 @@
         <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
     </release>
     <developer>
-        <version>1.20_1.0.46.D2</version>
+        <version>1.20_1.0.46.D3</version>
         <notes>D1  Fixed player chance loading, started caching player(online) skin URLs.
-        D2  Added Sulfur Cube, Sulfur and variants, Cinnabar and variants.</notes>
+        D2  Added Sulfur Cube, Sulfur and variants, Cinnabar and variants.
+        D3  Now caches online player skin URL on join.</notes>
         <link>https://dev.bukkit.org/projects/moremobheads2/files</link>
     </developer>
 </versions>

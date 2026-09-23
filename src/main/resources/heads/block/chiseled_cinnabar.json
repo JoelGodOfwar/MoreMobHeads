@@ -1,0 +1,28 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "CHISELED_CINNABAR",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Chiseled Cinnabar Block",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzY0NWY1N2RjNDQzMTYwNzI1MTkyNDIwNDk3OGNjMTlhMTM4MmUyNWIwNDI3ZjJjYzYxM2RlZGQ5NDZhZjBmYyJ9fX0=",
+    "uuid": "19c0a776-9794-4dfb-a173-51e1373f2c00",
+    "lore": [],
+    "noteblockSound": "block.cinnabar.place",
+    "quantity": 8,
+    "maxUses": 1,
+	"min_mc_version": "26.2",
+    "langKey": "block.cinnabar.chiseled",
+    "langFormat": "mmh.format.block.default"
+  }
+}  

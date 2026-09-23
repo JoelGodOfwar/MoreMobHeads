@@ -1,0 +1,28 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "SULFUR",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Sulfur",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGI5NjFlNzE1ODY4MTIyZmQ4YWZiOGVhYWYzNDVhZDJhNmI2NzFjNzdmYTViYWJiMjI0Y2VjZDM0OGQwNmE3OCJ9fX0=",
+    "uuid": "0e33fc65-e298-442e-8d93-1946f75139b8",
+    "lore": [],
+    "noteblockSound": "block.sulfur.place",
+    "quantity": 8,
+    "maxUses": 1,
+    "min_mc_version": "26.2",
+    "langKey": "block.sulfur",
+    "langFormat": "mmh.format.block.default"
+  }
+} 

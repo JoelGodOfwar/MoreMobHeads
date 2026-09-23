@@ -1,6 +1,6 @@
 name: MoreMobHeads
 main: com.github.joelgodofwar.mmh.MoreMobHeads
-version: ${project.version}
+version: 1.20_1.0.47.D1
 author: JoelYahwehOfWar
 api-version: 1.20
 folia-supported: true

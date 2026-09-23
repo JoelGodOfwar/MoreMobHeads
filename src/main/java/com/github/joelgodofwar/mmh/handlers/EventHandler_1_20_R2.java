@@ -224,30 +224,33 @@ public class EventHandler_1_20_R2 implements Listener, MMHEventHandler {
 
 							mmh.logDebug("EDE Killer is Player line:1073");
 
-							Player victim = (Player) entity;
+							Player playerVictim = (Player) entity;
                             String killerName;
 							String entityName;
-							PlayerProfile profile = victim.getPlayerProfile();
+							PlayerProfile profile = playerVictim.getPlayerProfile();
 							ItemStack head = new ItemStack(Material.PLAYER_HEAD);
 							SkullMeta meta = (SkullMeta) head.getItemMeta();
-							PlayerTextures textures = profile.getTextures();
+							String playerSkinUrl = mmh.playerSkinCache.getOrDefault(profile.getUniqueId(), null);
+							// PlayerTextures textures = profile.getTextures();
 
 							mmh.logDebug(" EDE PlayerProfile getName: " + profile.getName());
 							mmh.logDebug(" EDE PlayerProfile UUID: " + profile.getUniqueId());
-							mmh.logDebug(" EDE PlayerProfile Skin: " + profile.getTextures().getSkin());
+							mmh.logDebug(" EDE PlayerProfile Skin: " + playerSkinUrl);
 
 							killerName = mmh.getNickname(theKiller);
-							entityName = mmh.getNickname(victim);
+							entityName = mmh.getNickname(playerVictim);
 							// Check if skinURL is not null, if it is null then use 503 head's skin
 
-							head = mmh.makeHead(entityName, profile.getTextures().getSkin().toString(), profile.getUniqueId().toString(), entity.getType(), entity.getKiller());
-							boolean isCanceled = mmh.callDropEvent(entity, entity.getKiller(), head, head.getItemMeta().getDisplayName(), HeadUtils.convertURLToBase64(profile.getTextures().getSkin().toString()), profile.getUniqueId().toString(), head.getItemMeta().getLore(), "entity.player.hurt");
+							head = mmh.makeHead(entityName, playerSkinUrl, profile.getUniqueId().toString(), entity.getType(), entity.getKiller());
+							boolean isCanceled = mmh.callDropEvent(entity, entity.getKiller(), head, head.getItemMeta().getDisplayName(), HeadUtils.convertURLToBase64(playerSkinUrl), profile.getUniqueId().toString(), head.getItemMeta().getLore(), "entity.player.hurt");
 							if (!isCanceled) {
 								mmh.playerGiveOrDropHead(theKiller, head);
 								mmh.logDebug("EDE " + ((Player) entity).getDisplayName() + " Player Head Dropped");
 								if (mmh.player_announce_enabled) {
 									beheading.announceBeheading(entity, entityName, theKiller, mmh.player_announce_display);
 								}
+							}else{
+								mmh.logDebug("Player Head drop was cancelled by another plugin.");
 							}
 						}
 						return;

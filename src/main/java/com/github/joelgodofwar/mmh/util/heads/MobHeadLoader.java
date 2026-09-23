@@ -39,7 +39,7 @@ public class MobHeadLoader {
 		this.mobHeadDataList = new ArrayList<>();
 		// Get the server version (e.g., "1.21.4")
 		this.serverVersion = new Version(Bukkit.getServer());
-		this.playerChance = 50.0; // Default value
+		this.playerChance = mmh.playerChance; // Default value
 	}
 
 	/**
@@ -55,16 +55,16 @@ public class MobHeadLoader {
 	public void loadFromJsonFile(String filePath) {
 		try {
 			String content = new String(Files.readAllBytes(new File(filePath).toPath()));
-			JSONObject jsonObj = new JSONObject(content);
+			JSONObject jsonObj = parseJsonSafely(content);
 			// Check if the file is player.json
 			if (filePath.endsWith("player.json")) {
 				mmh.playerChance = jsonObj.optDouble("chance", 50.0);
-				CoreUtils.log("Loaded player chance: " + playerChance + " from " + filePath);
+				CoreUtils.log("Loaded player chance: " + mmh.playerChance + " from " + filePath);
 				return; // Skip further processing for player.json
 			}
 			if (filePath.endsWith("named.json")) {
 				mmh.namedChance = jsonObj.optDouble("chance", 10.0);
-				CoreUtils.log("Loaded named chance: " + playerChance + " from " + filePath);
+				CoreUtils.log("Loaded named chance: " + mmh.namedChance + " from " + filePath);
 				return; // Skip further processing for player.json
 			}
 			double defaultChance = jsonObj.optDouble("defaultChance", 100.0);
@@ -85,6 +85,32 @@ public class MobHeadLoader {
 		} catch (Exception e) {
 			CoreUtils.warn("Error loading mob heads from " + filePath + ": " + e.getMessage());
 			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Safely parses JSON that might be wrapped in [] or not.
+	 */
+	private JSONObject parseJsonSafely(String content) {
+		if (content == null || content.isEmpty()) {
+			return new JSONObject();
+		}
+
+		content = content.trim();
+
+		if (content.startsWith("[")) {
+			try {
+				JSONArray array = new JSONArray(content);
+				JSONObject obj = array.optJSONObject(0);
+				return obj != null ? obj : new JSONObject();
+			} catch (Exception ignored) {}
+		}
+
+		try {
+			return new JSONObject(content);
+		} catch (Exception e) {
+			CoreUtils.warn("Failed to parse JSON: " + e.getMessage());
+			return new JSONObject();
 		}
 	}
 

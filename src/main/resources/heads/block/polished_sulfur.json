@@ -1,0 +1,28 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "POLISHED_SULFUR",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Polished Sulfur",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzhjNDNiNDZkOTQyZDQyZjE5NTcwNmQ0MmI5NTZjMzg0ZjhkYjNlM2Y3MzEwZGU3ZDc2NDJkOTliMTQ0NDNjOSJ9fX0=",
+    "uuid": "3fa4f966-1677-402c-9151-9486fcf06bb6",
+    "lore": [],
+    "noteblockSound": "block.sulfur.place",
+    "quantity": 8,
+    "maxUses": 1,
+	"min_mc_version": "26.2",
+    "langKey": "block.sulfur.polished",
+    "langFormat": "mmh.format.block.default"
+  }
+}  

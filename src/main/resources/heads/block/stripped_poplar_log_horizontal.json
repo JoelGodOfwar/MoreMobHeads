@@ -1,0 +1,27 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "STRIPPED_POPLAR_LOG",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Stripped Poplar Log (Horizontal)",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjlkZDVlYWM3NDc4ZTk4M2QwNjA4NGY3NTg5NzllYWY2MjA3M2I0NjU4YmU1NTEyNjMyNDM4YTcyNzEyZGM2YSJ9fX0=",
+    "uuid": "67773cf1-276f-4850-bc3b-dd6b8de6872d",
+    "lore": [],
+    "noteblockSound": "block.wood.place",
+    "quantity": 8,
+    "maxUses": 1,
+    "langKey": "block.poplar.stripped.log.horizontal",
+    "langFormat": "mmh.format.block.wood2"
+  }
+}

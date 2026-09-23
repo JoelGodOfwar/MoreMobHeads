@@ -36,6 +36,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.profile.PlayerProfile;
 import org.bukkit.profile.PlayerTextures;
+import org.bukkit.scheduler.BukkitTask;
 import org.json.JSONObject;
 
 import javax.annotation.Nonnull;
@@ -58,7 +59,7 @@ import java.util.concurrent.*;
 public class MoreMobHeads extends JavaPlugin implements Listener{
 	//** Languages: čeština (cs_CZ), Deutsch (de_DE), English (en_US), Español (es_ES), Español (es_MX), Français (fr_FR),
 	// Italiano (it_IT), Magyar (hu_HU), 日本語 (ja_JP), 한국어 (ko_KR), Lolcat (lol_US), Melayu (my_MY), Nederlands (nl_NL),
-	// Polski (pl_PL), Português (pt_BR), Русский (ru_RU), Svenska (sv_SV), Türkçe (tr_TR), 中文(简体) (zh_CN), 中文(繁體) (zh_TW) */
+	// Polski (pl_PL), Português (pt_BR), Русский (ru_RU), Svenska (sv_SE), Türkçe (tr_TR), 中文(简体) (zh_CN), 中文(繁體) (zh_TW) */
 	public static final long DEV_BUILD_START_TIME = 1768709679000L;
 	public static final long DEV_BUILD_END_TIME = 1800230400000L; // Jan 18 2027
 	public final com.github.joelgodofwar.mmh.util.BuildValidator buildValidator = new BuildValidator();
@@ -66,7 +67,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	public static String THIS_VERSION;
 	//** update checker variables */
 	public int projectID = 73997; // https://spigotmc.org/resources/71236
-	public String githubURL = "https://github.com/JoelGodOfwar/MoreMobHeads/raw/master/versioncheck/1.20/versions.xml";
+	public String githubURL = "https://github.com/JoelGodOfwar/MoreMobHeads/raw/master/versioncheck/versions.xml";
 	public boolean UpdateAvailable =  false;
 	public String UC_oldVersion;
 	public String UC_newVersion;
@@ -74,7 +75,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	public String DownloadLink = "https://dev.bukkit.org/projects/moremobheads2";
 	//** end update checker variables */
 	Version MINIMUM_MINECRAFT_VERSION = new Version("1.20");
-	Version MAXIMUM_MINECRAFT_VERSION = new Version("26.1.2");
+	Version MAXIMUM_MINECRAFT_VERSION = new Version("26.3");
 	Version CURRENT_MINECRAFT_VERSION = Version.getCurrentVersion();
 
 	public Version minConfigVersion = new Version("1.0.30");
@@ -154,6 +155,9 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 	public final Map<UUID, Long> lastGuiClickTime = new ConcurrentHashMap<>();
 	public static final long GUI_CLICK_COOLDOWN_MS = 200;
 	private PluginLogger logger;
+	public final Map<UUID, String> playerSkinCache = new ConcurrentHashMap<>(); // UUID -> skin URL string
+	public final Map<UUID, UUID> playerProfileIdCache = new ConcurrentHashMap<>(); // optional, for consistency
+	public final Map<UUID, BukkitTask> cleanupTasks = new ConcurrentHashMap<>();
 
 	@Override
 	public void onLoad() {
@@ -343,7 +347,7 @@ public class MoreMobHeads extends JavaPlugin implements Listener{
 				Command_1_20_R2 commandHandler = new Command_1_20_R2(this, headManager, eventHandler.getGiveHeadCommand(), eventHandler.getViewHeadsCommand(), eventHandler);
 				Objects.requireNonNull(getCommand("mmh")).setExecutor(commandHandler);
 				Objects.requireNonNull(getCommand("mmh")).setTabCompleter(commandHandler);
-			}else if( version.isBetween("1.20.5","26.1.2") ){
+			}else if( version.isBetween("1.20.5","26.2") ){
 				eventHandler = new EventHandler_1_20_R2(this, headManager);
 				getServer().getPluginManager().registerEvents((EventHandler_1_20_R2) eventHandler, this);
 				Command_1_20_R2 commandHandler = new Command_1_20_R2(this, headManager, eventHandler.getGiveHeadCommand(), eventHandler.getViewHeadsCommand(), eventHandler);

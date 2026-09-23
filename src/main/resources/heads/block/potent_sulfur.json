@@ -1,0 +1,28 @@
+{
+  "structure": "trade",
+  "prices": {
+    "comment": "At least one price must be a valid non-AIR item",
+    "items": [
+      {
+        "type": "EMERALD",
+        "amount": 1
+      },
+      {
+        "type": "POTENT_SULFUR",
+        "amount": 1
+      }
+    ]
+  },
+  "head": {
+    "displayName": "§eMini Potent Sulfur",
+    "texture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2FkMDMyZmI2YjY4MTY5NWYzOGVhNTI4NmU3MTlmYTY0ZjA3NjI5NDY2ZGNmZmM2MmEzNDk0YTNiZmZlYmI1NSJ9fX0=",
+    "uuid": "d02213ff-9338-4b6c-bbbb-d6f437ecc2b6",
+    "lore": [],
+    "noteblockSound": "block.potent_sulfur.noxious_gas",
+    "quantity": 8,
+    "maxUses": 1,
+	"min_mc_version": "26.2",
+    "langKey": "block.potent_sulfur",
+    "langFormat": "mmh.format.block.default"
+  }
+}  
